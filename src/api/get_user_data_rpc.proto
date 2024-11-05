@@ -4,8 +4,8 @@ package api;
 
 option go_package = "./;grpc_api";
 
-import "mii.proto";
-import "user_connections.proto";
+import "api/mii.proto";
+import "api/user_connections.proto";
 
 message GetUserDataResponse {
 	bool deleted = 1;

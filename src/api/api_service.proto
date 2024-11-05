@@ -5,14 +5,14 @@ package api;
 option go_package = "./;grpc_api";
 
 import "google/protobuf/empty.proto";
-import "register_rpc.proto";
-import "login_rpc.proto";
-import "get_user_data_rpc.proto";
-import "update_user_data_rpc.proto";
-import "forgot_password_rpc.proto";
-import "reset_password_rpc.proto";
-import "set_discord_connection_data_rpc.proto";
-import "set_stripe_connection_data_rpc.proto";
+import "api/register_rpc.proto";
+import "api/login_rpc.proto";
+import "api/get_user_data_rpc.proto";
+import "api/update_user_data_rpc.proto";
+import "api/forgot_password_rpc.proto";
+import "api/reset_password_rpc.proto";
+import "api/set_discord_connection_data_rpc.proto";
+import "api/set_stripe_connection_data_rpc.proto";
 
 service API {
 	rpc Register(RegisterRequest) returns (LoginResponse) {}

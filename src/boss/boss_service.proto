@@ -5,15 +5,15 @@ package boss;
 option go_package = "./;grpc_boss";
 
 import "google/protobuf/empty.proto";
-import "list_known_boss_apps.proto";
-import "list_tasks.proto";
-import "register_task.proto";
-import "update_task.proto";
-import "delete_task.proto";
-import "list_files.proto";
-import "upload_file.proto";
-import "update_file_metadata.proto";
-import "delete_file.proto";
+import "boss/list_known_boss_apps.proto";
+import "boss/list_tasks.proto";
+import "boss/register_task.proto";
+import "boss/update_task.proto";
+import "boss/delete_task.proto";
+import "boss/list_files.proto";
+import "boss/upload_file.proto";
+import "boss/update_file_metadata.proto";
+import "boss/delete_file.proto";
 
 service BOSS {
 	rpc ListKnownBOSSApps(google.protobuf.Empty) returns (ListKnownBOSSAppsResponse) {}

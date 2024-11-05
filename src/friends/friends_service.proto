@@ -5,12 +5,12 @@ package friends;
 option go_package = "./;grpc_friends";
 
 import "google/protobuf/empty.proto";
-import "send_user_notification_wiiu_rpc.proto";
-import "get_user_friend_pids_rpc.proto";
-import "send_user_friend_request_rpc.proto";
-import "get_user_friend_requests_incoming_rpc.proto";
-import "accept_friend_request_rpc.proto";
-import "deny_friend_request_rpc.proto";
+import "friends/send_user_notification_wiiu_rpc.proto";
+import "friends/get_user_friend_pids_rpc.proto";
+import "friends/send_user_friend_request_rpc.proto";
+import "friends/get_user_friend_requests_incoming_rpc.proto";
+import "friends/accept_friend_request_rpc.proto";
+import "friends/deny_friend_request_rpc.proto";
 
 service Friends {
 	rpc SendUserNotificationWiiU(SendUserNotificationWiiURequest) returns (google.protobuf.Empty) {}

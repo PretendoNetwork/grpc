@@ -4,7 +4,7 @@ package miiverse;
 
 option go_package = "./;grpc_miiverse";
 
-import "smm_request_post_id_rpc.proto";
+import "miiverse/smm_request_post_id_rpc.proto";
 
 service Miiverse {
 	// Used by Super Mario Maker

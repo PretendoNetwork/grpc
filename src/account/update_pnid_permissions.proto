@@ -4,7 +4,7 @@ package account;
 
 option go_package = "./;grpc_account";
 
-import "pnid_permission_flags.proto";
+import "account/pnid_permission_flags.proto";
 
 message UpdatePNIDPermissionsRequest {
 	uint32 pid = 1;

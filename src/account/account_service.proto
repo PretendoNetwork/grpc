@@ -5,11 +5,11 @@ package account;
 option go_package = "./;grpc_account";
 
 import "google/protobuf/empty.proto";
-import "get_user_data_rpc.proto";
-import "get_nex_password_rpc.proto";
-import "get_nex_data_rpc.proto";
-import "update_pnid_permissions.proto";
-import "exchange_token_for_user_data.proto";
+import "account/get_user_data_rpc.proto";
+import "account/get_nex_password_rpc.proto";
+import "account/get_nex_data_rpc.proto";
+import "account/update_pnid_permissions.proto";
+import "account/exchange_token_for_user_data.proto";
 
 service Account {
 	rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}

@@ -4,7 +4,7 @@ package friends;
 
 option go_package = "./;grpc_friends";
 
-import "friend_request.proto";
+import "friends/friend_request.proto";
 
 message GetUserFriendRequestsIncomingRequest {
 	uint32 pid = 1;
