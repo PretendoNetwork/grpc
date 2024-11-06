@@ -13,6 +13,10 @@ plugins:
       - paths=source_relative
   - protoc_builtin: python
     out: python
-  - local: protoc-gen-es
-    opt: target=js+dts
-    out: typescript
+  - local: protoc-gen-ts
+    opt: 
+      - eslint_disable
+      - output_javascript
+      - output_legacy_commonjs
+      - ts_nocheck
+    out: javascript

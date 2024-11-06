@@ -1,11 +1,18 @@
 {
+  "name": "@pretendonetwork/grpc",
+  "version": "2.0.0",
+  "license": "AGPL-3.0-only",
   "scripts": {
-    "generate": "buf generate",
-    "generate:debug": "buf generate --debug"
+    "generate": "buf generate && npm run copy-static",
+    "generate:debug": "buf generate --debug && npm run copy-static",
+    "copy-static": "copyfiles package.json README.md javascript"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.46.0",
+    "@protobuf-ts/plugin": "^2.9.4",
+    "copyfiles": "^2.4.1"
   },
   "dependencies": {
-    "@bufbuild/buf": "^1.46.0",
-    "@bufbuild/protobuf": "^2.2.2",
-    "@bufbuild/protoc-gen-es": "^2.2.2"
+    "@protobuf-ts/runtime": "^2.9.4"
   }
 }
