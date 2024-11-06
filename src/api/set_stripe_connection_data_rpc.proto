@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "./;grpc_api";
-
 message SetStripeConnectionDataRequest {
 	optional string customer_id = 1;
 	optional string subscription_id = 2;

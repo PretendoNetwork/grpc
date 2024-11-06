@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package account;
 
-option go_package = "./;grpc_account";
-
 import "account/mii.proto";
 import "account/pnid_permission_flags.proto";
 

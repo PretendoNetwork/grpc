@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package miiverse;
 
-option go_package = "./;grpc_miiverse";
-
 import "miiverse/smm_request_post_id_rpc.proto";
 
 service Miiverse {

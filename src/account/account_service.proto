@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package account;
 
-option go_package = "./;grpc_account";
-
 import "google/protobuf/empty.proto";
 import "account/get_user_data_rpc.proto";
 import "account/get_nex_password_rpc.proto";

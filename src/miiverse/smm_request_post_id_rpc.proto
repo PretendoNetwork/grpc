@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package miiverse;
 
-option go_package = "./;grpc_miiverse";
-
 message SMMRequestPostIDRequest {
 	uint64 course_id = 1;
 	// TODO - Other course/user data?

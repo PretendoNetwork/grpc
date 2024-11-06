@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package friends;
 
-option go_package = "./;grpc_friends";
-
 message GetUserFriendPIDsRequest {
 	uint32 pid = 1;
 }

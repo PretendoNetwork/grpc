@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "./;grpc_api";
-
 message RegisterRequest {
 	string email = 1;
 	string username = 2;

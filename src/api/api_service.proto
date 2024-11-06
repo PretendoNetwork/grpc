@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "./;grpc_api";
-
 import "google/protobuf/empty.proto";
 import "api/register_rpc.proto";
 import "api/login_rpc.proto";

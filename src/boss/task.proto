@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package boss;
 
-option go_package = "./;grpc_boss";
-
 message Task {
 	bool deleted = 1;
 	string id = 2;

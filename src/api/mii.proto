@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "./;grpc_api";
-
 message Mii {
 	string name = 1;
 	string data = 2;

@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package boss;
 
-option go_package = "./;grpc_boss";
-
 import "boss/file.proto";
 
 message ListFilesRequest {

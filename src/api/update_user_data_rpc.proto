@@ -2,7 +2,5 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "./;grpc_api";
-
 // TODO - Not implemented yet, stubbed
 message UpdateUserDataRequest {}

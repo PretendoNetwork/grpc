@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package friends;
 
-option go_package = "./;grpc_friends";
-
 import "google/protobuf/empty.proto";
 import "friends/send_user_notification_wiiu_rpc.proto";
 import "friends/get_user_friend_pids_rpc.proto";

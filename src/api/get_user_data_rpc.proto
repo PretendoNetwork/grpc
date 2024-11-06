@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "./;grpc_api";
-
 import "api/mii.proto";
 import "api/user_connections.proto";
 

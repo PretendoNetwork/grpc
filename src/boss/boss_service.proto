@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package boss;
 
-option go_package = "./;grpc_boss";
-
 import "google/protobuf/empty.proto";
 import "boss/list_known_boss_apps.proto";
 import "boss/list_tasks.proto";
