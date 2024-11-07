@@ -5,5 +5,5 @@ package boss;
 import "boss/task.proto";
 
 message ListTasksResponse {
-	repeated Task tasks = 1;
+  repeated Task tasks = 1;
 }

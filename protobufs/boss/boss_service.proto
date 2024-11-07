@@ -2,25 +2,25 @@ syntax = "proto3";
 
 package boss;
 
-import "google/protobuf/empty.proto";
+import "boss/delete_file.proto";
+import "boss/delete_task.proto";
+import "boss/list_files.proto";
 import "boss/list_known_boss_apps.proto";
 import "boss/list_tasks.proto";
 import "boss/register_task.proto";
-import "boss/update_task.proto";
-import "boss/delete_task.proto";
-import "boss/list_files.proto";
-import "boss/upload_file.proto";
 import "boss/update_file_metadata.proto";
-import "boss/delete_file.proto";
+import "boss/update_task.proto";
+import "boss/upload_file.proto";
+import "google/protobuf/empty.proto";
 
 service BOSS {
-	rpc ListKnownBOSSApps(google.protobuf.Empty) returns (ListKnownBOSSAppsResponse) {}
-	rpc ListTasks(google.protobuf.Empty) returns (ListTasksResponse) {}
-	rpc RegisterTask(RegisterTaskRequest) returns (RegisterTaskResponse) {}
-	rpc UpdateTask(UpdateTaskRequest) returns (google.protobuf.Empty) {}
-	rpc DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty) {}
-	rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {}
-	rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {}
-	rpc UpdateFileMetadata(UpdateFileMetadataRequest) returns (google.protobuf.Empty) {}
-	rpc DeleteFile(DeleteFileRequest) returns (google.protobuf.Empty) {}
+  rpc ListKnownBOSSApps(google.protobuf.Empty) returns (ListKnownBOSSAppsResponse) {}
+  rpc ListTasks(google.protobuf.Empty) returns (ListTasksResponse) {}
+  rpc RegisterTask(RegisterTaskRequest) returns (RegisterTaskResponse) {}
+  rpc UpdateTask(UpdateTaskRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty) {}
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {}
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {}
+  rpc UpdateFileMetadata(UpdateFileMetadataRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteFile(DeleteFileRequest) returns (google.protobuf.Empty) {}
 }

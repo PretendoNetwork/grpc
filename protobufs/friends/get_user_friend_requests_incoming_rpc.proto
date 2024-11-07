@@ -5,9 +5,9 @@ package friends;
 import "friends/friend_request.proto";
 
 message GetUserFriendRequestsIncomingRequest {
-	uint32 pid = 1;
+  uint32 pid = 1;
 }
 
 message GetUserFriendRequestsIncomingResponse {
-	repeated FriendRequest friend_requests = 1;
+  repeated FriendRequest friend_requests = 1;
 }

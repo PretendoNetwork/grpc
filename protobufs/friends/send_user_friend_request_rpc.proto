@@ -3,11 +3,11 @@ syntax = "proto3";
 package friends;
 
 message SendUserFriendRequestRequest {
-	uint32 sender = 1;
-	uint32 recipient = 2;
-	string message = 3;
+  uint32 sender = 1;
+  uint32 recipient = 2;
+  string message = 3;
 }
 
 message SendUserFriendRequestResponse {
-	bool success = 1;
+  bool success = 1;
 }

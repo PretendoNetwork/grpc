@@ -3,20 +3,20 @@ syntax = "proto3";
 package account;
 
 enum DeviceType {
-	CTR = 0;
-	WUP = 1;
+  CTR = 0;
+  WUP = 1;
 }
 
 message GetNEXDataRequest {
-	uint32 pid = 1;
+  uint32 pid = 1;
 }
 
 message GetNEXDataResponse {
-	uint32 pid = 1;
-	string password = 2;
-	uint32 owning_pid = 3;
-	int32 access_level = 4;
-	string server_access_level = 5;
-	string friend_code = 6;
-	DeviceType device_type = 7;
+  uint32 pid = 1;
+  string password = 2;
+  uint32 owning_pid = 3;
+  int32 access_level = 4;
+  string server_access_level = 5;
+  string friend_code = 6;
+  DeviceType device_type = 7;
 }

@@ -3,15 +3,15 @@ syntax = "proto3";
 package boss;
 
 message UpdateTaskData {
-	string id = 1;
-	string boss_app_id = 2;
-	string title_id = 3;
-	string status = 4;
-	string description = 5;
+  string id = 1;
+  string boss_app_id = 2;
+  string title_id = 3;
+  string status = 4;
+  string description = 5;
 }
 
 message UpdateTaskRequest {
-	string id = 1;
-	string boss_app_id = 2;
-	UpdateTaskData update_data = 3;
+  string id = 1;
+  string boss_app_id = 2;
+  UpdateTaskData update_data = 3;
 }

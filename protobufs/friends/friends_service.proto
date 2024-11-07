@@ -2,19 +2,19 @@ syntax = "proto3";
 
 package friends;
 
-import "google/protobuf/empty.proto";
-import "friends/send_user_notification_wiiu_rpc.proto";
-import "friends/get_user_friend_pids_rpc.proto";
-import "friends/send_user_friend_request_rpc.proto";
-import "friends/get_user_friend_requests_incoming_rpc.proto";
 import "friends/accept_friend_request_rpc.proto";
 import "friends/deny_friend_request_rpc.proto";
+import "friends/get_user_friend_pids_rpc.proto";
+import "friends/get_user_friend_requests_incoming_rpc.proto";
+import "friends/send_user_friend_request_rpc.proto";
+import "friends/send_user_notification_wiiu_rpc.proto";
+import "google/protobuf/empty.proto";
 
 service Friends {
-	rpc SendUserNotificationWiiU(SendUserNotificationWiiURequest) returns (google.protobuf.Empty) {}
-	rpc GetUserFriendPIDs(GetUserFriendPIDsRequest) returns (GetUserFriendPIDsResponse) {}
-	rpc SendUserFriendRequest(SendUserFriendRequestRequest) returns (SendUserFriendRequestResponse) {}
-	rpc GetUserFriendRequestsIncoming(GetUserFriendRequestsIncomingRequest) returns (GetUserFriendRequestsIncomingResponse) {}
-	rpc AcceptFriendRequest(AcceptFriendRequestRequest) returns (AcceptFriendRequestResponse) {}
-	rpc DenyFriendRequest(DenyFriendRequestRequest) returns (DenyFriendRequestResponse) {}
+  rpc SendUserNotificationWiiU(SendUserNotificationWiiURequest) returns (google.protobuf.Empty) {}
+  rpc GetUserFriendPIDs(GetUserFriendPIDsRequest) returns (GetUserFriendPIDsResponse) {}
+  rpc SendUserFriendRequest(SendUserFriendRequestRequest) returns (SendUserFriendRequestResponse) {}
+  rpc GetUserFriendRequestsIncoming(GetUserFriendRequestsIncomingRequest) returns (GetUserFriendRequestsIncomingResponse) {}
+  rpc AcceptFriendRequest(AcceptFriendRequestRequest) returns (AcceptFriendRequestResponse) {}
+  rpc DenyFriendRequest(DenyFriendRequestRequest) returns (DenyFriendRequestResponse) {}
 }

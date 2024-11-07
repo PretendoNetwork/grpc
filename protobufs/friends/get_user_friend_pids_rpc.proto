@@ -3,9 +3,9 @@ syntax = "proto3";
 package friends;
 
 message GetUserFriendPIDsRequest {
-	uint32 pid = 1;
+  uint32 pid = 1;
 }
 
 message GetUserFriendPIDsResponse {
-	repeated uint32 pids = 1;
+  repeated uint32 pids = 1;
 }

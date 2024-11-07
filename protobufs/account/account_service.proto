@@ -2,17 +2,17 @@ syntax = "proto3";
 
 package account;
 
-import "google/protobuf/empty.proto";
-import "account/get_user_data_rpc.proto";
-import "account/get_nex_password_rpc.proto";
-import "account/get_nex_data_rpc.proto";
-import "account/update_pnid_permissions.proto";
 import "account/exchange_token_for_user_data.proto";
+import "account/get_nex_data_rpc.proto";
+import "account/get_nex_password_rpc.proto";
+import "account/get_user_data_rpc.proto";
+import "account/update_pnid_permissions.proto";
+import "google/protobuf/empty.proto";
 
 service Account {
-	rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
-	rpc GetNEXPassword(GetNEXPasswordRequest) returns (GetNEXPasswordResponse) {}
-	rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {}
-	rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (google.protobuf.Empty) {}
-	rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (GetUserDataResponse) {}
+  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
+  rpc GetNEXPassword(GetNEXPasswordRequest) returns (GetNEXPasswordResponse) {}
+  rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {}
+  rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (google.protobuf.Empty) {}
+  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (GetUserDataResponse) {}
 }

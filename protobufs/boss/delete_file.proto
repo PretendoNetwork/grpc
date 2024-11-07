@@ -3,6 +3,6 @@ syntax = "proto3";
 package boss;
 
 message DeleteFileRequest {
-	uint64 data_id = 1;
-	string boss_app_id = 2;
+  uint64 data_id = 1;
+  string boss_app_id = 2;
 }

@@ -5,6 +5,6 @@ package miiverse;
 import "miiverse/smm_request_post_id_rpc.proto";
 
 service Miiverse {
-	// Used by Super Mario Maker
-	rpc SMMRequestPostId(SMMRequestPostIDRequest) returns (SMMRequestPostIDResponse) {}
+  // Used by Super Mario Maker
+  rpc SMMRequestPostId(SMMRequestPostIDRequest) returns (SMMRequestPostIDResponse) {}
 }

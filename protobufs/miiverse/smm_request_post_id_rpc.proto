@@ -3,10 +3,10 @@ syntax = "proto3";
 package miiverse;
 
 message SMMRequestPostIDRequest {
-	uint64 course_id = 1;
-	// TODO - Other course/user data?
+  uint64 course_id = 1;
+  // TODO - Other course/user data?
 }
 
 message SMMRequestPostIDResponse {
-	uint64 post_id = 1;
+  uint64 post_id = 1;
 }

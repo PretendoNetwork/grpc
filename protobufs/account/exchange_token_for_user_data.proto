@@ -3,5 +3,5 @@ syntax = "proto3";
 package account;
 
 message ExchangeTokenForUserDataRequest {
-	string token = 1;
+  string token = 1;
 }
