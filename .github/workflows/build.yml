@@ -1,0 +1,50 @@
+name: Build Protobufs
+
+on:
+  push:
+    branches:
+      - monorepo
+    paths:
+      - "protobufs/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Protobufs
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "^1.20.0"
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v3
+        with:
+          version: "23.x"
+      - name: Install Protoc Gen Go
+        run: |
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+          export PATH="$PATH:$(go env GOPATH)/bin"
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Extract NPM Package Version
+        id: extract_version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      - name: Build Protobufs
+        run: npm run build
+      - name: Commit Protobufs
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions [Bot]"
+          git add go javascript
+          git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobufs"
+          git checkout -B test
+          git push -u origin test
