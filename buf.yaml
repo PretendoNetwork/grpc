@@ -1,0 +1,9 @@
+version: v2
+modules:
+  - path: protobufs
+lint:
+  use:
+    - STANDARD
+  rpc_allow_same_request_response: false
+  rpc_allow_google_protobuf_empty_requests: false
+  rpc_allow_google_protobuf_empty_responses: true
