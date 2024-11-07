@@ -10,7 +10,10 @@
     "copy:js": "copyfiles -f package.json README.md template/GENERATED_DO_NOT_EDIT.md javascript",
     "copy:go": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md go",
     "lint": "buf lint",
-    "lint:gh_actions": "buf lint --error-format=github-actions"
+    "lint:gh_actions": "buf lint --error-format=github-actions",
+    "breaking": "buf breaking --against=.git#ref=master",
+    "breaking:gh_actions": "buf breaking --against=.git#ref=master --error-format=github-actions=main",
+    "format": "buf format -w"
   },
   "devDependencies": {
     "@bufbuild/buf": "^1.46.0",
