@@ -6,19 +6,21 @@ import "api/forgot_password_rpc.proto";
 import "api/get_user_data_rpc.proto";
 import "api/login_rpc.proto";
 import "api/register_rpc.proto";
-import "api/reset_password_rpc.proto";
-import "api/set_discord_connection_data_rpc.proto";
 import "api/set_stripe_connection_data_rpc.proto";
 import "api/update_user_data_rpc.proto";
+import "api/reset_password_rpc.proto";
+import "api/set_discord_connection_data_rpc.proto";
 import "google/protobuf/empty.proto";
 
 service API {
-  rpc Register(RegisterRequest) returns (LoginResponse) {}
-  rpc Login(LoginRequest) returns (LoginResponse) {}
-  rpc GetUserData(google.protobuf.Empty) returns (GetUserDataResponse) {}
-  rpc UpdateUserData(UpdateUserDataRequest) returns (GetUserDataResponse) {}
-  rpc ForgotPassword(ForgotPasswordRequest) returns (google.protobuf.Empty) {}
-  rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty) {}
-  rpc SetDiscordConnectionData(SetDiscordConnectionDataRequest) returns (google.protobuf.Empty) {}
-  rpc SetStripeConnectionData(SetStripeConnectionDataRequest) returns (google.protobuf.Empty) {}
+      rpc Register(RegisterRequest) returns (LoginResponse) {}
+      rpc Login(LoginRequest) returns (LoginResponse) {}
+      rpc GetUserData(google.protobuf.Empty) returns (GetUserDataResponse) {}
+      rpc UpdateUserData(UpdateUserDataRequest) returns (GetUserDataResponse) {}
+      rpc ForgotPassword(ForgotPasswordRequest) returns (google.protobuf.Empty) {}
+      rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty) {}
+      rpc SetDiscordConnectionData(SetDiscordConnectionDataRequest) returns (google.protobuf.Empty) {}
+      rpc SetStripeConnectionData(SetStripeConnectionDataRequest) returns (google.protobuf.Empty) { }
+
+
 }
