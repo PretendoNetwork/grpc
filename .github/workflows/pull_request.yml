@@ -19,6 +19,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - uses: actions/checkout@v4
       - name: Install Go
         uses: actions/setup-go@v5
         with:
