@@ -3,7 +3,7 @@ name: Build Protobufs
 on:
   push:
     branches:
-      - monorepo
+      - master
     paths:
       - "protobufs/**"
   workflow_dispatch:
