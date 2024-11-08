@@ -1,4 +1,4 @@
-module github.com/pretendoNetwork/grpc
+module github.com/PretendoNetwork/grpc
 
 go 1.20
 
