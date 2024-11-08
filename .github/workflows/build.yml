@@ -46,7 +46,7 @@ jobs:
         run: |
           npm run format
           git add **/*.proto
-          git diff --quiet || git commit -m "Format Protobufs"
+          git diff --quiet --staged || git commit -m "Format Protobufs"
       - name: Extract NPM Package Version
         id: extract_version
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
