@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
+      latest_commit: ${{ steps.commit_protobufs.outputs.latest_commit }}
     steps:
       - uses: actions/checkout@v4
       - name: Install Go
@@ -52,9 +53,11 @@ jobs:
       - name: Build Protobufs
         run: npm run build
       - name: Commit Protobuf Language Bindings
+        id: commit_protobufs
         run: |
           git add go javascript
           git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobufs"
+          echo "latest_commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
       - name: Push
         run: git push
   publish:
@@ -65,6 +68,8 @@ jobs:
       VERSION: ${{ needs.build.outputs.version }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.latest_commit }}
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
