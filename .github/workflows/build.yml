@@ -56,7 +56,7 @@ jobs:
         id: commit_protobufs
         run: |
           git add go javascript
-          git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobufs"
+          git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobuf Language Bindings"
           echo "latest_commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
       - name: Push
         run: git push
