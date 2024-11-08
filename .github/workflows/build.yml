@@ -14,6 +14,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract_version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
       - name: Install Go
@@ -35,16 +37,51 @@ jobs:
           export PATH="$PATH:$(go env GOPATH)/bin"
       - name: Install Node.js dependencies
         run: npm install
+      - name: Git Setup
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions [Bot]"
+      - name: Format Protobufs
+        run: |
+          npm run format
+          git add **/*.proto
+          git diff --quiet || git commit -m "Format Protobufs"
       - name: Extract NPM Package Version
         id: extract_version
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
       - name: Build Protobufs
         run: npm run build
-      - name: Commit Protobufs
+      - name: Commit Protobuf Language Bindings
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "GitHub Actions [Bot]"
           git add go javascript
           git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobufs"
-          git checkout -B test
-          git push -u origin test
+      - name: Push
+        run: git push
+  publish:
+    name: Publish Protobufs
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Zip Protobufs
+        run: |
+          zip -r go-${{needs.build.outputs.version}}.zip go
+          zip -r javascript-${{needs.build.outputs.version}}.zip javascript
+          zip -r protobufs-${{needs.build.outputs.version}}.zip protobufs
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.zip"
+          tag_name: ${{needs.build.outputs.version}}
+          make_latest: true
+      - name: Publish Protobufs
+        working-directory: ./javascript
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
