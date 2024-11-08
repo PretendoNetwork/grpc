@@ -8,7 +8,7 @@
     "generate": "buf generate",
     "generate:debug": "buf generate --debug",
     "copy:js": "copyfiles -f package.json README.md template/GENERATED_DO_NOT_EDIT.md javascript",
-    "copy:go": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md go",
+    "copy:go": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md template/go/* go",
     "lint": "buf lint",
     "lint:gh_actions": "buf lint --error-format=github-actions",
     "breaking": "buf breaking --against=.git#ref=master",
