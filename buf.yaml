@@ -3,9 +3,7 @@ modules:
   - path: protobufs
 lint:
   use:
-    - BASIC
-    - FILE_LOWER_SNAKE_CASE
-    - PACKAGE_NO_IMPORT_CYCLE
+    - STANDARD
   rpc_allow_same_request_response: false
   rpc_allow_google_protobuf_empty_requests: true
   rpc_allow_google_protobuf_empty_responses: true
