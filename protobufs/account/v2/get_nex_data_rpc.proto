@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package account.v2;
+
+enum DeviceType {
+  DEVICE_TYPE_UNSPECIFIED = 0;
+  DEVICE_TYPE_CTR = 1;
+  DEVICE_TYPE_WUP = 2;
+}
+
+message GetNEXDataRequest {
+  uint32 pid = 1;
+}
+
+message GetNEXDataResponse {
+  uint32 pid = 1;
+  string password = 2;
+  uint32 owning_pid = 3;
+  int32 access_level = 4;
+  string server_access_level = 5;
+  string friend_code = 6;
+  DeviceType device_type = 7;
+}

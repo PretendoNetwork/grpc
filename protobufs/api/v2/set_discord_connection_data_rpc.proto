@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package api.v2;
+
+message SetDiscordConnectionDataRequest {
+  string id = 1;
+}
+
+message SetDiscordConnectionDataResponse {}

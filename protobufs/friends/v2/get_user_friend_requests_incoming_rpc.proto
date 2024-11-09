@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package friends.v2;
+
+import "friends/v2/friend_request.proto";
+
+message GetUserFriendRequestsIncomingRequest {
+  uint32 pid = 1;
+}
+
+message GetUserFriendRequestsIncomingResponse {
+  repeated FriendRequest friend_requests = 1;
+}

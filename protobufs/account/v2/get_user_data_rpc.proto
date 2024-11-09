@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/mii.proto";
+import "account/v2/pnid_permission_flags.proto";
+
+message GetUserDataRequest {
+  uint32 pid = 1;
+}
+
+message GetUserDataResponse {
+  bool deleted = 1;
+  uint32 pid = 2;
+  string username = 3;
+  int32 access_level = 4;
+  string server_access_level = 5;
+  Mii mii = 6;
+  string creation_date = 7;
+  string birthdate = 8;
+  string gender = 9;
+  string country = 10;
+  string language = 11;
+  string email_address = 12;
+  string tier_name = 13;
+  PNIDPermissionFlags permissions = 14;
+}

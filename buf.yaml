@@ -47,9 +47,6 @@ lint:
     - protobufs\friends\send_user_notification_wiiu_rpc.proto
     - protobufs\miiverse\miiverse_service.proto
     - protobufs\miiverse\smm_request_post_id_rpc.proto
-  rpc_allow_same_request_response: false
-  rpc_allow_google_protobuf_empty_requests: true
-  rpc_allow_google_protobuf_empty_responses: true
 breaking:
   use:
     - FILE

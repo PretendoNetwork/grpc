@@ -1,0 +1,19 @@
+// buf:lint:ignore 
+
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/exchange_token_for_user_data.proto";
+import "account/v2/get_nex_data_rpc.proto";
+import "account/v2/get_nex_password_rpc.proto";
+import "account/v2/get_user_data_rpc.proto";
+import "account/v2/update_pnid_permissions.proto";
+
+service AccountService {
+  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
+  rpc GetNEXPassword(GetNEXPasswordRequest) returns (GetNEXPasswordResponse) {}
+  rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {}
+  rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {}
+  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
+}

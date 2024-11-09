@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package friends.v2;
+
+message GetUserFriendPIDsRequest {
+  uint32 pid = 1;
+}
+
+message GetUserFriendPIDsResponse {
+  repeated uint32 pids = 1;
+}
