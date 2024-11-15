@@ -3,9 +3,6 @@
 // @generated from protobuf file "account/v2/account_service.proto" (package "account.v2", syntax proto3)
 // tslint:disable
 // @ts-nocheck
-//
-// buf:lint:ignore
-//
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import type { ExchangeTokenForUserDataResponse } from "./exchange_token_for_user_data";

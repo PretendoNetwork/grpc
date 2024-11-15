@@ -3,9 +3,6 @@
 // @generated from protobuf file "account/v2/account_service.proto" (package "account.v2", syntax proto3)
 // tslint:disable
 // @ts-nocheck
-//
-// buf:lint:ignore
-//
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountServiceClient = void 0;

@@ -3,9 +3,6 @@
 // @generated from protobuf file "account/v2/account_service.proto" (package "account.v2", syntax proto3)
 // tslint:disable
 // @ts-nocheck
-//
-// buf:lint:ignore
-//
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountService = void 0;
@@ -14,9 +11,6 @@ exports.AccountService = void 0;
 // @generated from protobuf file "account/v2/account_service.proto" (package "account.v2", syntax proto3)
 // tslint:disable
 // @ts-nocheck
-//
-// buf:lint:ignore
-//
 const exchange_token_for_user_data_1 = require("./exchange_token_for_user_data");
 const exchange_token_for_user_data_2 = require("./exchange_token_for_user_data");
 const update_pnid_permissions_1 = require("./update_pnid_permissions");

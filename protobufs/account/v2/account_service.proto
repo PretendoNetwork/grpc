@@ -1,5 +1,3 @@
-// buf:lint:ignore
-
 syntax = "proto3";
 
 package account.v2;
