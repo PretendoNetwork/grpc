@@ -1,10 +1,19 @@
 # gRPC Protobufs
 
+[![NPM Version](https://img.shields.io/npm/v/%40pretendonetwork%2Fgrpc)](https://www.npmjs.com/package/@pretendonetwork/grpc)
+
 gRPC protobuf definitions for Pretendo micro-services
 
 ## Structure
 
 Each folder contains the protobuf definitions for the _server_ intended on receiving the requests. Meaning, for example, `account` contains protobuf files intended for requests to the account server
+
+## Install Language Bindings
+
+To install
+
+- Go: `github.com/PretendoNetwork/grpc/go` - `go get github.com/PretendoNetwork/grpc/go`
+- JavaScript: [`@pretendnetwork/grpc`](https://www.npmjs.com/package/@pretendonetwork/grpc) - `npm i @pretendonetwork/grpc`
 
 ## Build
 
