@@ -1,0 +1,92 @@
+name: Build Protobufs
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "protobufs/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Protobufs
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract_version.outputs.version }}
+      latest_commit: ${{ steps.commit_protobufs.outputs.latest_commit }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.20"
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v3
+        with:
+          version: "23.x"
+      - name: Install Protoc Gen Go
+        run: |
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+          export PATH="$PATH:$(go env GOPATH)/bin"
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Git Setup
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions [Bot]"
+      - name: Format Protobufs
+        run: |
+          npm run format
+          git add **/*.proto
+          git diff --quiet --staged || git commit -m "Format Protobufs"
+      - name: Extract NPM Package Version
+        id: extract_version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      - name: Build Protobufs
+        run: npm run build
+      - name: Commit Protobuf Language Bindings
+        id: commit_protobufs
+        run: |
+          git add go javascript
+          git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobuf Language Bindings"
+          echo "latest_commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: Push
+        run: git push
+  publish:
+    name: Publish Protobufs
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.latest_commit }}
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Zip Protobufs
+        run: |
+          zip -r go-${{needs.build.outputs.version}}.zip go
+          zip -r javascript-${{needs.build.outputs.version}}.zip javascript
+          zip -r protobufs-${{needs.build.outputs.version}}.zip protobufs
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.zip"
+          tag_name: ${{needs.build.outputs.version}}
+          make_latest: true
+      - name: Publish Protobufs
+        working-directory: ./javascript
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

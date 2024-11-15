@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package api;
+
+message Mii {
+  string name = 1;
+  string data = 2;
+  string url = 3;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+import "miiverse/v2/smm_request_post_id_rpc.proto";
+
+service MiiverseService {
+  // Used by Super Mario Maker
+  rpc SMMRequestPostId(SMMRequestPostIdRequest) returns (SMMRequestPostIdResponse) {}
+}

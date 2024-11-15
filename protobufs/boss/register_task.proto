@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package boss;
+
+import "boss/task.proto";
+
+message RegisterTaskRequest {
+  string id = 1;
+  string boss_app_id = 2;
+  string title_id = 3;
+  string country = 4;
+  string description = 5;
+}
+
+message RegisterTaskResponse {
+  Task task = 1;
+}

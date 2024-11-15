@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package friends;
+
+message SendUserNotificationWiiURequest {
+  uint32 pid = 1;
+  bytes notification_data = 2;
+}

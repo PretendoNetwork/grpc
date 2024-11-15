@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package account;
-
-option go_package = "./;grpc_account";
-
-message ExchangeTokenForUserDataRequest {
-	string token = 1;
-}

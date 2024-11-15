@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package friends.v2;
+
+message SendUserFriendRequestRequest {
+  uint32 sender = 1;
+  uint32 recipient = 2;
+  string message = 3;
+}
+
+message SendUserFriendRequestResponse {
+  bool success = 1;
+}

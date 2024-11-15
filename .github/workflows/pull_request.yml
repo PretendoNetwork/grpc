@@ -1,0 +1,43 @@
+name: Validate Pull Request
+on:
+  pull_request:
+
+jobs:
+  check_bumped:
+    name: Check Version Bump
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'master'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: del-systems/check-if-version-bumped@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: "package.json"
+  check_buf:
+    name: Run Protobuf Checks
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.20"
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v3
+        with:
+          version: "23.x"
+      - name: Install Protoc Gen Go
+        run: |
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+          export PATH="$PATH:$(go env GOPATH)/bin"
+      - uses: bufbuild/buf-action@v1
+        with:
+          format: false

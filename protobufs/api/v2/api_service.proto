@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api.v2;
+
+import "api/v2/forgot_password_rpc.proto";
+import "api/v2/get_user_data_rpc.proto";
+import "api/v2/login_rpc.proto";
+import "api/v2/register_rpc.proto";
+import "api/v2/reset_password_rpc.proto";
+import "api/v2/set_discord_connection_data_rpc.proto";
+import "api/v2/set_stripe_connection_data_rpc.proto";
+import "api/v2/update_user_data_rpc.proto";
+
+service ApiService {
+  rpc Register(RegisterRequest) returns (RegisterResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
+  rpc UpdateUserData(UpdateUserDataRequest) returns (UpdateUserDataResponse) {}
+  rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
+  rpc SetDiscordConnectionData(SetDiscordConnectionDataRequest) returns (SetDiscordConnectionDataResponse) {}
+  rpc SetStripeConnectionData(SetStripeConnectionDataRequest) returns (SetStripeConnectionDataResponse) {}
+}

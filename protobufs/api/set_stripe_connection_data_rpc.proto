@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package api;
+
+message SetStripeConnectionDataRequest {
+  optional string customer_id = 1;
+  optional string subscription_id = 2;
+  optional string price_id = 3;
+  optional uint32 tier_level = 4;
+  optional string tier_name = 5;
+  uint64 timestamp = 6;
+}

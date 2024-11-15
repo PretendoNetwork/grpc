@@ -1,0 +1,20 @@
+version: v2
+managed:
+  enabled: true
+  override:
+  - file_option: go_package_prefix
+    value: github.com/PretendoNetwork/grpc/go
+inputs:
+- directory: protobufs
+plugins:
+  - local: "protoc-gen-go"
+    out: go
+    opt:
+      - paths=source_relative
+  - local: protoc-gen-ts
+    opt: 
+      - eslint_disable
+      - output_javascript
+      - output_legacy_commonjs
+      - ts_nocheck
+    out: javascript

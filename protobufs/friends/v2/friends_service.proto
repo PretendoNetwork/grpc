@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package friends.v2;
+
+import "friends/v2/accept_friend_request_rpc.proto";
+import "friends/v2/deny_friend_request_rpc.proto";
+import "friends/v2/get_user_friend_pids_rpc.proto";
+import "friends/v2/get_user_friend_requests_incoming_rpc.proto";
+import "friends/v2/send_user_friend_request_rpc.proto";
+import "friends/v2/send_user_notification_wiiu_rpc.proto";
+
+service FriendsService {
+  rpc SendUserNotificationWiiU(SendUserNotificationWiiURequest) returns (SendUserNotificationWiiUResponse) {}
+  rpc GetUserFriendPIDs(GetUserFriendPIDsRequest) returns (GetUserFriendPIDsResponse) {}
+  rpc SendUserFriendRequest(SendUserFriendRequestRequest) returns (SendUserFriendRequestResponse) {}
+  rpc GetUserFriendRequestsIncoming(GetUserFriendRequestsIncomingRequest) returns (GetUserFriendRequestsIncomingResponse) {}
+  rpc AcceptFriendRequest(AcceptFriendRequestRequest) returns (AcceptFriendRequestResponse) {}
+  rpc DenyFriendRequest(DenyFriendRequestRequest) returns (DenyFriendRequestResponse) {}
+}

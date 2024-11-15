@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package boss.v2;
+
+import "boss/v2/delete_file.proto";
+import "boss/v2/delete_task.proto";
+import "boss/v2/list_files.proto";
+import "boss/v2/list_known_boss_apps.proto";
+import "boss/v2/list_tasks.proto";
+import "boss/v2/register_task.proto";
+import "boss/v2/update_file_metadata.proto";
+import "boss/v2/update_task.proto";
+import "boss/v2/upload_file.proto";
+
+service BossService {
+  rpc ListKnownBOSSApps(ListKnownBOSSAppsRequest) returns (ListKnownBOSSAppsResponse) {}
+  rpc ListTasks(ListTasksRequest) returns (ListTasksResponse) {}
+  rpc RegisterTask(RegisterTaskRequest) returns (RegisterTaskResponse) {}
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse) {}
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse) {}
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {}
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {}
+  rpc UpdateFileMetadata(UpdateFileMetadataRequest) returns (UpdateFileMetadataResponse) {}
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
+}

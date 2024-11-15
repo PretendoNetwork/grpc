@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package api;
+
+message RegisterRequest {
+  string email = 1;
+  string username = 2;
+  string mii_name = 3;
+  string password = 4;
+  string password_confirm = 5;
+  optional string captcha_response = 6;
+}

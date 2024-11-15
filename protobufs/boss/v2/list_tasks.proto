@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package boss.v2;
+
+import "boss/v2/task.proto";
+
+message ListTasksRequest {}
+
+message ListTasksResponse {
+  repeated Task tasks = 1;
+}

@@ -1,0 +1,52 @@
+version: v2
+modules:
+  - path: protobufs
+lint:
+  use:
+    - STANDARD
+  ignore:
+  # We ignore all the old files as these should remain unchanged
+    - protobufs\account\account_service.proto
+    - protobufs\account\exchange_token_for_user_data.proto
+    - protobufs\account\get_nex_data_rpc.proto
+    - protobufs\account\get_nex_password_rpc.proto
+    - protobufs\account\get_user_data_rpc.proto
+    - protobufs\account\mii.proto
+    - protobufs\account\pnid_permission_flags.proto
+    - protobufs\account\update_pnid_permissions.proto
+    - protobufs\api\api_service.proto
+    - protobufs\api\forgot_password_rpc.proto
+    - protobufs\api\get_user_data_rpc.proto
+    - protobufs\api\login_rpc.proto
+    - protobufs\api\mii.proto
+    - protobufs\api\register_rpc.proto
+    - protobufs\api\reset_password_rpc.proto
+    - protobufs\api\set_discord_connection_data_rpc.proto
+    - protobufs\api\set_stripe_connection_data_rpc.proto
+    - protobufs\api\update_user_data_rpc.proto
+    - protobufs\api\user_connections.proto
+    - protobufs\boss\boss_service.proto
+    - protobufs\boss\delete_file.proto
+    - protobufs\boss\delete_task.proto
+    - protobufs\boss\file.proto
+    - protobufs\boss\list_files.proto
+    - protobufs\boss\list_known_boss_apps.proto
+    - protobufs\boss\list_tasks.proto
+    - protobufs\boss\register_task.proto
+    - protobufs\boss\task.proto
+    - protobufs\boss\update_file_metadata.proto
+    - protobufs\boss\update_task.proto
+    - protobufs\boss\upload_file.proto
+    - protobufs\friends\accept_friend_request_rpc.proto
+    - protobufs\friends\deny_friend_request_rpc.proto
+    - protobufs\friends\friend_request.proto
+    - protobufs\friends\friends_service.proto
+    - protobufs\friends\get_user_friend_pids_rpc.proto
+    - protobufs\friends\get_user_friend_requests_incoming_rpc.proto
+    - protobufs\friends\send_user_friend_request_rpc.proto
+    - protobufs\friends\send_user_notification_wiiu_rpc.proto
+    - protobufs\miiverse\miiverse_service.proto
+    - protobufs\miiverse\smm_request_post_id_rpc.proto
+breaking:
+  use:
+    - FILE

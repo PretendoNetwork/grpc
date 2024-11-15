@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package friends.v2;
+
+message DenyFriendRequestRequest {
+  uint64 friend_request_id = 1;
+}
+
+message DenyFriendRequestResponse {
+  bool success = 1;
+}

@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package api;
+
+// TODO - Not implemented yet, stubbed
+message UpdateUserDataRequest {}

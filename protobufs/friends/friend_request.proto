@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package friends;
+
+message FriendRequest {
+  uint64 id = 1;
+  uint32 sender = 2;
+  uint32 recipient = 3;
+  uint64 sent = 4;
+  uint64 expires = 5;
+  string message = 6;
+}

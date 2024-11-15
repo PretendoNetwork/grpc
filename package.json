@@ -1,0 +1,28 @@
+{
+  "name": "@pretendonetwork/grpc",
+  "version": "2.0.0",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "build": "npm-run-all clean generate copy:*",
+    "clean": "rimraf javascript go",
+    "generate": "buf generate",
+    "generate:debug": "buf generate --debug",
+    "copy:js": "copyfiles -f package.json README.md template/GENERATED_DO_NOT_EDIT.md javascript",
+    "copy:go": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md template/go/* go",
+    "lint": "buf lint",
+    "lint:gh_actions": "buf lint --error-format=github-actions",
+    "breaking": "buf breaking --against=.git#ref=master",
+    "breaking:gh_actions": "buf breaking --against=.git#ref=master --error-format=github-actions=main",
+    "format": "buf format -w"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.46.0",
+    "@protobuf-ts/plugin": "^2.9.4",
+    "copyfiles": "^2.4.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1"
+  },
+  "dependencies": {
+    "@protobuf-ts/runtime": "^2.9.4"
+  }
+}

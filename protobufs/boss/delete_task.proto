@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package boss;
+
+message DeleteTaskRequest {
+  string id = 1;
+  string boss_app_id = 2;
+}

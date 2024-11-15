@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package boss;
+
+import "boss/file.proto";
+
+message ListFilesRequest {
+  string task_id = 1;
+  string boss_app_id = 2;
+  optional string country = 3;
+  optional string language = 4;
+}
+
+message ListFilesResponse {
+  repeated File files = 1;
+}

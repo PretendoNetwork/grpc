@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package friends.v2;
+
+message AcceptFriendRequestRequest {
+  uint64 friend_request_id = 1;
+}
+
+message AcceptFriendRequestResponse {
+  bool success = 1;
+}
