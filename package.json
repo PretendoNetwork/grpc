@@ -5,8 +5,8 @@
   "scripts": {
     "build": "npm-run-all clean generate copy:*",
     "clean": "rimraf javascript go",
-    "generate": "buf generate",
-    "generate:debug": "buf generate --debug",
+    "generate": "buf generate && tsc",
+    "generate:debug": "buf generate --debug && tsc --debug",
     "copy:js": "copyfiles -f package.json README.md template/GENERATED_DO_NOT_EDIT.md javascript",
     "copy:go": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md template/go/* go",
     "lint": "buf lint",
@@ -17,12 +17,15 @@
   },
   "devDependencies": {
     "@bufbuild/buf": "^1.46.0",
-    "@protobuf-ts/plugin": "^2.9.4",
+    "@types/node": "^22.9.3",
     "copyfiles": "^2.4.1",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "ts-proto": "^2.3.0"
   },
   "dependencies": {
-    "@protobuf-ts/runtime": "^2.9.4"
+    "@bufbuild/protobuf": "^2.2.2",
+    "nice-grpc-common": "^2.0.2",
+    "typescript": "^5.7.2"
   }
 }
