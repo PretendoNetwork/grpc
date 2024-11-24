@@ -11,10 +11,13 @@ plugins:
     out: go
     opt:
       - paths=source_relative
-  - local: protoc-gen-ts
+  - local: protoc-gen-ts_proto
+    strategy: all
     opt: 
-      - eslint_disable
-      - output_javascript
-      - output_legacy_commonjs
-      - ts_nocheck
+      - outputServices=nice-grpc
+      - outputServices=generic-definitions
+      - useExactTypes=false
+      - esModuleInterop=true
+      - env=node
+      - forceLong=bigint
     out: javascript
