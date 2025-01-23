@@ -6,6 +6,10 @@ on:
       - master
     paths:
       - "protobufs/**"
+      - "template/**"
+      - ".github/workflows/build.yml"
+      - "buf*.yaml"
+      - "package.json"
   workflow_dispatch:
 
 jobs:
@@ -74,7 +78,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - name: Zip Protobufs
         run: |
           zip -r go-${{needs.build.outputs.version}}.zip go
