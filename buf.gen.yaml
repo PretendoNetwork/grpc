@@ -11,6 +11,10 @@ plugins:
     out: go
     opt:
       - paths=source_relative
+  - local: "protoc-gen-go-grpc"
+    out: go
+    opt:
+      - paths=source_relative
   - local: protoc-gen-ts_proto
     strategy: all
     opt: 
