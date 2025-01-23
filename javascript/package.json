@@ -1,6 +1,6 @@
 {
   "name": "@pretendonetwork/grpc",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "AGPL-3.0-only",
   "scripts": {
     "breaking:gh_actions": "buf breaking --against=.git#ref=master --error-format=github-actions=main",
@@ -12,11 +12,11 @@
     "format": "buf format -w",
     "generate:debug": "buf generate --debug && tsc",
     "generate": "buf generate && tsc",
-    "go:install:protoc-gen-go-grpc": "go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest",
-    "go:install:protoc-gen-go": "go install google.golang.org/protobuf/cmd/protoc-gen-go@latest",
+    "install:go": "npm-run-all install:go:*",
+    "install:go:protoc-gen-go-grpc": "go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest",
+    "install:go:protoc-gen-go": "go install google.golang.org/protobuf/cmd/protoc-gen-go@latest",
     "lint:gh_actions": "buf lint --error-format=github-actions",
-    "lint": "buf lint",
-    "postinstall": "npm-run-all go:install:*"
+    "lint": "buf lint"
   },
   "devDependencies": {
     "@bufbuild/buf": "^1.46.0",
