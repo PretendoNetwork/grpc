@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package account.v2;
+
+message Device {
+  string model = 1;
+  string serial = 2;
+  repeated uint32 linked_pids = 3;
+  int32 access_level = 4;
+  string server_access_level = 5;
+}
