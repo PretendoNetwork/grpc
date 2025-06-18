@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package nex.v1;
+
+import "nex/v1/kick_user_rpc.proto";
+import "nex/v1/kick_user_aggressive_rpc.proto";
+import "nex/v1/kill_user_connection_rpc.proto";
+
+service NEXServiceV1 {
+  // Remove a user gracefully using the built in DISCONNECT system
+  rpc KickUser(KickUserRequest) returns (KickUserResponse) {}
+
+  // Remove a user aggressively using methods like killing the internal RC4 stream along with graceful methods
+  rpc KickUserAggressive(KickUserAggressiveRequest) returns (KickUserAggressiveResponse) {}
+
+  // Remove a user by any means necessary
+  rpc KillUserConnection(KillUserConnectionRequest) returns (KillUserConnectionResponse) {}
+}

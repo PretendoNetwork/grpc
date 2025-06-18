@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package nex.v1;
+
+message KickUserAggressiveRequest {
+  uint32 pid = 1;
+}
+
+message KickUserAggressiveResponse {}
