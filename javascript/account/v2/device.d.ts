@@ -1,30 +1,13 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { Device } from "./device";
-import { Mii } from "./mii";
-import { PNIDPermissionFlags } from "./pnid_permission_flags";
 export declare const protobufPackage = "account.v2";
-export interface GetUserDataRequest {
-    pid: number;
-}
-export interface GetUserDataResponse {
-    deleted: boolean;
-    pid: number;
-    username: string;
+export interface Device {
+    model: string;
+    serial: string;
+    linkedPids: number[];
     accessLevel: number;
     serverAccessLevel: string;
-    mii: Mii | undefined;
-    creationDate: string;
-    birthdate: string;
-    gender: string;
-    country: string;
-    language: string;
-    emailAddress: string;
-    tierName: string;
-    permissions: PNIDPermissionFlags | undefined;
-    linkedDevices: Device[];
 }
-export declare const GetUserDataRequest: MessageFns<GetUserDataRequest>;
-export declare const GetUserDataResponse: MessageFns<GetUserDataResponse>;
+export declare const Device: MessageFns<Device>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

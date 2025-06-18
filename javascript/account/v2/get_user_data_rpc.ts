@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { Device } from "./device";
 import { Mii } from "./mii";
 import { PNIDPermissionFlags } from "./pnid_permission_flags";
 
@@ -30,6 +31,7 @@ export interface GetUserDataResponse {
   emailAddress: string;
   tierName: string;
   permissions: PNIDPermissionFlags | undefined;
+  linkedDevices: Device[];
 }
 
 function createBaseGetUserDataRequest(): GetUserDataRequest {
@@ -106,6 +108,7 @@ function createBaseGetUserDataResponse(): GetUserDataResponse {
     emailAddress: "",
     tierName: "",
     permissions: undefined,
+    linkedDevices: [],
   };
 }
 
@@ -152,6 +155,9 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
     }
     if (message.permissions !== undefined) {
       PNIDPermissionFlags.encode(message.permissions, writer.uint32(114).fork()).join();
+    }
+    for (const v of message.linkedDevices) {
+      Device.encode(v!, writer.uint32(122).fork()).join();
     }
     return writer;
   },
@@ -275,6 +281,14 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
           message.permissions = PNIDPermissionFlags.decode(reader, reader.uint32());
           continue;
         }
+        case 15: {
+          if (tag !== 122) {
+            break;
+          }
+
+          message.linkedDevices.push(Device.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -300,6 +314,9 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
       emailAddress: isSet(object.emailAddress) ? globalThis.String(object.emailAddress) : "",
       tierName: isSet(object.tierName) ? globalThis.String(object.tierName) : "",
       permissions: isSet(object.permissions) ? PNIDPermissionFlags.fromJSON(object.permissions) : undefined,
+      linkedDevices: globalThis.Array.isArray(object?.linkedDevices)
+        ? object.linkedDevices.map((e: any) => Device.fromJSON(e))
+        : [],
     };
   },
 
@@ -347,6 +364,9 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
     if (message.permissions !== undefined) {
       obj.permissions = PNIDPermissionFlags.toJSON(message.permissions);
     }
+    if (message.linkedDevices?.length) {
+      obj.linkedDevices = message.linkedDevices.map((e) => Device.toJSON(e));
+    }
     return obj;
   },
 
@@ -371,6 +391,7 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
     message.permissions = (object.permissions !== undefined && object.permissions !== null)
       ? PNIDPermissionFlags.fromPartial(object.permissions)
       : undefined;
+    message.linkedDevices = object.linkedDevices?.map((e) => Device.fromPartial(e)) || [];
     return message;
   },
 };

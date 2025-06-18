@@ -20,5 +20,5 @@ To install
 - Install the protobuf compiler (protoc) from [here](https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os) (Use the pre-compiled binaries, the `protoc` package in the package manager is outdated)
 - Install go
 - Run `npm i` to install the JS dependencies needed for building
-- Run `npm run go:install` to install the Go dependencies
+- Run `npm run install:go` to install the Go dependencies
 - Run `npm run build`

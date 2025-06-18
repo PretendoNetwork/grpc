@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetUserDataResponse = exports.GetUserDataRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const device_1 = require("./device");
 const mii_1 = require("./mii");
 const pnid_permission_flags_1 = require("./pnid_permission_flags");
 exports.protobufPackage = "account.v2";
@@ -78,6 +79,7 @@ function createBaseGetUserDataResponse() {
         emailAddress: "",
         tierName: "",
         permissions: undefined,
+        linkedDevices: [],
     };
 }
 exports.GetUserDataResponse = {
@@ -123,6 +125,9 @@ exports.GetUserDataResponse = {
         }
         if (message.permissions !== undefined) {
             pnid_permission_flags_1.PNIDPermissionFlags.encode(message.permissions, writer.uint32(114).fork()).join();
+        }
+        for (const v of message.linkedDevices) {
+            device_1.Device.encode(v, writer.uint32(122).fork()).join();
         }
         return writer;
     },
@@ -231,6 +236,13 @@ exports.GetUserDataResponse = {
                     message.permissions = pnid_permission_flags_1.PNIDPermissionFlags.decode(reader, reader.uint32());
                     continue;
                 }
+                case 15: {
+                    if (tag !== 122) {
+                        break;
+                    }
+                    message.linkedDevices.push(device_1.Device.decode(reader, reader.uint32()));
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -255,6 +267,9 @@ exports.GetUserDataResponse = {
             emailAddress: isSet(object.emailAddress) ? globalThis.String(object.emailAddress) : "",
             tierName: isSet(object.tierName) ? globalThis.String(object.tierName) : "",
             permissions: isSet(object.permissions) ? pnid_permission_flags_1.PNIDPermissionFlags.fromJSON(object.permissions) : undefined,
+            linkedDevices: globalThis.Array.isArray(object?.linkedDevices)
+                ? object.linkedDevices.map((e) => device_1.Device.fromJSON(e))
+                : [],
         };
     },
     toJSON(message) {
@@ -301,6 +316,9 @@ exports.GetUserDataResponse = {
         if (message.permissions !== undefined) {
             obj.permissions = pnid_permission_flags_1.PNIDPermissionFlags.toJSON(message.permissions);
         }
+        if (message.linkedDevices?.length) {
+            obj.linkedDevices = message.linkedDevices.map((e) => device_1.Device.toJSON(e));
+        }
         return obj;
     },
     create(base) {
@@ -324,6 +342,7 @@ exports.GetUserDataResponse = {
         message.permissions = (object.permissions !== undefined && object.permissions !== null)
             ? pnid_permission_flags_1.PNIDPermissionFlags.fromPartial(object.permissions)
             : undefined;
+        message.linkedDevices = object.linkedDevices?.map((e) => device_1.Device.fromPartial(e)) || [];
         return message;
     },
 };
