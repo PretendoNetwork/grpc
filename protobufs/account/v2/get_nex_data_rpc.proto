@@ -2,11 +2,7 @@ syntax = "proto3";
 
 package account.v2;
 
-enum DeviceType {
-  DEVICE_TYPE_UNSPECIFIED = 0;
-  DEVICE_TYPE_CTR = 1;
-  DEVICE_TYPE_WUP = 2;
-}
+import "account/v2/device_type.proto";
 
 message GetNEXDataRequest {
   uint32 pid = 1;

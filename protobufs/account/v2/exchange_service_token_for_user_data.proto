@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "google/protobuf/timestamp.proto";
+import "account/v2/device_type.proto";
+import "account/v2/exchange_token_for_user_data.proto";
+
+message ExchangeServiceTokenForUserDataRequest {
+  string client_id = 1;
+  string token = 2;
+}
+
+message ExchangeServiceTokenForUserDataResponse {
+  message TokenInfo {
+    DeviceType device_type = 1;
+    google.protobuf.Timestamp issued = 2;
+  }
+
+  TokenInfo token_info = 1;
+  ExchangeTokenForUserDataResponse user_info = 2;
+}
