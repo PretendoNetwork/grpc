@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package boss.v2;
+
+message FileWUP {
+  bool deleted = 1;
+  uint64 data_id = 2;
+  string task_id = 3;
+  string boss_app_id = 4;
+  repeated string supported_countries = 5;
+  repeated string supported_languages = 6;
+  uint32 creator_pid = 7;
+  string name = 8;
+  string type = 9;
+  string hash = 10;
+  uint64 size = 11;
+  repeated string notify_on_new = 12;
+  bool notify_led = 13;
+  uint64 created_timestamp = 14;
+  uint64 updated_timestamp = 15;
+}

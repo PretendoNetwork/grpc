@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package boss.v2;
 
-import "boss/v2/file.proto";
+import "boss/v2/payload_content_info_ctr.proto";
 
-message UploadFileRequest {
+message UpdateFileMetadataDataCTR {
   string task_id = 1;
   string boss_app_id = 2;
   repeated string supported_countries = 3;
@@ -14,13 +14,12 @@ message UploadFileRequest {
   string attribute2 = 7;
   string attribute3 = 8;
   string name = 9;
-  string type = 10;
-  repeated string notify_on_new = 11;
-  bool notify_led = 12;
-  bytes data = 13;
-  bool name_equals_data_id = 14;
+  repeated PayloadContentInfoCTR payload_contents = 10;
 }
 
-message UploadFileResponse {
-  File file = 1;
+message UpdateFileMetadataCTRRequest {
+  uint64 data_id = 1;
+  UpdateFileMetadataDataCTR update_data = 2;
 }
+
+message UpdateFileMetadataCTRResponse {}

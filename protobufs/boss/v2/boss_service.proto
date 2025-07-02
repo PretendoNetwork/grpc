@@ -2,15 +2,19 @@ syntax = "proto3";
 
 package boss.v2;
 
-import "boss/v2/delete_file.proto";
+import "boss/v2/delete_file_ctr.proto";
+import "boss/v2/delete_file_wup.proto";
 import "boss/v2/delete_task.proto";
-import "boss/v2/list_files.proto";
+import "boss/v2/list_files_ctr.proto";
+import "boss/v2/list_files_wup.proto";
 import "boss/v2/list_known_boss_apps.proto";
 import "boss/v2/list_tasks.proto";
 import "boss/v2/register_task.proto";
-import "boss/v2/update_file_metadata.proto";
+import "boss/v2/update_file_metadata_ctr.proto";
+import "boss/v2/update_file_metadata_wup.proto";
 import "boss/v2/update_task.proto";
-import "boss/v2/upload_file.proto";
+import "boss/v2/upload_file_ctr.proto";
+import "boss/v2/upload_file_wup.proto";
 
 service BossService {
   rpc ListKnownBOSSApps(ListKnownBOSSAppsRequest) returns (ListKnownBOSSAppsResponse) {}
@@ -18,8 +22,12 @@ service BossService {
   rpc RegisterTask(RegisterTaskRequest) returns (RegisterTaskResponse) {}
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse) {}
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse) {}
-  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {}
-  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {}
-  rpc UpdateFileMetadata(UpdateFileMetadataRequest) returns (UpdateFileMetadataResponse) {}
-  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
+  rpc ListFilesWUP(ListFilesWUPRequest) returns (ListFilesWUPResponse) {}
+  rpc UploadFileWUP(UploadFileWUPRequest) returns (UploadFileWUPResponse) {}
+  rpc UpdateFileMetadataWUP(UpdateFileMetadataWUPRequest) returns (UpdateFileMetadataWUPResponse) {}
+  rpc DeleteFileWUP(DeleteFileWUPRequest) returns (DeleteFileWUPResponse) {}
+  rpc ListFilesCTR(ListFilesCTRRequest) returns (ListFilesCTRResponse) {}
+  rpc UploadFileCTR(UploadFileCTRRequest) returns (UploadFileCTRResponse) {}
+  rpc UpdateFileMetadataCTR(UpdateFileMetadataCTRRequest) returns (UpdateFileMetadataCTRResponse) {}
+  rpc DeleteFileCTR(DeleteFileCTRRequest) returns (DeleteFileCTRResponse) {}
 }

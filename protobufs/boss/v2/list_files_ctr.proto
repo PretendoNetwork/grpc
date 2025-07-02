@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package boss.v2;
+
+import "boss/v2/file_ctr.proto";
+
+message ListFilesCTRRequest {
+  string task_id = 1;
+  string boss_app_id = 2;
+  optional string country = 3;
+  optional string language = 4;
+}
+
+message ListFilesCTRResponse {
+  repeated FileCTR files = 1;
+}

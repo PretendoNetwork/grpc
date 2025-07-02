@@ -2,7 +2,10 @@ syntax = "proto3";
 
 package boss.v2;
 
-message UpdateFileMetadataData {
+import "boss/v2/file_ctr.proto";
+import "boss/v2/payload_content_ctr.proto";
+
+message UploadFileCTRRequest {
   string task_id = 1;
   string boss_app_id = 2;
   repeated string supported_countries = 3;
@@ -12,14 +15,10 @@ message UpdateFileMetadataData {
   string attribute2 = 7;
   string attribute3 = 8;
   string name = 9;
-  string type = 10;
-  repeated string notify_on_new = 11;
-  bool notify_led = 12;
+  uint32 serial_number = 10;
+  repeated PayloadContentCTR payload_contents = 11;
 }
 
-message UpdateFileMetadataRequest {
-  uint64 data_id = 1;
-  UpdateFileMetadataData update_data = 2;
+message UploadFileCTRResponse {
+  FileCTR file = 1;
 }
-
-message UpdateFileMetadataResponse {}
