@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package account.v2;
+
+message DiscordConnection {
+  string id = 1;
+}
+
+message StripeConnection {
+  optional string customer_id = 1;
+  optional string subscription_id = 2;
+  optional string price_id = 3;
+  optional uint32 tier_level = 4;
+  optional string tier_name = 5;
+  uint64 latest_webhook_timestamp = 6;
+}
+
+message UserConnections {
+  DiscordConnection discord = 1;
+  StripeConnection stripe = 2;
+}
