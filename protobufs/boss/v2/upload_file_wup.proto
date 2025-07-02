@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package boss.v2;
+
+import "boss/v2/file_wup.proto";
+
+message UploadFileWUPRequest {
+  string task_id = 1;
+  string boss_app_id = 2;
+  repeated string supported_countries = 3;
+  repeated string supported_languages = 4;
+  string name = 5;
+  string type = 6;
+  repeated string notify_on_new = 7;
+  bool notify_led = 8;
+  bytes data = 9;
+  bool name_equals_data_id = 10;
+}
+
+message UploadFileWUPResponse {
+  FileWUP file = 1;
+}
