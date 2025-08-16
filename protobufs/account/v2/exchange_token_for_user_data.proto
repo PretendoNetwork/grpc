@@ -4,6 +4,8 @@ package account.v2;
 
 import "account/v2/mii.proto";
 import "account/v2/pnid_permission_flags.proto";
+import "account/v2/device.proto";
+import "account/v2/user_connections.proto";
 
 message ExchangeTokenForUserDataRequest {
   string token = 1;
@@ -24,4 +26,9 @@ message ExchangeTokenForUserDataResponse {
   string email_address = 12;
   string tier_name = 13;
   PNIDPermissionFlags permissions = 14;
+  repeated Device linked_devices = 15;
+  string updated_date = 16;
+  string timezone = 17;
+  UserConnections connections = 18;
+  bool marketing_flag = 19;
 }
