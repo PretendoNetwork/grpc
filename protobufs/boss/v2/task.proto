@@ -9,7 +9,7 @@ message Task {
   string boss_app_id = 4;
   uint32 creator_pid = 5;
   string status = 6;
-  string title_id = 7;
+  uint64 title_id = 7;
   string description = 8;
   uint64 created_timestamp = 9;
   uint64 updated_timestamp = 10;

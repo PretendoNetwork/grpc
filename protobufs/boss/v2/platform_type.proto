@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package boss.v2;
+
+enum PlatformType {
+  CTR = 0;
+  WUP = 1;
+}
