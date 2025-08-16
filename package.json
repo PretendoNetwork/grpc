@@ -30,5 +30,11 @@
     "@bufbuild/protobuf": "^2.2.2",
     "nice-grpc-common": "^2.0.2",
     "typescript": "^5.7.2"
+  },
+  "exports": {
+    "./*": {
+      "types": "./*.d.ts",
+      "default": "./*.js"
+    }
   }
 }
