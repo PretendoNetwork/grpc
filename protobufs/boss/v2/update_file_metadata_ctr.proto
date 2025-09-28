@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package boss.v2;
 
+import "boss/v2/file_attributes.proto";
 import "boss/v2/payload_content_info_ctr.proto";
 
 message UpdateFileMetadataDataCTR {
@@ -9,12 +10,9 @@ message UpdateFileMetadataDataCTR {
   string boss_app_id = 2;
   repeated string supported_countries = 3;
   repeated string supported_languages = 4;
-  string password = 5;
-  string attribute1 = 6;
-  string attribute2 = 7;
-  string attribute3 = 8;
-  string name = 9;
-  repeated PayloadContentInfoCTR payload_contents = 10;
+  FileAttributes attributes = 5;
+  string name = 6;
+  repeated PayloadContentInfoCTR payload_contents = 7;
 }
 
 message UpdateFileMetadataCTRRequest {

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package boss.v2;
 
+import "boss/v2/file_attributes.proto";
+
 message FileWUP {
   bool deleted = 1;
   uint64 data_id = 2;
@@ -9,13 +11,16 @@ message FileWUP {
   string boss_app_id = 4;
   repeated string supported_countries = 5;
   repeated string supported_languages = 6;
-  uint32 creator_pid = 7;
-  string name = 8;
-  string type = 9;
-  string hash = 10;
-  uint64 size = 11;
-  repeated string notify_on_new = 12;
-  bool notify_led = 13;
-  uint64 created_timestamp = 14;
-  uint64 updated_timestamp = 15;
+  FileAttributes attributes = 7;
+  uint32 creator_pid = 8;
+  string name = 9;
+  string type = 10;
+  string hash = 11;
+  uint64 size = 12;
+  repeated string notify_on_new = 13;
+  bool notify_led = 14;
+  uint64 condition_played = 15;
+  bool auto_delete = 16;
+  uint64 created_timestamp = 17;
+  uint64 updated_timestamp = 18;
 }
