@@ -1,6 +1,6 @@
 {
   "name": "@pretendonetwork/grpc",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "license": "AGPL-3.0-only",
   "scripts": {
     "breaking:gh_actions": "buf breaking --against=.git#ref=master --error-format=github-actions=main",
