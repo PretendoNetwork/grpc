@@ -6,4 +6,6 @@ message DeleteAccountRequest {
   uint32 pid = 1;
 }
 
-message DeleteAccountResponse {}
+message DeleteAccountResponse {
+  bool has_deleted = 1;
+}
