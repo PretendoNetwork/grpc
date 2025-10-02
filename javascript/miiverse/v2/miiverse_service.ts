@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
+import { DeleteAccountDataRequest, DeleteAccountDataResponse } from "./delete_account_data_rpc";
 import { SMMRequestPostIdRequest, SMMRequestPostIdResponse } from "./smm_request_post_id_rpc";
 
 export const protobufPackage = "miiverse.v2";
@@ -15,6 +16,14 @@ export const MiiverseServiceDefinition = {
   name: "MiiverseService",
   fullName: "miiverse.v2.MiiverseService",
   methods: {
+    deleteAccountData: {
+      name: "DeleteAccountData",
+      requestType: DeleteAccountDataRequest,
+      requestStream: false,
+      responseType: DeleteAccountDataResponse,
+      responseStream: false,
+      options: {},
+    },
     /** Used by Super Mario Maker */
     sMMRequestPostId: {
       name: "SMMRequestPostId",
@@ -28,6 +37,10 @@ export const MiiverseServiceDefinition = {
 } as const;
 
 export interface MiiverseServiceImplementation<CallContextExt = {}> {
+  deleteAccountData(
+    request: DeleteAccountDataRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<DeleteAccountDataResponse>>;
   /** Used by Super Mario Maker */
   sMMRequestPostId(
     request: SMMRequestPostIdRequest,
@@ -36,6 +49,10 @@ export interface MiiverseServiceImplementation<CallContextExt = {}> {
 }
 
 export interface MiiverseServiceClient<CallOptionsExt = {}> {
+  deleteAccountData(
+    request: DeepPartial<DeleteAccountDataRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<DeleteAccountDataResponse>;
   /** Used by Super Mario Maker */
   sMMRequestPostId(
     request: DeepPartial<SMMRequestPostIdRequest>,

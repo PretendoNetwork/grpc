@@ -24,6 +24,7 @@ const (
 	AccountService_GetNEXData_FullMethodName               = "/account.v2.AccountService/GetNEXData"
 	AccountService_UpdatePNIDPermissions_FullMethodName    = "/account.v2.AccountService/UpdatePNIDPermissions"
 	AccountService_ExchangeTokenForUserData_FullMethodName = "/account.v2.AccountService/ExchangeTokenForUserData"
+	AccountService_DeleteAccount_FullMethodName            = "/account.v2.AccountService/DeleteAccount"
 )
 
 // AccountServiceClient is the client API for AccountService service.
@@ -35,6 +36,7 @@ type AccountServiceClient interface {
 	GetNEXData(ctx context.Context, in *GetNEXDataRequest, opts ...grpc.CallOption) (*GetNEXDataResponse, error)
 	UpdatePNIDPermissions(ctx context.Context, in *UpdatePNIDPermissionsRequest, opts ...grpc.CallOption) (*UpdatePNIDPermissionsResponse, error)
 	ExchangeTokenForUserData(ctx context.Context, in *ExchangeTokenForUserDataRequest, opts ...grpc.CallOption) (*ExchangeTokenForUserDataResponse, error)
+	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
 }
 
 type accountServiceClient struct {
@@ -95,6 +97,16 @@ func (c *accountServiceClient) ExchangeTokenForUserData(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *accountServiceClient) DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteAccountResponse)
+	err := c.cc.Invoke(ctx, AccountService_DeleteAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountServiceServer is the server API for AccountService service.
 // All implementations must embed UnimplementedAccountServiceServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type AccountServiceServer interface {
 	GetNEXData(context.Context, *GetNEXDataRequest) (*GetNEXDataResponse, error)
 	UpdatePNIDPermissions(context.Context, *UpdatePNIDPermissionsRequest) (*UpdatePNIDPermissionsResponse, error)
 	ExchangeTokenForUserData(context.Context, *ExchangeTokenForUserDataRequest) (*ExchangeTokenForUserDataResponse, error)
+	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
 	mustEmbedUnimplementedAccountServiceServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedAccountServiceServer) UpdatePNIDPermissions(context.Context, 
 }
 func (UnimplementedAccountServiceServer) ExchangeTokenForUserData(context.Context, *ExchangeTokenForUserDataRequest) (*ExchangeTokenForUserDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExchangeTokenForUserData not implemented")
+}
+func (UnimplementedAccountServiceServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
 }
 func (UnimplementedAccountServiceServer) mustEmbedUnimplementedAccountServiceServer() {}
 func (UnimplementedAccountServiceServer) testEmbeddedByValue()                        {}
@@ -240,6 +256,24 @@ func _AccountService_ExchangeTokenForUserData_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountService_DeleteAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).DeleteAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountService_DeleteAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).DeleteAccount(ctx, req.(*DeleteAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountService_ServiceDesc is the grpc.ServiceDesc for AccountService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var AccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExchangeTokenForUserData",
 			Handler:    _AccountService_ExchangeTokenForUserData_Handler,
+		},
+		{
+			MethodName: "DeleteAccount",
+			Handler:    _AccountService_DeleteAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

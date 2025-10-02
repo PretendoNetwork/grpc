@@ -19,13 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MiiverseService_SMMRequestPostId_FullMethodName = "/miiverse.v2.MiiverseService/SMMRequestPostId"
+	MiiverseService_DeleteAccountData_FullMethodName = "/miiverse.v2.MiiverseService/DeleteAccountData"
+	MiiverseService_SMMRequestPostId_FullMethodName  = "/miiverse.v2.MiiverseService/SMMRequestPostId"
 )
 
 // MiiverseServiceClient is the client API for MiiverseService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MiiverseServiceClient interface {
+	DeleteAccountData(ctx context.Context, in *DeleteAccountDataRequest, opts ...grpc.CallOption) (*DeleteAccountDataResponse, error)
 	// Used by Super Mario Maker
 	SMMRequestPostId(ctx context.Context, in *SMMRequestPostIdRequest, opts ...grpc.CallOption) (*SMMRequestPostIdResponse, error)
 }
@@ -36,6 +38,16 @@ type miiverseServiceClient struct {
 
 func NewMiiverseServiceClient(cc grpc.ClientConnInterface) MiiverseServiceClient {
 	return &miiverseServiceClient{cc}
+}
+
+func (c *miiverseServiceClient) DeleteAccountData(ctx context.Context, in *DeleteAccountDataRequest, opts ...grpc.CallOption) (*DeleteAccountDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteAccountDataResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_DeleteAccountData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *miiverseServiceClient) SMMRequestPostId(ctx context.Context, in *SMMRequestPostIdRequest, opts ...grpc.CallOption) (*SMMRequestPostIdResponse, error) {
@@ -52,6 +64,7 @@ func (c *miiverseServiceClient) SMMRequestPostId(ctx context.Context, in *SMMReq
 // All implementations must embed UnimplementedMiiverseServiceServer
 // for forward compatibility.
 type MiiverseServiceServer interface {
+	DeleteAccountData(context.Context, *DeleteAccountDataRequest) (*DeleteAccountDataResponse, error)
 	// Used by Super Mario Maker
 	SMMRequestPostId(context.Context, *SMMRequestPostIdRequest) (*SMMRequestPostIdResponse, error)
 	mustEmbedUnimplementedMiiverseServiceServer()
@@ -64,6 +77,9 @@ type MiiverseServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMiiverseServiceServer struct{}
 
+func (UnimplementedMiiverseServiceServer) DeleteAccountData(context.Context, *DeleteAccountDataRequest) (*DeleteAccountDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccountData not implemented")
+}
 func (UnimplementedMiiverseServiceServer) SMMRequestPostId(context.Context, *SMMRequestPostIdRequest) (*SMMRequestPostIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SMMRequestPostId not implemented")
 }
@@ -86,6 +102,24 @@ func RegisterMiiverseServiceServer(s grpc.ServiceRegistrar, srv MiiverseServiceS
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&MiiverseService_ServiceDesc, srv)
+}
+
+func _MiiverseService_DeleteAccountData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAccountDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).DeleteAccountData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_DeleteAccountData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).DeleteAccountData(ctx, req.(*DeleteAccountDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MiiverseService_SMMRequestPostId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -113,6 +147,10 @@ var MiiverseService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "miiverse.v2.MiiverseService",
 	HandlerType: (*MiiverseServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "DeleteAccountData",
+			Handler:    _MiiverseService_DeleteAccountData_Handler,
+		},
 		{
 			MethodName: "SMMRequestPostId",
 			Handler:    _MiiverseService_SMMRequestPostId_Handler,

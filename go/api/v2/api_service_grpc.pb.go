@@ -27,6 +27,7 @@ const (
 	ApiService_ResetPassword_FullMethodName            = "/api.v2.ApiService/ResetPassword"
 	ApiService_SetDiscordConnectionData_FullMethodName = "/api.v2.ApiService/SetDiscordConnectionData"
 	ApiService_SetStripeConnectionData_FullMethodName  = "/api.v2.ApiService/SetStripeConnectionData"
+	ApiService_DeleteAccount_FullMethodName            = "/api.v2.ApiService/DeleteAccount"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -41,6 +42,7 @@ type ApiServiceClient interface {
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 	SetDiscordConnectionData(ctx context.Context, in *SetDiscordConnectionDataRequest, opts ...grpc.CallOption) (*SetDiscordConnectionDataResponse, error)
 	SetStripeConnectionData(ctx context.Context, in *SetStripeConnectionDataRequest, opts ...grpc.CallOption) (*SetStripeConnectionDataResponse, error)
+	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
 }
 
 type apiServiceClient struct {
@@ -131,6 +133,16 @@ func (c *apiServiceClient) SetStripeConnectionData(ctx context.Context, in *SetS
 	return out, nil
 }
 
+func (c *apiServiceClient) DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteAccountResponse)
+	err := c.cc.Invoke(ctx, ApiService_DeleteAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -143,6 +155,7 @@ type ApiServiceServer interface {
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	SetDiscordConnectionData(context.Context, *SetDiscordConnectionDataRequest) (*SetDiscordConnectionDataResponse, error)
 	SetStripeConnectionData(context.Context, *SetStripeConnectionDataRequest) (*SetStripeConnectionDataResponse, error)
+	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -176,6 +189,9 @@ func (UnimplementedApiServiceServer) SetDiscordConnectionData(context.Context, *
 }
 func (UnimplementedApiServiceServer) SetStripeConnectionData(context.Context, *SetStripeConnectionDataRequest) (*SetStripeConnectionDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetStripeConnectionData not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -342,6 +358,24 @@ func _ApiService_SetStripeConnectionData_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_DeleteAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteAccount(ctx, req.(*DeleteAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +414,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetStripeConnectionData",
 			Handler:    _ApiService_SetStripeConnectionData_Handler,
+		},
+		{
+			MethodName: "DeleteAccount",
+			Handler:    _ApiService_DeleteAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

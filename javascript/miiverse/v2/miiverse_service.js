@@ -6,12 +6,21 @@
 // source: miiverse/v2/miiverse_service.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MiiverseServiceDefinition = exports.protobufPackage = void 0;
+const delete_account_data_rpc_1 = require("./delete_account_data_rpc");
 const smm_request_post_id_rpc_1 = require("./smm_request_post_id_rpc");
 exports.protobufPackage = "miiverse.v2";
 exports.MiiverseServiceDefinition = {
     name: "MiiverseService",
     fullName: "miiverse.v2.MiiverseService",
     methods: {
+        deleteAccountData: {
+            name: "DeleteAccountData",
+            requestType: delete_account_data_rpc_1.DeleteAccountDataRequest,
+            requestStream: false,
+            responseType: delete_account_data_rpc_1.DeleteAccountDataResponse,
+            responseStream: false,
+            options: {},
+        },
         /** Used by Super Mario Maker */
         sMMRequestPostId: {
             name: "SMMRequestPostId",

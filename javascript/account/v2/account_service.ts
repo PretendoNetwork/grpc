@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
+import { DeleteAccountRequest, DeleteAccountResponse } from "./delete_account_rpc";
 import { ExchangeTokenForUserDataRequest, ExchangeTokenForUserDataResponse } from "./exchange_token_for_user_data";
 import { GetNEXDataRequest, GetNEXDataResponse } from "./get_nex_data_rpc";
 import { GetNEXPasswordRequest, GetNEXPasswordResponse } from "./get_nex_password_rpc";
@@ -59,6 +60,14 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    deleteAccount: {
+      name: "DeleteAccount",
+      requestType: DeleteAccountRequest,
+      requestStream: false,
+      responseType: DeleteAccountResponse,
+      responseStream: false,
+      options: {},
+    },
   },
 } as const;
 
@@ -83,6 +92,10 @@ export interface AccountServiceImplementation<CallContextExt = {}> {
     request: ExchangeTokenForUserDataRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<ExchangeTokenForUserDataResponse>>;
+  deleteAccount(
+    request: DeleteAccountRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<DeleteAccountResponse>>;
 }
 
 export interface AccountServiceClient<CallOptionsExt = {}> {
@@ -106,6 +119,10 @@ export interface AccountServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<ExchangeTokenForUserDataRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<ExchangeTokenForUserDataResponse>;
+  deleteAccount(
+    request: DeepPartial<DeleteAccountRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<DeleteAccountResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;

@@ -6,6 +6,7 @@
 // source: api/v2/api_service.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ApiServiceDefinition = exports.protobufPackage = void 0;
+const delete_account_rpc_1 = require("./delete_account_rpc");
 const forgot_password_rpc_1 = require("./forgot_password_rpc");
 const get_user_data_rpc_1 = require("./get_user_data_rpc");
 const login_rpc_1 = require("./login_rpc");
@@ -80,6 +81,14 @@ exports.ApiServiceDefinition = {
             requestType: set_stripe_connection_data_rpc_1.SetStripeConnectionDataRequest,
             requestStream: false,
             responseType: set_stripe_connection_data_rpc_1.SetStripeConnectionDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        deleteAccount: {
+            name: "DeleteAccount",
+            requestType: delete_account_rpc_1.DeleteAccountRequest,
+            requestStream: false,
+            responseType: delete_account_rpc_1.DeleteAccountResponse,
             responseStream: false,
             options: {},
         },

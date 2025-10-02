@@ -6,6 +6,7 @@
 // source: account/v2/account_service.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountServiceDefinition = exports.protobufPackage = void 0;
+const delete_account_rpc_1 = require("./delete_account_rpc");
 const exchange_token_for_user_data_1 = require("./exchange_token_for_user_data");
 const get_nex_data_rpc_1 = require("./get_nex_data_rpc");
 const get_nex_password_rpc_1 = require("./get_nex_password_rpc");
@@ -53,6 +54,14 @@ exports.AccountServiceDefinition = {
             requestType: exchange_token_for_user_data_1.ExchangeTokenForUserDataRequest,
             requestStream: false,
             responseType: exchange_token_for_user_data_1.ExchangeTokenForUserDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        deleteAccount: {
+            name: "DeleteAccount",
+            requestType: delete_account_rpc_1.DeleteAccountRequest,
+            requestStream: false,
+            responseType: delete_account_rpc_1.DeleteAccountResponse,
             responseStream: false,
             options: {},
         },

@@ -1,4 +1,5 @@
 import { type CallContext, type CallOptions } from "nice-grpc-common";
+import { DeleteAccountRequest, DeleteAccountResponse } from "./delete_account_rpc";
 import { ForgotPasswordRequest, ForgotPasswordResponse } from "./forgot_password_rpc";
 import { GetUserDataRequest, GetUserDataResponse } from "./get_user_data_rpc";
 import { LoginRequest, LoginResponse } from "./login_rpc";
@@ -77,6 +78,14 @@ export declare const ApiServiceDefinition: {
             readonly responseStream: false;
             readonly options: {};
         };
+        readonly deleteAccount: {
+            readonly name: "DeleteAccount";
+            readonly requestType: import("./delete_account_rpc").MessageFns<DeleteAccountRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./delete_account_rpc").MessageFns<DeleteAccountResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
     };
 };
 export interface ApiServiceImplementation<CallContextExt = {}> {
@@ -88,6 +97,7 @@ export interface ApiServiceImplementation<CallContextExt = {}> {
     resetPassword(request: ResetPasswordRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ResetPasswordResponse>>;
     setDiscordConnectionData(request: SetDiscordConnectionDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<SetDiscordConnectionDataResponse>>;
     setStripeConnectionData(request: SetStripeConnectionDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<SetStripeConnectionDataResponse>>;
+    deleteAccount(request: DeleteAccountRequest, context: CallContext & CallContextExt): Promise<DeepPartial<DeleteAccountResponse>>;
 }
 export interface ApiServiceClient<CallOptionsExt = {}> {
     register(request: DeepPartial<RegisterRequest>, options?: CallOptions & CallOptionsExt): Promise<RegisterResponse>;
@@ -98,6 +108,7 @@ export interface ApiServiceClient<CallOptionsExt = {}> {
     resetPassword(request: DeepPartial<ResetPasswordRequest>, options?: CallOptions & CallOptionsExt): Promise<ResetPasswordResponse>;
     setDiscordConnectionData(request: DeepPartial<SetDiscordConnectionDataRequest>, options?: CallOptions & CallOptionsExt): Promise<SetDiscordConnectionDataResponse>;
     setStripeConnectionData(request: DeepPartial<SetStripeConnectionDataRequest>, options?: CallOptions & CallOptionsExt): Promise<SetStripeConnectionDataResponse>;
+    deleteAccount(request: DeepPartial<DeleteAccountRequest>, options?: CallOptions & CallOptionsExt): Promise<DeleteAccountResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

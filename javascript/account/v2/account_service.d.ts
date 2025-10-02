@@ -1,4 +1,5 @@
 import { type CallContext, type CallOptions } from "nice-grpc-common";
+import { DeleteAccountRequest, DeleteAccountResponse } from "./delete_account_rpc";
 import { ExchangeTokenForUserDataRequest, ExchangeTokenForUserDataResponse } from "./exchange_token_for_user_data";
 import { GetNEXDataRequest, GetNEXDataResponse } from "./get_nex_data_rpc";
 import { GetNEXPasswordRequest, GetNEXPasswordResponse } from "./get_nex_password_rpc";
@@ -50,6 +51,14 @@ export declare const AccountServiceDefinition: {
             readonly responseStream: false;
             readonly options: {};
         };
+        readonly deleteAccount: {
+            readonly name: "DeleteAccount";
+            readonly requestType: import("./delete_account_rpc").MessageFns<DeleteAccountRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./delete_account_rpc").MessageFns<DeleteAccountResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
     };
 };
 export interface AccountServiceImplementation<CallContextExt = {}> {
@@ -58,6 +67,7 @@ export interface AccountServiceImplementation<CallContextExt = {}> {
     getNEXData(request: GetNEXDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetNEXDataResponse>>;
     updatePNIDPermissions(request: UpdatePNIDPermissionsRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdatePNIDPermissionsResponse>>;
     exchangeTokenForUserData(request: ExchangeTokenForUserDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ExchangeTokenForUserDataResponse>>;
+    deleteAccount(request: DeleteAccountRequest, context: CallContext & CallContextExt): Promise<DeepPartial<DeleteAccountResponse>>;
 }
 export interface AccountServiceClient<CallOptionsExt = {}> {
     getUserData(request: DeepPartial<GetUserDataRequest>, options?: CallOptions & CallOptionsExt): Promise<GetUserDataResponse>;
@@ -65,6 +75,7 @@ export interface AccountServiceClient<CallOptionsExt = {}> {
     getNEXData(request: DeepPartial<GetNEXDataRequest>, options?: CallOptions & CallOptionsExt): Promise<GetNEXDataResponse>;
     updatePNIDPermissions(request: DeepPartial<UpdatePNIDPermissionsRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdatePNIDPermissionsResponse>;
     exchangeTokenForUserData(request: DeepPartial<ExchangeTokenForUserDataRequest>, options?: CallOptions & CallOptionsExt): Promise<ExchangeTokenForUserDataResponse>;
+    deleteAccount(request: DeepPartial<DeleteAccountRequest>, options?: CallOptions & CallOptionsExt): Promise<DeleteAccountResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

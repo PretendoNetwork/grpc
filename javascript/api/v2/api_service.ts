@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
+import { DeleteAccountRequest, DeleteAccountResponse } from "./delete_account_rpc";
 import { ForgotPasswordRequest, ForgotPasswordResponse } from "./forgot_password_rpc";
 import { GetUserDataRequest, GetUserDataResponse } from "./get_user_data_rpc";
 import { LoginRequest, LoginResponse } from "./login_rpc";
@@ -86,6 +87,14 @@ export const ApiServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    deleteAccount: {
+      name: "DeleteAccount",
+      requestType: DeleteAccountRequest,
+      requestStream: false,
+      responseType: DeleteAccountResponse,
+      responseStream: false,
+      options: {},
+    },
   },
 } as const;
 
@@ -116,6 +125,10 @@ export interface ApiServiceImplementation<CallContextExt = {}> {
     request: SetStripeConnectionDataRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<SetStripeConnectionDataResponse>>;
+  deleteAccount(
+    request: DeleteAccountRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<DeleteAccountResponse>>;
 }
 
 export interface ApiServiceClient<CallOptionsExt = {}> {
@@ -145,6 +158,10 @@ export interface ApiServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<SetStripeConnectionDataRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<SetStripeConnectionDataResponse>;
+  deleteAccount(
+    request: DeepPartial<DeleteAccountRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<DeleteAccountResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
