@@ -2,12 +2,12 @@ syntax = "proto3";
 
 package account.v2;
 
+import "account/v2/delete_account_rpc.proto";
 import "account/v2/exchange_token_for_user_data.proto";
 import "account/v2/get_nex_data_rpc.proto";
 import "account/v2/get_nex_password_rpc.proto";
 import "account/v2/get_user_data_rpc.proto";
 import "account/v2/update_pnid_permissions.proto";
-import "account/v2/delete_account_rpc.proto";
 
 service AccountService {
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
