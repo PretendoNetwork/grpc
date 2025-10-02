@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package account.v2;
+
+message DeleteAccountRequest {
+  uint32 pid = 1;
+}
+
+message DeleteAccountResponse {
+  bool has_deleted = 1;
+}

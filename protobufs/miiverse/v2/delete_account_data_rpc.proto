@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+message DeleteAccountDataRequest {
+  uint32 pid = 1;
+}
+
+message DeleteAccountDataResponse {
+  bool has_deleted = 1;
+  uint32 posts_deleted = 2;
+}

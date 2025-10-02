@@ -10,6 +10,7 @@ import "api/v2/reset_password_rpc.proto";
 import "api/v2/set_discord_connection_data_rpc.proto";
 import "api/v2/set_stripe_connection_data_rpc.proto";
 import "api/v2/update_user_data_rpc.proto";
+import "api/v2/delete_account_rpc.proto";
 
 service ApiService {
   rpc Register(RegisterRequest) returns (RegisterResponse) {}
@@ -20,4 +21,5 @@ service ApiService {
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
   rpc SetDiscordConnectionData(SetDiscordConnectionDataRequest) returns (SetDiscordConnectionDataResponse) {}
   rpc SetStripeConnectionData(SetStripeConnectionDataRequest) returns (SetStripeConnectionDataResponse) {}
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
 }
