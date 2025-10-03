@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package boss.v2;
+
+import "boss/v2/file_attributes.proto";
+import "boss/v2/file_ctr.proto";
+import "boss/v2/payload_content_ctr.proto";
+
+message UploadFileCTRRequest {
+  string task_id = 1;
+  string boss_app_id = 2;
+  repeated string supported_countries = 3;
+  repeated string supported_languages = 4;
+  FileAttributes attributes = 5;
+  string name = 6;
+  uint32 serial_number = 7;
+  repeated PayloadContentCTR payload_contents = 8;
+}
+
+message UploadFileCTRResponse {
+  FileCTR file = 1;
+}

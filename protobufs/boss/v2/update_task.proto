@@ -5,9 +5,10 @@ package boss.v2;
 message UpdateTaskData {
   string id = 1;
   string boss_app_id = 2;
-  string title_id = 3;
+  uint64 title_id = 3;
   string status = 4;
-  string description = 5;
+  uint32 interval = 5;
+  string description = 6;
 }
 
 message UpdateTaskRequest {

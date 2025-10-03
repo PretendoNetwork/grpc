@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package boss.v2;
+
+import "boss/v2/file_attributes.proto";
+import "boss/v2/payload_content_info_ctr.proto";
+
+message UpdateFileMetadataDataCTR {
+  string task_id = 1;
+  string boss_app_id = 2;
+  repeated string supported_countries = 3;
+  repeated string supported_languages = 4;
+  FileAttributes attributes = 5;
+  string name = 6;
+  repeated PayloadContentInfoCTR payload_contents = 7;
+}
+
+message UpdateFileMetadataCTRRequest {
+  uint64 data_id = 1;
+  UpdateFileMetadataDataCTR update_data = 2;
+}
+
+message UpdateFileMetadataCTRResponse {}

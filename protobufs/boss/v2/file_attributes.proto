@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package boss.v2;
+
+message FileAttributes {
+  string attribute1 = 1;
+  string attribute2 = 2;
+  string attribute3 = 3;
+  string description = 4;
+}
