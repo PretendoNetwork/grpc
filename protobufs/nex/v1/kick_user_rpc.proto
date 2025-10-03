@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package nex.v1;
+
+message KickUserRequest {
+  uint64 pid = 1;
+}
+
+message KickUserResponse {}
