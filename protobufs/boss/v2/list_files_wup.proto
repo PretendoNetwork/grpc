@@ -2,15 +2,15 @@ syntax = "proto3";
 
 package boss.v2;
 
-import "boss/v2/file.proto";
+import "boss/v2/file_wup.proto";
 
-message ListFilesRequest {
+message ListFilesWUPRequest {
   string task_id = 1;
   string boss_app_id = 2;
   optional string country = 3;
   optional string language = 4;
 }
 
-message ListFilesResponse {
-  repeated File files = 1;
+message ListFilesWUPResponse {
+  repeated FileWUP files = 1;
 }
