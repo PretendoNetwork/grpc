@@ -16,7 +16,8 @@ export interface Task {
   bossAppId: string;
   creatorPid: number;
   status: string;
-  titleId: string;
+  interval: number;
+  titleId: bigint;
   description: string;
   createdTimestamp: bigint;
   updatedTimestamp: bigint;
@@ -30,7 +31,8 @@ function createBaseTask(): Task {
     bossAppId: "",
     creatorPid: 0,
     status: "",
-    titleId: "",
+    interval: 0,
+    titleId: 0n,
     description: "",
     createdTimestamp: 0n,
     updatedTimestamp: 0n,
@@ -57,23 +59,29 @@ export const Task: MessageFns<Task> = {
     if (message.status !== "") {
       writer.uint32(50).string(message.status);
     }
-    if (message.titleId !== "") {
-      writer.uint32(58).string(message.titleId);
+    if (message.interval !== 0) {
+      writer.uint32(56).uint32(message.interval);
+    }
+    if (message.titleId !== 0n) {
+      if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
+        throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
+      }
+      writer.uint32(64).uint64(message.titleId);
     }
     if (message.description !== "") {
-      writer.uint32(66).string(message.description);
+      writer.uint32(74).string(message.description);
     }
     if (message.createdTimestamp !== 0n) {
       if (BigInt.asUintN(64, message.createdTimestamp) !== message.createdTimestamp) {
         throw new globalThis.Error("value provided for field message.createdTimestamp of type uint64 too large");
       }
-      writer.uint32(72).uint64(message.createdTimestamp);
+      writer.uint32(80).uint64(message.createdTimestamp);
     }
     if (message.updatedTimestamp !== 0n) {
       if (BigInt.asUintN(64, message.updatedTimestamp) !== message.updatedTimestamp) {
         throw new globalThis.Error("value provided for field message.updatedTimestamp of type uint64 too large");
       }
-      writer.uint32(80).uint64(message.updatedTimestamp);
+      writer.uint32(88).uint64(message.updatedTimestamp);
     }
     return writer;
   },
@@ -134,31 +142,39 @@ export const Task: MessageFns<Task> = {
           continue;
         }
         case 7: {
-          if (tag !== 58) {
+          if (tag !== 56) {
             break;
           }
 
-          message.titleId = reader.string();
+          message.interval = reader.uint32();
           continue;
         }
         case 8: {
-          if (tag !== 66) {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.titleId = reader.uint64() as bigint;
+          continue;
+        }
+        case 9: {
+          if (tag !== 74) {
             break;
           }
 
           message.description = reader.string();
           continue;
         }
-        case 9: {
-          if (tag !== 72) {
+        case 10: {
+          if (tag !== 80) {
             break;
           }
 
           message.createdTimestamp = reader.uint64() as bigint;
           continue;
         }
-        case 10: {
-          if (tag !== 80) {
+        case 11: {
+          if (tag !== 88) {
             break;
           }
 
@@ -182,7 +198,8 @@ export const Task: MessageFns<Task> = {
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
       creatorPid: isSet(object.creatorPid) ? globalThis.Number(object.creatorPid) : 0,
       status: isSet(object.status) ? globalThis.String(object.status) : "",
-      titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
+      interval: isSet(object.interval) ? globalThis.Number(object.interval) : 0,
+      titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
       description: isSet(object.description) ? globalThis.String(object.description) : "",
       createdTimestamp: isSet(object.createdTimestamp) ? BigInt(object.createdTimestamp) : 0n,
       updatedTimestamp: isSet(object.updatedTimestamp) ? BigInt(object.updatedTimestamp) : 0n,
@@ -209,8 +226,11 @@ export const Task: MessageFns<Task> = {
     if (message.status !== "") {
       obj.status = message.status;
     }
-    if (message.titleId !== "") {
-      obj.titleId = message.titleId;
+    if (message.interval !== 0) {
+      obj.interval = Math.round(message.interval);
+    }
+    if (message.titleId !== 0n) {
+      obj.titleId = message.titleId.toString();
     }
     if (message.description !== "") {
       obj.description = message.description;
@@ -235,7 +255,8 @@ export const Task: MessageFns<Task> = {
     message.bossAppId = object.bossAppId ?? "";
     message.creatorPid = object.creatorPid ?? 0;
     message.status = object.status ?? "";
-    message.titleId = object.titleId ?? "";
+    message.interval = object.interval ?? 0;
+    message.titleId = object.titleId ?? 0n;
     message.description = object.description ?? "";
     message.createdTimestamp = object.createdTimestamp ?? 0n;
     message.updatedTimestamp = object.updatedTimestamp ?? 0n;

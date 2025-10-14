@@ -1,13 +1,16 @@
 import { type CallContext, type CallOptions } from "nice-grpc-common";
 import { DeleteFileRequest, DeleteFileResponse } from "./delete_file";
 import { DeleteTaskRequest, DeleteTaskResponse } from "./delete_task";
-import { ListFilesRequest, ListFilesResponse } from "./list_files";
+import { ListFilesCTRRequest, ListFilesCTRResponse } from "./list_files_ctr";
+import { ListFilesWUPRequest, ListFilesWUPResponse } from "./list_files_wup";
 import { ListKnownBOSSAppsRequest, ListKnownBOSSAppsResponse } from "./list_known_boss_apps";
 import { ListTasksRequest, ListTasksResponse } from "./list_tasks";
 import { RegisterTaskRequest, RegisterTaskResponse } from "./register_task";
-import { UpdateFileMetadataRequest, UpdateFileMetadataResponse } from "./update_file_metadata";
+import { UpdateFileMetadataCTRRequest, UpdateFileMetadataCTRResponse } from "./update_file_metadata_ctr";
+import { UpdateFileMetadataWUPRequest, UpdateFileMetadataWUPResponse } from "./update_file_metadata_wup";
 import { UpdateTaskRequest, UpdateTaskResponse } from "./update_task";
-import { UploadFileRequest, UploadFileResponse } from "./upload_file";
+import { UploadFileCTRRequest, UploadFileCTRResponse } from "./upload_file_ctr";
+import { UploadFileWUPRequest, UploadFileWUPResponse } from "./upload_file_wup";
 export declare const protobufPackage = "boss.v2";
 export type BossServiceDefinition = typeof BossServiceDefinition;
 export declare const BossServiceDefinition: {
@@ -54,35 +57,59 @@ export declare const BossServiceDefinition: {
             readonly responseStream: false;
             readonly options: {};
         };
-        readonly listFiles: {
-            readonly name: "ListFiles";
-            readonly requestType: import("./list_files").MessageFns<ListFilesRequest>;
-            readonly requestStream: false;
-            readonly responseType: import("./list_files").MessageFns<ListFilesResponse>;
-            readonly responseStream: false;
-            readonly options: {};
-        };
-        readonly uploadFile: {
-            readonly name: "UploadFile";
-            readonly requestType: import("./upload_file").MessageFns<UploadFileRequest>;
-            readonly requestStream: false;
-            readonly responseType: import("./upload_file").MessageFns<UploadFileResponse>;
-            readonly responseStream: false;
-            readonly options: {};
-        };
-        readonly updateFileMetadata: {
-            readonly name: "UpdateFileMetadata";
-            readonly requestType: import("./update_file_metadata").MessageFns<UpdateFileMetadataRequest>;
-            readonly requestStream: false;
-            readonly responseType: import("./update_file_metadata").MessageFns<UpdateFileMetadataResponse>;
-            readonly responseStream: false;
-            readonly options: {};
-        };
         readonly deleteFile: {
             readonly name: "DeleteFile";
             readonly requestType: import("./delete_file").MessageFns<DeleteFileRequest>;
             readonly requestStream: false;
             readonly responseType: import("./delete_file").MessageFns<DeleteFileResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly listFilesWUP: {
+            readonly name: "ListFilesWUP";
+            readonly requestType: import("./list_files_wup").MessageFns<ListFilesWUPRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./list_files_wup").MessageFns<ListFilesWUPResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly uploadFileWUP: {
+            readonly name: "UploadFileWUP";
+            readonly requestType: import("./upload_file_wup").MessageFns<UploadFileWUPRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./upload_file_wup").MessageFns<UploadFileWUPResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly updateFileMetadataWUP: {
+            readonly name: "UpdateFileMetadataWUP";
+            readonly requestType: import("./update_file_metadata_wup").MessageFns<UpdateFileMetadataWUPRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./update_file_metadata_wup").MessageFns<UpdateFileMetadataWUPResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly listFilesCTR: {
+            readonly name: "ListFilesCTR";
+            readonly requestType: import("./list_files_ctr").MessageFns<ListFilesCTRRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./list_files_ctr").MessageFns<ListFilesCTRResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly uploadFileCTR: {
+            readonly name: "UploadFileCTR";
+            readonly requestType: import("./upload_file_ctr").MessageFns<UploadFileCTRRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./upload_file_ctr").MessageFns<UploadFileCTRResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly updateFileMetadataCTR: {
+            readonly name: "UpdateFileMetadataCTR";
+            readonly requestType: import("./update_file_metadata_ctr").MessageFns<UpdateFileMetadataCTRRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./update_file_metadata_ctr").MessageFns<UpdateFileMetadataCTRResponse>;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -94,10 +121,13 @@ export interface BossServiceImplementation<CallContextExt = {}> {
     registerTask(request: RegisterTaskRequest, context: CallContext & CallContextExt): Promise<DeepPartial<RegisterTaskResponse>>;
     updateTask(request: UpdateTaskRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateTaskResponse>>;
     deleteTask(request: DeleteTaskRequest, context: CallContext & CallContextExt): Promise<DeepPartial<DeleteTaskResponse>>;
-    listFiles(request: ListFilesRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListFilesResponse>>;
-    uploadFile(request: UploadFileRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UploadFileResponse>>;
-    updateFileMetadata(request: UpdateFileMetadataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateFileMetadataResponse>>;
     deleteFile(request: DeleteFileRequest, context: CallContext & CallContextExt): Promise<DeepPartial<DeleteFileResponse>>;
+    listFilesWUP(request: ListFilesWUPRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListFilesWUPResponse>>;
+    uploadFileWUP(request: UploadFileWUPRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UploadFileWUPResponse>>;
+    updateFileMetadataWUP(request: UpdateFileMetadataWUPRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateFileMetadataWUPResponse>>;
+    listFilesCTR(request: ListFilesCTRRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListFilesCTRResponse>>;
+    uploadFileCTR(request: UploadFileCTRRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UploadFileCTRResponse>>;
+    updateFileMetadataCTR(request: UpdateFileMetadataCTRRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateFileMetadataCTRResponse>>;
 }
 export interface BossServiceClient<CallOptionsExt = {}> {
     listKnownBOSSApps(request: DeepPartial<ListKnownBOSSAppsRequest>, options?: CallOptions & CallOptionsExt): Promise<ListKnownBOSSAppsResponse>;
@@ -105,10 +135,13 @@ export interface BossServiceClient<CallOptionsExt = {}> {
     registerTask(request: DeepPartial<RegisterTaskRequest>, options?: CallOptions & CallOptionsExt): Promise<RegisterTaskResponse>;
     updateTask(request: DeepPartial<UpdateTaskRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateTaskResponse>;
     deleteTask(request: DeepPartial<DeleteTaskRequest>, options?: CallOptions & CallOptionsExt): Promise<DeleteTaskResponse>;
-    listFiles(request: DeepPartial<ListFilesRequest>, options?: CallOptions & CallOptionsExt): Promise<ListFilesResponse>;
-    uploadFile(request: DeepPartial<UploadFileRequest>, options?: CallOptions & CallOptionsExt): Promise<UploadFileResponse>;
-    updateFileMetadata(request: DeepPartial<UpdateFileMetadataRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateFileMetadataResponse>;
     deleteFile(request: DeepPartial<DeleteFileRequest>, options?: CallOptions & CallOptionsExt): Promise<DeleteFileResponse>;
+    listFilesWUP(request: DeepPartial<ListFilesWUPRequest>, options?: CallOptions & CallOptionsExt): Promise<ListFilesWUPResponse>;
+    uploadFileWUP(request: DeepPartial<UploadFileWUPRequest>, options?: CallOptions & CallOptionsExt): Promise<UploadFileWUPResponse>;
+    updateFileMetadataWUP(request: DeepPartial<UpdateFileMetadataWUPRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateFileMetadataWUPResponse>;
+    listFilesCTR(request: DeepPartial<ListFilesCTRRequest>, options?: CallOptions & CallOptionsExt): Promise<ListFilesCTRResponse>;
+    uploadFileCTR(request: DeepPartial<UploadFileCTRRequest>, options?: CallOptions & CallOptionsExt): Promise<UploadFileCTRResponse>;
+    updateFileMetadataCTR(request: DeepPartial<UpdateFileMetadataCTRRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateFileMetadataCTRResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

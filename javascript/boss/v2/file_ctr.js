@@ -3,13 +3,15 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: boss/v2/file.proto
+// source: boss/v2/file_ctr.proto
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.File = exports.protobufPackage = void 0;
+exports.FileCTR = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const file_attributes_1 = require("./file_attributes");
+const payload_content_info_ctr_1 = require("./payload_content_info_ctr");
 exports.protobufPackage = "boss.v2";
-function createBaseFile() {
+function createBaseFileCTR() {
     return {
         deleted: false,
         dataId: 0n,
@@ -17,22 +19,18 @@ function createBaseFile() {
         bossAppId: "",
         supportedCountries: [],
         supportedLanguages: [],
-        password: "",
-        attribute1: "",
-        attribute2: "",
-        attribute3: "",
+        attributes: undefined,
         creatorPid: 0,
         name: "",
-        type: "",
         hash: "",
+        serialNumber: 0,
+        payloadContents: [],
         size: 0n,
-        notifyOnNew: [],
-        notifyLed: false,
         createdTimestamp: 0n,
         updatedTimestamp: 0n,
     };
 }
-exports.File = {
+exports.FileCTR = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.deleted !== false) {
             writer.uint32(8).bool(message.deleted);
@@ -55,60 +53,48 @@ exports.File = {
         for (const v of message.supportedLanguages) {
             writer.uint32(50).string(v);
         }
-        if (message.password !== "") {
-            writer.uint32(58).string(message.password);
-        }
-        if (message.attribute1 !== "") {
-            writer.uint32(66).string(message.attribute1);
-        }
-        if (message.attribute2 !== "") {
-            writer.uint32(74).string(message.attribute2);
-        }
-        if (message.attribute3 !== "") {
-            writer.uint32(82).string(message.attribute3);
+        if (message.attributes !== undefined) {
+            file_attributes_1.FileAttributes.encode(message.attributes, writer.uint32(58).fork()).join();
         }
         if (message.creatorPid !== 0) {
-            writer.uint32(88).uint32(message.creatorPid);
+            writer.uint32(64).uint32(message.creatorPid);
         }
         if (message.name !== "") {
-            writer.uint32(98).string(message.name);
-        }
-        if (message.type !== "") {
-            writer.uint32(106).string(message.type);
+            writer.uint32(74).string(message.name);
         }
         if (message.hash !== "") {
-            writer.uint32(114).string(message.hash);
+            writer.uint32(82).string(message.hash);
+        }
+        if (message.serialNumber !== 0) {
+            writer.uint32(88).uint32(message.serialNumber);
+        }
+        for (const v of message.payloadContents) {
+            payload_content_info_ctr_1.PayloadContentInfoCTR.encode(v, writer.uint32(98).fork()).join();
         }
         if (message.size !== 0n) {
             if (BigInt.asUintN(64, message.size) !== message.size) {
                 throw new globalThis.Error("value provided for field message.size of type uint64 too large");
             }
-            writer.uint32(120).uint64(message.size);
-        }
-        for (const v of message.notifyOnNew) {
-            writer.uint32(130).string(v);
-        }
-        if (message.notifyLed !== false) {
-            writer.uint32(136).bool(message.notifyLed);
+            writer.uint32(104).uint64(message.size);
         }
         if (message.createdTimestamp !== 0n) {
             if (BigInt.asUintN(64, message.createdTimestamp) !== message.createdTimestamp) {
                 throw new globalThis.Error("value provided for field message.createdTimestamp of type uint64 too large");
             }
-            writer.uint32(144).uint64(message.createdTimestamp);
+            writer.uint32(112).uint64(message.createdTimestamp);
         }
         if (message.updatedTimestamp !== 0n) {
             if (BigInt.asUintN(64, message.updatedTimestamp) !== message.updatedTimestamp) {
                 throw new globalThis.Error("value provided for field message.updatedTimestamp of type uint64 too large");
             }
-            writer.uint32(152).uint64(message.updatedTimestamp);
+            writer.uint32(120).uint64(message.updatedTimestamp);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseFile();
+        const message = createBaseFileCTR();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -158,88 +144,60 @@ exports.File = {
                     if (tag !== 58) {
                         break;
                     }
-                    message.password = reader.string();
+                    message.attributes = file_attributes_1.FileAttributes.decode(reader, reader.uint32());
                     continue;
                 }
                 case 8: {
-                    if (tag !== 66) {
+                    if (tag !== 64) {
                         break;
                     }
-                    message.attribute1 = reader.string();
+                    message.creatorPid = reader.uint32();
                     continue;
                 }
                 case 9: {
                     if (tag !== 74) {
                         break;
                     }
-                    message.attribute2 = reader.string();
+                    message.name = reader.string();
                     continue;
                 }
                 case 10: {
                     if (tag !== 82) {
                         break;
                     }
-                    message.attribute3 = reader.string();
+                    message.hash = reader.string();
                     continue;
                 }
                 case 11: {
                     if (tag !== 88) {
                         break;
                     }
-                    message.creatorPid = reader.uint32();
+                    message.serialNumber = reader.uint32();
                     continue;
                 }
                 case 12: {
                     if (tag !== 98) {
                         break;
                     }
-                    message.name = reader.string();
+                    message.payloadContents.push(payload_content_info_ctr_1.PayloadContentInfoCTR.decode(reader, reader.uint32()));
                     continue;
                 }
                 case 13: {
-                    if (tag !== 106) {
-                        break;
-                    }
-                    message.type = reader.string();
-                    continue;
-                }
-                case 14: {
-                    if (tag !== 114) {
-                        break;
-                    }
-                    message.hash = reader.string();
-                    continue;
-                }
-                case 15: {
-                    if (tag !== 120) {
+                    if (tag !== 104) {
                         break;
                     }
                     message.size = reader.uint64();
                     continue;
                 }
-                case 16: {
-                    if (tag !== 130) {
-                        break;
-                    }
-                    message.notifyOnNew.push(reader.string());
-                    continue;
-                }
-                case 17: {
-                    if (tag !== 136) {
-                        break;
-                    }
-                    message.notifyLed = reader.bool();
-                    continue;
-                }
-                case 18: {
-                    if (tag !== 144) {
+                case 14: {
+                    if (tag !== 112) {
                         break;
                     }
                     message.createdTimestamp = reader.uint64();
                     continue;
                 }
-                case 19: {
-                    if (tag !== 152) {
+                case 15: {
+                    if (tag !== 120) {
                         break;
                     }
                     message.updatedTimestamp = reader.uint64();
@@ -265,19 +223,15 @@ exports.File = {
             supportedLanguages: globalThis.Array.isArray(object?.supportedLanguages)
                 ? object.supportedLanguages.map((e) => globalThis.String(e))
                 : [],
-            password: isSet(object.password) ? globalThis.String(object.password) : "",
-            attribute1: isSet(object.attribute1) ? globalThis.String(object.attribute1) : "",
-            attribute2: isSet(object.attribute2) ? globalThis.String(object.attribute2) : "",
-            attribute3: isSet(object.attribute3) ? globalThis.String(object.attribute3) : "",
+            attributes: isSet(object.attributes) ? file_attributes_1.FileAttributes.fromJSON(object.attributes) : undefined,
             creatorPid: isSet(object.creatorPid) ? globalThis.Number(object.creatorPid) : 0,
             name: isSet(object.name) ? globalThis.String(object.name) : "",
-            type: isSet(object.type) ? globalThis.String(object.type) : "",
             hash: isSet(object.hash) ? globalThis.String(object.hash) : "",
-            size: isSet(object.size) ? BigInt(object.size) : 0n,
-            notifyOnNew: globalThis.Array.isArray(object?.notifyOnNew)
-                ? object.notifyOnNew.map((e) => globalThis.String(e))
+            serialNumber: isSet(object.serialNumber) ? globalThis.Number(object.serialNumber) : 0,
+            payloadContents: globalThis.Array.isArray(object?.payloadContents)
+                ? object.payloadContents.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.fromJSON(e))
                 : [],
-            notifyLed: isSet(object.notifyLed) ? globalThis.Boolean(object.notifyLed) : false,
+            size: isSet(object.size) ? BigInt(object.size) : 0n,
             createdTimestamp: isSet(object.createdTimestamp) ? BigInt(object.createdTimestamp) : 0n,
             updatedTimestamp: isSet(object.updatedTimestamp) ? BigInt(object.updatedTimestamp) : 0n,
         };
@@ -302,17 +256,8 @@ exports.File = {
         if (message.supportedLanguages?.length) {
             obj.supportedLanguages = message.supportedLanguages;
         }
-        if (message.password !== "") {
-            obj.password = message.password;
-        }
-        if (message.attribute1 !== "") {
-            obj.attribute1 = message.attribute1;
-        }
-        if (message.attribute2 !== "") {
-            obj.attribute2 = message.attribute2;
-        }
-        if (message.attribute3 !== "") {
-            obj.attribute3 = message.attribute3;
+        if (message.attributes !== undefined) {
+            obj.attributes = file_attributes_1.FileAttributes.toJSON(message.attributes);
         }
         if (message.creatorPid !== 0) {
             obj.creatorPid = Math.round(message.creatorPid);
@@ -320,20 +265,17 @@ exports.File = {
         if (message.name !== "") {
             obj.name = message.name;
         }
-        if (message.type !== "") {
-            obj.type = message.type;
-        }
         if (message.hash !== "") {
             obj.hash = message.hash;
         }
+        if (message.serialNumber !== 0) {
+            obj.serialNumber = Math.round(message.serialNumber);
+        }
+        if (message.payloadContents?.length) {
+            obj.payloadContents = message.payloadContents.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.toJSON(e));
+        }
         if (message.size !== 0n) {
             obj.size = message.size.toString();
-        }
-        if (message.notifyOnNew?.length) {
-            obj.notifyOnNew = message.notifyOnNew;
-        }
-        if (message.notifyLed !== false) {
-            obj.notifyLed = message.notifyLed;
         }
         if (message.createdTimestamp !== 0n) {
             obj.createdTimestamp = message.createdTimestamp.toString();
@@ -344,27 +286,25 @@ exports.File = {
         return obj;
     },
     create(base) {
-        return exports.File.fromPartial(base ?? {});
+        return exports.FileCTR.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseFile();
+        const message = createBaseFileCTR();
         message.deleted = object.deleted ?? false;
         message.dataId = object.dataId ?? 0n;
         message.taskId = object.taskId ?? "";
         message.bossAppId = object.bossAppId ?? "";
         message.supportedCountries = object.supportedCountries?.map((e) => e) || [];
         message.supportedLanguages = object.supportedLanguages?.map((e) => e) || [];
-        message.password = object.password ?? "";
-        message.attribute1 = object.attribute1 ?? "";
-        message.attribute2 = object.attribute2 ?? "";
-        message.attribute3 = object.attribute3 ?? "";
+        message.attributes = (object.attributes !== undefined && object.attributes !== null)
+            ? file_attributes_1.FileAttributes.fromPartial(object.attributes)
+            : undefined;
         message.creatorPid = object.creatorPid ?? 0;
         message.name = object.name ?? "";
-        message.type = object.type ?? "";
         message.hash = object.hash ?? "";
+        message.serialNumber = object.serialNumber ?? 0;
+        message.payloadContents = object.payloadContents?.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.fromPartial(e)) || [];
         message.size = object.size ?? 0n;
-        message.notifyOnNew = object.notifyOnNew?.map((e) => e) || [];
-        message.notifyLed = object.notifyLed ?? false;
         message.createdTimestamp = object.createdTimestamp ?? 0n;
         message.updatedTimestamp = object.updatedTimestamp ?? 0n;
         return message;

@@ -8,13 +8,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BossServiceDefinition = exports.protobufPackage = void 0;
 const delete_file_1 = require("./delete_file");
 const delete_task_1 = require("./delete_task");
-const list_files_1 = require("./list_files");
+const list_files_ctr_1 = require("./list_files_ctr");
+const list_files_wup_1 = require("./list_files_wup");
 const list_known_boss_apps_1 = require("./list_known_boss_apps");
 const list_tasks_1 = require("./list_tasks");
 const register_task_1 = require("./register_task");
-const update_file_metadata_1 = require("./update_file_metadata");
+const update_file_metadata_ctr_1 = require("./update_file_metadata_ctr");
+const update_file_metadata_wup_1 = require("./update_file_metadata_wup");
 const update_task_1 = require("./update_task");
-const upload_file_1 = require("./upload_file");
+const upload_file_ctr_1 = require("./upload_file_ctr");
+const upload_file_wup_1 = require("./upload_file_wup");
 exports.protobufPackage = "boss.v2";
 exports.BossServiceDefinition = {
     name: "BossService",
@@ -60,35 +63,59 @@ exports.BossServiceDefinition = {
             responseStream: false,
             options: {},
         },
-        listFiles: {
-            name: "ListFiles",
-            requestType: list_files_1.ListFilesRequest,
-            requestStream: false,
-            responseType: list_files_1.ListFilesResponse,
-            responseStream: false,
-            options: {},
-        },
-        uploadFile: {
-            name: "UploadFile",
-            requestType: upload_file_1.UploadFileRequest,
-            requestStream: false,
-            responseType: upload_file_1.UploadFileResponse,
-            responseStream: false,
-            options: {},
-        },
-        updateFileMetadata: {
-            name: "UpdateFileMetadata",
-            requestType: update_file_metadata_1.UpdateFileMetadataRequest,
-            requestStream: false,
-            responseType: update_file_metadata_1.UpdateFileMetadataResponse,
-            responseStream: false,
-            options: {},
-        },
         deleteFile: {
             name: "DeleteFile",
             requestType: delete_file_1.DeleteFileRequest,
             requestStream: false,
             responseType: delete_file_1.DeleteFileResponse,
+            responseStream: false,
+            options: {},
+        },
+        listFilesWUP: {
+            name: "ListFilesWUP",
+            requestType: list_files_wup_1.ListFilesWUPRequest,
+            requestStream: false,
+            responseType: list_files_wup_1.ListFilesWUPResponse,
+            responseStream: false,
+            options: {},
+        },
+        uploadFileWUP: {
+            name: "UploadFileWUP",
+            requestType: upload_file_wup_1.UploadFileWUPRequest,
+            requestStream: false,
+            responseType: upload_file_wup_1.UploadFileWUPResponse,
+            responseStream: false,
+            options: {},
+        },
+        updateFileMetadataWUP: {
+            name: "UpdateFileMetadataWUP",
+            requestType: update_file_metadata_wup_1.UpdateFileMetadataWUPRequest,
+            requestStream: false,
+            responseType: update_file_metadata_wup_1.UpdateFileMetadataWUPResponse,
+            responseStream: false,
+            options: {},
+        },
+        listFilesCTR: {
+            name: "ListFilesCTR",
+            requestType: list_files_ctr_1.ListFilesCTRRequest,
+            requestStream: false,
+            responseType: list_files_ctr_1.ListFilesCTRResponse,
+            responseStream: false,
+            options: {},
+        },
+        uploadFileCTR: {
+            name: "UploadFileCTR",
+            requestType: upload_file_ctr_1.UploadFileCTRRequest,
+            requestStream: false,
+            responseType: upload_file_ctr_1.UploadFileCTRResponse,
+            responseStream: false,
+            options: {},
+        },
+        updateFileMetadataCTR: {
+            name: "UpdateFileMetadataCTR",
+            requestType: update_file_metadata_ctr_1.UpdateFileMetadataCTRRequest,
+            requestStream: false,
+            responseType: update_file_metadata_ctr_1.UpdateFileMetadataCTRResponse,
             responseStream: false,
             options: {},
         },

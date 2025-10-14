@@ -3,8 +3,9 @@ export declare const protobufPackage = "boss.v2";
 export interface UpdateTaskData {
     id: string;
     bossAppId: string;
-    titleId: string;
+    titleId: bigint;
     status: string;
+    interval: number;
     description: string;
 }
 export interface UpdateTaskRequest {

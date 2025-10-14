@@ -1,16 +1,14 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { FileAttributes } from "./file_attributes";
 export declare const protobufPackage = "boss.v2";
-export interface File {
+export interface FileWUP {
     deleted: boolean;
     dataId: bigint;
     taskId: string;
     bossAppId: string;
     supportedCountries: string[];
     supportedLanguages: string[];
-    password: string;
-    attribute1: string;
-    attribute2: string;
-    attribute3: string;
+    attributes: FileAttributes | undefined;
     creatorPid: number;
     name: string;
     type: string;
@@ -18,10 +16,12 @@ export interface File {
     size: bigint;
     notifyOnNew: string[];
     notifyLed: boolean;
+    conditionPlayed: bigint;
+    autoDelete: boolean;
     createdTimestamp: bigint;
     updatedTimestamp: bigint;
 }
-export declare const File: MessageFns<File>;
+export declare const FileWUP: MessageFns<FileWUP>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

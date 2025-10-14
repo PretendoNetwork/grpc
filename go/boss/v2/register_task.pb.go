@@ -25,7 +25,7 @@ type RegisterTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	BossAppId     string                 `protobuf:"bytes,2,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
-	TitleId       string                 `protobuf:"bytes,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
+	TitleId       uint64                 `protobuf:"varint,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
 	Country       string                 `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -76,11 +76,11 @@ func (x *RegisterTaskRequest) GetBossAppId() string {
 	return ""
 }
 
-func (x *RegisterTaskRequest) GetTitleId() string {
+func (x *RegisterTaskRequest) GetTitleId() uint64 {
 	if x != nil {
 		return x.TitleId
 	}
-	return ""
+	return 0
 }
 
 func (x *RegisterTaskRequest) GetCountry() string {
@@ -149,7 +149,7 @@ const file_boss_v2_register_task_proto_rawDesc = "" +
 	"\x13RegisterTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12\x19\n" +
-	"\btitle_id\x18\x03 \x01(\tR\atitleId\x12\x18\n" +
+	"\btitle_id\x18\x03 \x01(\x04R\atitleId\x12\x18\n" +
 	"\acountry\x18\x04 \x01(\tR\acountry\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\"9\n" +
 	"\x14RegisterTaskResponse\x12!\n" +

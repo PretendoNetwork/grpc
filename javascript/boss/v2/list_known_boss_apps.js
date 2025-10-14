@@ -10,15 +10,18 @@ exports.ListKnownBOSSAppsResponse = exports.ListKnownBOSSAppsRequest = exports.B
 const wire_1 = require("@bufbuild/protobuf/wire");
 exports.protobufPackage = "boss.v2";
 function createBaseBOSSApp() {
-    return { bossAppId: "", titleId: "", titleRegion: "", name: "", tasks: [] };
+    return { bossAppId: "", titleId: 0n, titleRegion: "", name: "", tasks: [] };
 }
 exports.BOSSApp = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.bossAppId !== "") {
             writer.uint32(10).string(message.bossAppId);
         }
-        if (message.titleId !== "") {
-            writer.uint32(18).string(message.titleId);
+        if (message.titleId !== 0n) {
+            if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
+                throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
+            }
+            writer.uint32(16).uint64(message.titleId);
         }
         if (message.titleRegion !== "") {
             writer.uint32(26).string(message.titleRegion);
@@ -46,10 +49,10 @@ exports.BOSSApp = {
                     continue;
                 }
                 case 2: {
-                    if (tag !== 18) {
+                    if (tag !== 16) {
                         break;
                     }
-                    message.titleId = reader.string();
+                    message.titleId = reader.uint64();
                     continue;
                 }
                 case 3: {
@@ -84,7 +87,7 @@ exports.BOSSApp = {
     fromJSON(object) {
         return {
             bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
-            titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
+            titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
             titleRegion: isSet(object.titleRegion) ? globalThis.String(object.titleRegion) : "",
             name: isSet(object.name) ? globalThis.String(object.name) : "",
             tasks: globalThis.Array.isArray(object?.tasks) ? object.tasks.map((e) => globalThis.String(e)) : [],
@@ -95,8 +98,8 @@ exports.BOSSApp = {
         if (message.bossAppId !== "") {
             obj.bossAppId = message.bossAppId;
         }
-        if (message.titleId !== "") {
-            obj.titleId = message.titleId;
+        if (message.titleId !== 0n) {
+            obj.titleId = message.titleId.toString();
         }
         if (message.titleRegion !== "") {
             obj.titleRegion = message.titleRegion;
@@ -115,7 +118,7 @@ exports.BOSSApp = {
     fromPartial(object) {
         const message = createBaseBOSSApp();
         message.bossAppId = object.bossAppId ?? "";
-        message.titleId = object.titleId ?? "";
+        message.titleId = object.titleId ?? 0n;
         message.titleRegion = object.titleRegion ?? "";
         message.name = object.name ?? "";
         message.tasks = object.tasks?.map((e) => e) || [];

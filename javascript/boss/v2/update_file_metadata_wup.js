@@ -3,32 +3,29 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: boss/v2/upload_file.proto
+// source: boss/v2/update_file_metadata_wup.proto
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UploadFileResponse = exports.UploadFileRequest = exports.protobufPackage = void 0;
+exports.UpdateFileMetadataWUPResponse = exports.UpdateFileMetadataWUPRequest = exports.UpdateFileMetadataDataWUP = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
-const file_1 = require("./file");
+const file_attributes_1 = require("./file_attributes");
 exports.protobufPackage = "boss.v2";
-function createBaseUploadFileRequest() {
+function createBaseUpdateFileMetadataDataWUP() {
     return {
         taskId: "",
         bossAppId: "",
         supportedCountries: [],
         supportedLanguages: [],
-        password: "",
-        attribute1: "",
-        attribute2: "",
-        attribute3: "",
+        attributes: undefined,
         name: "",
         type: "",
         notifyOnNew: [],
         notifyLed: false,
-        data: Buffer.alloc(0),
-        nameEqualsDataId: false,
+        conditionPlayed: 0n,
+        autoDelete: false,
     };
 }
-exports.UploadFileRequest = {
+exports.UpdateFileMetadataDataWUP = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.taskId !== "") {
             writer.uint32(10).string(message.taskId);
@@ -42,42 +39,36 @@ exports.UploadFileRequest = {
         for (const v of message.supportedLanguages) {
             writer.uint32(34).string(v);
         }
-        if (message.password !== "") {
-            writer.uint32(42).string(message.password);
-        }
-        if (message.attribute1 !== "") {
-            writer.uint32(50).string(message.attribute1);
-        }
-        if (message.attribute2 !== "") {
-            writer.uint32(58).string(message.attribute2);
-        }
-        if (message.attribute3 !== "") {
-            writer.uint32(66).string(message.attribute3);
+        if (message.attributes !== undefined) {
+            file_attributes_1.FileAttributes.encode(message.attributes, writer.uint32(42).fork()).join();
         }
         if (message.name !== "") {
-            writer.uint32(74).string(message.name);
+            writer.uint32(50).string(message.name);
         }
         if (message.type !== "") {
-            writer.uint32(82).string(message.type);
+            writer.uint32(58).string(message.type);
         }
         for (const v of message.notifyOnNew) {
-            writer.uint32(90).string(v);
+            writer.uint32(66).string(v);
         }
         if (message.notifyLed !== false) {
-            writer.uint32(96).bool(message.notifyLed);
+            writer.uint32(72).bool(message.notifyLed);
         }
-        if (message.data.length !== 0) {
-            writer.uint32(106).bytes(message.data);
+        if (message.conditionPlayed !== 0n) {
+            if (BigInt.asUintN(64, message.conditionPlayed) !== message.conditionPlayed) {
+                throw new globalThis.Error("value provided for field message.conditionPlayed of type uint64 too large");
+            }
+            writer.uint32(80).uint64(message.conditionPlayed);
         }
-        if (message.nameEqualsDataId !== false) {
-            writer.uint32(112).bool(message.nameEqualsDataId);
+        if (message.autoDelete !== false) {
+            writer.uint32(88).bool(message.autoDelete);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseUploadFileRequest();
+        const message = createBaseUpdateFileMetadataDataWUP();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -113,70 +104,49 @@ exports.UploadFileRequest = {
                     if (tag !== 42) {
                         break;
                     }
-                    message.password = reader.string();
+                    message.attributes = file_attributes_1.FileAttributes.decode(reader, reader.uint32());
                     continue;
                 }
                 case 6: {
                     if (tag !== 50) {
                         break;
                     }
-                    message.attribute1 = reader.string();
+                    message.name = reader.string();
                     continue;
                 }
                 case 7: {
                     if (tag !== 58) {
                         break;
                     }
-                    message.attribute2 = reader.string();
+                    message.type = reader.string();
                     continue;
                 }
                 case 8: {
                     if (tag !== 66) {
                         break;
                     }
-                    message.attribute3 = reader.string();
-                    continue;
-                }
-                case 9: {
-                    if (tag !== 74) {
-                        break;
-                    }
-                    message.name = reader.string();
-                    continue;
-                }
-                case 10: {
-                    if (tag !== 82) {
-                        break;
-                    }
-                    message.type = reader.string();
-                    continue;
-                }
-                case 11: {
-                    if (tag !== 90) {
-                        break;
-                    }
                     message.notifyOnNew.push(reader.string());
                     continue;
                 }
-                case 12: {
-                    if (tag !== 96) {
+                case 9: {
+                    if (tag !== 72) {
                         break;
                     }
                     message.notifyLed = reader.bool();
                     continue;
                 }
-                case 13: {
-                    if (tag !== 106) {
+                case 10: {
+                    if (tag !== 80) {
                         break;
                     }
-                    message.data = Buffer.from(reader.bytes());
+                    message.conditionPlayed = reader.uint64();
                     continue;
                 }
-                case 14: {
-                    if (tag !== 112) {
+                case 11: {
+                    if (tag !== 88) {
                         break;
                     }
-                    message.nameEqualsDataId = reader.bool();
+                    message.autoDelete = reader.bool();
                     continue;
                 }
             }
@@ -197,18 +167,15 @@ exports.UploadFileRequest = {
             supportedLanguages: globalThis.Array.isArray(object?.supportedLanguages)
                 ? object.supportedLanguages.map((e) => globalThis.String(e))
                 : [],
-            password: isSet(object.password) ? globalThis.String(object.password) : "",
-            attribute1: isSet(object.attribute1) ? globalThis.String(object.attribute1) : "",
-            attribute2: isSet(object.attribute2) ? globalThis.String(object.attribute2) : "",
-            attribute3: isSet(object.attribute3) ? globalThis.String(object.attribute3) : "",
+            attributes: isSet(object.attributes) ? file_attributes_1.FileAttributes.fromJSON(object.attributes) : undefined,
             name: isSet(object.name) ? globalThis.String(object.name) : "",
             type: isSet(object.type) ? globalThis.String(object.type) : "",
             notifyOnNew: globalThis.Array.isArray(object?.notifyOnNew)
                 ? object.notifyOnNew.map((e) => globalThis.String(e))
                 : [],
             notifyLed: isSet(object.notifyLed) ? globalThis.Boolean(object.notifyLed) : false,
-            data: isSet(object.data) ? Buffer.from(bytesFromBase64(object.data)) : Buffer.alloc(0),
-            nameEqualsDataId: isSet(object.nameEqualsDataId) ? globalThis.Boolean(object.nameEqualsDataId) : false,
+            conditionPlayed: isSet(object.conditionPlayed) ? BigInt(object.conditionPlayed) : 0n,
+            autoDelete: isSet(object.autoDelete) ? globalThis.Boolean(object.autoDelete) : false,
         };
     },
     toJSON(message) {
@@ -225,17 +192,8 @@ exports.UploadFileRequest = {
         if (message.supportedLanguages?.length) {
             obj.supportedLanguages = message.supportedLanguages;
         }
-        if (message.password !== "") {
-            obj.password = message.password;
-        }
-        if (message.attribute1 !== "") {
-            obj.attribute1 = message.attribute1;
-        }
-        if (message.attribute2 !== "") {
-            obj.attribute2 = message.attribute2;
-        }
-        if (message.attribute3 !== "") {
-            obj.attribute3 = message.attribute3;
+        if (message.attributes !== undefined) {
+            obj.attributes = file_attributes_1.FileAttributes.toJSON(message.attributes);
         }
         if (message.name !== "") {
             obj.name = message.name;
@@ -249,58 +207,70 @@ exports.UploadFileRequest = {
         if (message.notifyLed !== false) {
             obj.notifyLed = message.notifyLed;
         }
-        if (message.data.length !== 0) {
-            obj.data = base64FromBytes(message.data);
+        if (message.conditionPlayed !== 0n) {
+            obj.conditionPlayed = message.conditionPlayed.toString();
         }
-        if (message.nameEqualsDataId !== false) {
-            obj.nameEqualsDataId = message.nameEqualsDataId;
+        if (message.autoDelete !== false) {
+            obj.autoDelete = message.autoDelete;
         }
         return obj;
     },
     create(base) {
-        return exports.UploadFileRequest.fromPartial(base ?? {});
+        return exports.UpdateFileMetadataDataWUP.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseUploadFileRequest();
+        const message = createBaseUpdateFileMetadataDataWUP();
         message.taskId = object.taskId ?? "";
         message.bossAppId = object.bossAppId ?? "";
         message.supportedCountries = object.supportedCountries?.map((e) => e) || [];
         message.supportedLanguages = object.supportedLanguages?.map((e) => e) || [];
-        message.password = object.password ?? "";
-        message.attribute1 = object.attribute1 ?? "";
-        message.attribute2 = object.attribute2 ?? "";
-        message.attribute3 = object.attribute3 ?? "";
+        message.attributes = (object.attributes !== undefined && object.attributes !== null)
+            ? file_attributes_1.FileAttributes.fromPartial(object.attributes)
+            : undefined;
         message.name = object.name ?? "";
         message.type = object.type ?? "";
         message.notifyOnNew = object.notifyOnNew?.map((e) => e) || [];
         message.notifyLed = object.notifyLed ?? false;
-        message.data = object.data ?? Buffer.alloc(0);
-        message.nameEqualsDataId = object.nameEqualsDataId ?? false;
+        message.conditionPlayed = object.conditionPlayed ?? 0n;
+        message.autoDelete = object.autoDelete ?? false;
         return message;
     },
 };
-function createBaseUploadFileResponse() {
-    return { file: undefined };
+function createBaseUpdateFileMetadataWUPRequest() {
+    return { dataId: 0n, updateData: undefined };
 }
-exports.UploadFileResponse = {
+exports.UpdateFileMetadataWUPRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
-        if (message.file !== undefined) {
-            file_1.File.encode(message.file, writer.uint32(10).fork()).join();
+        if (message.dataId !== 0n) {
+            if (BigInt.asUintN(64, message.dataId) !== message.dataId) {
+                throw new globalThis.Error("value provided for field message.dataId of type uint64 too large");
+            }
+            writer.uint32(8).uint64(message.dataId);
+        }
+        if (message.updateData !== undefined) {
+            exports.UpdateFileMetadataDataWUP.encode(message.updateData, writer.uint32(18).fork()).join();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseUploadFileResponse();
+        const message = createBaseUpdateFileMetadataWUPRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1: {
-                    if (tag !== 10) {
+                    if (tag !== 8) {
                         break;
                     }
-                    message.file = file_1.File.decode(reader, reader.uint32());
+                    message.dataId = reader.uint64();
+                    continue;
+                }
+                case 2: {
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.updateData = exports.UpdateFileMetadataDataWUP.decode(reader, reader.uint32());
                     continue;
                 }
             }
@@ -312,30 +282,70 @@ exports.UploadFileResponse = {
         return message;
     },
     fromJSON(object) {
-        return { file: isSet(object.file) ? file_1.File.fromJSON(object.file) : undefined };
+        return {
+            dataId: isSet(object.dataId) ? BigInt(object.dataId) : 0n,
+            updateData: isSet(object.updateData) ? exports.UpdateFileMetadataDataWUP.fromJSON(object.updateData) : undefined,
+        };
     },
     toJSON(message) {
         const obj = {};
-        if (message.file !== undefined) {
-            obj.file = file_1.File.toJSON(message.file);
+        if (message.dataId !== 0n) {
+            obj.dataId = message.dataId.toString();
+        }
+        if (message.updateData !== undefined) {
+            obj.updateData = exports.UpdateFileMetadataDataWUP.toJSON(message.updateData);
         }
         return obj;
     },
     create(base) {
-        return exports.UploadFileResponse.fromPartial(base ?? {});
+        return exports.UpdateFileMetadataWUPRequest.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseUploadFileResponse();
-        message.file = (object.file !== undefined && object.file !== null) ? file_1.File.fromPartial(object.file) : undefined;
+        const message = createBaseUpdateFileMetadataWUPRequest();
+        message.dataId = object.dataId ?? 0n;
+        message.updateData = (object.updateData !== undefined && object.updateData !== null)
+            ? exports.UpdateFileMetadataDataWUP.fromPartial(object.updateData)
+            : undefined;
         return message;
     },
 };
-function bytesFromBase64(b64) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
+function createBaseUpdateFileMetadataWUPResponse() {
+    return {};
 }
-function base64FromBytes(arr) {
-    return globalThis.Buffer.from(arr).toString("base64");
-}
+exports.UpdateFileMetadataWUPResponse = {
+    encode(_, writer = new wire_1.BinaryWriter()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseUpdateFileMetadataWUPResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skip(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(_) {
+        return {};
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    create(base) {
+        return exports.UpdateFileMetadataWUPResponse.fromPartial(base ?? {});
+    },
+    fromPartial(_) {
+        const message = createBaseUpdateFileMetadataWUPResponse();
+        return message;
+    },
+};
 function isSet(value) {
     return value !== null && value !== undefined;
 }

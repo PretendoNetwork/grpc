@@ -1,28 +1,25 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { FileAttributes } from "./file_attributes";
+import { PayloadContentInfoCTR } from "./payload_content_info_ctr";
 export declare const protobufPackage = "boss.v2";
-export interface UpdateFileMetadataData {
+export interface UpdateFileMetadataDataCTR {
     taskId: string;
     bossAppId: string;
     supportedCountries: string[];
     supportedLanguages: string[];
-    password: string;
-    attribute1: string;
-    attribute2: string;
-    attribute3: string;
+    attributes: FileAttributes | undefined;
     name: string;
-    type: string;
-    notifyOnNew: string[];
-    notifyLed: boolean;
+    payloadContents: PayloadContentInfoCTR[];
 }
-export interface UpdateFileMetadataRequest {
+export interface UpdateFileMetadataCTRRequest {
     dataId: bigint;
-    updateData: UpdateFileMetadataData | undefined;
+    updateData: UpdateFileMetadataDataCTR | undefined;
 }
-export interface UpdateFileMetadataResponse {
+export interface UpdateFileMetadataCTRResponse {
 }
-export declare const UpdateFileMetadataData: MessageFns<UpdateFileMetadataData>;
-export declare const UpdateFileMetadataRequest: MessageFns<UpdateFileMetadataRequest>;
-export declare const UpdateFileMetadataResponse: MessageFns<UpdateFileMetadataResponse>;
+export declare const UpdateFileMetadataDataCTR: MessageFns<UpdateFileMetadataDataCTR>;
+export declare const UpdateFileMetadataCTRRequest: MessageFns<UpdateFileMetadataCTRRequest>;
+export declare const UpdateFileMetadataCTRResponse: MessageFns<UpdateFileMetadataCTRResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

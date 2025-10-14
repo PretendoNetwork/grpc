@@ -6,19 +6,21 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { PlatformType, platformTypeFromJSON, platformTypeToJSON } from "./platform_type";
 
 export const protobufPackage = "boss.v2";
 
 export interface DeleteFileRequest {
   dataId: bigint;
   bossAppId: string;
+  platformType: PlatformType;
 }
 
 export interface DeleteFileResponse {
 }
 
 function createBaseDeleteFileRequest(): DeleteFileRequest {
-  return { dataId: 0n, bossAppId: "" };
+  return { dataId: 0n, bossAppId: "", platformType: 0 };
 }
 
 export const DeleteFileRequest: MessageFns<DeleteFileRequest> = {
@@ -31,6 +33,9 @@ export const DeleteFileRequest: MessageFns<DeleteFileRequest> = {
     }
     if (message.bossAppId !== "") {
       writer.uint32(18).string(message.bossAppId);
+    }
+    if (message.platformType !== 0) {
+      writer.uint32(24).int32(message.platformType);
     }
     return writer;
   },
@@ -58,6 +63,14 @@ export const DeleteFileRequest: MessageFns<DeleteFileRequest> = {
           message.bossAppId = reader.string();
           continue;
         }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.platformType = reader.int32() as any;
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -71,6 +84,7 @@ export const DeleteFileRequest: MessageFns<DeleteFileRequest> = {
     return {
       dataId: isSet(object.dataId) ? BigInt(object.dataId) : 0n,
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
+      platformType: isSet(object.platformType) ? platformTypeFromJSON(object.platformType) : 0,
     };
   },
 
@@ -82,6 +96,9 @@ export const DeleteFileRequest: MessageFns<DeleteFileRequest> = {
     if (message.bossAppId !== "") {
       obj.bossAppId = message.bossAppId;
     }
+    if (message.platformType !== 0) {
+      obj.platformType = platformTypeToJSON(message.platformType);
+    }
     return obj;
   },
 
@@ -92,6 +109,7 @@ export const DeleteFileRequest: MessageFns<DeleteFileRequest> = {
     const message = createBaseDeleteFileRequest();
     message.dataId = object.dataId ?? 0n;
     message.bossAppId = object.bossAppId ?? "";
+    message.platformType = object.platformType ?? 0;
     return message;
   },
 };

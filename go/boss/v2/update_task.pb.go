@@ -25,9 +25,10 @@ type UpdateTaskData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	BossAppId     string                 `protobuf:"bytes,2,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
-	TitleId       string                 `protobuf:"bytes,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
+	TitleId       uint64                 `protobuf:"varint,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
 	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
-	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	Interval      uint32                 `protobuf:"varint,5,opt,name=interval,proto3" json:"interval,omitempty"`
+	Description   string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -76,11 +77,11 @@ func (x *UpdateTaskData) GetBossAppId() string {
 	return ""
 }
 
-func (x *UpdateTaskData) GetTitleId() string {
+func (x *UpdateTaskData) GetTitleId() uint64 {
 	if x != nil {
 		return x.TitleId
 	}
-	return ""
+	return 0
 }
 
 func (x *UpdateTaskData) GetStatus() string {
@@ -88,6 +89,13 @@ func (x *UpdateTaskData) GetStatus() string {
 		return x.Status
 	}
 	return ""
+}
+
+func (x *UpdateTaskData) GetInterval() uint32 {
+	if x != nil {
+		return x.Interval
+	}
+	return 0
 }
 
 func (x *UpdateTaskData) GetDescription() string {
@@ -197,13 +205,14 @@ var File_boss_v2_update_task_proto protoreflect.FileDescriptor
 
 const file_boss_v2_update_task_proto_rawDesc = "" +
 	"\n" +
-	"\x19boss/v2/update_task.proto\x12\aboss.v2\"\x95\x01\n" +
+	"\x19boss/v2/update_task.proto\x12\aboss.v2\"\xb1\x01\n" +
 	"\x0eUpdateTaskData\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12\x19\n" +
-	"\btitle_id\x18\x03 \x01(\tR\atitleId\x12\x16\n" +
-	"\x06status\x18\x04 \x01(\tR\x06status\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\"}\n" +
+	"\btitle_id\x18\x03 \x01(\x04R\atitleId\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12\x1a\n" +
+	"\binterval\x18\x05 \x01(\rR\binterval\x12 \n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\"}\n" +
 	"\x11UpdateTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x128\n" +

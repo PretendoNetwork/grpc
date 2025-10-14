@@ -24,7 +24,7 @@ var File_boss_v2_boss_service_proto protoreflect.FileDescriptor
 
 const file_boss_v2_boss_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1aboss/v2/boss_service.proto\x12\aboss.v2\x1a\x19boss/v2/delete_file.proto\x1a\x19boss/v2/delete_task.proto\x1a\x18boss/v2/list_files.proto\x1a\"boss/v2/list_known_boss_apps.proto\x1a\x18boss/v2/list_tasks.proto\x1a\x1bboss/v2/register_task.proto\x1a\"boss/v2/update_file_metadata.proto\x1a\x19boss/v2/update_task.proto\x1a\x19boss/v2/upload_file.proto2\xcb\x05\n" +
+	"\x1aboss/v2/boss_service.proto\x12\aboss.v2\x1a\x19boss/v2/delete_file.proto\x1a\x19boss/v2/delete_task.proto\x1a\x1cboss/v2/list_files_ctr.proto\x1a\x1cboss/v2/list_files_wup.proto\x1a\"boss/v2/list_known_boss_apps.proto\x1a\x18boss/v2/list_tasks.proto\x1a\x1bboss/v2/register_task.proto\x1a&boss/v2/update_file_metadata_ctr.proto\x1a&boss/v2/update_file_metadata_wup.proto\x1a\x19boss/v2/update_task.proto\x1a\x1dboss/v2/upload_file_ctr.proto\x1a\x1dboss/v2/upload_file_wup.proto2\xf1\a\n" +
 	"\vBossService\x12\\\n" +
 	"\x11ListKnownBOSSApps\x12!.boss.v2.ListKnownBOSSAppsRequest\x1a\".boss.v2.ListKnownBOSSAppsResponse\"\x00\x12D\n" +
 	"\tListTasks\x12\x19.boss.v2.ListTasksRequest\x1a\x1a.boss.v2.ListTasksResponse\"\x00\x12M\n" +
@@ -32,34 +32,42 @@ const file_boss_v2_boss_service_proto_rawDesc = "" +
 	"\n" +
 	"UpdateTask\x12\x1a.boss.v2.UpdateTaskRequest\x1a\x1b.boss.v2.UpdateTaskResponse\"\x00\x12G\n" +
 	"\n" +
-	"DeleteTask\x12\x1a.boss.v2.DeleteTaskRequest\x1a\x1b.boss.v2.DeleteTaskResponse\"\x00\x12D\n" +
-	"\tListFiles\x12\x19.boss.v2.ListFilesRequest\x1a\x1a.boss.v2.ListFilesResponse\"\x00\x12G\n" +
+	"DeleteTask\x12\x1a.boss.v2.DeleteTaskRequest\x1a\x1b.boss.v2.DeleteTaskResponse\"\x00\x12G\n" +
 	"\n" +
-	"UploadFile\x12\x1a.boss.v2.UploadFileRequest\x1a\x1b.boss.v2.UploadFileResponse\"\x00\x12_\n" +
-	"\x12UpdateFileMetadata\x12\".boss.v2.UpdateFileMetadataRequest\x1a#.boss.v2.UpdateFileMetadataResponse\"\x00\x12G\n" +
-	"\n" +
-	"DeleteFile\x12\x1a.boss.v2.DeleteFileRequest\x1a\x1b.boss.v2.DeleteFileResponse\"\x00B\x8f\x01\n" +
+	"DeleteFile\x12\x1a.boss.v2.DeleteFileRequest\x1a\x1b.boss.v2.DeleteFileResponse\"\x00\x12M\n" +
+	"\fListFilesWUP\x12\x1c.boss.v2.ListFilesWUPRequest\x1a\x1d.boss.v2.ListFilesWUPResponse\"\x00\x12P\n" +
+	"\rUploadFileWUP\x12\x1d.boss.v2.UploadFileWUPRequest\x1a\x1e.boss.v2.UploadFileWUPResponse\"\x00\x12h\n" +
+	"\x15UpdateFileMetadataWUP\x12%.boss.v2.UpdateFileMetadataWUPRequest\x1a&.boss.v2.UpdateFileMetadataWUPResponse\"\x00\x12M\n" +
+	"\fListFilesCTR\x12\x1c.boss.v2.ListFilesCTRRequest\x1a\x1d.boss.v2.ListFilesCTRResponse\"\x00\x12P\n" +
+	"\rUploadFileCTR\x12\x1d.boss.v2.UploadFileCTRRequest\x1a\x1e.boss.v2.UploadFileCTRResponse\"\x00\x12h\n" +
+	"\x15UpdateFileMetadataCTR\x12%.boss.v2.UpdateFileMetadataCTRRequest\x1a&.boss.v2.UpdateFileMetadataCTRResponse\"\x00B\x8f\x01\n" +
 	"\vcom.boss.v2B\x10BossServiceProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"
 
 var file_boss_v2_boss_service_proto_goTypes = []any{
-	(*ListKnownBOSSAppsRequest)(nil),   // 0: boss.v2.ListKnownBOSSAppsRequest
-	(*ListTasksRequest)(nil),           // 1: boss.v2.ListTasksRequest
-	(*RegisterTaskRequest)(nil),        // 2: boss.v2.RegisterTaskRequest
-	(*UpdateTaskRequest)(nil),          // 3: boss.v2.UpdateTaskRequest
-	(*DeleteTaskRequest)(nil),          // 4: boss.v2.DeleteTaskRequest
-	(*ListFilesRequest)(nil),           // 5: boss.v2.ListFilesRequest
-	(*UploadFileRequest)(nil),          // 6: boss.v2.UploadFileRequest
-	(*UpdateFileMetadataRequest)(nil),  // 7: boss.v2.UpdateFileMetadataRequest
-	(*DeleteFileRequest)(nil),          // 8: boss.v2.DeleteFileRequest
-	(*ListKnownBOSSAppsResponse)(nil),  // 9: boss.v2.ListKnownBOSSAppsResponse
-	(*ListTasksResponse)(nil),          // 10: boss.v2.ListTasksResponse
-	(*RegisterTaskResponse)(nil),       // 11: boss.v2.RegisterTaskResponse
-	(*UpdateTaskResponse)(nil),         // 12: boss.v2.UpdateTaskResponse
-	(*DeleteTaskResponse)(nil),         // 13: boss.v2.DeleteTaskResponse
-	(*ListFilesResponse)(nil),          // 14: boss.v2.ListFilesResponse
-	(*UploadFileResponse)(nil),         // 15: boss.v2.UploadFileResponse
-	(*UpdateFileMetadataResponse)(nil), // 16: boss.v2.UpdateFileMetadataResponse
-	(*DeleteFileResponse)(nil),         // 17: boss.v2.DeleteFileResponse
+	(*ListKnownBOSSAppsRequest)(nil),      // 0: boss.v2.ListKnownBOSSAppsRequest
+	(*ListTasksRequest)(nil),              // 1: boss.v2.ListTasksRequest
+	(*RegisterTaskRequest)(nil),           // 2: boss.v2.RegisterTaskRequest
+	(*UpdateTaskRequest)(nil),             // 3: boss.v2.UpdateTaskRequest
+	(*DeleteTaskRequest)(nil),             // 4: boss.v2.DeleteTaskRequest
+	(*DeleteFileRequest)(nil),             // 5: boss.v2.DeleteFileRequest
+	(*ListFilesWUPRequest)(nil),           // 6: boss.v2.ListFilesWUPRequest
+	(*UploadFileWUPRequest)(nil),          // 7: boss.v2.UploadFileWUPRequest
+	(*UpdateFileMetadataWUPRequest)(nil),  // 8: boss.v2.UpdateFileMetadataWUPRequest
+	(*ListFilesCTRRequest)(nil),           // 9: boss.v2.ListFilesCTRRequest
+	(*UploadFileCTRRequest)(nil),          // 10: boss.v2.UploadFileCTRRequest
+	(*UpdateFileMetadataCTRRequest)(nil),  // 11: boss.v2.UpdateFileMetadataCTRRequest
+	(*ListKnownBOSSAppsResponse)(nil),     // 12: boss.v2.ListKnownBOSSAppsResponse
+	(*ListTasksResponse)(nil),             // 13: boss.v2.ListTasksResponse
+	(*RegisterTaskResponse)(nil),          // 14: boss.v2.RegisterTaskResponse
+	(*UpdateTaskResponse)(nil),            // 15: boss.v2.UpdateTaskResponse
+	(*DeleteTaskResponse)(nil),            // 16: boss.v2.DeleteTaskResponse
+	(*DeleteFileResponse)(nil),            // 17: boss.v2.DeleteFileResponse
+	(*ListFilesWUPResponse)(nil),          // 18: boss.v2.ListFilesWUPResponse
+	(*UploadFileWUPResponse)(nil),         // 19: boss.v2.UploadFileWUPResponse
+	(*UpdateFileMetadataWUPResponse)(nil), // 20: boss.v2.UpdateFileMetadataWUPResponse
+	(*ListFilesCTRResponse)(nil),          // 21: boss.v2.ListFilesCTRResponse
+	(*UploadFileCTRResponse)(nil),         // 22: boss.v2.UploadFileCTRResponse
+	(*UpdateFileMetadataCTRResponse)(nil), // 23: boss.v2.UpdateFileMetadataCTRResponse
 }
 var file_boss_v2_boss_service_proto_depIdxs = []int32{
 	0,  // 0: boss.v2.BossService.ListKnownBOSSApps:input_type -> boss.v2.ListKnownBOSSAppsRequest
@@ -67,21 +75,27 @@ var file_boss_v2_boss_service_proto_depIdxs = []int32{
 	2,  // 2: boss.v2.BossService.RegisterTask:input_type -> boss.v2.RegisterTaskRequest
 	3,  // 3: boss.v2.BossService.UpdateTask:input_type -> boss.v2.UpdateTaskRequest
 	4,  // 4: boss.v2.BossService.DeleteTask:input_type -> boss.v2.DeleteTaskRequest
-	5,  // 5: boss.v2.BossService.ListFiles:input_type -> boss.v2.ListFilesRequest
-	6,  // 6: boss.v2.BossService.UploadFile:input_type -> boss.v2.UploadFileRequest
-	7,  // 7: boss.v2.BossService.UpdateFileMetadata:input_type -> boss.v2.UpdateFileMetadataRequest
-	8,  // 8: boss.v2.BossService.DeleteFile:input_type -> boss.v2.DeleteFileRequest
-	9,  // 9: boss.v2.BossService.ListKnownBOSSApps:output_type -> boss.v2.ListKnownBOSSAppsResponse
-	10, // 10: boss.v2.BossService.ListTasks:output_type -> boss.v2.ListTasksResponse
-	11, // 11: boss.v2.BossService.RegisterTask:output_type -> boss.v2.RegisterTaskResponse
-	12, // 12: boss.v2.BossService.UpdateTask:output_type -> boss.v2.UpdateTaskResponse
-	13, // 13: boss.v2.BossService.DeleteTask:output_type -> boss.v2.DeleteTaskResponse
-	14, // 14: boss.v2.BossService.ListFiles:output_type -> boss.v2.ListFilesResponse
-	15, // 15: boss.v2.BossService.UploadFile:output_type -> boss.v2.UploadFileResponse
-	16, // 16: boss.v2.BossService.UpdateFileMetadata:output_type -> boss.v2.UpdateFileMetadataResponse
+	5,  // 5: boss.v2.BossService.DeleteFile:input_type -> boss.v2.DeleteFileRequest
+	6,  // 6: boss.v2.BossService.ListFilesWUP:input_type -> boss.v2.ListFilesWUPRequest
+	7,  // 7: boss.v2.BossService.UploadFileWUP:input_type -> boss.v2.UploadFileWUPRequest
+	8,  // 8: boss.v2.BossService.UpdateFileMetadataWUP:input_type -> boss.v2.UpdateFileMetadataWUPRequest
+	9,  // 9: boss.v2.BossService.ListFilesCTR:input_type -> boss.v2.ListFilesCTRRequest
+	10, // 10: boss.v2.BossService.UploadFileCTR:input_type -> boss.v2.UploadFileCTRRequest
+	11, // 11: boss.v2.BossService.UpdateFileMetadataCTR:input_type -> boss.v2.UpdateFileMetadataCTRRequest
+	12, // 12: boss.v2.BossService.ListKnownBOSSApps:output_type -> boss.v2.ListKnownBOSSAppsResponse
+	13, // 13: boss.v2.BossService.ListTasks:output_type -> boss.v2.ListTasksResponse
+	14, // 14: boss.v2.BossService.RegisterTask:output_type -> boss.v2.RegisterTaskResponse
+	15, // 15: boss.v2.BossService.UpdateTask:output_type -> boss.v2.UpdateTaskResponse
+	16, // 16: boss.v2.BossService.DeleteTask:output_type -> boss.v2.DeleteTaskResponse
 	17, // 17: boss.v2.BossService.DeleteFile:output_type -> boss.v2.DeleteFileResponse
-	9,  // [9:18] is the sub-list for method output_type
-	0,  // [0:9] is the sub-list for method input_type
+	18, // 18: boss.v2.BossService.ListFilesWUP:output_type -> boss.v2.ListFilesWUPResponse
+	19, // 19: boss.v2.BossService.UploadFileWUP:output_type -> boss.v2.UploadFileWUPResponse
+	20, // 20: boss.v2.BossService.UpdateFileMetadataWUP:output_type -> boss.v2.UpdateFileMetadataWUPResponse
+	21, // 21: boss.v2.BossService.ListFilesCTR:output_type -> boss.v2.ListFilesCTRResponse
+	22, // 22: boss.v2.BossService.UploadFileCTR:output_type -> boss.v2.UploadFileCTRResponse
+	23, // 23: boss.v2.BossService.UpdateFileMetadataCTR:output_type -> boss.v2.UpdateFileMetadataCTRResponse
+	12, // [12:24] is the sub-list for method output_type
+	0,  // [0:12] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -94,13 +108,16 @@ func file_boss_v2_boss_service_proto_init() {
 	}
 	file_boss_v2_delete_file_proto_init()
 	file_boss_v2_delete_task_proto_init()
-	file_boss_v2_list_files_proto_init()
+	file_boss_v2_list_files_ctr_proto_init()
+	file_boss_v2_list_files_wup_proto_init()
 	file_boss_v2_list_known_boss_apps_proto_init()
 	file_boss_v2_list_tasks_proto_init()
 	file_boss_v2_register_task_proto_init()
-	file_boss_v2_update_file_metadata_proto_init()
+	file_boss_v2_update_file_metadata_ctr_proto_init()
+	file_boss_v2_update_file_metadata_wup_proto_init()
 	file_boss_v2_update_task_proto_init()
-	file_boss_v2_upload_file_proto_init()
+	file_boss_v2_upload_file_ctr_proto_init()
+	file_boss_v2_upload_file_wup_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -2,31 +2,31 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: boss/v2/list_files.proto
+// source: boss/v2/list_files_wup.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { File } from "./file";
+import { FileWUP } from "./file_wup";
 
 export const protobufPackage = "boss.v2";
 
-export interface ListFilesRequest {
+export interface ListFilesWUPRequest {
   taskId: string;
   bossAppId: string;
   country?: string | undefined;
   language?: string | undefined;
 }
 
-export interface ListFilesResponse {
-  files: File[];
+export interface ListFilesWUPResponse {
+  files: FileWUP[];
 }
 
-function createBaseListFilesRequest(): ListFilesRequest {
+function createBaseListFilesWUPRequest(): ListFilesWUPRequest {
   return { taskId: "", bossAppId: "", country: undefined, language: undefined };
 }
 
-export const ListFilesRequest: MessageFns<ListFilesRequest> = {
-  encode(message: ListFilesRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const ListFilesWUPRequest: MessageFns<ListFilesWUPRequest> = {
+  encode(message: ListFilesWUPRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.taskId !== "") {
       writer.uint32(10).string(message.taskId);
     }
@@ -42,10 +42,10 @@ export const ListFilesRequest: MessageFns<ListFilesRequest> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): ListFilesRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): ListFilesWUPRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListFilesRequest();
+    const message = createBaseListFilesWUPRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -90,7 +90,7 @@ export const ListFilesRequest: MessageFns<ListFilesRequest> = {
     return message;
   },
 
-  fromJSON(object: any): ListFilesRequest {
+  fromJSON(object: any): ListFilesWUPRequest {
     return {
       taskId: isSet(object.taskId) ? globalThis.String(object.taskId) : "",
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
@@ -99,7 +99,7 @@ export const ListFilesRequest: MessageFns<ListFilesRequest> = {
     };
   },
 
-  toJSON(message: ListFilesRequest): unknown {
+  toJSON(message: ListFilesWUPRequest): unknown {
     const obj: any = {};
     if (message.taskId !== "") {
       obj.taskId = message.taskId;
@@ -116,11 +116,11 @@ export const ListFilesRequest: MessageFns<ListFilesRequest> = {
     return obj;
   },
 
-  create(base?: DeepPartial<ListFilesRequest>): ListFilesRequest {
-    return ListFilesRequest.fromPartial(base ?? {});
+  create(base?: DeepPartial<ListFilesWUPRequest>): ListFilesWUPRequest {
+    return ListFilesWUPRequest.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<ListFilesRequest>): ListFilesRequest {
-    const message = createBaseListFilesRequest();
+  fromPartial(object: DeepPartial<ListFilesWUPRequest>): ListFilesWUPRequest {
+    const message = createBaseListFilesWUPRequest();
     message.taskId = object.taskId ?? "";
     message.bossAppId = object.bossAppId ?? "";
     message.country = object.country ?? undefined;
@@ -129,22 +129,22 @@ export const ListFilesRequest: MessageFns<ListFilesRequest> = {
   },
 };
 
-function createBaseListFilesResponse(): ListFilesResponse {
+function createBaseListFilesWUPResponse(): ListFilesWUPResponse {
   return { files: [] };
 }
 
-export const ListFilesResponse: MessageFns<ListFilesResponse> = {
-  encode(message: ListFilesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const ListFilesWUPResponse: MessageFns<ListFilesWUPResponse> = {
+  encode(message: ListFilesWUPResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     for (const v of message.files) {
-      File.encode(v!, writer.uint32(10).fork()).join();
+      FileWUP.encode(v!, writer.uint32(10).fork()).join();
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): ListFilesResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): ListFilesWUPResponse {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseListFilesResponse();
+    const message = createBaseListFilesWUPResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -153,7 +153,7 @@ export const ListFilesResponse: MessageFns<ListFilesResponse> = {
             break;
           }
 
-          message.files.push(File.decode(reader, reader.uint32()));
+          message.files.push(FileWUP.decode(reader, reader.uint32()));
           continue;
         }
       }
@@ -165,24 +165,24 @@ export const ListFilesResponse: MessageFns<ListFilesResponse> = {
     return message;
   },
 
-  fromJSON(object: any): ListFilesResponse {
-    return { files: globalThis.Array.isArray(object?.files) ? object.files.map((e: any) => File.fromJSON(e)) : [] };
+  fromJSON(object: any): ListFilesWUPResponse {
+    return { files: globalThis.Array.isArray(object?.files) ? object.files.map((e: any) => FileWUP.fromJSON(e)) : [] };
   },
 
-  toJSON(message: ListFilesResponse): unknown {
+  toJSON(message: ListFilesWUPResponse): unknown {
     const obj: any = {};
     if (message.files?.length) {
-      obj.files = message.files.map((e) => File.toJSON(e));
+      obj.files = message.files.map((e) => FileWUP.toJSON(e));
     }
     return obj;
   },
 
-  create(base?: DeepPartial<ListFilesResponse>): ListFilesResponse {
-    return ListFilesResponse.fromPartial(base ?? {});
+  create(base?: DeepPartial<ListFilesWUPResponse>): ListFilesWUPResponse {
+    return ListFilesWUPResponse.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<ListFilesResponse>): ListFilesResponse {
-    const message = createBaseListFilesResponse();
-    message.files = object.files?.map((e) => File.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<ListFilesWUPResponse>): ListFilesWUPResponse {
+    const message = createBaseListFilesWUPResponse();
+    message.files = object.files?.map((e) => FileWUP.fromPartial(e)) || [];
     return message;
   },
 };

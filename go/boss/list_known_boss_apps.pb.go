@@ -24,7 +24,7 @@ const (
 type BOSSApp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	BossAppId     string                 `protobuf:"bytes,1,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
-	TitleId       string                 `protobuf:"bytes,2,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
+	TitleId       uint64                 `protobuf:"varint,2,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
 	TitleRegion   string                 `protobuf:"bytes,3,opt,name=title_region,json=titleRegion,proto3" json:"title_region,omitempty"`
 	Name          string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	Tasks         []string               `protobuf:"bytes,5,rep,name=tasks,proto3" json:"tasks,omitempty"`
@@ -69,11 +69,11 @@ func (x *BOSSApp) GetBossAppId() string {
 	return ""
 }
 
-func (x *BOSSApp) GetTitleId() string {
+func (x *BOSSApp) GetTitleId() uint64 {
 	if x != nil {
 		return x.TitleId
 	}
-	return ""
+	return 0
 }
 
 func (x *BOSSApp) GetTitleRegion() string {
@@ -148,7 +148,7 @@ const file_boss_list_known_boss_apps_proto_rawDesc = "" +
 	"\x1fboss/list_known_boss_apps.proto\x12\x04boss\"\x91\x01\n" +
 	"\aBOSSApp\x12\x1e\n" +
 	"\vboss_app_id\x18\x01 \x01(\tR\tbossAppId\x12\x19\n" +
-	"\btitle_id\x18\x02 \x01(\tR\atitleId\x12!\n" +
+	"\btitle_id\x18\x02 \x01(\x04R\atitleId\x12!\n" +
 	"\ftitle_region\x18\x03 \x01(\tR\vtitleRegion\x12\x12\n" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12\x14\n" +
 	"\x05tasks\x18\x05 \x03(\tR\x05tasks\">\n" +

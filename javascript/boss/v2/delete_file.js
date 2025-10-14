@@ -8,9 +8,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteFileResponse = exports.DeleteFileRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const platform_type_1 = require("./platform_type");
 exports.protobufPackage = "boss.v2";
 function createBaseDeleteFileRequest() {
-    return { dataId: 0n, bossAppId: "" };
+    return { dataId: 0n, bossAppId: "", platformType: 0 };
 }
 exports.DeleteFileRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -22,6 +23,9 @@ exports.DeleteFileRequest = {
         }
         if (message.bossAppId !== "") {
             writer.uint32(18).string(message.bossAppId);
+        }
+        if (message.platformType !== 0) {
+            writer.uint32(24).int32(message.platformType);
         }
         return writer;
     },
@@ -46,6 +50,13 @@ exports.DeleteFileRequest = {
                     message.bossAppId = reader.string();
                     continue;
                 }
+                case 3: {
+                    if (tag !== 24) {
+                        break;
+                    }
+                    message.platformType = reader.int32();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -58,6 +69,7 @@ exports.DeleteFileRequest = {
         return {
             dataId: isSet(object.dataId) ? BigInt(object.dataId) : 0n,
             bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
+            platformType: isSet(object.platformType) ? (0, platform_type_1.platformTypeFromJSON)(object.platformType) : 0,
         };
     },
     toJSON(message) {
@@ -68,6 +80,9 @@ exports.DeleteFileRequest = {
         if (message.bossAppId !== "") {
             obj.bossAppId = message.bossAppId;
         }
+        if (message.platformType !== 0) {
+            obj.platformType = (0, platform_type_1.platformTypeToJSON)(message.platformType);
+        }
         return obj;
     },
     create(base) {
@@ -77,6 +92,7 @@ exports.DeleteFileRequest = {
         const message = createBaseDeleteFileRequest();
         message.dataId = object.dataId ?? 0n;
         message.bossAppId = object.bossAppId ?? "";
+        message.platformType = object.platformType ?? 0;
         return message;
     },
 };

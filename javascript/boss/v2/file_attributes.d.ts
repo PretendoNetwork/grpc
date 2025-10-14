@@ -1,17 +1,12 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { File } from "./file";
 export declare const protobufPackage = "boss.v2";
-export interface ListFilesRequest {
-    taskId: string;
-    bossAppId: string;
-    country?: string | undefined;
-    language?: string | undefined;
+export interface FileAttributes {
+    attribute1: string;
+    attribute2: string;
+    attribute3: string;
+    description: string;
 }
-export interface ListFilesResponse {
-    files: File[];
-}
-export declare const ListFilesRequest: MessageFns<ListFilesRequest>;
-export declare const ListFilesResponse: MessageFns<ListFilesResponse>;
+export declare const FileAttributes: MessageFns<FileAttributes>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

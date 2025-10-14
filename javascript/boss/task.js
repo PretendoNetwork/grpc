@@ -17,7 +17,7 @@ function createBaseTask() {
         bossAppId: "",
         creatorPid: 0,
         status: "",
-        titleId: "",
+        titleId: 0n,
         description: "",
         createdTimestamp: 0n,
         updatedTimestamp: 0n,
@@ -43,8 +43,11 @@ exports.Task = {
         if (message.status !== "") {
             writer.uint32(50).string(message.status);
         }
-        if (message.titleId !== "") {
-            writer.uint32(58).string(message.titleId);
+        if (message.titleId !== 0n) {
+            if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
+                throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
+            }
+            writer.uint32(56).uint64(message.titleId);
         }
         if (message.description !== "") {
             writer.uint32(66).string(message.description);
@@ -113,10 +116,10 @@ exports.Task = {
                     continue;
                 }
                 case 7: {
-                    if (tag !== 58) {
+                    if (tag !== 56) {
                         break;
                     }
-                    message.titleId = reader.string();
+                    message.titleId = reader.uint64();
                     continue;
                 }
                 case 8: {
@@ -156,7 +159,7 @@ exports.Task = {
             bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
             creatorPid: isSet(object.creatorPid) ? globalThis.Number(object.creatorPid) : 0,
             status: isSet(object.status) ? globalThis.String(object.status) : "",
-            titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
+            titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
             description: isSet(object.description) ? globalThis.String(object.description) : "",
             createdTimestamp: isSet(object.createdTimestamp) ? BigInt(object.createdTimestamp) : 0n,
             updatedTimestamp: isSet(object.updatedTimestamp) ? BigInt(object.updatedTimestamp) : 0n,
@@ -182,8 +185,8 @@ exports.Task = {
         if (message.status !== "") {
             obj.status = message.status;
         }
-        if (message.titleId !== "") {
-            obj.titleId = message.titleId;
+        if (message.titleId !== 0n) {
+            obj.titleId = message.titleId.toString();
         }
         if (message.description !== "") {
             obj.description = message.description;
@@ -207,7 +210,7 @@ exports.Task = {
         message.bossAppId = object.bossAppId ?? "";
         message.creatorPid = object.creatorPid ?? 0;
         message.status = object.status ?? "";
-        message.titleId = object.titleId ?? "";
+        message.titleId = object.titleId ?? 0n;
         message.description = object.description ?? "";
         message.createdTimestamp = object.createdTimestamp ?? 0n;
         message.updatedTimestamp = object.updatedTimestamp ?? 0n;

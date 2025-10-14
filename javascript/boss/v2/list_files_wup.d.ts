@@ -1,27 +1,17 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { File } from "./file";
+import { FileWUP } from "./file_wup";
 export declare const protobufPackage = "boss.v2";
-export interface UploadFileRequest {
+export interface ListFilesWUPRequest {
     taskId: string;
     bossAppId: string;
-    supportedCountries: string[];
-    supportedLanguages: string[];
-    password: string;
-    attribute1: string;
-    attribute2: string;
-    attribute3: string;
-    name: string;
-    type: string;
-    notifyOnNew: string[];
-    notifyLed: boolean;
-    data: Buffer;
-    nameEqualsDataId: boolean;
+    country?: string | undefined;
+    language?: string | undefined;
 }
-export interface UploadFileResponse {
-    file: File | undefined;
+export interface ListFilesWUPResponse {
+    files: FileWUP[];
 }
-export declare const UploadFileRequest: MessageFns<UploadFileRequest>;
-export declare const UploadFileResponse: MessageFns<UploadFileResponse>;
+export declare const ListFilesWUPRequest: MessageFns<ListFilesWUPRequest>;
+export declare const ListFilesWUPResponse: MessageFns<ListFilesWUPResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

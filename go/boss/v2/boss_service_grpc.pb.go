@@ -19,15 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BossService_ListKnownBOSSApps_FullMethodName  = "/boss.v2.BossService/ListKnownBOSSApps"
-	BossService_ListTasks_FullMethodName          = "/boss.v2.BossService/ListTasks"
-	BossService_RegisterTask_FullMethodName       = "/boss.v2.BossService/RegisterTask"
-	BossService_UpdateTask_FullMethodName         = "/boss.v2.BossService/UpdateTask"
-	BossService_DeleteTask_FullMethodName         = "/boss.v2.BossService/DeleteTask"
-	BossService_ListFiles_FullMethodName          = "/boss.v2.BossService/ListFiles"
-	BossService_UploadFile_FullMethodName         = "/boss.v2.BossService/UploadFile"
-	BossService_UpdateFileMetadata_FullMethodName = "/boss.v2.BossService/UpdateFileMetadata"
-	BossService_DeleteFile_FullMethodName         = "/boss.v2.BossService/DeleteFile"
+	BossService_ListKnownBOSSApps_FullMethodName     = "/boss.v2.BossService/ListKnownBOSSApps"
+	BossService_ListTasks_FullMethodName             = "/boss.v2.BossService/ListTasks"
+	BossService_RegisterTask_FullMethodName          = "/boss.v2.BossService/RegisterTask"
+	BossService_UpdateTask_FullMethodName            = "/boss.v2.BossService/UpdateTask"
+	BossService_DeleteTask_FullMethodName            = "/boss.v2.BossService/DeleteTask"
+	BossService_DeleteFile_FullMethodName            = "/boss.v2.BossService/DeleteFile"
+	BossService_ListFilesWUP_FullMethodName          = "/boss.v2.BossService/ListFilesWUP"
+	BossService_UploadFileWUP_FullMethodName         = "/boss.v2.BossService/UploadFileWUP"
+	BossService_UpdateFileMetadataWUP_FullMethodName = "/boss.v2.BossService/UpdateFileMetadataWUP"
+	BossService_ListFilesCTR_FullMethodName          = "/boss.v2.BossService/ListFilesCTR"
+	BossService_UploadFileCTR_FullMethodName         = "/boss.v2.BossService/UploadFileCTR"
+	BossService_UpdateFileMetadataCTR_FullMethodName = "/boss.v2.BossService/UpdateFileMetadataCTR"
 )
 
 // BossServiceClient is the client API for BossService service.
@@ -39,10 +42,13 @@ type BossServiceClient interface {
 	RegisterTask(ctx context.Context, in *RegisterTaskRequest, opts ...grpc.CallOption) (*RegisterTaskResponse, error)
 	UpdateTask(ctx context.Context, in *UpdateTaskRequest, opts ...grpc.CallOption) (*UpdateTaskResponse, error)
 	DeleteTask(ctx context.Context, in *DeleteTaskRequest, opts ...grpc.CallOption) (*DeleteTaskResponse, error)
-	ListFiles(ctx context.Context, in *ListFilesRequest, opts ...grpc.CallOption) (*ListFilesResponse, error)
-	UploadFile(ctx context.Context, in *UploadFileRequest, opts ...grpc.CallOption) (*UploadFileResponse, error)
-	UpdateFileMetadata(ctx context.Context, in *UpdateFileMetadataRequest, opts ...grpc.CallOption) (*UpdateFileMetadataResponse, error)
 	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
+	ListFilesWUP(ctx context.Context, in *ListFilesWUPRequest, opts ...grpc.CallOption) (*ListFilesWUPResponse, error)
+	UploadFileWUP(ctx context.Context, in *UploadFileWUPRequest, opts ...grpc.CallOption) (*UploadFileWUPResponse, error)
+	UpdateFileMetadataWUP(ctx context.Context, in *UpdateFileMetadataWUPRequest, opts ...grpc.CallOption) (*UpdateFileMetadataWUPResponse, error)
+	ListFilesCTR(ctx context.Context, in *ListFilesCTRRequest, opts ...grpc.CallOption) (*ListFilesCTRResponse, error)
+	UploadFileCTR(ctx context.Context, in *UploadFileCTRRequest, opts ...grpc.CallOption) (*UploadFileCTRResponse, error)
+	UpdateFileMetadataCTR(ctx context.Context, in *UpdateFileMetadataCTRRequest, opts ...grpc.CallOption) (*UpdateFileMetadataCTRResponse, error)
 }
 
 type bossServiceClient struct {
@@ -103,40 +109,70 @@ func (c *bossServiceClient) DeleteTask(ctx context.Context, in *DeleteTaskReques
 	return out, nil
 }
 
-func (c *bossServiceClient) ListFiles(ctx context.Context, in *ListFilesRequest, opts ...grpc.CallOption) (*ListFilesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListFilesResponse)
-	err := c.cc.Invoke(ctx, BossService_ListFiles_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *bossServiceClient) UploadFile(ctx context.Context, in *UploadFileRequest, opts ...grpc.CallOption) (*UploadFileResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UploadFileResponse)
-	err := c.cc.Invoke(ctx, BossService_UploadFile_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *bossServiceClient) UpdateFileMetadata(ctx context.Context, in *UpdateFileMetadataRequest, opts ...grpc.CallOption) (*UpdateFileMetadataResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateFileMetadataResponse)
-	err := c.cc.Invoke(ctx, BossService_UpdateFileMetadata_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *bossServiceClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteFileResponse)
 	err := c.cc.Invoke(ctx, BossService_DeleteFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bossServiceClient) ListFilesWUP(ctx context.Context, in *ListFilesWUPRequest, opts ...grpc.CallOption) (*ListFilesWUPResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFilesWUPResponse)
+	err := c.cc.Invoke(ctx, BossService_ListFilesWUP_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bossServiceClient) UploadFileWUP(ctx context.Context, in *UploadFileWUPRequest, opts ...grpc.CallOption) (*UploadFileWUPResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadFileWUPResponse)
+	err := c.cc.Invoke(ctx, BossService_UploadFileWUP_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bossServiceClient) UpdateFileMetadataWUP(ctx context.Context, in *UpdateFileMetadataWUPRequest, opts ...grpc.CallOption) (*UpdateFileMetadataWUPResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateFileMetadataWUPResponse)
+	err := c.cc.Invoke(ctx, BossService_UpdateFileMetadataWUP_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bossServiceClient) ListFilesCTR(ctx context.Context, in *ListFilesCTRRequest, opts ...grpc.CallOption) (*ListFilesCTRResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFilesCTRResponse)
+	err := c.cc.Invoke(ctx, BossService_ListFilesCTR_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bossServiceClient) UploadFileCTR(ctx context.Context, in *UploadFileCTRRequest, opts ...grpc.CallOption) (*UploadFileCTRResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadFileCTRResponse)
+	err := c.cc.Invoke(ctx, BossService_UploadFileCTR_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bossServiceClient) UpdateFileMetadataCTR(ctx context.Context, in *UpdateFileMetadataCTRRequest, opts ...grpc.CallOption) (*UpdateFileMetadataCTRResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateFileMetadataCTRResponse)
+	err := c.cc.Invoke(ctx, BossService_UpdateFileMetadataCTR_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -152,10 +188,13 @@ type BossServiceServer interface {
 	RegisterTask(context.Context, *RegisterTaskRequest) (*RegisterTaskResponse, error)
 	UpdateTask(context.Context, *UpdateTaskRequest) (*UpdateTaskResponse, error)
 	DeleteTask(context.Context, *DeleteTaskRequest) (*DeleteTaskResponse, error)
-	ListFiles(context.Context, *ListFilesRequest) (*ListFilesResponse, error)
-	UploadFile(context.Context, *UploadFileRequest) (*UploadFileResponse, error)
-	UpdateFileMetadata(context.Context, *UpdateFileMetadataRequest) (*UpdateFileMetadataResponse, error)
 	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
+	ListFilesWUP(context.Context, *ListFilesWUPRequest) (*ListFilesWUPResponse, error)
+	UploadFileWUP(context.Context, *UploadFileWUPRequest) (*UploadFileWUPResponse, error)
+	UpdateFileMetadataWUP(context.Context, *UpdateFileMetadataWUPRequest) (*UpdateFileMetadataWUPResponse, error)
+	ListFilesCTR(context.Context, *ListFilesCTRRequest) (*ListFilesCTRResponse, error)
+	UploadFileCTR(context.Context, *UploadFileCTRRequest) (*UploadFileCTRResponse, error)
+	UpdateFileMetadataCTR(context.Context, *UpdateFileMetadataCTRRequest) (*UpdateFileMetadataCTRResponse, error)
 	mustEmbedUnimplementedBossServiceServer()
 }
 
@@ -181,17 +220,26 @@ func (UnimplementedBossServiceServer) UpdateTask(context.Context, *UpdateTaskReq
 func (UnimplementedBossServiceServer) DeleteTask(context.Context, *DeleteTaskRequest) (*DeleteTaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTask not implemented")
 }
-func (UnimplementedBossServiceServer) ListFiles(context.Context, *ListFilesRequest) (*ListFilesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListFiles not implemented")
-}
-func (UnimplementedBossServiceServer) UploadFile(context.Context, *UploadFileRequest) (*UploadFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UploadFile not implemented")
-}
-func (UnimplementedBossServiceServer) UpdateFileMetadata(context.Context, *UpdateFileMetadataRequest) (*UpdateFileMetadataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateFileMetadata not implemented")
-}
 func (UnimplementedBossServiceServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
+}
+func (UnimplementedBossServiceServer) ListFilesWUP(context.Context, *ListFilesWUPRequest) (*ListFilesWUPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFilesWUP not implemented")
+}
+func (UnimplementedBossServiceServer) UploadFileWUP(context.Context, *UploadFileWUPRequest) (*UploadFileWUPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadFileWUP not implemented")
+}
+func (UnimplementedBossServiceServer) UpdateFileMetadataWUP(context.Context, *UpdateFileMetadataWUPRequest) (*UpdateFileMetadataWUPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFileMetadataWUP not implemented")
+}
+func (UnimplementedBossServiceServer) ListFilesCTR(context.Context, *ListFilesCTRRequest) (*ListFilesCTRResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFilesCTR not implemented")
+}
+func (UnimplementedBossServiceServer) UploadFileCTR(context.Context, *UploadFileCTRRequest) (*UploadFileCTRResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadFileCTR not implemented")
+}
+func (UnimplementedBossServiceServer) UpdateFileMetadataCTR(context.Context, *UpdateFileMetadataCTRRequest) (*UpdateFileMetadataCTRResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFileMetadataCTR not implemented")
 }
 func (UnimplementedBossServiceServer) mustEmbedUnimplementedBossServiceServer() {}
 func (UnimplementedBossServiceServer) testEmbeddedByValue()                     {}
@@ -304,60 +352,6 @@ func _BossService_DeleteTask_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BossService_ListFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListFilesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BossServiceServer).ListFiles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BossService_ListFiles_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BossServiceServer).ListFiles(ctx, req.(*ListFilesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BossService_UploadFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadFileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BossServiceServer).UploadFile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BossService_UploadFile_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BossServiceServer).UploadFile(ctx, req.(*UploadFileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BossService_UpdateFileMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateFileMetadataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BossServiceServer).UpdateFileMetadata(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BossService_UpdateFileMetadata_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BossServiceServer).UpdateFileMetadata(ctx, req.(*UpdateFileMetadataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _BossService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteFileRequest)
 	if err := dec(in); err != nil {
@@ -372,6 +366,114 @@ func _BossService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BossServiceServer).DeleteFile(ctx, req.(*DeleteFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BossService_ListFilesWUP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFilesWUPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BossServiceServer).ListFilesWUP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BossService_ListFilesWUP_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BossServiceServer).ListFilesWUP(ctx, req.(*ListFilesWUPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BossService_UploadFileWUP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadFileWUPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BossServiceServer).UploadFileWUP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BossService_UploadFileWUP_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BossServiceServer).UploadFileWUP(ctx, req.(*UploadFileWUPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BossService_UpdateFileMetadataWUP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFileMetadataWUPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BossServiceServer).UpdateFileMetadataWUP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BossService_UpdateFileMetadataWUP_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BossServiceServer).UpdateFileMetadataWUP(ctx, req.(*UpdateFileMetadataWUPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BossService_ListFilesCTR_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFilesCTRRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BossServiceServer).ListFilesCTR(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BossService_ListFilesCTR_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BossServiceServer).ListFilesCTR(ctx, req.(*ListFilesCTRRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BossService_UploadFileCTR_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadFileCTRRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BossServiceServer).UploadFileCTR(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BossService_UploadFileCTR_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BossServiceServer).UploadFileCTR(ctx, req.(*UploadFileCTRRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BossService_UpdateFileMetadataCTR_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFileMetadataCTRRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BossServiceServer).UpdateFileMetadataCTR(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BossService_UpdateFileMetadataCTR_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BossServiceServer).UpdateFileMetadataCTR(ctx, req.(*UpdateFileMetadataCTRRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -404,20 +506,32 @@ var BossService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BossService_DeleteTask_Handler,
 		},
 		{
-			MethodName: "ListFiles",
-			Handler:    _BossService_ListFiles_Handler,
-		},
-		{
-			MethodName: "UploadFile",
-			Handler:    _BossService_UploadFile_Handler,
-		},
-		{
-			MethodName: "UpdateFileMetadata",
-			Handler:    _BossService_UpdateFileMetadata_Handler,
-		},
-		{
 			MethodName: "DeleteFile",
 			Handler:    _BossService_DeleteFile_Handler,
+		},
+		{
+			MethodName: "ListFilesWUP",
+			Handler:    _BossService_ListFilesWUP_Handler,
+		},
+		{
+			MethodName: "UploadFileWUP",
+			Handler:    _BossService_UploadFileWUP_Handler,
+		},
+		{
+			MethodName: "UpdateFileMetadataWUP",
+			Handler:    _BossService_UpdateFileMetadataWUP_Handler,
+		},
+		{
+			MethodName: "ListFilesCTR",
+			Handler:    _BossService_ListFilesCTR_Handler,
+		},
+		{
+			MethodName: "UploadFileCTR",
+			Handler:    _BossService_UploadFileCTR_Handler,
+		},
+		{
+			MethodName: "UpdateFileMetadataCTR",
+			Handler:    _BossService_UpdateFileMetadataCTR_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

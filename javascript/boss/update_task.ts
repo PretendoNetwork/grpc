@@ -12,7 +12,7 @@ export const protobufPackage = "boss";
 export interface UpdateTaskData {
   id: string;
   bossAppId: string;
-  titleId: string;
+  titleId: bigint;
   status: string;
   description: string;
 }
@@ -24,7 +24,7 @@ export interface UpdateTaskRequest {
 }
 
 function createBaseUpdateTaskData(): UpdateTaskData {
-  return { id: "", bossAppId: "", titleId: "", status: "", description: "" };
+  return { id: "", bossAppId: "", titleId: 0n, status: "", description: "" };
 }
 
 export const UpdateTaskData: MessageFns<UpdateTaskData> = {
@@ -35,8 +35,11 @@ export const UpdateTaskData: MessageFns<UpdateTaskData> = {
     if (message.bossAppId !== "") {
       writer.uint32(18).string(message.bossAppId);
     }
-    if (message.titleId !== "") {
-      writer.uint32(26).string(message.titleId);
+    if (message.titleId !== 0n) {
+      if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
+        throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
+      }
+      writer.uint32(24).uint64(message.titleId);
     }
     if (message.status !== "") {
       writer.uint32(34).string(message.status);
@@ -71,11 +74,11 @@ export const UpdateTaskData: MessageFns<UpdateTaskData> = {
           continue;
         }
         case 3: {
-          if (tag !== 26) {
+          if (tag !== 24) {
             break;
           }
 
-          message.titleId = reader.string();
+          message.titleId = reader.uint64() as bigint;
           continue;
         }
         case 4: {
@@ -107,7 +110,7 @@ export const UpdateTaskData: MessageFns<UpdateTaskData> = {
     return {
       id: isSet(object.id) ? globalThis.String(object.id) : "",
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
-      titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
+      titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
       status: isSet(object.status) ? globalThis.String(object.status) : "",
       description: isSet(object.description) ? globalThis.String(object.description) : "",
     };
@@ -121,8 +124,8 @@ export const UpdateTaskData: MessageFns<UpdateTaskData> = {
     if (message.bossAppId !== "") {
       obj.bossAppId = message.bossAppId;
     }
-    if (message.titleId !== "") {
-      obj.titleId = message.titleId;
+    if (message.titleId !== 0n) {
+      obj.titleId = message.titleId.toString();
     }
     if (message.status !== "") {
       obj.status = message.status;
@@ -140,7 +143,7 @@ export const UpdateTaskData: MessageFns<UpdateTaskData> = {
     const message = createBaseUpdateTaskData();
     message.id = object.id ?? "";
     message.bossAppId = object.bossAppId ?? "";
-    message.titleId = object.titleId ?? "";
+    message.titleId = object.titleId ?? 0n;
     message.status = object.status ?? "";
     message.description = object.description ?? "";
     return message;

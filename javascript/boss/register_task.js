@@ -11,7 +11,7 @@ const wire_1 = require("@bufbuild/protobuf/wire");
 const task_1 = require("./task");
 exports.protobufPackage = "boss";
 function createBaseRegisterTaskRequest() {
-    return { id: "", bossAppId: "", titleId: "", country: "", description: "" };
+    return { id: "", bossAppId: "", titleId: 0n, country: "", description: "" };
 }
 exports.RegisterTaskRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -21,8 +21,11 @@ exports.RegisterTaskRequest = {
         if (message.bossAppId !== "") {
             writer.uint32(18).string(message.bossAppId);
         }
-        if (message.titleId !== "") {
-            writer.uint32(26).string(message.titleId);
+        if (message.titleId !== 0n) {
+            if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
+                throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
+            }
+            writer.uint32(24).uint64(message.titleId);
         }
         if (message.country !== "") {
             writer.uint32(34).string(message.country);
@@ -54,10 +57,10 @@ exports.RegisterTaskRequest = {
                     continue;
                 }
                 case 3: {
-                    if (tag !== 26) {
+                    if (tag !== 24) {
                         break;
                     }
-                    message.titleId = reader.string();
+                    message.titleId = reader.uint64();
                     continue;
                 }
                 case 4: {
@@ -86,7 +89,7 @@ exports.RegisterTaskRequest = {
         return {
             id: isSet(object.id) ? globalThis.String(object.id) : "",
             bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
-            titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
+            titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
             country: isSet(object.country) ? globalThis.String(object.country) : "",
             description: isSet(object.description) ? globalThis.String(object.description) : "",
         };
@@ -99,8 +102,8 @@ exports.RegisterTaskRequest = {
         if (message.bossAppId !== "") {
             obj.bossAppId = message.bossAppId;
         }
-        if (message.titleId !== "") {
-            obj.titleId = message.titleId;
+        if (message.titleId !== 0n) {
+            obj.titleId = message.titleId.toString();
         }
         if (message.country !== "") {
             obj.country = message.country;
@@ -117,7 +120,7 @@ exports.RegisterTaskRequest = {
         const message = createBaseRegisterTaskRequest();
         message.id = object.id ?? "";
         message.bossAppId = object.bossAppId ?? "";
-        message.titleId = object.titleId ?? "";
+        message.titleId = object.titleId ?? 0n;
         message.country = object.country ?? "";
         message.description = object.description ?? "";
         return message;

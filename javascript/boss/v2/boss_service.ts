@@ -8,13 +8,16 @@
 import { type CallContext, type CallOptions } from "nice-grpc-common";
 import { DeleteFileRequest, DeleteFileResponse } from "./delete_file";
 import { DeleteTaskRequest, DeleteTaskResponse } from "./delete_task";
-import { ListFilesRequest, ListFilesResponse } from "./list_files";
+import { ListFilesCTRRequest, ListFilesCTRResponse } from "./list_files_ctr";
+import { ListFilesWUPRequest, ListFilesWUPResponse } from "./list_files_wup";
 import { ListKnownBOSSAppsRequest, ListKnownBOSSAppsResponse } from "./list_known_boss_apps";
 import { ListTasksRequest, ListTasksResponse } from "./list_tasks";
 import { RegisterTaskRequest, RegisterTaskResponse } from "./register_task";
-import { UpdateFileMetadataRequest, UpdateFileMetadataResponse } from "./update_file_metadata";
+import { UpdateFileMetadataCTRRequest, UpdateFileMetadataCTRResponse } from "./update_file_metadata_ctr";
+import { UpdateFileMetadataWUPRequest, UpdateFileMetadataWUPResponse } from "./update_file_metadata_wup";
 import { UpdateTaskRequest, UpdateTaskResponse } from "./update_task";
-import { UploadFileRequest, UploadFileResponse } from "./upload_file";
+import { UploadFileCTRRequest, UploadFileCTRResponse } from "./upload_file_ctr";
+import { UploadFileWUPRequest, UploadFileWUPResponse } from "./upload_file_wup";
 
 export const protobufPackage = "boss.v2";
 
@@ -63,35 +66,59 @@ export const BossServiceDefinition = {
       responseStream: false,
       options: {},
     },
-    listFiles: {
-      name: "ListFiles",
-      requestType: ListFilesRequest,
-      requestStream: false,
-      responseType: ListFilesResponse,
-      responseStream: false,
-      options: {},
-    },
-    uploadFile: {
-      name: "UploadFile",
-      requestType: UploadFileRequest,
-      requestStream: false,
-      responseType: UploadFileResponse,
-      responseStream: false,
-      options: {},
-    },
-    updateFileMetadata: {
-      name: "UpdateFileMetadata",
-      requestType: UpdateFileMetadataRequest,
-      requestStream: false,
-      responseType: UpdateFileMetadataResponse,
-      responseStream: false,
-      options: {},
-    },
     deleteFile: {
       name: "DeleteFile",
       requestType: DeleteFileRequest,
       requestStream: false,
       responseType: DeleteFileResponse,
+      responseStream: false,
+      options: {},
+    },
+    listFilesWUP: {
+      name: "ListFilesWUP",
+      requestType: ListFilesWUPRequest,
+      requestStream: false,
+      responseType: ListFilesWUPResponse,
+      responseStream: false,
+      options: {},
+    },
+    uploadFileWUP: {
+      name: "UploadFileWUP",
+      requestType: UploadFileWUPRequest,
+      requestStream: false,
+      responseType: UploadFileWUPResponse,
+      responseStream: false,
+      options: {},
+    },
+    updateFileMetadataWUP: {
+      name: "UpdateFileMetadataWUP",
+      requestType: UpdateFileMetadataWUPRequest,
+      requestStream: false,
+      responseType: UpdateFileMetadataWUPResponse,
+      responseStream: false,
+      options: {},
+    },
+    listFilesCTR: {
+      name: "ListFilesCTR",
+      requestType: ListFilesCTRRequest,
+      requestStream: false,
+      responseType: ListFilesCTRResponse,
+      responseStream: false,
+      options: {},
+    },
+    uploadFileCTR: {
+      name: "UploadFileCTR",
+      requestType: UploadFileCTRRequest,
+      requestStream: false,
+      responseType: UploadFileCTRResponse,
+      responseStream: false,
+      options: {},
+    },
+    updateFileMetadataCTR: {
+      name: "UpdateFileMetadataCTR",
+      requestType: UpdateFileMetadataCTRRequest,
+      requestStream: false,
+      responseType: UpdateFileMetadataCTRResponse,
       responseStream: false,
       options: {},
     },
@@ -116,19 +143,34 @@ export interface BossServiceImplementation<CallContextExt = {}> {
     request: DeleteTaskRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<DeleteTaskResponse>>;
-  listFiles(request: ListFilesRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListFilesResponse>>;
-  uploadFile(
-    request: UploadFileRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<UploadFileResponse>>;
-  updateFileMetadata(
-    request: UpdateFileMetadataRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<UpdateFileMetadataResponse>>;
   deleteFile(
     request: DeleteFileRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<DeleteFileResponse>>;
+  listFilesWUP(
+    request: ListFilesWUPRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListFilesWUPResponse>>;
+  uploadFileWUP(
+    request: UploadFileWUPRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UploadFileWUPResponse>>;
+  updateFileMetadataWUP(
+    request: UpdateFileMetadataWUPRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdateFileMetadataWUPResponse>>;
+  listFilesCTR(
+    request: ListFilesCTRRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListFilesCTRResponse>>;
+  uploadFileCTR(
+    request: UploadFileCTRRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UploadFileCTRResponse>>;
+  updateFileMetadataCTR(
+    request: UpdateFileMetadataCTRRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdateFileMetadataCTRResponse>>;
 }
 
 export interface BossServiceClient<CallOptionsExt = {}> {
@@ -149,19 +191,34 @@ export interface BossServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<DeleteTaskRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<DeleteTaskResponse>;
-  listFiles(request: DeepPartial<ListFilesRequest>, options?: CallOptions & CallOptionsExt): Promise<ListFilesResponse>;
-  uploadFile(
-    request: DeepPartial<UploadFileRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<UploadFileResponse>;
-  updateFileMetadata(
-    request: DeepPartial<UpdateFileMetadataRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<UpdateFileMetadataResponse>;
   deleteFile(
     request: DeepPartial<DeleteFileRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<DeleteFileResponse>;
+  listFilesWUP(
+    request: DeepPartial<ListFilesWUPRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListFilesWUPResponse>;
+  uploadFileWUP(
+    request: DeepPartial<UploadFileWUPRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UploadFileWUPResponse>;
+  updateFileMetadataWUP(
+    request: DeepPartial<UpdateFileMetadataWUPRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdateFileMetadataWUPResponse>;
+  listFilesCTR(
+    request: DeepPartial<ListFilesCTRRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListFilesCTRResponse>;
+  uploadFileCTR(
+    request: DeepPartial<UploadFileCTRRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UploadFileCTRResponse>;
+  updateFileMetadataCTR(
+    request: DeepPartial<UpdateFileMetadataCTRRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdateFileMetadataCTRResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;

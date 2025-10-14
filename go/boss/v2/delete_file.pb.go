@@ -25,6 +25,7 @@ type DeleteFileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DataId        uint64                 `protobuf:"varint,1,opt,name=data_id,json=dataId,proto3" json:"data_id,omitempty"`
 	BossAppId     string                 `protobuf:"bytes,2,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
+	PlatformType  PlatformType           `protobuf:"varint,3,opt,name=platform_type,json=platformType,proto3,enum=boss.v2.PlatformType" json:"platform_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -73,6 +74,13 @@ func (x *DeleteFileRequest) GetBossAppId() string {
 	return ""
 }
 
+func (x *DeleteFileRequest) GetPlatformType() PlatformType {
+	if x != nil {
+		return x.PlatformType
+	}
+	return PlatformType_CTR
+}
+
 type DeleteFileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -113,10 +121,11 @@ var File_boss_v2_delete_file_proto protoreflect.FileDescriptor
 
 const file_boss_v2_delete_file_proto_rawDesc = "" +
 	"\n" +
-	"\x19boss/v2/delete_file.proto\x12\aboss.v2\"L\n" +
+	"\x19boss/v2/delete_file.proto\x12\aboss.v2\x1a\x1bboss/v2/platform_type.proto\"\x88\x01\n" +
 	"\x11DeleteFileRequest\x12\x17\n" +
 	"\adata_id\x18\x01 \x01(\x04R\x06dataId\x12\x1e\n" +
-	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\"\x14\n" +
+	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12:\n" +
+	"\rplatform_type\x18\x03 \x01(\x0e2\x15.boss.v2.PlatformTypeR\fplatformType\"\x14\n" +
 	"\x12DeleteFileResponseB\x8e\x01\n" +
 	"\vcom.boss.v2B\x0fDeleteFileProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"
 
@@ -136,13 +145,15 @@ var file_boss_v2_delete_file_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_boss_v2_delete_file_proto_goTypes = []any{
 	(*DeleteFileRequest)(nil),  // 0: boss.v2.DeleteFileRequest
 	(*DeleteFileResponse)(nil), // 1: boss.v2.DeleteFileResponse
+	(PlatformType)(0),          // 2: boss.v2.PlatformType
 }
 var file_boss_v2_delete_file_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: boss.v2.DeleteFileRequest.platform_type:type_name -> boss.v2.PlatformType
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_boss_v2_delete_file_proto_init() }
@@ -150,6 +161,7 @@ func file_boss_v2_delete_file_proto_init() {
 	if File_boss_v2_delete_file_proto != nil {
 		return
 	}
+	file_boss_v2_platform_type_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

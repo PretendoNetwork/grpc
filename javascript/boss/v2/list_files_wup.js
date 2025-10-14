@@ -3,17 +3,17 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: boss/v2/list_files.proto
+// source: boss/v2/list_files_wup.proto
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListFilesResponse = exports.ListFilesRequest = exports.protobufPackage = void 0;
+exports.ListFilesWUPResponse = exports.ListFilesWUPRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
-const file_1 = require("./file");
+const file_wup_1 = require("./file_wup");
 exports.protobufPackage = "boss.v2";
-function createBaseListFilesRequest() {
+function createBaseListFilesWUPRequest() {
     return { taskId: "", bossAppId: "", country: undefined, language: undefined };
 }
-exports.ListFilesRequest = {
+exports.ListFilesWUPRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.taskId !== "") {
             writer.uint32(10).string(message.taskId);
@@ -32,7 +32,7 @@ exports.ListFilesRequest = {
     decode(input, length) {
         const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseListFilesRequest();
+        const message = createBaseListFilesWUPRequest();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -97,10 +97,10 @@ exports.ListFilesRequest = {
         return obj;
     },
     create(base) {
-        return exports.ListFilesRequest.fromPartial(base ?? {});
+        return exports.ListFilesWUPRequest.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseListFilesRequest();
+        const message = createBaseListFilesWUPRequest();
         message.taskId = object.taskId ?? "";
         message.bossAppId = object.bossAppId ?? "";
         message.country = object.country ?? undefined;
@@ -108,20 +108,20 @@ exports.ListFilesRequest = {
         return message;
     },
 };
-function createBaseListFilesResponse() {
+function createBaseListFilesWUPResponse() {
     return { files: [] };
 }
-exports.ListFilesResponse = {
+exports.ListFilesWUPResponse = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         for (const v of message.files) {
-            file_1.File.encode(v, writer.uint32(10).fork()).join();
+            file_wup_1.FileWUP.encode(v, writer.uint32(10).fork()).join();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseListFilesResponse();
+        const message = createBaseListFilesWUPResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -129,7 +129,7 @@ exports.ListFilesResponse = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.files.push(file_1.File.decode(reader, reader.uint32()));
+                    message.files.push(file_wup_1.FileWUP.decode(reader, reader.uint32()));
                     continue;
                 }
             }
@@ -141,21 +141,21 @@ exports.ListFilesResponse = {
         return message;
     },
     fromJSON(object) {
-        return { files: globalThis.Array.isArray(object?.files) ? object.files.map((e) => file_1.File.fromJSON(e)) : [] };
+        return { files: globalThis.Array.isArray(object?.files) ? object.files.map((e) => file_wup_1.FileWUP.fromJSON(e)) : [] };
     },
     toJSON(message) {
         const obj = {};
         if (message.files?.length) {
-            obj.files = message.files.map((e) => file_1.File.toJSON(e));
+            obj.files = message.files.map((e) => file_wup_1.FileWUP.toJSON(e));
         }
         return obj;
     },
     create(base) {
-        return exports.ListFilesResponse.fromPartial(base ?? {});
+        return exports.ListFilesWUPResponse.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseListFilesResponse();
-        message.files = object.files?.map((e) => file_1.File.fromPartial(e)) || [];
+        const message = createBaseListFilesWUPResponse();
+        message.files = object.files?.map((e) => file_wup_1.FileWUP.fromPartial(e)) || [];
         return message;
     },
 };

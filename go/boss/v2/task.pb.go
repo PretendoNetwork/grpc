@@ -29,10 +29,11 @@ type Task struct {
 	BossAppId        string                 `protobuf:"bytes,4,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
 	CreatorPid       uint32                 `protobuf:"varint,5,opt,name=creator_pid,json=creatorPid,proto3" json:"creator_pid,omitempty"`
 	Status           string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	TitleId          string                 `protobuf:"bytes,7,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
-	Description      string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
-	CreatedTimestamp uint64                 `protobuf:"varint,9,opt,name=created_timestamp,json=createdTimestamp,proto3" json:"created_timestamp,omitempty"`
-	UpdatedTimestamp uint64                 `protobuf:"varint,10,opt,name=updated_timestamp,json=updatedTimestamp,proto3" json:"updated_timestamp,omitempty"`
+	Interval         uint32                 `protobuf:"varint,7,opt,name=interval,proto3" json:"interval,omitempty"`
+	TitleId          uint64                 `protobuf:"varint,8,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
+	Description      string                 `protobuf:"bytes,9,opt,name=description,proto3" json:"description,omitempty"`
+	CreatedTimestamp uint64                 `protobuf:"varint,10,opt,name=created_timestamp,json=createdTimestamp,proto3" json:"created_timestamp,omitempty"`
+	UpdatedTimestamp uint64                 `protobuf:"varint,11,opt,name=updated_timestamp,json=updatedTimestamp,proto3" json:"updated_timestamp,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -109,11 +110,18 @@ func (x *Task) GetStatus() string {
 	return ""
 }
 
-func (x *Task) GetTitleId() string {
+func (x *Task) GetInterval() uint32 {
+	if x != nil {
+		return x.Interval
+	}
+	return 0
+}
+
+func (x *Task) GetTitleId() uint64 {
 	if x != nil {
 		return x.TitleId
 	}
-	return ""
+	return 0
 }
 
 func (x *Task) GetDescription() string {
@@ -141,7 +149,7 @@ var File_boss_v2_task_proto protoreflect.FileDescriptor
 
 const file_boss_v2_task_proto_rawDesc = "" +
 	"\n" +
-	"\x12boss/v2/task.proto\x12\aboss.v2\"\xbe\x02\n" +
+	"\x12boss/v2/task.proto\x12\aboss.v2\"\xda\x02\n" +
 	"\x04Task\x12\x18\n" +
 	"\adeleted\x18\x01 \x01(\bR\adeleted\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x1c\n" +
@@ -150,12 +158,13 @@ const file_boss_v2_task_proto_rawDesc = "" +
 	"\vboss_app_id\x18\x04 \x01(\tR\tbossAppId\x12\x1f\n" +
 	"\vcreator_pid\x18\x05 \x01(\rR\n" +
 	"creatorPid\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\x12\x19\n" +
-	"\btitle_id\x18\a \x01(\tR\atitleId\x12 \n" +
-	"\vdescription\x18\b \x01(\tR\vdescription\x12+\n" +
-	"\x11created_timestamp\x18\t \x01(\x04R\x10createdTimestamp\x12+\n" +
-	"\x11updated_timestamp\x18\n" +
-	" \x01(\x04R\x10updatedTimestampB\x88\x01\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1a\n" +
+	"\binterval\x18\a \x01(\rR\binterval\x12\x19\n" +
+	"\btitle_id\x18\b \x01(\x04R\atitleId\x12 \n" +
+	"\vdescription\x18\t \x01(\tR\vdescription\x12+\n" +
+	"\x11created_timestamp\x18\n" +
+	" \x01(\x04R\x10createdTimestamp\x12+\n" +
+	"\x11updated_timestamp\x18\v \x01(\x04R\x10updatedTimestampB\x88\x01\n" +
 	"\vcom.boss.v2B\tTaskProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"
 
 var (

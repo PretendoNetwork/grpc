@@ -1,8 +1,10 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { PlatformType } from "./platform_type";
 export declare const protobufPackage = "boss.v2";
 export interface DeleteFileRequest {
     dataId: bigint;
     bossAppId: string;
+    platformType: PlatformType;
 }
 export interface DeleteFileResponse {
 }
