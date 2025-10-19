@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package boss.v2;
 
+import "boss/v2/ctr_boss_flags.proto";
 import "boss/v2/file_attributes.proto";
 import "boss/v2/payload_content_info_ctr.proto";
 
@@ -21,4 +22,5 @@ message FileCTR {
   uint64 size = 13;
   uint64 created_timestamp = 14;
   uint64 updated_timestamp = 15;
+  CTRBOSSFlags flags = 16;
 }
