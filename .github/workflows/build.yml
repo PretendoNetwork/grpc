@@ -14,13 +14,11 @@ on:
 
 permissions:
   id-token: write # Required for Trusted Publishing
-  contents: read
+  contents: write
 
 jobs:
   build:
     name: Build Protobufs
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
