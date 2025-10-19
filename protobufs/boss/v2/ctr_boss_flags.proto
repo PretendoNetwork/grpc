@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package boss.v2;
+
+message CTRBOSSFlags {
+  bool mark_arrived_privileged = 1;
+}

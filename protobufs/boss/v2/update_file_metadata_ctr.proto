@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package boss.v2;
 
+import "boss/v2/ctr_boss_flags.proto";
 import "boss/v2/file_attributes.proto";
 import "boss/v2/payload_content_info_ctr.proto";
 
@@ -13,6 +14,7 @@ message UpdateFileMetadataDataCTR {
   FileAttributes attributes = 5;
   string name = 6;
   repeated PayloadContentInfoCTR payload_contents = 7;
+  CTRBOSSFlags flags = 8;
 }
 
 message UpdateFileMetadataCTRRequest {

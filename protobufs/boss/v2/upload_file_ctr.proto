@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package boss.v2;
 
+import "boss/v2/ctr_boss_flags.proto";
 import "boss/v2/file_attributes.proto";
 import "boss/v2/file_ctr.proto";
 import "boss/v2/payload_content_ctr.proto";
@@ -15,6 +16,7 @@ message UploadFileCTRRequest {
   string name = 6;
   uint32 serial_number = 7;
   repeated PayloadContentCTR payload_contents = 8;
+  CTRBOSSFlags flags = 9;
 }
 
 message UploadFileCTRResponse {
