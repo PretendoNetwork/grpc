@@ -12,6 +12,10 @@ on:
       - "package.json"
   workflow_dispatch:
 
+permissions:
+  id-token: write # Required for Trusted Publishing
+  contents: read
+
 jobs:
   build:
     name: Build Protobufs
@@ -78,6 +82,8 @@ jobs:
         with:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
+      - name: Update npm
+        run: npm install -g npm@latest
       - name: Zip Protobufs
         run: |
           zip -r go-${{needs.build.outputs.version}}.zip go
@@ -91,6 +97,4 @@ jobs:
           make_latest: true
       - name: Publish Protobufs
         working-directory: ./javascript
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
