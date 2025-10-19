@@ -24,19 +24,22 @@ const (
 type PlatformType int32
 
 const (
-	PlatformType_CTR PlatformType = 0
-	PlatformType_WUP PlatformType = 1
+	PlatformType_PLATFORM_TYPE_UNSPECIFIED PlatformType = 0
+	PlatformType_PLATFORM_TYPE_CTR         PlatformType = 1
+	PlatformType_PLATFORM_TYPE_WUP         PlatformType = 2
 )
 
 // Enum value maps for PlatformType.
 var (
 	PlatformType_name = map[int32]string{
-		0: "CTR",
-		1: "WUP",
+		0: "PLATFORM_TYPE_UNSPECIFIED",
+		1: "PLATFORM_TYPE_CTR",
+		2: "PLATFORM_TYPE_WUP",
 	}
 	PlatformType_value = map[string]int32{
-		"CTR": 0,
-		"WUP": 1,
+		"PLATFORM_TYPE_UNSPECIFIED": 0,
+		"PLATFORM_TYPE_CTR":         1,
+		"PLATFORM_TYPE_WUP":         2,
 	}
 )
 
@@ -71,10 +74,11 @@ var File_boss_v2_platform_type_proto protoreflect.FileDescriptor
 
 const file_boss_v2_platform_type_proto_rawDesc = "" +
 	"\n" +
-	"\x1bboss/v2/platform_type.proto\x12\aboss.v2* \n" +
-	"\fPlatformType\x12\a\n" +
-	"\x03CTR\x10\x00\x12\a\n" +
-	"\x03WUP\x10\x01B\x90\x01\n" +
+	"\x1bboss/v2/platform_type.proto\x12\aboss.v2*[\n" +
+	"\fPlatformType\x12\x1d\n" +
+	"\x19PLATFORM_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
+	"\x11PLATFORM_TYPE_CTR\x10\x01\x12\x15\n" +
+	"\x11PLATFORM_TYPE_WUP\x10\x02B\x90\x01\n" +
 	"\vcom.boss.v2B\x11PlatformTypeProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"
 
 var (

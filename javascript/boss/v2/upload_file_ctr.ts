@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CTRBOSSFlags } from "./ctr_boss_flags";
 import { FileAttributes } from "./file_attributes";
 import { FileCTR } from "./file_ctr";
 import { PayloadContentCTR } from "./payload_content_ctr";
@@ -21,6 +22,7 @@ export interface UploadFileCTRRequest {
   name: string;
   serialNumber: number;
   payloadContents: PayloadContentCTR[];
+  flags: CTRBOSSFlags | undefined;
 }
 
 export interface UploadFileCTRResponse {
@@ -37,6 +39,7 @@ function createBaseUploadFileCTRRequest(): UploadFileCTRRequest {
     name: "",
     serialNumber: 0,
     payloadContents: [],
+    flags: undefined,
   };
 }
 
@@ -65,6 +68,9 @@ export const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest> = {
     }
     for (const v of message.payloadContents) {
       PayloadContentCTR.encode(v!, writer.uint32(66).fork()).join();
+    }
+    if (message.flags !== undefined) {
+      CTRBOSSFlags.encode(message.flags, writer.uint32(74).fork()).join();
     }
     return writer;
   },
@@ -140,6 +146,14 @@ export const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest> = {
           message.payloadContents.push(PayloadContentCTR.decode(reader, reader.uint32()));
           continue;
         }
+        case 9: {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.flags = CTRBOSSFlags.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -165,6 +179,7 @@ export const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest> = {
       payloadContents: globalThis.Array.isArray(object?.payloadContents)
         ? object.payloadContents.map((e: any) => PayloadContentCTR.fromJSON(e))
         : [],
+      flags: isSet(object.flags) ? CTRBOSSFlags.fromJSON(object.flags) : undefined,
     };
   },
 
@@ -194,6 +209,9 @@ export const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest> = {
     if (message.payloadContents?.length) {
       obj.payloadContents = message.payloadContents.map((e) => PayloadContentCTR.toJSON(e));
     }
+    if (message.flags !== undefined) {
+      obj.flags = CTRBOSSFlags.toJSON(message.flags);
+    }
     return obj;
   },
 
@@ -212,6 +230,9 @@ export const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest> = {
     message.name = object.name ?? "";
     message.serialNumber = object.serialNumber ?? 0;
     message.payloadContents = object.payloadContents?.map((e) => PayloadContentCTR.fromPartial(e)) || [];
+    message.flags = (object.flags !== undefined && object.flags !== null)
+      ? CTRBOSSFlags.fromPartial(object.flags)
+      : undefined;
     return message;
   },
 };

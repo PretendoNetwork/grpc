@@ -38,6 +38,7 @@ type FileCTR struct {
 	Size               uint64                   `protobuf:"varint,13,opt,name=size,proto3" json:"size,omitempty"`
 	CreatedTimestamp   uint64                   `protobuf:"varint,14,opt,name=created_timestamp,json=createdTimestamp,proto3" json:"created_timestamp,omitempty"`
 	UpdatedTimestamp   uint64                   `protobuf:"varint,15,opt,name=updated_timestamp,json=updatedTimestamp,proto3" json:"updated_timestamp,omitempty"`
+	Flags              *CTRBOSSFlags            `protobuf:"bytes,16,opt,name=flags,proto3" json:"flags,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -177,11 +178,18 @@ func (x *FileCTR) GetUpdatedTimestamp() uint64 {
 	return 0
 }
 
+func (x *FileCTR) GetFlags() *CTRBOSSFlags {
+	if x != nil {
+		return x.Flags
+	}
+	return nil
+}
+
 var File_boss_v2_file_ctr_proto protoreflect.FileDescriptor
 
 const file_boss_v2_file_ctr_proto_rawDesc = "" +
 	"\n" +
-	"\x16boss/v2/file_ctr.proto\x12\aboss.v2\x1a\x1dboss/v2/file_attributes.proto\x1a&boss/v2/payload_content_info_ctr.proto\"\xb7\x04\n" +
+	"\x16boss/v2/file_ctr.proto\x12\aboss.v2\x1a\x1cboss/v2/ctr_boss_flags.proto\x1a\x1dboss/v2/file_attributes.proto\x1a&boss/v2/payload_content_info_ctr.proto\"\xe4\x04\n" +
 	"\aFileCTR\x12\x18\n" +
 	"\adeleted\x18\x01 \x01(\bR\adeleted\x12\x17\n" +
 	"\adata_id\x18\x02 \x01(\x04R\x06dataId\x12\x17\n" +
@@ -201,7 +209,8 @@ const file_boss_v2_file_ctr_proto_rawDesc = "" +
 	"\x10payload_contents\x18\f \x03(\v2\x1e.boss.v2.PayloadContentInfoCTRR\x0fpayloadContents\x12\x12\n" +
 	"\x04size\x18\r \x01(\x04R\x04size\x12+\n" +
 	"\x11created_timestamp\x18\x0e \x01(\x04R\x10createdTimestamp\x12+\n" +
-	"\x11updated_timestamp\x18\x0f \x01(\x04R\x10updatedTimestampB\x8b\x01\n" +
+	"\x11updated_timestamp\x18\x0f \x01(\x04R\x10updatedTimestamp\x12+\n" +
+	"\x05flags\x18\x10 \x01(\v2\x15.boss.v2.CTRBOSSFlagsR\x05flagsB\x8b\x01\n" +
 	"\vcom.boss.v2B\fFileCtrProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"
 
 var (
@@ -221,15 +230,17 @@ var file_boss_v2_file_ctr_proto_goTypes = []any{
 	(*FileCTR)(nil),               // 0: boss.v2.FileCTR
 	(*FileAttributes)(nil),        // 1: boss.v2.FileAttributes
 	(*PayloadContentInfoCTR)(nil), // 2: boss.v2.PayloadContentInfoCTR
+	(*CTRBOSSFlags)(nil),          // 3: boss.v2.CTRBOSSFlags
 }
 var file_boss_v2_file_ctr_proto_depIdxs = []int32{
 	1, // 0: boss.v2.FileCTR.attributes:type_name -> boss.v2.FileAttributes
 	2, // 1: boss.v2.FileCTR.payload_contents:type_name -> boss.v2.PayloadContentInfoCTR
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	3, // 2: boss.v2.FileCTR.flags:type_name -> boss.v2.CTRBOSSFlags
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_boss_v2_file_ctr_proto_init() }
@@ -237,6 +248,7 @@ func file_boss_v2_file_ctr_proto_init() {
 	if File_boss_v2_file_ctr_proto != nil {
 		return
 	}
+	file_boss_v2_ctr_boss_flags_proto_init()
 	file_boss_v2_file_attributes_proto_init()
 	file_boss_v2_payload_content_info_ctr_proto_init()
 	type x struct{}

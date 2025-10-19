@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CTRBOSSFlags } from "./ctr_boss_flags";
 import { FileAttributes } from "./file_attributes";
 import { PayloadContentInfoCTR } from "./payload_content_info_ctr";
 
@@ -28,6 +29,7 @@ export interface FileCTR {
   size: bigint;
   createdTimestamp: bigint;
   updatedTimestamp: bigint;
+  flags: CTRBOSSFlags | undefined;
 }
 
 function createBaseFileCTR(): FileCTR {
@@ -47,6 +49,7 @@ function createBaseFileCTR(): FileCTR {
     size: 0n,
     createdTimestamp: 0n,
     updatedTimestamp: 0n,
+    flags: undefined,
   };
 }
 
@@ -108,6 +111,9 @@ export const FileCTR: MessageFns<FileCTR> = {
         throw new globalThis.Error("value provided for field message.updatedTimestamp of type uint64 too large");
       }
       writer.uint32(120).uint64(message.updatedTimestamp);
+    }
+    if (message.flags !== undefined) {
+      CTRBOSSFlags.encode(message.flags, writer.uint32(130).fork()).join();
     }
     return writer;
   },
@@ -239,6 +245,14 @@ export const FileCTR: MessageFns<FileCTR> = {
           message.updatedTimestamp = reader.uint64() as bigint;
           continue;
         }
+        case 16: {
+          if (tag !== 130) {
+            break;
+          }
+
+          message.flags = CTRBOSSFlags.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -271,6 +285,7 @@ export const FileCTR: MessageFns<FileCTR> = {
       size: isSet(object.size) ? BigInt(object.size) : 0n,
       createdTimestamp: isSet(object.createdTimestamp) ? BigInt(object.createdTimestamp) : 0n,
       updatedTimestamp: isSet(object.updatedTimestamp) ? BigInt(object.updatedTimestamp) : 0n,
+      flags: isSet(object.flags) ? CTRBOSSFlags.fromJSON(object.flags) : undefined,
     };
   },
 
@@ -321,6 +336,9 @@ export const FileCTR: MessageFns<FileCTR> = {
     if (message.updatedTimestamp !== 0n) {
       obj.updatedTimestamp = message.updatedTimestamp.toString();
     }
+    if (message.flags !== undefined) {
+      obj.flags = CTRBOSSFlags.toJSON(message.flags);
+    }
     return obj;
   },
 
@@ -346,6 +364,9 @@ export const FileCTR: MessageFns<FileCTR> = {
     message.size = object.size ?? 0n;
     message.createdTimestamp = object.createdTimestamp ?? 0n;
     message.updatedTimestamp = object.updatedTimestamp ?? 0n;
+    message.flags = (object.flags !== undefined && object.flags !== null)
+      ? CTRBOSSFlags.fromPartial(object.flags)
+      : undefined;
     return message;
   },
 };

@@ -78,7 +78,7 @@ func (x *DeleteFileRequest) GetPlatformType() PlatformType {
 	if x != nil {
 		return x.PlatformType
 	}
-	return PlatformType_CTR
+	return PlatformType_PLATFORM_TYPE_UNSPECIFIED
 }
 
 type DeleteFileResponse struct {

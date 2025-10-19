@@ -9,19 +9,23 @@
 export const protobufPackage = "boss.v2";
 
 export enum PlatformType {
-  CTR = 0,
-  WUP = 1,
+  PLATFORM_TYPE_UNSPECIFIED = 0,
+  PLATFORM_TYPE_CTR = 1,
+  PLATFORM_TYPE_WUP = 2,
   UNRECOGNIZED = -1,
 }
 
 export function platformTypeFromJSON(object: any): PlatformType {
   switch (object) {
     case 0:
-    case "CTR":
-      return PlatformType.CTR;
+    case "PLATFORM_TYPE_UNSPECIFIED":
+      return PlatformType.PLATFORM_TYPE_UNSPECIFIED;
     case 1:
-    case "WUP":
-      return PlatformType.WUP;
+    case "PLATFORM_TYPE_CTR":
+      return PlatformType.PLATFORM_TYPE_CTR;
+    case 2:
+    case "PLATFORM_TYPE_WUP":
+      return PlatformType.PLATFORM_TYPE_WUP;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -31,10 +35,12 @@ export function platformTypeFromJSON(object: any): PlatformType {
 
 export function platformTypeToJSON(object: PlatformType): string {
   switch (object) {
-    case PlatformType.CTR:
-      return "CTR";
-    case PlatformType.WUP:
-      return "WUP";
+    case PlatformType.PLATFORM_TYPE_UNSPECIFIED:
+      return "PLATFORM_TYPE_UNSPECIFIED";
+    case PlatformType.PLATFORM_TYPE_CTR:
+      return "PLATFORM_TYPE_CTR";
+    case PlatformType.PLATFORM_TYPE_WUP:
+      return "PLATFORM_TYPE_WUP";
     case PlatformType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";

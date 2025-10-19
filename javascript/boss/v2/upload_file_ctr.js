@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UploadFileCTRResponse = exports.UploadFileCTRRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const ctr_boss_flags_1 = require("./ctr_boss_flags");
 const file_attributes_1 = require("./file_attributes");
 const file_ctr_1 = require("./file_ctr");
 const payload_content_ctr_1 = require("./payload_content_ctr");
@@ -22,6 +23,7 @@ function createBaseUploadFileCTRRequest() {
         name: "",
         serialNumber: 0,
         payloadContents: [],
+        flags: undefined,
     };
 }
 exports.UploadFileCTRRequest = {
@@ -49,6 +51,9 @@ exports.UploadFileCTRRequest = {
         }
         for (const v of message.payloadContents) {
             payload_content_ctr_1.PayloadContentCTR.encode(v, writer.uint32(66).fork()).join();
+        }
+        if (message.flags !== undefined) {
+            ctr_boss_flags_1.CTRBOSSFlags.encode(message.flags, writer.uint32(74).fork()).join();
         }
         return writer;
     },
@@ -115,6 +120,13 @@ exports.UploadFileCTRRequest = {
                     message.payloadContents.push(payload_content_ctr_1.PayloadContentCTR.decode(reader, reader.uint32()));
                     continue;
                 }
+                case 9: {
+                    if (tag !== 74) {
+                        break;
+                    }
+                    message.flags = ctr_boss_flags_1.CTRBOSSFlags.decode(reader, reader.uint32());
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -139,6 +151,7 @@ exports.UploadFileCTRRequest = {
             payloadContents: globalThis.Array.isArray(object?.payloadContents)
                 ? object.payloadContents.map((e) => payload_content_ctr_1.PayloadContentCTR.fromJSON(e))
                 : [],
+            flags: isSet(object.flags) ? ctr_boss_flags_1.CTRBOSSFlags.fromJSON(object.flags) : undefined,
         };
     },
     toJSON(message) {
@@ -167,6 +180,9 @@ exports.UploadFileCTRRequest = {
         if (message.payloadContents?.length) {
             obj.payloadContents = message.payloadContents.map((e) => payload_content_ctr_1.PayloadContentCTR.toJSON(e));
         }
+        if (message.flags !== undefined) {
+            obj.flags = ctr_boss_flags_1.CTRBOSSFlags.toJSON(message.flags);
+        }
         return obj;
     },
     create(base) {
@@ -184,6 +200,9 @@ exports.UploadFileCTRRequest = {
         message.name = object.name ?? "";
         message.serialNumber = object.serialNumber ?? 0;
         message.payloadContents = object.payloadContents?.map((e) => payload_content_ctr_1.PayloadContentCTR.fromPartial(e)) || [];
+        message.flags = (object.flags !== undefined && object.flags !== null)
+            ? ctr_boss_flags_1.CTRBOSSFlags.fromPartial(object.flags)
+            : undefined;
         return message;
     },
 };

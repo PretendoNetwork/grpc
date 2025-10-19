@@ -12,18 +12,22 @@ exports.platformTypeToJSON = platformTypeToJSON;
 exports.protobufPackage = "boss.v2";
 var PlatformType;
 (function (PlatformType) {
-    PlatformType[PlatformType["CTR"] = 0] = "CTR";
-    PlatformType[PlatformType["WUP"] = 1] = "WUP";
+    PlatformType[PlatformType["PLATFORM_TYPE_UNSPECIFIED"] = 0] = "PLATFORM_TYPE_UNSPECIFIED";
+    PlatformType[PlatformType["PLATFORM_TYPE_CTR"] = 1] = "PLATFORM_TYPE_CTR";
+    PlatformType[PlatformType["PLATFORM_TYPE_WUP"] = 2] = "PLATFORM_TYPE_WUP";
     PlatformType[PlatformType["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
 })(PlatformType || (exports.PlatformType = PlatformType = {}));
 function platformTypeFromJSON(object) {
     switch (object) {
         case 0:
-        case "CTR":
-            return PlatformType.CTR;
+        case "PLATFORM_TYPE_UNSPECIFIED":
+            return PlatformType.PLATFORM_TYPE_UNSPECIFIED;
         case 1:
-        case "WUP":
-            return PlatformType.WUP;
+        case "PLATFORM_TYPE_CTR":
+            return PlatformType.PLATFORM_TYPE_CTR;
+        case 2:
+        case "PLATFORM_TYPE_WUP":
+            return PlatformType.PLATFORM_TYPE_WUP;
         case -1:
         case "UNRECOGNIZED":
         default:
@@ -32,10 +36,12 @@ function platformTypeFromJSON(object) {
 }
 function platformTypeToJSON(object) {
     switch (object) {
-        case PlatformType.CTR:
-            return "CTR";
-        case PlatformType.WUP:
-            return "WUP";
+        case PlatformType.PLATFORM_TYPE_UNSPECIFIED:
+            return "PLATFORM_TYPE_UNSPECIFIED";
+        case PlatformType.PLATFORM_TYPE_CTR:
+            return "PLATFORM_TYPE_CTR";
+        case PlatformType.PLATFORM_TYPE_WUP:
+            return "PLATFORM_TYPE_WUP";
         case PlatformType.UNRECOGNIZED:
         default:
             return "UNRECOGNIZED";

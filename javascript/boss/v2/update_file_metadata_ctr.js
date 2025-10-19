@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateFileMetadataCTRResponse = exports.UpdateFileMetadataCTRRequest = exports.UpdateFileMetadataDataCTR = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const ctr_boss_flags_1 = require("./ctr_boss_flags");
 const file_attributes_1 = require("./file_attributes");
 const payload_content_info_ctr_1 = require("./payload_content_info_ctr");
 exports.protobufPackage = "boss.v2";
@@ -20,6 +21,7 @@ function createBaseUpdateFileMetadataDataCTR() {
         attributes: undefined,
         name: "",
         payloadContents: [],
+        flags: undefined,
     };
 }
 exports.UpdateFileMetadataDataCTR = {
@@ -44,6 +46,9 @@ exports.UpdateFileMetadataDataCTR = {
         }
         for (const v of message.payloadContents) {
             payload_content_info_ctr_1.PayloadContentInfoCTR.encode(v, writer.uint32(58).fork()).join();
+        }
+        if (message.flags !== undefined) {
+            ctr_boss_flags_1.CTRBOSSFlags.encode(message.flags, writer.uint32(66).fork()).join();
         }
         return writer;
     },
@@ -103,6 +108,13 @@ exports.UpdateFileMetadataDataCTR = {
                     message.payloadContents.push(payload_content_info_ctr_1.PayloadContentInfoCTR.decode(reader, reader.uint32()));
                     continue;
                 }
+                case 8: {
+                    if (tag !== 66) {
+                        break;
+                    }
+                    message.flags = ctr_boss_flags_1.CTRBOSSFlags.decode(reader, reader.uint32());
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -126,6 +138,7 @@ exports.UpdateFileMetadataDataCTR = {
             payloadContents: globalThis.Array.isArray(object?.payloadContents)
                 ? object.payloadContents.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.fromJSON(e))
                 : [],
+            flags: isSet(object.flags) ? ctr_boss_flags_1.CTRBOSSFlags.fromJSON(object.flags) : undefined,
         };
     },
     toJSON(message) {
@@ -151,6 +164,9 @@ exports.UpdateFileMetadataDataCTR = {
         if (message.payloadContents?.length) {
             obj.payloadContents = message.payloadContents.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.toJSON(e));
         }
+        if (message.flags !== undefined) {
+            obj.flags = ctr_boss_flags_1.CTRBOSSFlags.toJSON(message.flags);
+        }
         return obj;
     },
     create(base) {
@@ -167,6 +183,9 @@ exports.UpdateFileMetadataDataCTR = {
             : undefined;
         message.name = object.name ?? "";
         message.payloadContents = object.payloadContents?.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.fromPartial(e)) || [];
+        message.flags = (object.flags !== undefined && object.flags !== null)
+            ? ctr_boss_flags_1.CTRBOSSFlags.fromPartial(object.flags)
+            : undefined;
         return message;
     },
 };

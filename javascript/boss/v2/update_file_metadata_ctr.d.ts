@@ -1,4 +1,5 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CTRBOSSFlags } from "./ctr_boss_flags";
 import { FileAttributes } from "./file_attributes";
 import { PayloadContentInfoCTR } from "./payload_content_info_ctr";
 export declare const protobufPackage = "boss.v2";
@@ -10,6 +11,7 @@ export interface UpdateFileMetadataDataCTR {
     attributes: FileAttributes | undefined;
     name: string;
     payloadContents: PayloadContentInfoCTR[];
+    flags: CTRBOSSFlags | undefined;
 }
 export interface UpdateFileMetadataCTRRequest {
     dataId: bigint;

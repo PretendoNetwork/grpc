@@ -30,6 +30,7 @@ type UpdateFileMetadataDataCTR struct {
 	Attributes         *FileAttributes          `protobuf:"bytes,5,opt,name=attributes,proto3" json:"attributes,omitempty"`
 	Name               string                   `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	PayloadContents    []*PayloadContentInfoCTR `protobuf:"bytes,7,rep,name=payload_contents,json=payloadContents,proto3" json:"payload_contents,omitempty"`
+	Flags              *CTRBOSSFlags            `protobuf:"bytes,8,opt,name=flags,proto3" json:"flags,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -109,6 +110,13 @@ func (x *UpdateFileMetadataDataCTR) GetName() string {
 func (x *UpdateFileMetadataDataCTR) GetPayloadContents() []*PayloadContentInfoCTR {
 	if x != nil {
 		return x.PayloadContents
+	}
+	return nil
+}
+
+func (x *UpdateFileMetadataDataCTR) GetFlags() *CTRBOSSFlags {
+	if x != nil {
+		return x.Flags
 	}
 	return nil
 }
@@ -205,7 +213,7 @@ var File_boss_v2_update_file_metadata_ctr_proto protoreflect.FileDescriptor
 
 const file_boss_v2_update_file_metadata_ctr_proto_rawDesc = "" +
 	"\n" +
-	"&boss/v2/update_file_metadata_ctr.proto\x12\aboss.v2\x1a\x1dboss/v2/file_attributes.proto\x1a&boss/v2/payload_content_info_ctr.proto\"\xce\x02\n" +
+	"&boss/v2/update_file_metadata_ctr.proto\x12\aboss.v2\x1a\x1cboss/v2/ctr_boss_flags.proto\x1a\x1dboss/v2/file_attributes.proto\x1a&boss/v2/payload_content_info_ctr.proto\"\xfb\x02\n" +
 	"\x19UpdateFileMetadataDataCTR\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12/\n" +
@@ -215,7 +223,8 @@ const file_boss_v2_update_file_metadata_ctr_proto_rawDesc = "" +
 	"attributes\x18\x05 \x01(\v2\x17.boss.v2.FileAttributesR\n" +
 	"attributes\x12\x12\n" +
 	"\x04name\x18\x06 \x01(\tR\x04name\x12I\n" +
-	"\x10payload_contents\x18\a \x03(\v2\x1e.boss.v2.PayloadContentInfoCTRR\x0fpayloadContents\"|\n" +
+	"\x10payload_contents\x18\a \x03(\v2\x1e.boss.v2.PayloadContentInfoCTRR\x0fpayloadContents\x12+\n" +
+	"\x05flags\x18\b \x01(\v2\x15.boss.v2.CTRBOSSFlagsR\x05flags\"|\n" +
 	"\x1cUpdateFileMetadataCTRRequest\x12\x17\n" +
 	"\adata_id\x18\x01 \x01(\x04R\x06dataId\x12C\n" +
 	"\vupdate_data\x18\x02 \x01(\v2\".boss.v2.UpdateFileMetadataDataCTRR\n" +
@@ -242,16 +251,18 @@ var file_boss_v2_update_file_metadata_ctr_proto_goTypes = []any{
 	(*UpdateFileMetadataCTRResponse)(nil), // 2: boss.v2.UpdateFileMetadataCTRResponse
 	(*FileAttributes)(nil),                // 3: boss.v2.FileAttributes
 	(*PayloadContentInfoCTR)(nil),         // 4: boss.v2.PayloadContentInfoCTR
+	(*CTRBOSSFlags)(nil),                  // 5: boss.v2.CTRBOSSFlags
 }
 var file_boss_v2_update_file_metadata_ctr_proto_depIdxs = []int32{
 	3, // 0: boss.v2.UpdateFileMetadataDataCTR.attributes:type_name -> boss.v2.FileAttributes
 	4, // 1: boss.v2.UpdateFileMetadataDataCTR.payload_contents:type_name -> boss.v2.PayloadContentInfoCTR
-	0, // 2: boss.v2.UpdateFileMetadataCTRRequest.update_data:type_name -> boss.v2.UpdateFileMetadataDataCTR
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	5, // 2: boss.v2.UpdateFileMetadataDataCTR.flags:type_name -> boss.v2.CTRBOSSFlags
+	0, // 3: boss.v2.UpdateFileMetadataCTRRequest.update_data:type_name -> boss.v2.UpdateFileMetadataDataCTR
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_boss_v2_update_file_metadata_ctr_proto_init() }
@@ -259,6 +270,7 @@ func file_boss_v2_update_file_metadata_ctr_proto_init() {
 	if File_boss_v2_update_file_metadata_ctr_proto != nil {
 		return
 	}
+	file_boss_v2_ctr_boss_flags_proto_init()
 	file_boss_v2_file_attributes_proto_init()
 	file_boss_v2_payload_content_info_ctr_proto_init()
 	type x struct{}

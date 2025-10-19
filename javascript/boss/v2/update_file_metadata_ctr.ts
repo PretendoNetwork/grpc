@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CTRBOSSFlags } from "./ctr_boss_flags";
 import { FileAttributes } from "./file_attributes";
 import { PayloadContentInfoCTR } from "./payload_content_info_ctr";
 
@@ -19,6 +20,7 @@ export interface UpdateFileMetadataDataCTR {
   attributes: FileAttributes | undefined;
   name: string;
   payloadContents: PayloadContentInfoCTR[];
+  flags: CTRBOSSFlags | undefined;
 }
 
 export interface UpdateFileMetadataCTRRequest {
@@ -38,6 +40,7 @@ function createBaseUpdateFileMetadataDataCTR(): UpdateFileMetadataDataCTR {
     attributes: undefined,
     name: "",
     payloadContents: [],
+    flags: undefined,
   };
 }
 
@@ -63,6 +66,9 @@ export const UpdateFileMetadataDataCTR: MessageFns<UpdateFileMetadataDataCTR> = 
     }
     for (const v of message.payloadContents) {
       PayloadContentInfoCTR.encode(v!, writer.uint32(58).fork()).join();
+    }
+    if (message.flags !== undefined) {
+      CTRBOSSFlags.encode(message.flags, writer.uint32(66).fork()).join();
     }
     return writer;
   },
@@ -130,6 +136,14 @@ export const UpdateFileMetadataDataCTR: MessageFns<UpdateFileMetadataDataCTR> = 
           message.payloadContents.push(PayloadContentInfoCTR.decode(reader, reader.uint32()));
           continue;
         }
+        case 8: {
+          if (tag !== 66) {
+            break;
+          }
+
+          message.flags = CTRBOSSFlags.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -154,6 +168,7 @@ export const UpdateFileMetadataDataCTR: MessageFns<UpdateFileMetadataDataCTR> = 
       payloadContents: globalThis.Array.isArray(object?.payloadContents)
         ? object.payloadContents.map((e: any) => PayloadContentInfoCTR.fromJSON(e))
         : [],
+      flags: isSet(object.flags) ? CTRBOSSFlags.fromJSON(object.flags) : undefined,
     };
   },
 
@@ -180,6 +195,9 @@ export const UpdateFileMetadataDataCTR: MessageFns<UpdateFileMetadataDataCTR> = 
     if (message.payloadContents?.length) {
       obj.payloadContents = message.payloadContents.map((e) => PayloadContentInfoCTR.toJSON(e));
     }
+    if (message.flags !== undefined) {
+      obj.flags = CTRBOSSFlags.toJSON(message.flags);
+    }
     return obj;
   },
 
@@ -197,6 +215,9 @@ export const UpdateFileMetadataDataCTR: MessageFns<UpdateFileMetadataDataCTR> = 
       : undefined;
     message.name = object.name ?? "";
     message.payloadContents = object.payloadContents?.map((e) => PayloadContentInfoCTR.fromPartial(e)) || [];
+    message.flags = (object.flags !== undefined && object.flags !== null)
+      ? CTRBOSSFlags.fromPartial(object.flags)
+      : undefined;
     return message;
   },
 };

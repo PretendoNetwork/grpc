@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FileCTR = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const ctr_boss_flags_1 = require("./ctr_boss_flags");
 const file_attributes_1 = require("./file_attributes");
 const payload_content_info_ctr_1 = require("./payload_content_info_ctr");
 exports.protobufPackage = "boss.v2";
@@ -28,6 +29,7 @@ function createBaseFileCTR() {
         size: 0n,
         createdTimestamp: 0n,
         updatedTimestamp: 0n,
+        flags: undefined,
     };
 }
 exports.FileCTR = {
@@ -88,6 +90,9 @@ exports.FileCTR = {
                 throw new globalThis.Error("value provided for field message.updatedTimestamp of type uint64 too large");
             }
             writer.uint32(120).uint64(message.updatedTimestamp);
+        }
+        if (message.flags !== undefined) {
+            ctr_boss_flags_1.CTRBOSSFlags.encode(message.flags, writer.uint32(130).fork()).join();
         }
         return writer;
     },
@@ -203,6 +208,13 @@ exports.FileCTR = {
                     message.updatedTimestamp = reader.uint64();
                     continue;
                 }
+                case 16: {
+                    if (tag !== 130) {
+                        break;
+                    }
+                    message.flags = ctr_boss_flags_1.CTRBOSSFlags.decode(reader, reader.uint32());
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -234,6 +246,7 @@ exports.FileCTR = {
             size: isSet(object.size) ? BigInt(object.size) : 0n,
             createdTimestamp: isSet(object.createdTimestamp) ? BigInt(object.createdTimestamp) : 0n,
             updatedTimestamp: isSet(object.updatedTimestamp) ? BigInt(object.updatedTimestamp) : 0n,
+            flags: isSet(object.flags) ? ctr_boss_flags_1.CTRBOSSFlags.fromJSON(object.flags) : undefined,
         };
     },
     toJSON(message) {
@@ -283,6 +296,9 @@ exports.FileCTR = {
         if (message.updatedTimestamp !== 0n) {
             obj.updatedTimestamp = message.updatedTimestamp.toString();
         }
+        if (message.flags !== undefined) {
+            obj.flags = ctr_boss_flags_1.CTRBOSSFlags.toJSON(message.flags);
+        }
         return obj;
     },
     create(base) {
@@ -307,6 +323,9 @@ exports.FileCTR = {
         message.size = object.size ?? 0n;
         message.createdTimestamp = object.createdTimestamp ?? 0n;
         message.updatedTimestamp = object.updatedTimestamp ?? 0n;
+        message.flags = (object.flags !== undefined && object.flags !== null)
+            ? ctr_boss_flags_1.CTRBOSSFlags.fromPartial(object.flags)
+            : undefined;
         return message;
     },
 };

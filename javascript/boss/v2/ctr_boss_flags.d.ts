@@ -1,25 +1,9 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { CTRBOSSFlags } from "./ctr_boss_flags";
-import { FileAttributes } from "./file_attributes";
-import { FileCTR } from "./file_ctr";
-import { PayloadContentCTR } from "./payload_content_ctr";
 export declare const protobufPackage = "boss.v2";
-export interface UploadFileCTRRequest {
-    taskId: string;
-    bossAppId: string;
-    supportedCountries: string[];
-    supportedLanguages: string[];
-    attributes: FileAttributes | undefined;
-    name: string;
-    serialNumber: number;
-    payloadContents: PayloadContentCTR[];
-    flags: CTRBOSSFlags | undefined;
+export interface CTRBOSSFlags {
+    markArrivedPrivileged: boolean;
 }
-export interface UploadFileCTRResponse {
-    file: FileCTR | undefined;
-}
-export declare const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest>;
-export declare const UploadFileCTRResponse: MessageFns<UploadFileCTRResponse>;
+export declare const CTRBOSSFlags: MessageFns<CTRBOSSFlags>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

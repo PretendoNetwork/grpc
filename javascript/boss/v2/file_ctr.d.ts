@@ -1,4 +1,5 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CTRBOSSFlags } from "./ctr_boss_flags";
 import { FileAttributes } from "./file_attributes";
 import { PayloadContentInfoCTR } from "./payload_content_info_ctr";
 export declare const protobufPackage = "boss.v2";
@@ -19,6 +20,7 @@ export interface FileCTR {
     size: bigint;
     createdTimestamp: bigint;
     updatedTimestamp: bigint;
+    flags: CTRBOSSFlags | undefined;
 }
 export declare const FileCTR: MessageFns<FileCTR>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;

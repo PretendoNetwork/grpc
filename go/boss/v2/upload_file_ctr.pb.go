@@ -31,6 +31,7 @@ type UploadFileCTRRequest struct {
 	Name               string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	SerialNumber       uint32                 `protobuf:"varint,7,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
 	PayloadContents    []*PayloadContentCTR   `protobuf:"bytes,8,rep,name=payload_contents,json=payloadContents,proto3" json:"payload_contents,omitempty"`
+	Flags              *CTRBOSSFlags          `protobuf:"bytes,9,opt,name=flags,proto3" json:"flags,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -121,6 +122,13 @@ func (x *UploadFileCTRRequest) GetPayloadContents() []*PayloadContentCTR {
 	return nil
 }
 
+func (x *UploadFileCTRRequest) GetFlags() *CTRBOSSFlags {
+	if x != nil {
+		return x.Flags
+	}
+	return nil
+}
+
 type UploadFileCTRResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	File          *FileCTR               `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
@@ -169,7 +177,7 @@ var File_boss_v2_upload_file_ctr_proto protoreflect.FileDescriptor
 
 const file_boss_v2_upload_file_ctr_proto_rawDesc = "" +
 	"\n" +
-	"\x1dboss/v2/upload_file_ctr.proto\x12\aboss.v2\x1a\x1dboss/v2/file_attributes.proto\x1a\x16boss/v2/file_ctr.proto\x1a!boss/v2/payload_content_ctr.proto\"\xea\x02\n" +
+	"\x1dboss/v2/upload_file_ctr.proto\x12\aboss.v2\x1a\x1cboss/v2/ctr_boss_flags.proto\x1a\x1dboss/v2/file_attributes.proto\x1a\x16boss/v2/file_ctr.proto\x1a!boss/v2/payload_content_ctr.proto\"\x97\x03\n" +
 	"\x14UploadFileCTRRequest\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12/\n" +
@@ -180,7 +188,8 @@ const file_boss_v2_upload_file_ctr_proto_rawDesc = "" +
 	"attributes\x12\x12\n" +
 	"\x04name\x18\x06 \x01(\tR\x04name\x12#\n" +
 	"\rserial_number\x18\a \x01(\rR\fserialNumber\x12E\n" +
-	"\x10payload_contents\x18\b \x03(\v2\x1a.boss.v2.PayloadContentCTRR\x0fpayloadContents\"=\n" +
+	"\x10payload_contents\x18\b \x03(\v2\x1a.boss.v2.PayloadContentCTRR\x0fpayloadContents\x12+\n" +
+	"\x05flags\x18\t \x01(\v2\x15.boss.v2.CTRBOSSFlagsR\x05flags\"=\n" +
 	"\x15UploadFileCTRResponse\x12$\n" +
 	"\x04file\x18\x01 \x01(\v2\x10.boss.v2.FileCTRR\x04fileB\x91\x01\n" +
 	"\vcom.boss.v2B\x12UploadFileCtrProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"
@@ -203,17 +212,19 @@ var file_boss_v2_upload_file_ctr_proto_goTypes = []any{
 	(*UploadFileCTRResponse)(nil), // 1: boss.v2.UploadFileCTRResponse
 	(*FileAttributes)(nil),        // 2: boss.v2.FileAttributes
 	(*PayloadContentCTR)(nil),     // 3: boss.v2.PayloadContentCTR
-	(*FileCTR)(nil),               // 4: boss.v2.FileCTR
+	(*CTRBOSSFlags)(nil),          // 4: boss.v2.CTRBOSSFlags
+	(*FileCTR)(nil),               // 5: boss.v2.FileCTR
 }
 var file_boss_v2_upload_file_ctr_proto_depIdxs = []int32{
 	2, // 0: boss.v2.UploadFileCTRRequest.attributes:type_name -> boss.v2.FileAttributes
 	3, // 1: boss.v2.UploadFileCTRRequest.payload_contents:type_name -> boss.v2.PayloadContentCTR
-	4, // 2: boss.v2.UploadFileCTRResponse.file:type_name -> boss.v2.FileCTR
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 2: boss.v2.UploadFileCTRRequest.flags:type_name -> boss.v2.CTRBOSSFlags
+	5, // 3: boss.v2.UploadFileCTRResponse.file:type_name -> boss.v2.FileCTR
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_boss_v2_upload_file_ctr_proto_init() }
@@ -221,6 +232,7 @@ func file_boss_v2_upload_file_ctr_proto_init() {
 	if File_boss_v2_upload_file_ctr_proto != nil {
 		return
 	}
+	file_boss_v2_ctr_boss_flags_proto_init()
 	file_boss_v2_file_attributes_proto_init()
 	file_boss_v2_file_ctr_proto_init()
 	file_boss_v2_payload_content_ctr_proto_init()
