@@ -16,4 +16,28 @@ service AccountService {
   rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {}
   rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
   rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+
+  rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
+  rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
+  rpc UpdateDevice() returns () {}
+
+  rpc ListNEXAccounts() returns () {}
+  rpc GetNEXAccount() returns () {}
+  rpc UpdateNEXAccount() returns () {}
+
+  rpc ListServers() returns () {}
+  rpc CreateServer() returns () {}
+  rpc GetServer() returns () {}
+  rpc UpdateServer() returns () {}
+  rpc DeleteServer() returns () {}
+
+  rpc ListPNIDs() returns () {}
+  rpc GetPNID() returns () {}
+  rpc UpdatePNID() returns () {}
+  rpc DeletePNID() returns () {}
+
+  rpc ListAuditLogs() returns () {}
+  rpc CreateAuditLogComment() returns () {}
+  rpc GetAuditLog() returns () {}
+  rpc CreateAuditLog() returns () {}
 }

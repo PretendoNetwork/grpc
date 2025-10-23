@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/page.proto";
+
+message ListDevicesRequest {
+  PageInput page = 1;
+  optional string search_input = 2;
+}
+
+message ListDevicesResponse {
+  PageResults page = 1;
+  repeated Device items = 1; // TODO add shallow device model
+}

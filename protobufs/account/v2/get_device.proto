@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/page.proto";
+
+message GetDeviceRequest {
+  int32 device_id = 1;
+}
+
+message GetDeviceResponse {
+  Device item = 1; // TODO add full device model
+}
