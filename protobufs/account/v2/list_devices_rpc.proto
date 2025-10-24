@@ -6,7 +6,9 @@ import "account/v2/page.proto";
 
 message ListDevicesRequest {
   PageInput page = 1;
-  optional string filter_keyword = 2;
+  optional uint32 filter_pid = 2;
+  optional string filter_keyword = 3;
+  optional string filter_serial = 4;
 }
 
 message ListDevicesResponse {

@@ -3,7 +3,7 @@ syntax = "proto3";
 package account.v2;
 
 message GetDeviceRequest {
-  int32 device_id = 1;
+  uint32 device_id = 1;
 }
 
 message GetDeviceResponse {
