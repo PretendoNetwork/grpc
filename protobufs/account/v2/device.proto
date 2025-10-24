@@ -8,4 +8,5 @@ message Device {
   repeated uint32 linked_pids = 3;
   int32 access_level = 4;
   string server_access_level = 5;
+  int32 device_id = 6;
 }

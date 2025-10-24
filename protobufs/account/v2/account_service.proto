@@ -8,6 +8,9 @@ import "account/v2/get_nex_data_rpc.proto";
 import "account/v2/get_nex_password_rpc.proto";
 import "account/v2/get_user_data_rpc.proto";
 import "account/v2/update_pnid_permissions.proto";
+import "account/v2/list_device_rpc.proto";
+import "account/v2/get_device_rpc.proto";
+import "account/v2/update_device_rpc.proto";
 
 service AccountService {
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
@@ -19,7 +22,7 @@ service AccountService {
 
   rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
   rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
-  rpc UpdateDevice() returns () {}
+  rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
 
   rpc ListNEXAccounts() returns () {}
   rpc GetNEXAccount() returns () {}
