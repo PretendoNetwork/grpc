@@ -47,5 +47,5 @@ service AccountService {
 
   rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsRequest) {}
   rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsRequest) {}
-  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns () {CreateAuditLogCommentRequest}
+  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentRequest) {}
 }

@@ -10,6 +10,7 @@ message AuditLog {
   string target_resource_type = 5;
   uint64 created_timestamp = 6;
   string message = 7;
+  uint32 comment_count = 8;
 }
 
 message AuditLogComment {
