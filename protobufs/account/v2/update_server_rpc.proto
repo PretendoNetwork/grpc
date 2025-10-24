@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/server.proto";
+
+message UpdateServerRequest {
+  string id = 1;
+  optional string ip = 2;
+  optional uint32 port = 3;
+  optional string service_name = 4;
+  optional string service_type = 5;
+  optional string game_server_id = 6;
+  optional UpdateStringList title_ids = 7;
+  optional string access_mode = 8;
+  optional bool maintenance_mode = 9;
+  optional uint32 device = 10;
+  optional string aes_key = 11;
+  optional NullableString client_id = 12;
+
+  message NullableString {
+    optional string value = 1;
+  }
+
+  message UpdateStringList {
+    repeated string add = 1;
+    repeated string remove = 2;
+  }
+}
+
+message UpdateServerResponse {
+  Server item = 1;
+}

@@ -31,11 +31,11 @@ service AccountService {
   rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
   rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
 
-  rpc ListServers() returns () {}
-  rpc CreateServer() returns () {}
-  rpc GetServer() returns () {}
-  rpc UpdateServer() returns () {}
-  rpc DeleteServer() returns () {}
+  rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
+  rpc CreateServer(CreateServerRequest) returns () {CreateServerResponse}
+  rpc GetServer(GetServerRequest) returns (GetServerResponse) {}
+  rpc UpdateServer(UpdateServerRequest) returns (UpdateServerResponse) {}
+  rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
 
   rpc ListPNIDs() returns () {}
   rpc GetPNID() returns () {}
