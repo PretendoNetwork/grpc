@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/page.proto";
+import "account/v2/audit_log.proto";
+
+message ListAuditLogsRequest {
+  PageInput page = 1;
+  optional uint32 filted_executed_by_pid = 2;
+  optional uint32 filter_message = 3;
+  optional string filter_resource_id = 4;
+  optional string filter_resource_type = 5;
+  optional string filter_action_type = 6;
+}
+
+message ListAuditLogsResponse {
+  PageResults page = 1;
+  repeated AuditLog items = 2;
+}

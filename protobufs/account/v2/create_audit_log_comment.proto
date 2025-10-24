@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/audit_log.proto";
+
+message CreateAuditLogCommentRequest {
+  string id = 1;
+  string content = 2;
+}
+
+message CreateAuditLogCommentResponse {
+  AuditLogComment item = 1;
+}

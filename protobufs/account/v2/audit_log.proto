@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package account.v2;
+
+message AuditLog {
+  string id = 1;
+  string action_type = 2;
+  uint32 executed_by_pid = 3;
+  string target_resource_id = 4;
+  string target_resource_type = 5;
+  uint64 created_timestamp = 6;
+  string message = 7;
+}
+
+message AuditLogComment {
+  string id = 1;
+  uint32 pid = 2;
+  uint64 created_timestamp = 3;
+  string content = 4;
+}

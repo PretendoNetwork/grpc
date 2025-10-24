@@ -14,6 +14,9 @@ import "account/v2/update_device_rpc.proto";
 import "account/v2/list_nex_account_rpc.proto";
 import "account/v2/get_nex_account_rpc.proto";
 import "account/v2/update_nex_account_rpc.proto";
+import "account/v2/list_audit_logs_rpc.proto";
+import "account/v2/list_audit_log_comments_rpc.proto";
+import "account/v2/create_audit_log_comment_rpc.proto";
 
 service AccountService {
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
@@ -42,8 +45,7 @@ service AccountService {
   rpc UpdatePNID() returns () {}
   rpc DeletePNID() returns () {}
 
-  rpc ListAuditLogs() returns () {}
-  rpc CreateAuditLogComment() returns () {}
-  rpc GetAuditLog() returns () {}
-  rpc CreateAuditLog() returns () {}
+  rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsRequest) {}
+  rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsRequest) {}
+  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns () {CreateAuditLogCommentRequest}
 }
