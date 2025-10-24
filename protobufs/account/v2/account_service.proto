@@ -11,6 +11,9 @@ import "account/v2/update_pnid_permissions.proto";
 import "account/v2/list_device_rpc.proto";
 import "account/v2/get_device_rpc.proto";
 import "account/v2/update_device_rpc.proto";
+import "account/v2/list_nex_account_rpc.proto";
+import "account/v2/get_nex_account_rpc.proto";
+import "account/v2/update_nex_account_rpc.proto";
 
 service AccountService {
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
@@ -24,9 +27,9 @@ service AccountService {
   rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
   rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
 
-  rpc ListNEXAccounts() returns () {}
-  rpc GetNEXAccount() returns () {}
-  rpc UpdateNEXAccount() returns () {}
+  rpc ListNEXAccounts(ListNEXAccountsRequest) returns (ListNEXAccountsResponse) {}
+  rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
+  rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
 
   rpc ListServers() returns () {}
   rpc CreateServer() returns () {}

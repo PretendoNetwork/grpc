@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package account.v2;
 
+import "account/v2/device.proto";
+
 message GetDeviceRequest {
   uint32 device_id = 1;
 }

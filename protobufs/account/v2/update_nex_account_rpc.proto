@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/nex_account.proto";
+
+message UpdateNEXAccountRequest {
+  optional string server_access_level = 1;
+  optional int32 access_level = 1;
+}
+
+message UpdateNEXAccountResponse {
+  NEXAccount item = 1;
+}
