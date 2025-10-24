@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+message PageInput {
+  uint32 limit = 1;
+  uint32 offset = 2;
+}
+
+message PageResults {
+  uint32 total = 1;
+  uint32 offset = 2;
+  uint32 item_count = 3;
+}
