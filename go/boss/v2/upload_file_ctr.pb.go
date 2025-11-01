@@ -29,7 +29,7 @@ type UploadFileCTRRequest struct {
 	SupportedLanguages []string               `protobuf:"bytes,4,rep,name=supported_languages,json=supportedLanguages,proto3" json:"supported_languages,omitempty"`
 	Attributes         *FileAttributes        `protobuf:"bytes,5,opt,name=attributes,proto3" json:"attributes,omitempty"`
 	Name               string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
-	SerialNumber       uint32                 `protobuf:"varint,7,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
+	SerialNumber       uint64                 `protobuf:"varint,7,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
 	PayloadContents    []*PayloadContentCTR   `protobuf:"bytes,8,rep,name=payload_contents,json=payloadContents,proto3" json:"payload_contents,omitempty"`
 	Flags              *CTRBOSSFlags          `protobuf:"bytes,9,opt,name=flags,proto3" json:"flags,omitempty"`
 	unknownFields      protoimpl.UnknownFields
@@ -108,7 +108,7 @@ func (x *UploadFileCTRRequest) GetName() string {
 	return ""
 }
 
-func (x *UploadFileCTRRequest) GetSerialNumber() uint32 {
+func (x *UploadFileCTRRequest) GetSerialNumber() uint64 {
 	if x != nil {
 		return x.SerialNumber
 	}
@@ -187,7 +187,7 @@ const file_boss_v2_upload_file_ctr_proto_rawDesc = "" +
 	"attributes\x18\x05 \x01(\v2\x17.boss.v2.FileAttributesR\n" +
 	"attributes\x12\x12\n" +
 	"\x04name\x18\x06 \x01(\tR\x04name\x12#\n" +
-	"\rserial_number\x18\a \x01(\rR\fserialNumber\x12E\n" +
+	"\rserial_number\x18\a \x01(\x04R\fserialNumber\x12E\n" +
 	"\x10payload_contents\x18\b \x03(\v2\x1a.boss.v2.PayloadContentCTRR\x0fpayloadContents\x12+\n" +
 	"\x05flags\x18\t \x01(\v2\x15.boss.v2.CTRBOSSFlagsR\x05flags\"=\n" +
 	"\x15UploadFileCTRResponse\x12$\n" +
