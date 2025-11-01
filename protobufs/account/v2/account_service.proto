@@ -8,6 +8,15 @@ import "account/v2/get_nex_data_rpc.proto";
 import "account/v2/get_nex_password_rpc.proto";
 import "account/v2/get_user_data_rpc.proto";
 import "account/v2/update_pnid_permissions.proto";
+import "account/v2/list_device_rpc.proto";
+import "account/v2/get_device_rpc.proto";
+import "account/v2/update_device_rpc.proto";
+import "account/v2/list_nex_account_rpc.proto";
+import "account/v2/get_nex_account_rpc.proto";
+import "account/v2/update_nex_account_rpc.proto";
+import "account/v2/list_audit_logs_rpc.proto";
+import "account/v2/list_audit_log_comments_rpc.proto";
+import "account/v2/create_audit_log_comment_rpc.proto";
 
 service AccountService {
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
@@ -16,4 +25,27 @@ service AccountService {
   rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {}
   rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
   rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+
+  rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
+  rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
+  rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
+
+  rpc ListNEXAccounts(ListNEXAccountsRequest) returns (ListNEXAccountsResponse) {}
+  rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
+  rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
+
+  rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
+  rpc CreateServer(CreateServerRequest) returns () {CreateServerResponse}
+  rpc GetServer(GetServerRequest) returns (GetServerResponse) {}
+  rpc UpdateServer(UpdateServerRequest) returns (UpdateServerResponse) {}
+  rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
+
+  rpc ListPNIDs() returns () {}
+  rpc GetPNID() returns () {}
+  rpc UpdatePNID() returns () {}
+  rpc DeletePNID() returns () {}
+
+  rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsRequest) {}
+  rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsRequest) {}
+  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentRequest) {}
 }
