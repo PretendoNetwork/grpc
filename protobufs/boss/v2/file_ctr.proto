@@ -17,7 +17,7 @@ message FileCTR {
   uint32 creator_pid = 8;
   string name = 9;
   string hash = 10;
-  uint32 serial_number = 11;
+  uint64 serial_number = 11;
   repeated PayloadContentInfoCTR payload_contents = 12;
   uint64 size = 13;
   uint64 created_timestamp = 14;
