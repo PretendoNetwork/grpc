@@ -9,6 +9,7 @@ message ListFilesWUPRequest {
   string boss_app_id = 2;
   optional string country = 3;
   optional string language = 4;
+  bool any = 5;
 }
 
 message ListFilesWUPResponse {
