@@ -25,7 +25,7 @@ type UpdateTaskData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	BossAppId     string                 `protobuf:"bytes,2,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
-	TitleId       uint64                 `protobuf:"varint,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
+	TitleId       string                 `protobuf:"bytes,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
 	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -76,11 +76,11 @@ func (x *UpdateTaskData) GetBossAppId() string {
 	return ""
 }
 
-func (x *UpdateTaskData) GetTitleId() uint64 {
+func (x *UpdateTaskData) GetTitleId() string {
 	if x != nil {
 		return x.TitleId
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateTaskData) GetStatus() string {
@@ -165,7 +165,7 @@ const file_boss_update_task_proto_rawDesc = "" +
 	"\x0eUpdateTaskData\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12\x19\n" +
-	"\btitle_id\x18\x03 \x01(\x04R\atitleId\x12\x16\n" +
+	"\btitle_id\x18\x03 \x01(\tR\atitleId\x12\x16\n" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\"z\n" +
 	"\x11UpdateTaskRequest\x12\x0e\n" +

@@ -29,7 +29,7 @@ type Task struct {
 	BossAppId        string                 `protobuf:"bytes,4,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
 	CreatorPid       uint32                 `protobuf:"varint,5,opt,name=creator_pid,json=creatorPid,proto3" json:"creator_pid,omitempty"`
 	Status           string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	TitleId          uint64                 `protobuf:"varint,7,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
+	TitleId          string                 `protobuf:"bytes,7,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
 	Description      string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
 	CreatedTimestamp uint64                 `protobuf:"varint,9,opt,name=created_timestamp,json=createdTimestamp,proto3" json:"created_timestamp,omitempty"`
 	UpdatedTimestamp uint64                 `protobuf:"varint,10,opt,name=updated_timestamp,json=updatedTimestamp,proto3" json:"updated_timestamp,omitempty"`
@@ -109,11 +109,11 @@ func (x *Task) GetStatus() string {
 	return ""
 }
 
-func (x *Task) GetTitleId() uint64 {
+func (x *Task) GetTitleId() string {
 	if x != nil {
 		return x.TitleId
 	}
-	return 0
+	return ""
 }
 
 func (x *Task) GetDescription() string {
@@ -151,7 +151,7 @@ const file_boss_task_proto_rawDesc = "" +
 	"\vcreator_pid\x18\x05 \x01(\rR\n" +
 	"creatorPid\x12\x16\n" +
 	"\x06status\x18\x06 \x01(\tR\x06status\x12\x19\n" +
-	"\btitle_id\x18\a \x01(\x04R\atitleId\x12 \n" +
+	"\btitle_id\x18\a \x01(\tR\atitleId\x12 \n" +
 	"\vdescription\x18\b \x01(\tR\vdescription\x12+\n" +
 	"\x11created_timestamp\x18\t \x01(\x04R\x10createdTimestamp\x12+\n" +
 	"\x11updated_timestamp\x18\n" +

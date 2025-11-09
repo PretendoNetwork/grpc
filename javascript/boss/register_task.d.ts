@@ -4,7 +4,7 @@ export declare const protobufPackage = "boss";
 export interface RegisterTaskRequest {
     id: string;
     bossAppId: string;
-    titleId: bigint;
+    titleId: string;
     country: string;
     description: string;
 }

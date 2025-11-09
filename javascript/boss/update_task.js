@@ -10,7 +10,7 @@ exports.UpdateTaskRequest = exports.UpdateTaskData = exports.protobufPackage = v
 const wire_1 = require("@bufbuild/protobuf/wire");
 exports.protobufPackage = "boss";
 function createBaseUpdateTaskData() {
-    return { id: "", bossAppId: "", titleId: 0n, status: "", description: "" };
+    return { id: "", bossAppId: "", titleId: "", status: "", description: "" };
 }
 exports.UpdateTaskData = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -20,11 +20,8 @@ exports.UpdateTaskData = {
         if (message.bossAppId !== "") {
             writer.uint32(18).string(message.bossAppId);
         }
-        if (message.titleId !== 0n) {
-            if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
-                throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
-            }
-            writer.uint32(24).uint64(message.titleId);
+        if (message.titleId !== "") {
+            writer.uint32(26).string(message.titleId);
         }
         if (message.status !== "") {
             writer.uint32(34).string(message.status);
@@ -56,10 +53,10 @@ exports.UpdateTaskData = {
                     continue;
                 }
                 case 3: {
-                    if (tag !== 24) {
+                    if (tag !== 26) {
                         break;
                     }
-                    message.titleId = reader.uint64();
+                    message.titleId = reader.string();
                     continue;
                 }
                 case 4: {
@@ -88,7 +85,7 @@ exports.UpdateTaskData = {
         return {
             id: isSet(object.id) ? globalThis.String(object.id) : "",
             bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
-            titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
+            titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
             status: isSet(object.status) ? globalThis.String(object.status) : "",
             description: isSet(object.description) ? globalThis.String(object.description) : "",
         };
@@ -101,8 +98,8 @@ exports.UpdateTaskData = {
         if (message.bossAppId !== "") {
             obj.bossAppId = message.bossAppId;
         }
-        if (message.titleId !== 0n) {
-            obj.titleId = message.titleId.toString();
+        if (message.titleId !== "") {
+            obj.titleId = message.titleId;
         }
         if (message.status !== "") {
             obj.status = message.status;
@@ -119,7 +116,7 @@ exports.UpdateTaskData = {
         const message = createBaseUpdateTaskData();
         message.id = object.id ?? "";
         message.bossAppId = object.bossAppId ?? "";
-        message.titleId = object.titleId ?? 0n;
+        message.titleId = object.titleId ?? "";
         message.status = object.status ?? "";
         message.description = object.description ?? "";
         return message;

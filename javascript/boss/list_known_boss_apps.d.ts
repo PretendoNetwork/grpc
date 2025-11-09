@@ -2,7 +2,7 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export declare const protobufPackage = "boss";
 export interface BOSSApp {
     bossAppId: string;
-    titleId: bigint;
+    titleId: string;
     titleRegion: string;
     name: string;
     tasks: string[];

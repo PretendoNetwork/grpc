@@ -7,7 +7,7 @@ export interface Task {
     bossAppId: string;
     creatorPid: number;
     status: string;
-    titleId: bigint;
+    titleId: string;
     description: string;
     createdTimestamp: bigint;
     updatedTimestamp: bigint;
