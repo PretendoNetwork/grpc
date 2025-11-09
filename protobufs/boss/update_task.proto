@@ -5,7 +5,7 @@ package boss;
 message UpdateTaskData {
   string id = 1;
   string boss_app_id = 2;
-  uint64 title_id = 3;
+  string title_id = 3;
   string status = 4;
   string description = 5;
 }
