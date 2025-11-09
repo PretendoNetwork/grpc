@@ -26,8 +26,9 @@ type RegisterTaskRequest struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	BossAppId     string                 `protobuf:"bytes,2,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
 	TitleId       uint64                 `protobuf:"varint,3,opt,name=title_id,json=titleId,proto3" json:"title_id,omitempty"`
-	Country       string                 `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
-	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	Interval      uint32                 `protobuf:"varint,5,opt,name=interval,proto3" json:"interval,omitempty"`
+	Description   string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -83,11 +84,18 @@ func (x *RegisterTaskRequest) GetTitleId() uint64 {
 	return 0
 }
 
-func (x *RegisterTaskRequest) GetCountry() string {
+func (x *RegisterTaskRequest) GetStatus() string {
 	if x != nil {
-		return x.Country
+		return x.Status
 	}
 	return ""
+}
+
+func (x *RegisterTaskRequest) GetInterval() uint32 {
+	if x != nil {
+		return x.Interval
+	}
+	return 0
 }
 
 func (x *RegisterTaskRequest) GetDescription() string {
@@ -145,13 +153,14 @@ var File_boss_v2_register_task_proto protoreflect.FileDescriptor
 
 const file_boss_v2_register_task_proto_rawDesc = "" +
 	"\n" +
-	"\x1bboss/v2/register_task.proto\x12\aboss.v2\x1a\x12boss/v2/task.proto\"\x9c\x01\n" +
+	"\x1bboss/v2/register_task.proto\x12\aboss.v2\x1a\x12boss/v2/task.proto\"\xb6\x01\n" +
 	"\x13RegisterTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12\x19\n" +
-	"\btitle_id\x18\x03 \x01(\x04R\atitleId\x12\x18\n" +
-	"\acountry\x18\x04 \x01(\tR\acountry\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\"9\n" +
+	"\btitle_id\x18\x03 \x01(\x04R\atitleId\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12\x1a\n" +
+	"\binterval\x18\x05 \x01(\rR\binterval\x12 \n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\"9\n" +
 	"\x14RegisterTaskResponse\x12!\n" +
 	"\x04task\x18\x01 \x01(\v2\r.boss.v2.TaskR\x04taskB\x90\x01\n" +
 	"\vcom.boss.v2B\x11RegisterTaskProtoP\x01Z1github.com/PretendoNetwork/grpc/go/boss/v2;bossv2\xa2\x02\x03BXX\xaa\x02\aBoss.V2\xca\x02\aBoss\\V2\xe2\x02\x13Boss\\V2\\GPBMetadata\xea\x02\bBoss::V2b\x06proto3"

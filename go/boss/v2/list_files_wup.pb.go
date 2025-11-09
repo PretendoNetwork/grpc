@@ -27,6 +27,7 @@ type ListFilesWUPRequest struct {
 	BossAppId     string                 `protobuf:"bytes,2,opt,name=boss_app_id,json=bossAppId,proto3" json:"boss_app_id,omitempty"`
 	Country       *string                `protobuf:"bytes,3,opt,name=country,proto3,oneof" json:"country,omitempty"`
 	Language      *string                `protobuf:"bytes,4,opt,name=language,proto3,oneof" json:"language,omitempty"`
+	Any           bool                   `protobuf:"varint,5,opt,name=any,proto3" json:"any,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -89,6 +90,13 @@ func (x *ListFilesWUPRequest) GetLanguage() string {
 	return ""
 }
 
+func (x *ListFilesWUPRequest) GetAny() bool {
+	if x != nil {
+		return x.Any
+	}
+	return false
+}
+
 type ListFilesWUPResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Files         []*FileWUP             `protobuf:"bytes,1,rep,name=files,proto3" json:"files,omitempty"`
@@ -137,12 +145,13 @@ var File_boss_v2_list_files_wup_proto protoreflect.FileDescriptor
 
 const file_boss_v2_list_files_wup_proto_rawDesc = "" +
 	"\n" +
-	"\x1cboss/v2/list_files_wup.proto\x12\aboss.v2\x1a\x16boss/v2/file_wup.proto\"\xa7\x01\n" +
+	"\x1cboss/v2/list_files_wup.proto\x12\aboss.v2\x1a\x16boss/v2/file_wup.proto\"\xb9\x01\n" +
 	"\x13ListFilesWUPRequest\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1e\n" +
 	"\vboss_app_id\x18\x02 \x01(\tR\tbossAppId\x12\x1d\n" +
 	"\acountry\x18\x03 \x01(\tH\x00R\acountry\x88\x01\x01\x12\x1f\n" +
-	"\blanguage\x18\x04 \x01(\tH\x01R\blanguage\x88\x01\x01B\n" +
+	"\blanguage\x18\x04 \x01(\tH\x01R\blanguage\x88\x01\x01\x12\x10\n" +
+	"\x03any\x18\x05 \x01(\bR\x03anyB\n" +
 	"\n" +
 	"\b_countryB\v\n" +
 	"\t_language\">\n" +

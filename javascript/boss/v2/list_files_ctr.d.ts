@@ -6,6 +6,7 @@ export interface ListFilesCTRRequest {
     bossAppId: string;
     country?: string | undefined;
     language?: string | undefined;
+    any: boolean;
 }
 export interface ListFilesCTRResponse {
     files: FileCTR[];

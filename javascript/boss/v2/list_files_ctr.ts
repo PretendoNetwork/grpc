@@ -15,6 +15,7 @@ export interface ListFilesCTRRequest {
   bossAppId: string;
   country?: string | undefined;
   language?: string | undefined;
+  any: boolean;
 }
 
 export interface ListFilesCTRResponse {
@@ -22,7 +23,7 @@ export interface ListFilesCTRResponse {
 }
 
 function createBaseListFilesCTRRequest(): ListFilesCTRRequest {
-  return { taskId: "", bossAppId: "", country: undefined, language: undefined };
+  return { taskId: "", bossAppId: "", country: undefined, language: undefined, any: false };
 }
 
 export const ListFilesCTRRequest: MessageFns<ListFilesCTRRequest> = {
@@ -38,6 +39,9 @@ export const ListFilesCTRRequest: MessageFns<ListFilesCTRRequest> = {
     }
     if (message.language !== undefined) {
       writer.uint32(34).string(message.language);
+    }
+    if (message.any !== false) {
+      writer.uint32(40).bool(message.any);
     }
     return writer;
   },
@@ -81,6 +85,14 @@ export const ListFilesCTRRequest: MessageFns<ListFilesCTRRequest> = {
           message.language = reader.string();
           continue;
         }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.any = reader.bool();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -96,6 +108,7 @@ export const ListFilesCTRRequest: MessageFns<ListFilesCTRRequest> = {
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
       country: isSet(object.country) ? globalThis.String(object.country) : undefined,
       language: isSet(object.language) ? globalThis.String(object.language) : undefined,
+      any: isSet(object.any) ? globalThis.Boolean(object.any) : false,
     };
   },
 
@@ -113,6 +126,9 @@ export const ListFilesCTRRequest: MessageFns<ListFilesCTRRequest> = {
     if (message.language !== undefined) {
       obj.language = message.language;
     }
+    if (message.any !== false) {
+      obj.any = message.any;
+    }
     return obj;
   },
 
@@ -125,6 +141,7 @@ export const ListFilesCTRRequest: MessageFns<ListFilesCTRRequest> = {
     message.bossAppId = object.bossAppId ?? "";
     message.country = object.country ?? undefined;
     message.language = object.language ?? undefined;
+    message.any = object.any ?? false;
     return message;
   },
 };
