@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package account.v2;
+
+message Server {
+  string id = 1;
+  string ip = 2;
+  uint32 port = 3;
+  string service_name = 4;
+  string service_type = 5;
+  string game_server_id = 6;
+  repeated string title_ids = 7;
+  string access_mode = 8;
+  bool maintenance_mode = 9;
+  uint32 device = 10;
+  string aes_key = 11;
+  optional string client_id = 12;
+}
