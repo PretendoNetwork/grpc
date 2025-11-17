@@ -35,7 +35,7 @@ service AccountService {
   rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
 
   rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
-  rpc CreateServer(CreateServerRequest) returns () {CreateServerResponse}
+  rpc CreateServer(CreateServerRequest) returns (CreateServerResponse) {}
   rpc GetServer(GetServerRequest) returns (GetServerResponse) {}
   rpc UpdateServer(UpdateServerRequest) returns (UpdateServerResponse) {}
   rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
