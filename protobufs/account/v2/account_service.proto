@@ -45,7 +45,7 @@ service AccountService {
   rpc UpdatePNID() returns () {}
   rpc DeletePNID() returns () {}
 
-  rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsRequest) {}
-  rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsRequest) {}
-  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentRequest) {}
+  rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsResponse) {}
+  rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsResponse) {}
+  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentResponse) {}
 }
