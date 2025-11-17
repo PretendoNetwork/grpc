@@ -15,8 +15,9 @@ message AuditLog {
 }
 
 message AuditLogComment {
-  string id = 1;
-  uint32 pid = 2;
-  uint64 created_timestamp = 3;
-  string content = 4;
+  string parent_id = 1;
+  string id = 2;
+  uint32 pid = 3;
+  uint64 created_timestamp = 4;
+  string content = 5;
 }
