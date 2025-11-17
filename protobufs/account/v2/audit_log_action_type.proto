@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package account.v2;
+
+enum AuditLogActionType {
+  UNKNOWN = 0;
+
+  CREATE_SERVER = 1;
+  UPDATE_SERVER = 2;
+  DELETE_SERVER = 3;
+
+  UPDATE_NEX_ACCOUNT = 4;
+  DELETE_NEX_ACCOUNT = 5;
+
+  UPDATE_NETWORK_ACCOUNT = 6;
+  DELETE_NETWORK_ACCOUNT = 7;
+
+  UPDATE_DEVICE = 8;
+  DELETE_DEVICE = 9;
+}
+
