@@ -11,14 +11,20 @@ import "account/v2/update_pnid_permissions_rpc.proto";
 import "account/v2/list_devices_rpc.proto";
 import "account/v2/get_device_rpc.proto";
 import "account/v2/update_device_rpc.proto";
+import "account/v2/ban_device_permanently_rpc.proto";
+import "account/v2/ban_device_temporarily_rpc.proto";
 import "account/v2/list_nex_accounts_rpc.proto";
 import "account/v2/get_nex_account_rpc.proto";
 import "account/v2/update_nex_account_rpc.proto";
+import "account/v2/ban_nex_account_permanently_rpc.proto";
+import "account/v2/ban_nex_account_temporarily_rpc.proto";
 import "account/v2/list_servers_rpc.proto";
 import "account/v2/create_server_rpc.proto";
 import "account/v2/get_server_rpc.proto";
 import "account/v2/update_server_rpc.proto";
 import "account/v2/delete_server_rpc.proto";
+import "account/v2/ban_pnid_permanently_rpc.proto";
+import "account/v2/ban_pnid_temporarily_rpc.proto";
 import "account/v2/list_audit_logs_rpc.proto";
 import "account/v2/list_audit_log_comments_rpc.proto";
 import "account/v2/create_audit_log_comment_rpc.proto";
@@ -34,10 +40,14 @@ service AccountService {
   rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
   rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
   rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
+  rpc BanDevicePermanently(BanDevicePermanentlyRequest) returns (BanDevicePermanentlyResponse) {}
+  rpc BanDeviceTemporarily(BanDeviceTemporarilyRequest) returns (BanDeviceTemporarilyResponse) {}
 
   rpc ListNEXAccounts(ListNEXAccountsRequest) returns (ListNEXAccountsResponse) {}
   rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
   rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
+  rpc BanNEXAccountPermanently(BanNEXAccountPermanentlyRequest) returns (BanNEXAccountPermanentlyResponse) {}
+  rpc BanNEXAccountTemporarily(BanNEXAccountTemporarilyRequest) returns (BanNEXAccountTemporarilyResponse) {}
 
   rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
   rpc CreateServer(CreateServerRequest) returns (CreateServerResponse) {}
@@ -49,6 +59,8 @@ service AccountService {
   rpc GetPNID() returns () {}
   rpc UpdatePNID() returns () {}
   rpc DeletePNID() returns () {}
+  rpc BanPNIDPermanently(BanPNIDPermanentlyRequest) returns (BanPNIDPermanentlyResponse) {}
+  rpc BanPNIDTemporarily(BanPNIDTemporarilyRequest) returns (BanPNIDTemporarilyResponse) {}
 
   rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsResponse) {}
   rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsResponse) {}
