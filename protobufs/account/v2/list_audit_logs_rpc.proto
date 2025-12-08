@@ -3,12 +3,13 @@ syntax = "proto3";
 package account.v2;
 
 import "account/v2/page.proto";
+import "account/v2/audit_log_action_type.proto";
 import "account/v2/audit_log.proto";
 
 message ListAuditLogsRequest {
   PageInput page = 1;
   optional uint32 filted_executed_by_pid = 2;
-  optional string filter_action_type = 3;
+  optional AuditLogActionType filter_action_type = 3;
   optional string filter_extra_json = 4;
 }
 

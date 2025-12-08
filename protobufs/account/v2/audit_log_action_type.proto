@@ -18,4 +18,3 @@ enum AuditLogActionType {
   UPDATE_DEVICE = 8;
   DELETE_DEVICE = 9;
 }
-
