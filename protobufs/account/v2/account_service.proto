@@ -23,6 +23,10 @@ import "account/v2/create_server_rpc.proto";
 import "account/v2/get_server_rpc.proto";
 import "account/v2/update_server_rpc.proto";
 import "account/v2/delete_server_rpc.proto";
+import "account/v2/list_pnids_rpc.proto";
+// import "account/v2/get_pnid_rpc.proto"; // TODO - Replace get_user_data_rpc with this?
+// import "account/v2/update_pnid_rpc.proto"; // TODO - Replace update_pnid_permissions_rpc with this?
+import "account/v2/delete_pnid_rpc.proto";
 import "account/v2/ban_pnid_permanently_rpc.proto";
 import "account/v2/ban_pnid_temporarily_rpc.proto";
 import "account/v2/list_audit_logs_rpc.proto";
@@ -55,10 +59,10 @@ service AccountService {
   rpc UpdateServer(UpdateServerRequest) returns (UpdateServerResponse) {}
   rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
 
-  rpc ListPNIDs() returns () {}
-  rpc GetPNID() returns () {}
-  rpc UpdatePNID() returns () {}
-  rpc DeletePNID() returns () {}
+  rpc ListPNIDs(ListPNIDsRequest) returns (ListPNIDsResponse) {}
+  rpc GetPNID(GetUserDataRequest) returns (GetUserDataResponse) {} // * Effectively just GetUserData?
+  rpc UpdatePNID(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {} // * Effectively just UpdatePNIDPermissions?
+  rpc DeletePNID(DeletePNIDRequest) returns (DeletePNIDResponse) {}
   rpc BanPNIDPermanently(BanPNIDPermanentlyRequest) returns (BanPNIDPermanentlyResponse) {}
   rpc BanPNIDTemporarily(BanPNIDTemporarilyRequest) returns (BanPNIDTemporarilyResponse) {}
 
