@@ -8,12 +8,9 @@ message AuditLog {
   string id = 1;
   AuditLogActionType action_type = 2;
   uint32 executed_by_pid = 3;
-  string target_resource_id = 4;
-  string target_resource_type = 5;
-  uint64 created_timestamp = 6;
-  string message = 7;
-  uint32 comment_count = 8;
-  string metadata_json = 9;
+  uint64 created_timestamp = 4;
+  uint32 comment_count = 5;
+  string metadata_json = 6;
 }
 
 message AuditLogComment {
