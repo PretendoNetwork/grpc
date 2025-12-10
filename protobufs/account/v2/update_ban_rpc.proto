@@ -2,10 +2,17 @@ syntax = "proto3";
 
 package account.v2;
 
+import "google/protobuf/timestamp.proto";
 import "account/v2/ban_details.proto";
 
 message UpdateBanRequest {
-  BanDetails details = 1;
+  string id = 1;
+  optional google.protobuf.Timestamp start_date = 4;
+  optional google.protobuf.Timestamp end_date = 5;
+  optional BanScopeType scope_type = 6;
+  optional string scope_target = 7;
+  optional string reason = 8;
+  optional string pardon_reason = 9;
 }
 
 message UpdateBanResponse {
