@@ -12,11 +12,3 @@ message AuditLog {
   uint32 comment_count = 5;
   string metadata_json = 6;
 }
-
-message AuditLogComment {
-  string parent_id = 1;
-  string id = 2;
-  uint32 pid = 3;
-  uint64 created_timestamp = 4;
-  string content = 5;
-}

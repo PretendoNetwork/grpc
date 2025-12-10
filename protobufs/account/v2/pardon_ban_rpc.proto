@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package account.v2;
+
+message PardonBanRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message PardonBanResponse {}

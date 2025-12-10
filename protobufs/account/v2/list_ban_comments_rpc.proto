@@ -4,10 +4,10 @@ package account.v2;
 
 import "account/v2/comment.proto";
 
-message ListAuditLogCommentsRequest {
+message ListBanCommentsRequest {
   string id = 1;
 }
 
-message ListAuditLogCommentsResponse {
+message ListBanCommentsResponse {
   repeated Comment items = 1;
 }

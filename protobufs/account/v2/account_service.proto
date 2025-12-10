@@ -11,13 +11,9 @@ import "account/v2/update_pnid_permissions_rpc.proto";
 import "account/v2/list_devices_rpc.proto";
 import "account/v2/get_device_rpc.proto";
 import "account/v2/update_device_rpc.proto";
-import "account/v2/ban_device_permanently_rpc.proto";
-import "account/v2/ban_device_temporarily_rpc.proto";
 import "account/v2/list_nex_accounts_rpc.proto";
 import "account/v2/get_nex_account_rpc.proto";
 import "account/v2/update_nex_account_rpc.proto";
-import "account/v2/ban_nex_account_permanently_rpc.proto";
-import "account/v2/ban_nex_account_temporarily_rpc.proto";
 import "account/v2/list_servers_rpc.proto";
 import "account/v2/create_server_rpc.proto";
 import "account/v2/get_server_rpc.proto";
@@ -27,11 +23,17 @@ import "account/v2/list_pnids_rpc.proto";
 // import "account/v2/get_pnid_rpc.proto"; // TODO - Replace get_user_data_rpc with this?
 // import "account/v2/update_pnid_rpc.proto"; // TODO - Replace update_pnid_permissions_rpc with this?
 import "account/v2/delete_pnid_rpc.proto";
-import "account/v2/ban_pnid_permanently_rpc.proto";
-import "account/v2/ban_pnid_temporarily_rpc.proto";
 import "account/v2/list_audit_logs_rpc.proto";
 import "account/v2/list_audit_log_comments_rpc.proto";
 import "account/v2/create_audit_log_comment_rpc.proto";
+
+import "account/v2/list_bans_rpc.proto";
+import "account/v2/issue_ban_rpc.proto";
+import "account/v2/get_ban_rpc.proto";
+import "account/v2/update_ban_rpc.proto";
+import "account/v2/pardon_ban_rpc.proto";
+import "account/v2/list_ban_comments_rpc.proto";
+import "account/v2/create_ban_comment_rpc.proto";
 
 service AccountService {
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
@@ -44,14 +46,10 @@ service AccountService {
   rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
   rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
   rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
-  rpc BanDevicePermanently(BanDevicePermanentlyRequest) returns (BanDevicePermanentlyResponse) {}
-  rpc BanDeviceTemporarily(BanDeviceTemporarilyRequest) returns (BanDeviceTemporarilyResponse) {}
 
   rpc ListNEXAccounts(ListNEXAccountsRequest) returns (ListNEXAccountsResponse) {}
   rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
   rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
-  rpc BanNEXAccountPermanently(BanNEXAccountPermanentlyRequest) returns (BanNEXAccountPermanentlyResponse) {}
-  rpc BanNEXAccountTemporarily(BanNEXAccountTemporarilyRequest) returns (BanNEXAccountTemporarilyResponse) {}
 
   rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
   rpc CreateServer(CreateServerRequest) returns (CreateServerResponse) {}
@@ -63,10 +61,16 @@ service AccountService {
   rpc GetPNID(GetUserDataRequest) returns (GetUserDataResponse) {} // * Effectively just GetUserData?
   rpc UpdatePNID(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {} // * Effectively just UpdatePNIDPermissions?
   rpc DeletePNID(DeletePNIDRequest) returns (DeletePNIDResponse) {}
-  rpc BanPNIDPermanently(BanPNIDPermanentlyRequest) returns (BanPNIDPermanentlyResponse) {}
-  rpc BanPNIDTemporarily(BanPNIDTemporarilyRequest) returns (BanPNIDTemporarilyResponse) {}
 
   rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsResponse) {}
   rpc ListAuditLogComment(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsResponse) {}
   rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentResponse) {}
+
+  rpc ListBans(ListBansRequest) returns (ListBansResponse) {}
+  rpc IssueBan(IssueBanRequest) returns (IssueBanResponse) {}
+  rpc GetBan(GetBanRequest) returns (GetBanResponse) {}
+  rpc UpdateBan(UpdateBanRequest) returns (UpdateBanResponse) {}
+  rpc PardonBan(PardonBanRequest) returns (PardonBanResponse) {}
+  rpc ListBanComments(ListBanCommentsRequest) returns (ListBanCommentsResponse) {}
+  rpc CreateBanComment(CreateBanCommentRequest) returns (CreateBanCommentResponse) {}
 }

@@ -9,5 +9,5 @@ message GetDeviceRequest {
 }
 
 message GetDeviceResponse {
-  Device item = 1;
+  Device device = 1;
 }

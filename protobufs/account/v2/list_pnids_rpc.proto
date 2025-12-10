@@ -6,9 +6,14 @@ import "account/v2/page.proto";
 import "account/v2/get_user_data_rpc.proto";
 
 message ListPNIDsRequest {
+  message Filter {
+    optional uint32 pid = 1;
+    optional string friend_code = 2;
+    optional string extra_json = 3;
+  }
+
   PageInput page = 1;
-  optional uint32 filter_pid = 2;
-  optional string filter_friend_code = 3;
+  Filter filter = 2;
 }
 
 message ListPNIDsResponse {

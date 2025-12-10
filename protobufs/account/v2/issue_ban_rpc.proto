@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/ban_details.proto";
+
+message IssueBanRequest {
+  BanDetails details = 1;
+}
+
+message IssueBanResponse {
+  Ban ban = 1;
+}

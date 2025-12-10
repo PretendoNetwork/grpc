@@ -9,5 +9,5 @@ message GetNEXAccountRequest {
 }
 
 message GetNEXAccountResponse {
-  NEXAccount item = 1;
+  NEXAccount nex_account = 1;
 }

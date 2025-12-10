@@ -29,5 +29,5 @@ message UpdateServerRequest {
 }
 
 message UpdateServerResponse {
-  Server item = 1;
+  Server server = 1;
 }

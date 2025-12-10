@@ -11,5 +11,5 @@ message UpdateNEXAccountRequest {
 }
 
 message UpdateNEXAccountResponse {
-  NEXAccount item = 1;
+  NEXAccount nex_account = 1;
 }

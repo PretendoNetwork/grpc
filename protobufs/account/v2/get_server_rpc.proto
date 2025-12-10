@@ -9,5 +9,5 @@ message GetServerRequest {
 }
 
 message GetServerResponse {
-  Server item = 1;
+  Server server = 1;
 }

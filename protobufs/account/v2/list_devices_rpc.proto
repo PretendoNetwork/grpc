@@ -6,10 +6,15 @@ import "account/v2/page.proto";
 import "account/v2/device.proto";
 
 message ListDevicesRequest {
+  message Filter {
+    repeated uint32 pid = 1;
+    optional uint32 device_id = 2;
+    optional string serial = 3;
+    optional string extra_json = 4;
+  }
+
   PageInput page = 1;
-  optional uint32 filter_pid = 2;
-  optional uint32 filter_device_id = 3;
-  optional string filter_serial = 4;
+  Filter filter = 2;
 }
 
 message ListDevicesResponse {

@@ -11,5 +11,5 @@ message UpdateDeviceRequest {
 }
 
 message UpdateDeviceResponse {
-  Device item = 1;
+  Device device = 1;
 }
