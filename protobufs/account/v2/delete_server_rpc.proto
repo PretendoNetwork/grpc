@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package account.v2;
 
-import "account/v2/server.proto";
-
 message DeleteServerRequest {
   string id = 1;
 }
