@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+// * Effectively just UpdatePNIDPermissions
+
+import "account/v2/pnid_permission_flags.proto";
+
+message UpdatePNIDRequest {
+  uint32 pid = 1;
+  PNIDPermissionFlags permissions = 2;
+}
+
+message UpdatePNIDResponse {}
