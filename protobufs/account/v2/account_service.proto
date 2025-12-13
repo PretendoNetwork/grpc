@@ -20,7 +20,7 @@ import "account/v2/get_server_rpc.proto";
 import "account/v2/update_server_rpc.proto";
 import "account/v2/delete_server_rpc.proto";
 import "account/v2/list_pnids_rpc.proto";
-// import "account/v2/get_pnid_rpc.proto"; // TODO - Replace get_user_data_rpc with this?
+import "account/v2/get_pnid_rpc.proto"; // TODO - Replace get_user_data_rpc with this?
 // import "account/v2/update_pnid_rpc.proto"; // TODO - Replace update_pnid_permissions_rpc with this?
 import "account/v2/delete_pnid_rpc.proto";
 import "account/v2/list_audit_logs_rpc.proto";
@@ -58,7 +58,7 @@ service AccountService {
   rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
 
   rpc ListPNIDs(ListPNIDsRequest) returns (ListPNIDsResponse) {}
-  rpc GetPNID(GetUserDataRequest) returns (GetUserDataResponse) {} // * Effectively just GetUserData?
+  rpc GetPNID(GetPNIDRequest) returns (GetPNIDResponse) {}
   rpc UpdatePNID(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {} // * Effectively just UpdatePNIDPermissions?
   rpc DeletePNID(DeletePNIDRequest) returns (DeletePNIDResponse) {}
 
