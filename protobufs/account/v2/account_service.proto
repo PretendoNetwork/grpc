@@ -35,42 +35,113 @@ import "account/v2/pardon_ban_rpc.proto";
 import "account/v2/list_ban_comments_rpc.proto";
 import "account/v2/create_ban_comment_rpc.proto";
 
+// AccountService provides access to account server data.
+//
+// INTERNAL API: This service is intended for internal backend use by trusted servers only,
+// such as the admin panel, game servers, etc. It is not designed for public use.
 service AccountService {
-  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
-  rpc GetNEXPassword(GetNEXPasswordRequest) returns (GetNEXPasswordResponse) {}
-  rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {}
-  rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {}
-  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
-  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+  // GetUserData retrieves details for a specific PNID account.
+  // Deprecated: Use GetPNID instead.
+  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {
+    option deprecated = true;
+  }
 
+  // GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos.
+  rpc GetNEXPassword(GetNEXPasswordRequest) returns (GetNEXPasswordResponse) {}
+
+  // GetNEXData retrieves details for a specific NEX account.
+  // Deprecated: Use GetNEXAccount instead.
+  rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {
+    option deprecated = true;
+  }
+
+  // UpdatePNIDPermissions updates the permissions for a PNID account.
+  // Deprecated: Use UpdatePNID instead.
+  rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {
+    option deprecated = true;
+  }
+
+  // ExchangeTokenForUserData exchanges an authentication token for PNID data.
+  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
+
+  // DeleteAccount permanently deletes a PNID account.
+  // Deprecated: Use DeletePNID instead.
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {
+    option deprecated = true;
+  }
+
+  // ListDevices returns a paginated list of devices.
   rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
+
+  // GetDevice retrieves details for a specific device.
   rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
+
+  // UpdateDevice updates device information.
   rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
 
+  // ListNEXAccounts returns a paginated list of NEX accounts.
   rpc ListNEXAccounts(ListNEXAccountsRequest) returns (ListNEXAccountsResponse) {}
+
+  // GetNEXAccount retrieves details for a specific NEX account.
   rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
+
+  // UpdateNEXAccount updates NEX account information.
   rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
 
+  // ListServers returns a paginated list of server configurations.
   rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
+
+  // CreateServer creates a new server configuration.
   rpc CreateServer(CreateServerRequest) returns (CreateServerResponse) {}
+
+  // GetServer retrieves the configuration for a specific server.
   rpc GetServer(GetServerRequest) returns (GetServerResponse) {}
+
+  // UpdateServer updates a server configuration.
   rpc UpdateServer(UpdateServerRequest) returns (UpdateServerResponse) {}
+
+  // DeleteServer removes a server configuration.
   rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
 
+  // ListPNIDs returns a paginated list of PNID accounts.
   rpc ListPNIDs(ListPNIDsRequest) returns (ListPNIDsResponse) {}
+
+  // GetPNID retrieves details for a specific PNID account.
   rpc GetPNID(GetPNIDRequest) returns (GetPNIDResponse) {}
+
+  // UpdatePNID updates PNID account information.
   rpc UpdatePNID(UpdatePNIDRequest) returns (UpdatePNIDResponse) {}
+
+  // DeletePNID permanently deletes a PNID account.
   rpc DeletePNID(DeletePNIDRequest) returns (DeletePNIDResponse) {}
 
+  // ListAuditLogs returns a paginated list of audit log entries.
   rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsResponse) {}
+
+  // ListAuditLogComments returns comments for a specific audit log entry.
   rpc ListAuditLogComments(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsResponse) {}
+
+  // CreateAuditLogComment adds a comment to an audit log entry.
   rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentResponse) {}
 
+  // ListBans returns a paginated list of bans.
   rpc ListBans(ListBansRequest) returns (ListBansResponse) {}
+
+  // IssueBan creates a new ban. Can target both users and devices.
   rpc IssueBan(IssueBanRequest) returns (IssueBanResponse) {}
+
+  // GetBan retrieves details for a specific ban.
   rpc GetBan(GetBanRequest) returns (GetBanResponse) {}
+
+  // UpdateBan modifies an existing ban.
   rpc UpdateBan(UpdateBanRequest) returns (UpdateBanResponse) {}
+
+  // PardonBan removes a ban.
   rpc PardonBan(PardonBanRequest) returns (PardonBanResponse) {}
+
+  // ListBanComments returns comments for a specific ban.
   rpc ListBanComments(ListBanCommentsRequest) returns (ListBanCommentsResponse) {}
+
+  // CreateBanComment adds a comment to a ban entry.
   rpc CreateBanComment(CreateBanCommentRequest) returns (CreateBanCommentResponse) {}
 }
