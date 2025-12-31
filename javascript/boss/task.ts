@@ -16,7 +16,7 @@ export interface Task {
   bossAppId: string;
   creatorPid: number;
   status: string;
-  titleId: bigint;
+  titleId: string;
   description: string;
   createdTimestamp: bigint;
   updatedTimestamp: bigint;
@@ -30,7 +30,7 @@ function createBaseTask(): Task {
     bossAppId: "",
     creatorPid: 0,
     status: "",
-    titleId: 0n,
+    titleId: "",
     description: "",
     createdTimestamp: 0n,
     updatedTimestamp: 0n,
@@ -57,11 +57,8 @@ export const Task: MessageFns<Task> = {
     if (message.status !== "") {
       writer.uint32(50).string(message.status);
     }
-    if (message.titleId !== 0n) {
-      if (BigInt.asUintN(64, message.titleId) !== message.titleId) {
-        throw new globalThis.Error("value provided for field message.titleId of type uint64 too large");
-      }
-      writer.uint32(56).uint64(message.titleId);
+    if (message.titleId !== "") {
+      writer.uint32(58).string(message.titleId);
     }
     if (message.description !== "") {
       writer.uint32(66).string(message.description);
@@ -137,11 +134,11 @@ export const Task: MessageFns<Task> = {
           continue;
         }
         case 7: {
-          if (tag !== 56) {
+          if (tag !== 58) {
             break;
           }
 
-          message.titleId = reader.uint64() as bigint;
+          message.titleId = reader.string();
           continue;
         }
         case 8: {
@@ -185,7 +182,7 @@ export const Task: MessageFns<Task> = {
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
       creatorPid: isSet(object.creatorPid) ? globalThis.Number(object.creatorPid) : 0,
       status: isSet(object.status) ? globalThis.String(object.status) : "",
-      titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
+      titleId: isSet(object.titleId) ? globalThis.String(object.titleId) : "",
       description: isSet(object.description) ? globalThis.String(object.description) : "",
       createdTimestamp: isSet(object.createdTimestamp) ? BigInt(object.createdTimestamp) : 0n,
       updatedTimestamp: isSet(object.updatedTimestamp) ? BigInt(object.updatedTimestamp) : 0n,
@@ -212,8 +209,8 @@ export const Task: MessageFns<Task> = {
     if (message.status !== "") {
       obj.status = message.status;
     }
-    if (message.titleId !== 0n) {
-      obj.titleId = message.titleId.toString();
+    if (message.titleId !== "") {
+      obj.titleId = message.titleId;
     }
     if (message.description !== "") {
       obj.description = message.description;
@@ -238,7 +235,7 @@ export const Task: MessageFns<Task> = {
     message.bossAppId = object.bossAppId ?? "";
     message.creatorPid = object.creatorPid ?? 0;
     message.status = object.status ?? "";
-    message.titleId = object.titleId ?? 0n;
+    message.titleId = object.titleId ?? "";
     message.description = object.description ?? "";
     message.createdTimestamp = object.createdTimestamp ?? 0n;
     message.updatedTimestamp = object.updatedTimestamp ?? 0n;

@@ -15,7 +15,7 @@ export interface FileCTR {
     creatorPid: number;
     name: string;
     hash: string;
-    serialNumber: number;
+    serialNumber: bigint;
     payloadContents: PayloadContentInfoCTR[];
     size: bigint;
     createdTimestamp: bigint;

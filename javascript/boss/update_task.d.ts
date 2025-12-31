@@ -3,7 +3,7 @@ export declare const protobufPackage = "boss";
 export interface UpdateTaskData {
     id: string;
     bossAppId: string;
-    titleId: bigint;
+    titleId: string;
     status: string;
     description: string;
 }

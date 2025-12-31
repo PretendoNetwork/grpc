@@ -14,7 +14,8 @@ export interface RegisterTaskRequest {
   id: string;
   bossAppId: string;
   titleId: bigint;
-  country: string;
+  status: string;
+  interval: number;
   description: string;
 }
 
@@ -23,7 +24,7 @@ export interface RegisterTaskResponse {
 }
 
 function createBaseRegisterTaskRequest(): RegisterTaskRequest {
-  return { id: "", bossAppId: "", titleId: 0n, country: "", description: "" };
+  return { id: "", bossAppId: "", titleId: 0n, status: "", interval: 0, description: "" };
 }
 
 export const RegisterTaskRequest: MessageFns<RegisterTaskRequest> = {
@@ -40,11 +41,14 @@ export const RegisterTaskRequest: MessageFns<RegisterTaskRequest> = {
       }
       writer.uint32(24).uint64(message.titleId);
     }
-    if (message.country !== "") {
-      writer.uint32(34).string(message.country);
+    if (message.status !== "") {
+      writer.uint32(34).string(message.status);
+    }
+    if (message.interval !== 0) {
+      writer.uint32(40).uint32(message.interval);
     }
     if (message.description !== "") {
-      writer.uint32(42).string(message.description);
+      writer.uint32(50).string(message.description);
     }
     return writer;
   },
@@ -85,11 +89,19 @@ export const RegisterTaskRequest: MessageFns<RegisterTaskRequest> = {
             break;
           }
 
-          message.country = reader.string();
+          message.status = reader.string();
           continue;
         }
         case 5: {
-          if (tag !== 42) {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.interval = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
             break;
           }
 
@@ -110,7 +122,8 @@ export const RegisterTaskRequest: MessageFns<RegisterTaskRequest> = {
       id: isSet(object.id) ? globalThis.String(object.id) : "",
       bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
       titleId: isSet(object.titleId) ? BigInt(object.titleId) : 0n,
-      country: isSet(object.country) ? globalThis.String(object.country) : "",
+      status: isSet(object.status) ? globalThis.String(object.status) : "",
+      interval: isSet(object.interval) ? globalThis.Number(object.interval) : 0,
       description: isSet(object.description) ? globalThis.String(object.description) : "",
     };
   },
@@ -126,8 +139,11 @@ export const RegisterTaskRequest: MessageFns<RegisterTaskRequest> = {
     if (message.titleId !== 0n) {
       obj.titleId = message.titleId.toString();
     }
-    if (message.country !== "") {
-      obj.country = message.country;
+    if (message.status !== "") {
+      obj.status = message.status;
+    }
+    if (message.interval !== 0) {
+      obj.interval = Math.round(message.interval);
     }
     if (message.description !== "") {
       obj.description = message.description;
@@ -143,7 +159,8 @@ export const RegisterTaskRequest: MessageFns<RegisterTaskRequest> = {
     message.id = object.id ?? "";
     message.bossAppId = object.bossAppId ?? "";
     message.titleId = object.titleId ?? 0n;
-    message.country = object.country ?? "";
+    message.status = object.status ?? "";
+    message.interval = object.interval ?? 0;
     message.description = object.description ?? "";
     return message;
   },

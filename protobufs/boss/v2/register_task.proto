@@ -8,8 +8,9 @@ message RegisterTaskRequest {
   string id = 1;
   string boss_app_id = 2;
   uint64 title_id = 3;
-  string country = 4;
-  string description = 5;
+  string status = 4;
+  uint32 interval = 5;
+  string description = 6;
 }
 
 message RegisterTaskResponse {

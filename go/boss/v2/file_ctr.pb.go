@@ -33,7 +33,7 @@ type FileCTR struct {
 	CreatorPid         uint32                   `protobuf:"varint,8,opt,name=creator_pid,json=creatorPid,proto3" json:"creator_pid,omitempty"`
 	Name               string                   `protobuf:"bytes,9,opt,name=name,proto3" json:"name,omitempty"`
 	Hash               string                   `protobuf:"bytes,10,opt,name=hash,proto3" json:"hash,omitempty"`
-	SerialNumber       uint32                   `protobuf:"varint,11,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
+	SerialNumber       uint64                   `protobuf:"varint,11,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
 	PayloadContents    []*PayloadContentInfoCTR `protobuf:"bytes,12,rep,name=payload_contents,json=payloadContents,proto3" json:"payload_contents,omitempty"`
 	Size               uint64                   `protobuf:"varint,13,opt,name=size,proto3" json:"size,omitempty"`
 	CreatedTimestamp   uint64                   `protobuf:"varint,14,opt,name=created_timestamp,json=createdTimestamp,proto3" json:"created_timestamp,omitempty"`
@@ -143,7 +143,7 @@ func (x *FileCTR) GetHash() string {
 	return ""
 }
 
-func (x *FileCTR) GetSerialNumber() uint32 {
+func (x *FileCTR) GetSerialNumber() uint64 {
 	if x != nil {
 		return x.SerialNumber
 	}
@@ -205,7 +205,7 @@ const file_boss_v2_file_ctr_proto_rawDesc = "" +
 	"\x04name\x18\t \x01(\tR\x04name\x12\x12\n" +
 	"\x04hash\x18\n" +
 	" \x01(\tR\x04hash\x12#\n" +
-	"\rserial_number\x18\v \x01(\rR\fserialNumber\x12I\n" +
+	"\rserial_number\x18\v \x01(\x04R\fserialNumber\x12I\n" +
 	"\x10payload_contents\x18\f \x03(\v2\x1e.boss.v2.PayloadContentInfoCTRR\x0fpayloadContents\x12\x12\n" +
 	"\x04size\x18\r \x01(\x04R\x04size\x12+\n" +
 	"\x11created_timestamp\x18\x0e \x01(\x04R\x10createdTimestamp\x12+\n" +

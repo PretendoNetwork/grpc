@@ -21,7 +21,7 @@ function createBaseUploadFileCTRRequest() {
         supportedLanguages: [],
         attributes: undefined,
         name: "",
-        serialNumber: 0,
+        serialNumber: 0n,
         payloadContents: [],
         flags: undefined,
     };
@@ -46,8 +46,11 @@ exports.UploadFileCTRRequest = {
         if (message.name !== "") {
             writer.uint32(50).string(message.name);
         }
-        if (message.serialNumber !== 0) {
-            writer.uint32(56).uint32(message.serialNumber);
+        if (message.serialNumber !== 0n) {
+            if (BigInt.asUintN(64, message.serialNumber) !== message.serialNumber) {
+                throw new globalThis.Error("value provided for field message.serialNumber of type uint64 too large");
+            }
+            writer.uint32(56).uint64(message.serialNumber);
         }
         for (const v of message.payloadContents) {
             payload_content_ctr_1.PayloadContentCTR.encode(v, writer.uint32(66).fork()).join();
@@ -110,7 +113,7 @@ exports.UploadFileCTRRequest = {
                     if (tag !== 56) {
                         break;
                     }
-                    message.serialNumber = reader.uint32();
+                    message.serialNumber = reader.uint64();
                     continue;
                 }
                 case 8: {
@@ -147,7 +150,7 @@ exports.UploadFileCTRRequest = {
                 : [],
             attributes: isSet(object.attributes) ? file_attributes_1.FileAttributes.fromJSON(object.attributes) : undefined,
             name: isSet(object.name) ? globalThis.String(object.name) : "",
-            serialNumber: isSet(object.serialNumber) ? globalThis.Number(object.serialNumber) : 0,
+            serialNumber: isSet(object.serialNumber) ? BigInt(object.serialNumber) : 0n,
             payloadContents: globalThis.Array.isArray(object?.payloadContents)
                 ? object.payloadContents.map((e) => payload_content_ctr_1.PayloadContentCTR.fromJSON(e))
                 : [],
@@ -174,8 +177,8 @@ exports.UploadFileCTRRequest = {
         if (message.name !== "") {
             obj.name = message.name;
         }
-        if (message.serialNumber !== 0) {
-            obj.serialNumber = Math.round(message.serialNumber);
+        if (message.serialNumber !== 0n) {
+            obj.serialNumber = message.serialNumber.toString();
         }
         if (message.payloadContents?.length) {
             obj.payloadContents = message.payloadContents.map((e) => payload_content_ctr_1.PayloadContentCTR.toJSON(e));
@@ -198,7 +201,7 @@ exports.UploadFileCTRRequest = {
             ? file_attributes_1.FileAttributes.fromPartial(object.attributes)
             : undefined;
         message.name = object.name ?? "";
-        message.serialNumber = object.serialNumber ?? 0;
+        message.serialNumber = object.serialNumber ?? 0n;
         message.payloadContents = object.payloadContents?.map((e) => payload_content_ctr_1.PayloadContentCTR.fromPartial(e)) || [];
         message.flags = (object.flags !== undefined && object.flags !== null)
             ? ctr_boss_flags_1.CTRBOSSFlags.fromPartial(object.flags)

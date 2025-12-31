@@ -5,7 +5,8 @@ export interface RegisterTaskRequest {
     id: string;
     bossAppId: string;
     titleId: bigint;
-    country: string;
+    status: string;
+    interval: number;
     description: string;
 }
 export interface RegisterTaskResponse {

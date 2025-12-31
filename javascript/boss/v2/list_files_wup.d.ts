@@ -6,6 +6,7 @@ export interface ListFilesWUPRequest {
     bossAppId: string;
     country?: string | undefined;
     language?: string | undefined;
+    any: boolean;
 }
 export interface ListFilesWUPResponse {
     files: FileWUP[];

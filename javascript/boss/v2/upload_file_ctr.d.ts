@@ -11,7 +11,7 @@ export interface UploadFileCTRRequest {
     supportedLanguages: string[];
     attributes: FileAttributes | undefined;
     name: string;
-    serialNumber: number;
+    serialNumber: bigint;
     payloadContents: PayloadContentCTR[];
     flags: CTRBOSSFlags | undefined;
 }

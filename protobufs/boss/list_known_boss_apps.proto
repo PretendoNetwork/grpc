@@ -4,7 +4,7 @@ package boss;
 
 message BOSSApp {
   string boss_app_id = 1;
-  uint64 title_id = 2;
+  string title_id = 2;
   string title_region = 3;
   string name = 4;
   repeated string tasks = 5;

@@ -11,7 +11,7 @@ const wire_1 = require("@bufbuild/protobuf/wire");
 const file_ctr_1 = require("./file_ctr");
 exports.protobufPackage = "boss.v2";
 function createBaseListFilesCTRRequest() {
-    return { taskId: "", bossAppId: "", country: undefined, language: undefined };
+    return { taskId: "", bossAppId: "", country: undefined, language: undefined, any: false };
 }
 exports.ListFilesCTRRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -26,6 +26,9 @@ exports.ListFilesCTRRequest = {
         }
         if (message.language !== undefined) {
             writer.uint32(34).string(message.language);
+        }
+        if (message.any !== false) {
+            writer.uint32(40).bool(message.any);
         }
         return writer;
     },
@@ -64,6 +67,13 @@ exports.ListFilesCTRRequest = {
                     message.language = reader.string();
                     continue;
                 }
+                case 5: {
+                    if (tag !== 40) {
+                        break;
+                    }
+                    message.any = reader.bool();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -78,6 +88,7 @@ exports.ListFilesCTRRequest = {
             bossAppId: isSet(object.bossAppId) ? globalThis.String(object.bossAppId) : "",
             country: isSet(object.country) ? globalThis.String(object.country) : undefined,
             language: isSet(object.language) ? globalThis.String(object.language) : undefined,
+            any: isSet(object.any) ? globalThis.Boolean(object.any) : false,
         };
     },
     toJSON(message) {
@@ -94,6 +105,9 @@ exports.ListFilesCTRRequest = {
         if (message.language !== undefined) {
             obj.language = message.language;
         }
+        if (message.any !== false) {
+            obj.any = message.any;
+        }
         return obj;
     },
     create(base) {
@@ -105,6 +119,7 @@ exports.ListFilesCTRRequest = {
         message.bossAppId = object.bossAppId ?? "";
         message.country = object.country ?? undefined;
         message.language = object.language ?? undefined;
+        message.any = object.any ?? false;
         return message;
     },
 };

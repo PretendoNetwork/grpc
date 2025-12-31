@@ -24,7 +24,7 @@ function createBaseFileCTR() {
         creatorPid: 0,
         name: "",
         hash: "",
-        serialNumber: 0,
+        serialNumber: 0n,
         payloadContents: [],
         size: 0n,
         createdTimestamp: 0n,
@@ -67,8 +67,11 @@ exports.FileCTR = {
         if (message.hash !== "") {
             writer.uint32(82).string(message.hash);
         }
-        if (message.serialNumber !== 0) {
-            writer.uint32(88).uint32(message.serialNumber);
+        if (message.serialNumber !== 0n) {
+            if (BigInt.asUintN(64, message.serialNumber) !== message.serialNumber) {
+                throw new globalThis.Error("value provided for field message.serialNumber of type uint64 too large");
+            }
+            writer.uint32(88).uint64(message.serialNumber);
         }
         for (const v of message.payloadContents) {
             payload_content_info_ctr_1.PayloadContentInfoCTR.encode(v, writer.uint32(98).fork()).join();
@@ -177,7 +180,7 @@ exports.FileCTR = {
                     if (tag !== 88) {
                         break;
                     }
-                    message.serialNumber = reader.uint32();
+                    message.serialNumber = reader.uint64();
                     continue;
                 }
                 case 12: {
@@ -239,7 +242,7 @@ exports.FileCTR = {
             creatorPid: isSet(object.creatorPid) ? globalThis.Number(object.creatorPid) : 0,
             name: isSet(object.name) ? globalThis.String(object.name) : "",
             hash: isSet(object.hash) ? globalThis.String(object.hash) : "",
-            serialNumber: isSet(object.serialNumber) ? globalThis.Number(object.serialNumber) : 0,
+            serialNumber: isSet(object.serialNumber) ? BigInt(object.serialNumber) : 0n,
             payloadContents: globalThis.Array.isArray(object?.payloadContents)
                 ? object.payloadContents.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.fromJSON(e))
                 : [],
@@ -281,8 +284,8 @@ exports.FileCTR = {
         if (message.hash !== "") {
             obj.hash = message.hash;
         }
-        if (message.serialNumber !== 0) {
-            obj.serialNumber = Math.round(message.serialNumber);
+        if (message.serialNumber !== 0n) {
+            obj.serialNumber = message.serialNumber.toString();
         }
         if (message.payloadContents?.length) {
             obj.payloadContents = message.payloadContents.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.toJSON(e));
@@ -318,7 +321,7 @@ exports.FileCTR = {
         message.creatorPid = object.creatorPid ?? 0;
         message.name = object.name ?? "";
         message.hash = object.hash ?? "";
-        message.serialNumber = object.serialNumber ?? 0;
+        message.serialNumber = object.serialNumber ?? 0n;
         message.payloadContents = object.payloadContents?.map((e) => payload_content_info_ctr_1.PayloadContentInfoCTR.fromPartial(e)) || [];
         message.size = object.size ?? 0n;
         message.createdTimestamp = object.createdTimestamp ?? 0n;
