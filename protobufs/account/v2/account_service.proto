@@ -136,7 +136,7 @@ service AccountService {
   // UpdateBan modifies an existing ban.
   rpc UpdateBan(UpdateBanRequest) returns (UpdateBanResponse) {}
 
-  // PardonBan removes a ban.
+  // PardonBan lifts a ban.
   rpc PardonBan(PardonBanRequest) returns (PardonBanResponse) {}
 
   // ListBanComments returns comments for a specific ban.
