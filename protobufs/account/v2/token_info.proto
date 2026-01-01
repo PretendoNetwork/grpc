@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "google/protobuf/timestamp.proto";
+
+// TODO - Move this to own file
+enum SystemType {
+  SYSTEM_TYPE_UNSPECIFIED = 0;
+  SYSTEM_TYPE_WUP = 1;
+  SYSTEM_TYPE_CTR = 2;
+  SYSTEM_TYPE_API = 3;
+  SYSTEM_TYPE_PASSWORD_RESET = 0xFF;
+}
+
+// TODO - Move this to own file
+enum TokenType {
+  TOKEN_TYPE_UNSPECIFIED = 0;
+  TOKEN_TYPE_OAUTH_ACCESS = 1;
+  TOKEN_TYPE_OAUTH_REFRESH = 2;
+  TOKEN_TYPE_NEX = 3;
+  TOKEN_TYPE_INDEPENDENT_SERVICE = 4;
+  TOKEN_TYPE_PASSWORD_RESET = 5;
+}
+
+message TokenInfo {
+  SystemType system_type = 1;
+  TokenType token_type = 2;
+  uint64 pid = 3;
+  int32 access_level = 4;
+  uint64 title_id = 5;
+  google.protobuf.Timestamp issue_time = 6;
+  google.protobuf.Timestamp expire_time = 7;
+}
