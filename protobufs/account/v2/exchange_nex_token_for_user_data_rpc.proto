@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/nex_account.proto";
+
+message ExchangeNEXTokenForUserDataRequest {
+  string game_server_id = 1;
+  string token = 2;
+}
+
+message ExchangeNEXTokenForUserDataResponse {
+  NEXAccount nex_account = 1;
+}

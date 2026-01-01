@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/get_pnid_rpc.proto";
+import "account/v2/nex_account.proto";
+
+message ExchangeOAuthTokenForUserDataRequest {
+  string client_id = 1;
+  string client_secret = 2;
+  string token = 3;
+}
+
+message ExchangeOAuthTokenForUserDataResponse {
+  GetPNIDResponse pnid = 1;
+  NEXAccount nex_account = 2;
+}

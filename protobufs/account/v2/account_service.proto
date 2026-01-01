@@ -3,7 +3,11 @@ syntax = "proto3";
 package account.v2;
 
 import "account/v2/delete_account_rpc.proto";
-import "account/v2/exchange_token_for_user_data.proto";
+import "account/v2/exchange_token_for_user_data_rpc.proto";
+import "account/v2/exchange_oauth_token_for_user_data_rpc.proto";
+import "account/v2/exchange_nex_token_for_user_data_rpc.proto";
+import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
+import "account/v2/exchange_password_reset_token_for_user_data_rpc.proto";
 import "account/v2/get_nex_data_rpc.proto";
 import "account/v2/get_nex_password_rpc.proto";
 import "account/v2/get_user_data_rpc.proto";
@@ -62,7 +66,22 @@ service AccountService {
   }
 
   // ExchangeTokenForUserData exchanges an authentication token for PNID data.
-  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
+  // Deprecated: Use more specific methods instead.
+  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {
+    option deprecated = true;
+  }
+
+  // ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data.
+  rpc ExchangeOAuthTokenForUserData(ExchangeOAuthTokenForUserDataRequest) returns (ExchangeOAuthTokenForUserDataResponse) {}
+
+  // ExchangeNEXTokenForUserData exchanges an NEX token for NEX account data.
+  rpc ExchangeNEXTokenForUserData(ExchangeNEXTokenForUserDataRequest) returns (ExchangeNEXTokenForUserDataResponse) {}
+
+  // ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not always returned
+  rpc ExchangeIndependentServiceTokenForUserData(ExchangeIndependentServiceTokenForUserDataRequest) returns (ExchangeIndependentServiceTokenForUserDataResponse) {}
+
+  // ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data.
+  rpc ExchangePasswordResetTokenForUserData(ExchangePasswordResetTokenForUserDataRequest) returns (ExchangePasswordResetTokenForUserDataResponse) {}
 
   // DeleteAccount permanently deletes a PNID account.
   // Deprecated: Use DeletePNID instead.

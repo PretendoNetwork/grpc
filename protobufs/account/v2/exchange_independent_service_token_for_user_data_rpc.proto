@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/get_pnid_rpc.proto";
+import "account/v2/nex_account.proto";
+
+// TODO - Move this to own file
+enum IndependentServiceTokenProviderType {
+  INDEPENDEND_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED = 0;
+  INDEPENDEND_SERVICE_TOKEN_PROVIDER_TYPE_NASC = 1;
+  INDEPENDEND_SERVICE_TOKEN_PROVIDER_TYPE_NNAS = 2;
+}
+
+
+message ExchangeIndependentServiceTokenForUserDataRequest {
+  IndependentServiceTokenProviderType provider = 1;
+  optional string client_id = 2; // * For NNAS
+  repeated string title_ids = 3; // * For NASC
+  string token = 4;
+}
+
+message ExchangeIndependentServiceTokenForUserDataResponse {
+  optional GetPNIDResponse pnid = 1; // * May not be present when using a NASC token
+  NEXAccount nex_account = 2;
+}
