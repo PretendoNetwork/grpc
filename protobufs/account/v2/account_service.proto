@@ -66,7 +66,7 @@ service AccountService {
   }
 
   // ExchangeTokenForUserData exchanges an authentication token for PNID data.
-  // Deprecated: Use more specific methods instead.
+  // Deprecated: Use the type-specific methods instead.
   rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {
     option deprecated = true;
   }
@@ -74,10 +74,10 @@ service AccountService {
   // ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data.
   rpc ExchangeOAuthTokenForUserData(ExchangeOAuthTokenForUserDataRequest) returns (ExchangeOAuthTokenForUserDataResponse) {}
 
-  // ExchangeNEXTokenForUserData exchanges an NEX token for NEX account data.
+  // ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data.
   rpc ExchangeNEXTokenForUserData(ExchangeNEXTokenForUserDataRequest) returns (ExchangeNEXTokenForUserDataResponse) {}
 
-  // ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not always returned
+  // ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens.
   rpc ExchangeIndependentServiceTokenForUserData(ExchangeIndependentServiceTokenForUserDataRequest) returns (ExchangeIndependentServiceTokenForUserDataResponse) {}
 
   // ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data.
