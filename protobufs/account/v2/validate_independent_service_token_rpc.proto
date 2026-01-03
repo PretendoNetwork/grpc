@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
+import "account/v2/token_info.proto";
+
+message ValidateIndependentServiceTokenRequest {
+  IndependentServiceTokenProviderType provider = 1;
+  optional string client_id = 2; // * For NNAS
+  repeated string title_ids = 3; // * For NASC
+  string token = 4;
+}
+
+message ValidateIndependentServiceTokenResponse {
+  bool is_valid = 1;
+  optional TokenInfo token_info = 2;
+}

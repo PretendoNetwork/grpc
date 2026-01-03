@@ -13,7 +13,6 @@ enum IndependentServiceTokenProviderType {
   INDEPENDEND_SERVICE_TOKEN_PROVIDER_TYPE_NNAS = 2;
 }
 
-
 message ExchangeIndependentServiceTokenForUserDataRequest {
   IndependentServiceTokenProviderType provider = 1;
   optional string client_id = 2; // * For NNAS
