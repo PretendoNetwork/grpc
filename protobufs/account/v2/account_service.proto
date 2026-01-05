@@ -84,7 +84,7 @@ service AccountService {
   // ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data.
   rpc ExchangePasswordResetTokenForUserData(ExchangePasswordResetTokenForUserDataRequest) returns (ExchangePasswordResetTokenForUserDataResponse) {}
 
-  // ValidateIndependentServiceToken validates that a service token data is correct. This does not return any data, and works even on expired tokens.
+  // ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens.
   rpc ValidateIndependentServiceToken(ValidateIndependentServiceTokenRequest) returns (ValidateIndependentServiceTokenResponse) {}
 
   // DeleteAccount permanently deletes a PNID account.

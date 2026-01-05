@@ -14,5 +14,4 @@ message ValidateIndependentServiceTokenRequest {
 
 message ValidateIndependentServiceTokenResponse {
   bool is_valid = 1;
-  optional TokenInfo token_info = 2;
 }
