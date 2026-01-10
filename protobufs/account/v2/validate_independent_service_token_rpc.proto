@@ -3,6 +3,7 @@ syntax = "proto3";
 package account.v2;
 
 import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
+import "account/v2/ban_details.proto";
 
 message ValidateIndependentServiceTokenRequest {
   IndependentServiceTokenProviderType provider = 1;
@@ -12,5 +13,12 @@ message ValidateIndependentServiceTokenRequest {
 }
 
 message ValidateIndependentServiceTokenResponse {
+  message UserInfo {
+    bool access_beta_servers = 1;
+    bool access_developer_servers = 2;
+    optional Ban ban = 3; // * Not present if not banned
+  }
+
   bool is_valid = 1;
+  optional UserInfo user_info = 2; // * Not present if is_valid is false
 }
