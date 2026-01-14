@@ -3,7 +3,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: account/v2/update_pnid_permissions.proto
+// source: account/v2/update_pnid_permissions_rpc.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdatePNIDPermissionsResponse = exports.UpdatePNIDPermissionsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */

@@ -6,6 +6,7 @@ export interface Device {
     linkedPids: number[];
     accessLevel: number;
     serverAccessLevel: string;
+    deviceId: number;
 }
 export declare const Device: MessageFns<Device>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;

@@ -3,7 +3,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: account/v2/exchange_token_for_user_data.proto
+// source: account/v2/exchange_token_for_user_data_rpc.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExchangeTokenForUserDataResponse = exports.ExchangeTokenForUserDataRequest = exports.protobufPackage = void 0;
 /* eslint-disable */

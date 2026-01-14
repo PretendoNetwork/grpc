@@ -6,20 +6,77 @@
 
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
+import { CreateAuditLogCommentRequest, CreateAuditLogCommentResponse } from "./create_audit_log_comment_rpc";
+import { CreateBanCommentRequest, CreateBanCommentResponse } from "./create_ban_comment_rpc";
+import { CreateServerRequest, CreateServerResponse } from "./create_server_rpc";
 import { DeleteAccountRequest, DeleteAccountResponse } from "./delete_account_rpc";
-import { ExchangeTokenForUserDataRequest, ExchangeTokenForUserDataResponse } from "./exchange_token_for_user_data";
+import { DeletePNIDRequest, DeletePNIDResponse } from "./delete_pnid_rpc";
+import { DeleteServerRequest, DeleteServerResponse } from "./delete_server_rpc";
+import {
+  ExchangeIndependentServiceTokenForUserDataRequest,
+  ExchangeIndependentServiceTokenForUserDataResponse,
+} from "./exchange_independent_service_token_for_user_data_rpc";
+import {
+  ExchangeNEXTokenForUserDataRequest,
+  ExchangeNEXTokenForUserDataResponse,
+} from "./exchange_nex_token_for_user_data_rpc";
+import {
+  ExchangeOAuthTokenForUserDataRequest,
+  ExchangeOAuthTokenForUserDataResponse,
+} from "./exchange_oauth_token_for_user_data_rpc";
+import {
+  ExchangePasswordResetTokenForUserDataRequest,
+  ExchangePasswordResetTokenForUserDataResponse,
+} from "./exchange_password_reset_token_for_user_data_rpc";
+import { ExchangeTokenForUserDataRequest, ExchangeTokenForUserDataResponse } from "./exchange_token_for_user_data_rpc";
+import { GetBanRequest, GetBanResponse } from "./get_ban_rpc";
+import { GetDeviceRequest, GetDeviceResponse } from "./get_device_rpc";
+import { GetNEXAccountRequest, GetNEXAccountResponse } from "./get_nex_account_rpc";
 import { GetNEXDataRequest, GetNEXDataResponse } from "./get_nex_data_rpc";
 import { GetNEXPasswordRequest, GetNEXPasswordResponse } from "./get_nex_password_rpc";
+import { GetPNIDRequest, GetPNIDResponse } from "./get_pnid_rpc";
+import { GetServerRequest, GetServerResponse } from "./get_server_rpc";
 import { GetUserDataRequest, GetUserDataResponse } from "./get_user_data_rpc";
-import { UpdatePNIDPermissionsRequest, UpdatePNIDPermissionsResponse } from "./update_pnid_permissions";
+import { IssueBanRequest, IssueBanResponse } from "./issue_ban_rpc";
+import { ListAuditLogCommentsRequest, ListAuditLogCommentsResponse } from "./list_audit_log_comments_rpc";
+import { ListAuditLogsRequest, ListAuditLogsResponse } from "./list_audit_logs_rpc";
+import { ListBanCommentsRequest, ListBanCommentsResponse } from "./list_ban_comments_rpc";
+import { ListBansRequest, ListBansResponse } from "./list_bans_rpc";
+import { ListDevicesRequest, ListDevicesResponse } from "./list_devices_rpc";
+import { ListNEXAccountsRequest, ListNEXAccountsResponse } from "./list_nex_accounts_rpc";
+import { ListPNIDsRequest, ListPNIDsResponse } from "./list_pnids_rpc";
+import { ListServersRequest, ListServersResponse } from "./list_servers_rpc";
+import { PardonBanRequest, PardonBanResponse } from "./pardon_ban_rpc";
+import { UpdateBanRequest, UpdateBanResponse } from "./update_ban_rpc";
+import { UpdateDeviceRequest, UpdateDeviceResponse } from "./update_device_rpc";
+import { UpdateNEXAccountRequest, UpdateNEXAccountResponse } from "./update_nex_account_rpc";
+import { UpdatePNIDPermissionsRequest, UpdatePNIDPermissionsResponse } from "./update_pnid_permissions_rpc";
+import { UpdatePNIDRequest, UpdatePNIDResponse } from "./update_pnid_rpc";
+import { UpdateServerRequest, UpdateServerResponse } from "./update_server_rpc";
+import {
+  ValidateIndependentServiceTokenRequest,
+  ValidateIndependentServiceTokenResponse,
+} from "./validate_independent_service_token_rpc";
 
 export const protobufPackage = "account.v2";
 
+/**
+ * AccountService provides access to account server data.
+ *
+ * INTERNAL API: This service is intended for internal backend use by trusted servers only,
+ * such as the admin panel, game servers, etc. It is not designed for public use.
+ */
 export type AccountServiceDefinition = typeof AccountServiceDefinition;
 export const AccountServiceDefinition = {
   name: "AccountService",
   fullName: "account.v2.AccountService",
   methods: {
+    /**
+     * GetUserData retrieves details for a specific PNID account.
+     * Deprecated: Use GetPNID instead.
+     *
+     * @deprecated
+     */
     getUserData: {
       name: "GetUserData",
       requestType: GetUserDataRequest,
@@ -28,6 +85,7 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /** GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos. */
     getNEXPassword: {
       name: "GetNEXPassword",
       requestType: GetNEXPasswordRequest,
@@ -36,6 +94,12 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /**
+     * GetNEXData retrieves details for a specific NEX account.
+     * Deprecated: Use GetNEXAccount instead.
+     *
+     * @deprecated
+     */
     getNEXData: {
       name: "GetNEXData",
       requestType: GetNEXDataRequest,
@@ -44,6 +108,12 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /**
+     * UpdatePNIDPermissions updates the permissions for a PNID account.
+     * Deprecated: Use UpdatePNID instead.
+     *
+     * @deprecated
+     */
     updatePNIDPermissions: {
       name: "UpdatePNIDPermissions",
       requestType: UpdatePNIDPermissionsRequest,
@@ -52,6 +122,12 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /**
+     * ExchangeTokenForUserData exchanges an authentication token for PNID data.
+     * Deprecated: Use the type-specific methods instead.
+     *
+     * @deprecated
+     */
     exchangeTokenForUserData: {
       name: "ExchangeTokenForUserData",
       requestType: ExchangeTokenForUserDataRequest,
@@ -60,6 +136,57 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /** ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data. */
+    exchangeOAuthTokenForUserData: {
+      name: "ExchangeOAuthTokenForUserData",
+      requestType: ExchangeOAuthTokenForUserDataRequest,
+      requestStream: false,
+      responseType: ExchangeOAuthTokenForUserDataResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data. */
+    exchangeNEXTokenForUserData: {
+      name: "ExchangeNEXTokenForUserData",
+      requestType: ExchangeNEXTokenForUserDataRequest,
+      requestStream: false,
+      responseType: ExchangeNEXTokenForUserDataResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens. */
+    exchangeIndependentServiceTokenForUserData: {
+      name: "ExchangeIndependentServiceTokenForUserData",
+      requestType: ExchangeIndependentServiceTokenForUserDataRequest,
+      requestStream: false,
+      responseType: ExchangeIndependentServiceTokenForUserDataResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data. */
+    exchangePasswordResetTokenForUserData: {
+      name: "ExchangePasswordResetTokenForUserData",
+      requestType: ExchangePasswordResetTokenForUserDataRequest,
+      requestStream: false,
+      responseType: ExchangePasswordResetTokenForUserDataResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens. */
+    validateIndependentServiceToken: {
+      name: "ValidateIndependentServiceToken",
+      requestType: ValidateIndependentServiceTokenRequest,
+      requestStream: false,
+      responseType: ValidateIndependentServiceTokenResponse,
+      responseStream: false,
+      options: {},
+    },
+    /**
+     * DeleteAccount permanently deletes a PNID account.
+     * Deprecated: Use DeletePNID instead.
+     *
+     * @deprecated
+     */
     deleteAccount: {
       name: "DeleteAccount",
       requestType: DeleteAccountRequest,
@@ -68,61 +195,594 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /** ListDevices returns a paginated list of devices. */
+    listDevices: {
+      name: "ListDevices",
+      requestType: ListDevicesRequest,
+      requestStream: false,
+      responseType: ListDevicesResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetDevice retrieves details for a specific device. */
+    getDevice: {
+      name: "GetDevice",
+      requestType: GetDeviceRequest,
+      requestStream: false,
+      responseType: GetDeviceResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** UpdateDevice updates device information. */
+    updateDevice: {
+      name: "UpdateDevice",
+      requestType: UpdateDeviceRequest,
+      requestStream: false,
+      responseType: UpdateDeviceResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListNEXAccounts returns a paginated list of NEX accounts. */
+    listNEXAccounts: {
+      name: "ListNEXAccounts",
+      requestType: ListNEXAccountsRequest,
+      requestStream: false,
+      responseType: ListNEXAccountsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetNEXAccount retrieves details for a specific NEX account. */
+    getNEXAccount: {
+      name: "GetNEXAccount",
+      requestType: GetNEXAccountRequest,
+      requestStream: false,
+      responseType: GetNEXAccountResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** UpdateNEXAccount updates NEX account information. */
+    updateNEXAccount: {
+      name: "UpdateNEXAccount",
+      requestType: UpdateNEXAccountRequest,
+      requestStream: false,
+      responseType: UpdateNEXAccountResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListServers returns a paginated list of server configurations. */
+    listServers: {
+      name: "ListServers",
+      requestType: ListServersRequest,
+      requestStream: false,
+      responseType: ListServersResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** CreateServer creates a new server configuration. */
+    createServer: {
+      name: "CreateServer",
+      requestType: CreateServerRequest,
+      requestStream: false,
+      responseType: CreateServerResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetServer retrieves the configuration for a specific server. */
+    getServer: {
+      name: "GetServer",
+      requestType: GetServerRequest,
+      requestStream: false,
+      responseType: GetServerResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** UpdateServer updates a server configuration. */
+    updateServer: {
+      name: "UpdateServer",
+      requestType: UpdateServerRequest,
+      requestStream: false,
+      responseType: UpdateServerResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** DeleteServer removes a server configuration. */
+    deleteServer: {
+      name: "DeleteServer",
+      requestType: DeleteServerRequest,
+      requestStream: false,
+      responseType: DeleteServerResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListPNIDs returns a paginated list of PNID accounts. */
+    listPNIDs: {
+      name: "ListPNIDs",
+      requestType: ListPNIDsRequest,
+      requestStream: false,
+      responseType: ListPNIDsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetPNID retrieves details for a specific PNID account. */
+    getPNID: {
+      name: "GetPNID",
+      requestType: GetPNIDRequest,
+      requestStream: false,
+      responseType: GetPNIDResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** UpdatePNID updates PNID account information. */
+    updatePNID: {
+      name: "UpdatePNID",
+      requestType: UpdatePNIDRequest,
+      requestStream: false,
+      responseType: UpdatePNIDResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** DeletePNID permanently deletes a PNID account. */
+    deletePNID: {
+      name: "DeletePNID",
+      requestType: DeletePNIDRequest,
+      requestStream: false,
+      responseType: DeletePNIDResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListAuditLogs returns a paginated list of audit log entries. */
+    listAuditLogs: {
+      name: "ListAuditLogs",
+      requestType: ListAuditLogsRequest,
+      requestStream: false,
+      responseType: ListAuditLogsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListAuditLogComments returns comments for a specific audit log entry. */
+    listAuditLogComments: {
+      name: "ListAuditLogComments",
+      requestType: ListAuditLogCommentsRequest,
+      requestStream: false,
+      responseType: ListAuditLogCommentsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** CreateAuditLogComment adds a comment to an audit log entry. */
+    createAuditLogComment: {
+      name: "CreateAuditLogComment",
+      requestType: CreateAuditLogCommentRequest,
+      requestStream: false,
+      responseType: CreateAuditLogCommentResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListBans returns a paginated list of bans. */
+    listBans: {
+      name: "ListBans",
+      requestType: ListBansRequest,
+      requestStream: false,
+      responseType: ListBansResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** IssueBan creates a new ban. Can target both users and devices. */
+    issueBan: {
+      name: "IssueBan",
+      requestType: IssueBanRequest,
+      requestStream: false,
+      responseType: IssueBanResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetBan retrieves details for a specific ban. */
+    getBan: {
+      name: "GetBan",
+      requestType: GetBanRequest,
+      requestStream: false,
+      responseType: GetBanResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** UpdateBan modifies an existing ban. */
+    updateBan: {
+      name: "UpdateBan",
+      requestType: UpdateBanRequest,
+      requestStream: false,
+      responseType: UpdateBanResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** PardonBan lifts a ban. */
+    pardonBan: {
+      name: "PardonBan",
+      requestType: PardonBanRequest,
+      requestStream: false,
+      responseType: PardonBanResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** ListBanComments returns comments for a specific ban. */
+    listBanComments: {
+      name: "ListBanComments",
+      requestType: ListBanCommentsRequest,
+      requestStream: false,
+      responseType: ListBanCommentsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** CreateBanComment adds a comment to a ban entry. */
+    createBanComment: {
+      name: "CreateBanComment",
+      requestType: CreateBanCommentRequest,
+      requestStream: false,
+      responseType: CreateBanCommentResponse,
+      responseStream: false,
+      options: {},
+    },
   },
 } as const;
 
 export interface AccountServiceImplementation<CallContextExt = {}> {
+  /**
+   * GetUserData retrieves details for a specific PNID account.
+   * Deprecated: Use GetPNID instead.
+   *
+   * @deprecated
+   */
   getUserData(
     request: GetUserDataRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<GetUserDataResponse>>;
+  /** GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos. */
   getNEXPassword(
     request: GetNEXPasswordRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<GetNEXPasswordResponse>>;
+  /**
+   * GetNEXData retrieves details for a specific NEX account.
+   * Deprecated: Use GetNEXAccount instead.
+   *
+   * @deprecated
+   */
   getNEXData(
     request: GetNEXDataRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<GetNEXDataResponse>>;
+  /**
+   * UpdatePNIDPermissions updates the permissions for a PNID account.
+   * Deprecated: Use UpdatePNID instead.
+   *
+   * @deprecated
+   */
   updatePNIDPermissions(
     request: UpdatePNIDPermissionsRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<UpdatePNIDPermissionsResponse>>;
+  /**
+   * ExchangeTokenForUserData exchanges an authentication token for PNID data.
+   * Deprecated: Use the type-specific methods instead.
+   *
+   * @deprecated
+   */
   exchangeTokenForUserData(
     request: ExchangeTokenForUserDataRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<ExchangeTokenForUserDataResponse>>;
+  /** ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data. */
+  exchangeOAuthTokenForUserData(
+    request: ExchangeOAuthTokenForUserDataRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ExchangeOAuthTokenForUserDataResponse>>;
+  /** ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data. */
+  exchangeNEXTokenForUserData(
+    request: ExchangeNEXTokenForUserDataRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ExchangeNEXTokenForUserDataResponse>>;
+  /** ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens. */
+  exchangeIndependentServiceTokenForUserData(
+    request: ExchangeIndependentServiceTokenForUserDataRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ExchangeIndependentServiceTokenForUserDataResponse>>;
+  /** ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data. */
+  exchangePasswordResetTokenForUserData(
+    request: ExchangePasswordResetTokenForUserDataRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ExchangePasswordResetTokenForUserDataResponse>>;
+  /** ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens. */
+  validateIndependentServiceToken(
+    request: ValidateIndependentServiceTokenRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ValidateIndependentServiceTokenResponse>>;
+  /**
+   * DeleteAccount permanently deletes a PNID account.
+   * Deprecated: Use DeletePNID instead.
+   *
+   * @deprecated
+   */
   deleteAccount(
     request: DeleteAccountRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<DeleteAccountResponse>>;
+  /** ListDevices returns a paginated list of devices. */
+  listDevices(
+    request: ListDevicesRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListDevicesResponse>>;
+  /** GetDevice retrieves details for a specific device. */
+  getDevice(request: GetDeviceRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetDeviceResponse>>;
+  /** UpdateDevice updates device information. */
+  updateDevice(
+    request: UpdateDeviceRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdateDeviceResponse>>;
+  /** ListNEXAccounts returns a paginated list of NEX accounts. */
+  listNEXAccounts(
+    request: ListNEXAccountsRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListNEXAccountsResponse>>;
+  /** GetNEXAccount retrieves details for a specific NEX account. */
+  getNEXAccount(
+    request: GetNEXAccountRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetNEXAccountResponse>>;
+  /** UpdateNEXAccount updates NEX account information. */
+  updateNEXAccount(
+    request: UpdateNEXAccountRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdateNEXAccountResponse>>;
+  /** ListServers returns a paginated list of server configurations. */
+  listServers(
+    request: ListServersRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListServersResponse>>;
+  /** CreateServer creates a new server configuration. */
+  createServer(
+    request: CreateServerRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<CreateServerResponse>>;
+  /** GetServer retrieves the configuration for a specific server. */
+  getServer(request: GetServerRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetServerResponse>>;
+  /** UpdateServer updates a server configuration. */
+  updateServer(
+    request: UpdateServerRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdateServerResponse>>;
+  /** DeleteServer removes a server configuration. */
+  deleteServer(
+    request: DeleteServerRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<DeleteServerResponse>>;
+  /** ListPNIDs returns a paginated list of PNID accounts. */
+  listPNIDs(request: ListPNIDsRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListPNIDsResponse>>;
+  /** GetPNID retrieves details for a specific PNID account. */
+  getPNID(request: GetPNIDRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetPNIDResponse>>;
+  /** UpdatePNID updates PNID account information. */
+  updatePNID(
+    request: UpdatePNIDRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdatePNIDResponse>>;
+  /** DeletePNID permanently deletes a PNID account. */
+  deletePNID(
+    request: DeletePNIDRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<DeletePNIDResponse>>;
+  /** ListAuditLogs returns a paginated list of audit log entries. */
+  listAuditLogs(
+    request: ListAuditLogsRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListAuditLogsResponse>>;
+  /** ListAuditLogComments returns comments for a specific audit log entry. */
+  listAuditLogComments(
+    request: ListAuditLogCommentsRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListAuditLogCommentsResponse>>;
+  /** CreateAuditLogComment adds a comment to an audit log entry. */
+  createAuditLogComment(
+    request: CreateAuditLogCommentRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<CreateAuditLogCommentResponse>>;
+  /** ListBans returns a paginated list of bans. */
+  listBans(request: ListBansRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListBansResponse>>;
+  /** IssueBan creates a new ban. Can target both users and devices. */
+  issueBan(request: IssueBanRequest, context: CallContext & CallContextExt): Promise<DeepPartial<IssueBanResponse>>;
+  /** GetBan retrieves details for a specific ban. */
+  getBan(request: GetBanRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetBanResponse>>;
+  /** UpdateBan modifies an existing ban. */
+  updateBan(request: UpdateBanRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateBanResponse>>;
+  /** PardonBan lifts a ban. */
+  pardonBan(request: PardonBanRequest, context: CallContext & CallContextExt): Promise<DeepPartial<PardonBanResponse>>;
+  /** ListBanComments returns comments for a specific ban. */
+  listBanComments(
+    request: ListBanCommentsRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<ListBanCommentsResponse>>;
+  /** CreateBanComment adds a comment to a ban entry. */
+  createBanComment(
+    request: CreateBanCommentRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<CreateBanCommentResponse>>;
 }
 
 export interface AccountServiceClient<CallOptionsExt = {}> {
+  /**
+   * GetUserData retrieves details for a specific PNID account.
+   * Deprecated: Use GetPNID instead.
+   *
+   * @deprecated
+   */
   getUserData(
     request: DeepPartial<GetUserDataRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<GetUserDataResponse>;
+  /** GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos. */
   getNEXPassword(
     request: DeepPartial<GetNEXPasswordRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<GetNEXPasswordResponse>;
+  /**
+   * GetNEXData retrieves details for a specific NEX account.
+   * Deprecated: Use GetNEXAccount instead.
+   *
+   * @deprecated
+   */
   getNEXData(
     request: DeepPartial<GetNEXDataRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<GetNEXDataResponse>;
+  /**
+   * UpdatePNIDPermissions updates the permissions for a PNID account.
+   * Deprecated: Use UpdatePNID instead.
+   *
+   * @deprecated
+   */
   updatePNIDPermissions(
     request: DeepPartial<UpdatePNIDPermissionsRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<UpdatePNIDPermissionsResponse>;
+  /**
+   * ExchangeTokenForUserData exchanges an authentication token for PNID data.
+   * Deprecated: Use the type-specific methods instead.
+   *
+   * @deprecated
+   */
   exchangeTokenForUserData(
     request: DeepPartial<ExchangeTokenForUserDataRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<ExchangeTokenForUserDataResponse>;
+  /** ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data. */
+  exchangeOAuthTokenForUserData(
+    request: DeepPartial<ExchangeOAuthTokenForUserDataRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ExchangeOAuthTokenForUserDataResponse>;
+  /** ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data. */
+  exchangeNEXTokenForUserData(
+    request: DeepPartial<ExchangeNEXTokenForUserDataRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ExchangeNEXTokenForUserDataResponse>;
+  /** ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens. */
+  exchangeIndependentServiceTokenForUserData(
+    request: DeepPartial<ExchangeIndependentServiceTokenForUserDataRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ExchangeIndependentServiceTokenForUserDataResponse>;
+  /** ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data. */
+  exchangePasswordResetTokenForUserData(
+    request: DeepPartial<ExchangePasswordResetTokenForUserDataRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ExchangePasswordResetTokenForUserDataResponse>;
+  /** ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens. */
+  validateIndependentServiceToken(
+    request: DeepPartial<ValidateIndependentServiceTokenRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ValidateIndependentServiceTokenResponse>;
+  /**
+   * DeleteAccount permanently deletes a PNID account.
+   * Deprecated: Use DeletePNID instead.
+   *
+   * @deprecated
+   */
   deleteAccount(
     request: DeepPartial<DeleteAccountRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<DeleteAccountResponse>;
+  /** ListDevices returns a paginated list of devices. */
+  listDevices(
+    request: DeepPartial<ListDevicesRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListDevicesResponse>;
+  /** GetDevice retrieves details for a specific device. */
+  getDevice(request: DeepPartial<GetDeviceRequest>, options?: CallOptions & CallOptionsExt): Promise<GetDeviceResponse>;
+  /** UpdateDevice updates device information. */
+  updateDevice(
+    request: DeepPartial<UpdateDeviceRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdateDeviceResponse>;
+  /** ListNEXAccounts returns a paginated list of NEX accounts. */
+  listNEXAccounts(
+    request: DeepPartial<ListNEXAccountsRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListNEXAccountsResponse>;
+  /** GetNEXAccount retrieves details for a specific NEX account. */
+  getNEXAccount(
+    request: DeepPartial<GetNEXAccountRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetNEXAccountResponse>;
+  /** UpdateNEXAccount updates NEX account information. */
+  updateNEXAccount(
+    request: DeepPartial<UpdateNEXAccountRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdateNEXAccountResponse>;
+  /** ListServers returns a paginated list of server configurations. */
+  listServers(
+    request: DeepPartial<ListServersRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListServersResponse>;
+  /** CreateServer creates a new server configuration. */
+  createServer(
+    request: DeepPartial<CreateServerRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<CreateServerResponse>;
+  /** GetServer retrieves the configuration for a specific server. */
+  getServer(request: DeepPartial<GetServerRequest>, options?: CallOptions & CallOptionsExt): Promise<GetServerResponse>;
+  /** UpdateServer updates a server configuration. */
+  updateServer(
+    request: DeepPartial<UpdateServerRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdateServerResponse>;
+  /** DeleteServer removes a server configuration. */
+  deleteServer(
+    request: DeepPartial<DeleteServerRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<DeleteServerResponse>;
+  /** ListPNIDs returns a paginated list of PNID accounts. */
+  listPNIDs(request: DeepPartial<ListPNIDsRequest>, options?: CallOptions & CallOptionsExt): Promise<ListPNIDsResponse>;
+  /** GetPNID retrieves details for a specific PNID account. */
+  getPNID(request: DeepPartial<GetPNIDRequest>, options?: CallOptions & CallOptionsExt): Promise<GetPNIDResponse>;
+  /** UpdatePNID updates PNID account information. */
+  updatePNID(
+    request: DeepPartial<UpdatePNIDRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdatePNIDResponse>;
+  /** DeletePNID permanently deletes a PNID account. */
+  deletePNID(
+    request: DeepPartial<DeletePNIDRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<DeletePNIDResponse>;
+  /** ListAuditLogs returns a paginated list of audit log entries. */
+  listAuditLogs(
+    request: DeepPartial<ListAuditLogsRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListAuditLogsResponse>;
+  /** ListAuditLogComments returns comments for a specific audit log entry. */
+  listAuditLogComments(
+    request: DeepPartial<ListAuditLogCommentsRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListAuditLogCommentsResponse>;
+  /** CreateAuditLogComment adds a comment to an audit log entry. */
+  createAuditLogComment(
+    request: DeepPartial<CreateAuditLogCommentRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<CreateAuditLogCommentResponse>;
+  /** ListBans returns a paginated list of bans. */
+  listBans(request: DeepPartial<ListBansRequest>, options?: CallOptions & CallOptionsExt): Promise<ListBansResponse>;
+  /** IssueBan creates a new ban. Can target both users and devices. */
+  issueBan(request: DeepPartial<IssueBanRequest>, options?: CallOptions & CallOptionsExt): Promise<IssueBanResponse>;
+  /** GetBan retrieves details for a specific ban. */
+  getBan(request: DeepPartial<GetBanRequest>, options?: CallOptions & CallOptionsExt): Promise<GetBanResponse>;
+  /** UpdateBan modifies an existing ban. */
+  updateBan(request: DeepPartial<UpdateBanRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateBanResponse>;
+  /** PardonBan lifts a ban. */
+  pardonBan(request: DeepPartial<PardonBanRequest>, options?: CallOptions & CallOptionsExt): Promise<PardonBanResponse>;
+  /** ListBanComments returns comments for a specific ban. */
+  listBanComments(
+    request: DeepPartial<ListBanCommentsRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<ListBanCommentsResponse>;
+  /** CreateBanComment adds a comment to a ban entry. */
+  createBanComment(
+    request: DeepPartial<CreateBanCommentRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<CreateBanCommentResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;

@@ -6,17 +6,53 @@
 // source: account/v2/account_service.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountServiceDefinition = exports.protobufPackage = void 0;
+const create_audit_log_comment_rpc_1 = require("./create_audit_log_comment_rpc");
+const create_ban_comment_rpc_1 = require("./create_ban_comment_rpc");
+const create_server_rpc_1 = require("./create_server_rpc");
 const delete_account_rpc_1 = require("./delete_account_rpc");
-const exchange_token_for_user_data_1 = require("./exchange_token_for_user_data");
+const delete_pnid_rpc_1 = require("./delete_pnid_rpc");
+const delete_server_rpc_1 = require("./delete_server_rpc");
+const exchange_independent_service_token_for_user_data_rpc_1 = require("./exchange_independent_service_token_for_user_data_rpc");
+const exchange_nex_token_for_user_data_rpc_1 = require("./exchange_nex_token_for_user_data_rpc");
+const exchange_oauth_token_for_user_data_rpc_1 = require("./exchange_oauth_token_for_user_data_rpc");
+const exchange_password_reset_token_for_user_data_rpc_1 = require("./exchange_password_reset_token_for_user_data_rpc");
+const exchange_token_for_user_data_rpc_1 = require("./exchange_token_for_user_data_rpc");
+const get_ban_rpc_1 = require("./get_ban_rpc");
+const get_device_rpc_1 = require("./get_device_rpc");
+const get_nex_account_rpc_1 = require("./get_nex_account_rpc");
 const get_nex_data_rpc_1 = require("./get_nex_data_rpc");
 const get_nex_password_rpc_1 = require("./get_nex_password_rpc");
+const get_pnid_rpc_1 = require("./get_pnid_rpc");
+const get_server_rpc_1 = require("./get_server_rpc");
 const get_user_data_rpc_1 = require("./get_user_data_rpc");
-const update_pnid_permissions_1 = require("./update_pnid_permissions");
+const issue_ban_rpc_1 = require("./issue_ban_rpc");
+const list_audit_log_comments_rpc_1 = require("./list_audit_log_comments_rpc");
+const list_audit_logs_rpc_1 = require("./list_audit_logs_rpc");
+const list_ban_comments_rpc_1 = require("./list_ban_comments_rpc");
+const list_bans_rpc_1 = require("./list_bans_rpc");
+const list_devices_rpc_1 = require("./list_devices_rpc");
+const list_nex_accounts_rpc_1 = require("./list_nex_accounts_rpc");
+const list_pnids_rpc_1 = require("./list_pnids_rpc");
+const list_servers_rpc_1 = require("./list_servers_rpc");
+const pardon_ban_rpc_1 = require("./pardon_ban_rpc");
+const update_ban_rpc_1 = require("./update_ban_rpc");
+const update_device_rpc_1 = require("./update_device_rpc");
+const update_nex_account_rpc_1 = require("./update_nex_account_rpc");
+const update_pnid_permissions_rpc_1 = require("./update_pnid_permissions_rpc");
+const update_pnid_rpc_1 = require("./update_pnid_rpc");
+const update_server_rpc_1 = require("./update_server_rpc");
+const validate_independent_service_token_rpc_1 = require("./validate_independent_service_token_rpc");
 exports.protobufPackage = "account.v2";
 exports.AccountServiceDefinition = {
     name: "AccountService",
     fullName: "account.v2.AccountService",
     methods: {
+        /**
+         * GetUserData retrieves details for a specific PNID account.
+         * Deprecated: Use GetPNID instead.
+         *
+         * @deprecated
+         */
         getUserData: {
             name: "GetUserData",
             requestType: get_user_data_rpc_1.GetUserDataRequest,
@@ -25,6 +61,7 @@ exports.AccountServiceDefinition = {
             responseStream: false,
             options: {},
         },
+        /** GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos. */
         getNEXPassword: {
             name: "GetNEXPassword",
             requestType: get_nex_password_rpc_1.GetNEXPasswordRequest,
@@ -33,6 +70,12 @@ exports.AccountServiceDefinition = {
             responseStream: false,
             options: {},
         },
+        /**
+         * GetNEXData retrieves details for a specific NEX account.
+         * Deprecated: Use GetNEXAccount instead.
+         *
+         * @deprecated
+         */
         getNEXData: {
             name: "GetNEXData",
             requestType: get_nex_data_rpc_1.GetNEXDataRequest,
@@ -41,27 +84,315 @@ exports.AccountServiceDefinition = {
             responseStream: false,
             options: {},
         },
+        /**
+         * UpdatePNIDPermissions updates the permissions for a PNID account.
+         * Deprecated: Use UpdatePNID instead.
+         *
+         * @deprecated
+         */
         updatePNIDPermissions: {
             name: "UpdatePNIDPermissions",
-            requestType: update_pnid_permissions_1.UpdatePNIDPermissionsRequest,
+            requestType: update_pnid_permissions_rpc_1.UpdatePNIDPermissionsRequest,
             requestStream: false,
-            responseType: update_pnid_permissions_1.UpdatePNIDPermissionsResponse,
+            responseType: update_pnid_permissions_rpc_1.UpdatePNIDPermissionsResponse,
             responseStream: false,
             options: {},
         },
+        /**
+         * ExchangeTokenForUserData exchanges an authentication token for PNID data.
+         * Deprecated: Use the type-specific methods instead.
+         *
+         * @deprecated
+         */
         exchangeTokenForUserData: {
             name: "ExchangeTokenForUserData",
-            requestType: exchange_token_for_user_data_1.ExchangeTokenForUserDataRequest,
+            requestType: exchange_token_for_user_data_rpc_1.ExchangeTokenForUserDataRequest,
             requestStream: false,
-            responseType: exchange_token_for_user_data_1.ExchangeTokenForUserDataResponse,
+            responseType: exchange_token_for_user_data_rpc_1.ExchangeTokenForUserDataResponse,
             responseStream: false,
             options: {},
         },
+        /** ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data. */
+        exchangeOAuthTokenForUserData: {
+            name: "ExchangeOAuthTokenForUserData",
+            requestType: exchange_oauth_token_for_user_data_rpc_1.ExchangeOAuthTokenForUserDataRequest,
+            requestStream: false,
+            responseType: exchange_oauth_token_for_user_data_rpc_1.ExchangeOAuthTokenForUserDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data. */
+        exchangeNEXTokenForUserData: {
+            name: "ExchangeNEXTokenForUserData",
+            requestType: exchange_nex_token_for_user_data_rpc_1.ExchangeNEXTokenForUserDataRequest,
+            requestStream: false,
+            responseType: exchange_nex_token_for_user_data_rpc_1.ExchangeNEXTokenForUserDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens. */
+        exchangeIndependentServiceTokenForUserData: {
+            name: "ExchangeIndependentServiceTokenForUserData",
+            requestType: exchange_independent_service_token_for_user_data_rpc_1.ExchangeIndependentServiceTokenForUserDataRequest,
+            requestStream: false,
+            responseType: exchange_independent_service_token_for_user_data_rpc_1.ExchangeIndependentServiceTokenForUserDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data. */
+        exchangePasswordResetTokenForUserData: {
+            name: "ExchangePasswordResetTokenForUserData",
+            requestType: exchange_password_reset_token_for_user_data_rpc_1.ExchangePasswordResetTokenForUserDataRequest,
+            requestStream: false,
+            responseType: exchange_password_reset_token_for_user_data_rpc_1.ExchangePasswordResetTokenForUserDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens. */
+        validateIndependentServiceToken: {
+            name: "ValidateIndependentServiceToken",
+            requestType: validate_independent_service_token_rpc_1.ValidateIndependentServiceTokenRequest,
+            requestStream: false,
+            responseType: validate_independent_service_token_rpc_1.ValidateIndependentServiceTokenResponse,
+            responseStream: false,
+            options: {},
+        },
+        /**
+         * DeleteAccount permanently deletes a PNID account.
+         * Deprecated: Use DeletePNID instead.
+         *
+         * @deprecated
+         */
         deleteAccount: {
             name: "DeleteAccount",
             requestType: delete_account_rpc_1.DeleteAccountRequest,
             requestStream: false,
             responseType: delete_account_rpc_1.DeleteAccountResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListDevices returns a paginated list of devices. */
+        listDevices: {
+            name: "ListDevices",
+            requestType: list_devices_rpc_1.ListDevicesRequest,
+            requestStream: false,
+            responseType: list_devices_rpc_1.ListDevicesResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetDevice retrieves details for a specific device. */
+        getDevice: {
+            name: "GetDevice",
+            requestType: get_device_rpc_1.GetDeviceRequest,
+            requestStream: false,
+            responseType: get_device_rpc_1.GetDeviceResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** UpdateDevice updates device information. */
+        updateDevice: {
+            name: "UpdateDevice",
+            requestType: update_device_rpc_1.UpdateDeviceRequest,
+            requestStream: false,
+            responseType: update_device_rpc_1.UpdateDeviceResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListNEXAccounts returns a paginated list of NEX accounts. */
+        listNEXAccounts: {
+            name: "ListNEXAccounts",
+            requestType: list_nex_accounts_rpc_1.ListNEXAccountsRequest,
+            requestStream: false,
+            responseType: list_nex_accounts_rpc_1.ListNEXAccountsResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetNEXAccount retrieves details for a specific NEX account. */
+        getNEXAccount: {
+            name: "GetNEXAccount",
+            requestType: get_nex_account_rpc_1.GetNEXAccountRequest,
+            requestStream: false,
+            responseType: get_nex_account_rpc_1.GetNEXAccountResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** UpdateNEXAccount updates NEX account information. */
+        updateNEXAccount: {
+            name: "UpdateNEXAccount",
+            requestType: update_nex_account_rpc_1.UpdateNEXAccountRequest,
+            requestStream: false,
+            responseType: update_nex_account_rpc_1.UpdateNEXAccountResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListServers returns a paginated list of server configurations. */
+        listServers: {
+            name: "ListServers",
+            requestType: list_servers_rpc_1.ListServersRequest,
+            requestStream: false,
+            responseType: list_servers_rpc_1.ListServersResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** CreateServer creates a new server configuration. */
+        createServer: {
+            name: "CreateServer",
+            requestType: create_server_rpc_1.CreateServerRequest,
+            requestStream: false,
+            responseType: create_server_rpc_1.CreateServerResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetServer retrieves the configuration for a specific server. */
+        getServer: {
+            name: "GetServer",
+            requestType: get_server_rpc_1.GetServerRequest,
+            requestStream: false,
+            responseType: get_server_rpc_1.GetServerResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** UpdateServer updates a server configuration. */
+        updateServer: {
+            name: "UpdateServer",
+            requestType: update_server_rpc_1.UpdateServerRequest,
+            requestStream: false,
+            responseType: update_server_rpc_1.UpdateServerResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** DeleteServer removes a server configuration. */
+        deleteServer: {
+            name: "DeleteServer",
+            requestType: delete_server_rpc_1.DeleteServerRequest,
+            requestStream: false,
+            responseType: delete_server_rpc_1.DeleteServerResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListPNIDs returns a paginated list of PNID accounts. */
+        listPNIDs: {
+            name: "ListPNIDs",
+            requestType: list_pnids_rpc_1.ListPNIDsRequest,
+            requestStream: false,
+            responseType: list_pnids_rpc_1.ListPNIDsResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetPNID retrieves details for a specific PNID account. */
+        getPNID: {
+            name: "GetPNID",
+            requestType: get_pnid_rpc_1.GetPNIDRequest,
+            requestStream: false,
+            responseType: get_pnid_rpc_1.GetPNIDResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** UpdatePNID updates PNID account information. */
+        updatePNID: {
+            name: "UpdatePNID",
+            requestType: update_pnid_rpc_1.UpdatePNIDRequest,
+            requestStream: false,
+            responseType: update_pnid_rpc_1.UpdatePNIDResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** DeletePNID permanently deletes a PNID account. */
+        deletePNID: {
+            name: "DeletePNID",
+            requestType: delete_pnid_rpc_1.DeletePNIDRequest,
+            requestStream: false,
+            responseType: delete_pnid_rpc_1.DeletePNIDResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListAuditLogs returns a paginated list of audit log entries. */
+        listAuditLogs: {
+            name: "ListAuditLogs",
+            requestType: list_audit_logs_rpc_1.ListAuditLogsRequest,
+            requestStream: false,
+            responseType: list_audit_logs_rpc_1.ListAuditLogsResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListAuditLogComments returns comments for a specific audit log entry. */
+        listAuditLogComments: {
+            name: "ListAuditLogComments",
+            requestType: list_audit_log_comments_rpc_1.ListAuditLogCommentsRequest,
+            requestStream: false,
+            responseType: list_audit_log_comments_rpc_1.ListAuditLogCommentsResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** CreateAuditLogComment adds a comment to an audit log entry. */
+        createAuditLogComment: {
+            name: "CreateAuditLogComment",
+            requestType: create_audit_log_comment_rpc_1.CreateAuditLogCommentRequest,
+            requestStream: false,
+            responseType: create_audit_log_comment_rpc_1.CreateAuditLogCommentResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListBans returns a paginated list of bans. */
+        listBans: {
+            name: "ListBans",
+            requestType: list_bans_rpc_1.ListBansRequest,
+            requestStream: false,
+            responseType: list_bans_rpc_1.ListBansResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** IssueBan creates a new ban. Can target both users and devices. */
+        issueBan: {
+            name: "IssueBan",
+            requestType: issue_ban_rpc_1.IssueBanRequest,
+            requestStream: false,
+            responseType: issue_ban_rpc_1.IssueBanResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetBan retrieves details for a specific ban. */
+        getBan: {
+            name: "GetBan",
+            requestType: get_ban_rpc_1.GetBanRequest,
+            requestStream: false,
+            responseType: get_ban_rpc_1.GetBanResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** UpdateBan modifies an existing ban. */
+        updateBan: {
+            name: "UpdateBan",
+            requestType: update_ban_rpc_1.UpdateBanRequest,
+            requestStream: false,
+            responseType: update_ban_rpc_1.UpdateBanResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** PardonBan lifts a ban. */
+        pardonBan: {
+            name: "PardonBan",
+            requestType: pardon_ban_rpc_1.PardonBanRequest,
+            requestStream: false,
+            responseType: pardon_ban_rpc_1.PardonBanResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** ListBanComments returns comments for a specific ban. */
+        listBanComments: {
+            name: "ListBanComments",
+            requestType: list_ban_comments_rpc_1.ListBanCommentsRequest,
+            requestStream: false,
+            responseType: list_ban_comments_rpc_1.ListBanCommentsResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** CreateBanComment adds a comment to a ban entry. */
+        createBanComment: {
+            name: "CreateBanComment",
+            requestType: create_ban_comment_rpc_1.CreateBanCommentRequest,
+            requestStream: false,
+            responseType: create_ban_comment_rpc_1.CreateBanCommentResponse,
             responseStream: false,
             options: {},
         },

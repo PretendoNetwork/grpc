@@ -10,7 +10,7 @@ exports.Device = exports.protobufPackage = void 0;
 const wire_1 = require("@bufbuild/protobuf/wire");
 exports.protobufPackage = "account.v2";
 function createBaseDevice() {
-    return { model: "", serial: "", linkedPids: [], accessLevel: 0, serverAccessLevel: "" };
+    return { model: "", serial: "", linkedPids: [], accessLevel: 0, serverAccessLevel: "", deviceId: 0 };
 }
 exports.Device = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -30,6 +30,9 @@ exports.Device = {
         }
         if (message.serverAccessLevel !== "") {
             writer.uint32(42).string(message.serverAccessLevel);
+        }
+        if (message.deviceId !== 0) {
+            writer.uint32(48).uint32(message.deviceId);
         }
         return writer;
     },
@@ -82,6 +85,13 @@ exports.Device = {
                     message.serverAccessLevel = reader.string();
                     continue;
                 }
+                case 6: {
+                    if (tag !== 48) {
+                        break;
+                    }
+                    message.deviceId = reader.uint32();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -99,6 +109,7 @@ exports.Device = {
                 : [],
             accessLevel: isSet(object.accessLevel) ? globalThis.Number(object.accessLevel) : 0,
             serverAccessLevel: isSet(object.serverAccessLevel) ? globalThis.String(object.serverAccessLevel) : "",
+            deviceId: isSet(object.deviceId) ? globalThis.Number(object.deviceId) : 0,
         };
     },
     toJSON(message) {
@@ -118,6 +129,9 @@ exports.Device = {
         if (message.serverAccessLevel !== "") {
             obj.serverAccessLevel = message.serverAccessLevel;
         }
+        if (message.deviceId !== 0) {
+            obj.deviceId = Math.round(message.deviceId);
+        }
         return obj;
     },
     create(base) {
@@ -130,6 +144,7 @@ exports.Device = {
         message.linkedPids = object.linkedPids?.map((e) => e) || [];
         message.accessLevel = object.accessLevel ?? 0;
         message.serverAccessLevel = object.serverAccessLevel ?? "";
+        message.deviceId = object.deviceId ?? 0;
         return message;
     },
 };
