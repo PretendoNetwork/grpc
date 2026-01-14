@@ -3,17 +3,168 @@ syntax = "proto3";
 package account.v2;
 
 import "account/v2/delete_account_rpc.proto";
-import "account/v2/exchange_token_for_user_data.proto";
+import "account/v2/exchange_token_for_user_data_rpc.proto";
+import "account/v2/exchange_oauth_token_for_user_data_rpc.proto";
+import "account/v2/exchange_nex_token_for_user_data_rpc.proto";
+import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
+import "account/v2/exchange_password_reset_token_for_user_data_rpc.proto";
+import "account/v2/validate_independent_service_token_rpc.proto";
 import "account/v2/get_nex_data_rpc.proto";
 import "account/v2/get_nex_password_rpc.proto";
 import "account/v2/get_user_data_rpc.proto";
-import "account/v2/update_pnid_permissions.proto";
+import "account/v2/update_pnid_permissions_rpc.proto";
+import "account/v2/list_devices_rpc.proto";
+import "account/v2/get_device_rpc.proto";
+import "account/v2/update_device_rpc.proto";
+import "account/v2/list_nex_accounts_rpc.proto";
+import "account/v2/get_nex_account_rpc.proto";
+import "account/v2/update_nex_account_rpc.proto";
+import "account/v2/list_servers_rpc.proto";
+import "account/v2/create_server_rpc.proto";
+import "account/v2/get_server_rpc.proto";
+import "account/v2/update_server_rpc.proto";
+import "account/v2/delete_server_rpc.proto";
+import "account/v2/list_pnids_rpc.proto";
+import "account/v2/get_pnid_rpc.proto"; // TODO - Replace get_user_data_rpc with this?
+import "account/v2/update_pnid_rpc.proto"; // TODO - Replace update_pnid_permissions_rpc with this?
+import "account/v2/delete_pnid_rpc.proto";
+import "account/v2/list_audit_logs_rpc.proto";
+import "account/v2/list_audit_log_comments_rpc.proto";
+import "account/v2/create_audit_log_comment_rpc.proto";
 
+import "account/v2/list_bans_rpc.proto";
+import "account/v2/issue_ban_rpc.proto";
+import "account/v2/get_ban_rpc.proto";
+import "account/v2/update_ban_rpc.proto";
+import "account/v2/pardon_ban_rpc.proto";
+import "account/v2/list_ban_comments_rpc.proto";
+import "account/v2/create_ban_comment_rpc.proto";
+
+// AccountService provides access to account server data.
+//
+// INTERNAL API: This service is intended for internal backend use by trusted servers only,
+// such as the admin panel, game servers, etc. It is not designed for public use.
 service AccountService {
-  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
+  // GetUserData retrieves details for a specific PNID account.
+  // Deprecated: Use GetPNID instead.
+  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {
+    option deprecated = true;
+  }
+
+  // GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos.
   rpc GetNEXPassword(GetNEXPasswordRequest) returns (GetNEXPasswordResponse) {}
-  rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {}
-  rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {}
-  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {}
-  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+
+  // GetNEXData retrieves details for a specific NEX account.
+  // Deprecated: Use GetNEXAccount instead.
+  rpc GetNEXData(GetNEXDataRequest) returns (GetNEXDataResponse) {
+    option deprecated = true;
+  }
+
+  // UpdatePNIDPermissions updates the permissions for a PNID account.
+  // Deprecated: Use UpdatePNID instead.
+  rpc UpdatePNIDPermissions(UpdatePNIDPermissionsRequest) returns (UpdatePNIDPermissionsResponse) {
+    option deprecated = true;
+  }
+
+  // ExchangeTokenForUserData exchanges an authentication token for PNID data.
+  // Deprecated: Use the type-specific methods instead.
+  rpc ExchangeTokenForUserData(ExchangeTokenForUserDataRequest) returns (ExchangeTokenForUserDataResponse) {
+    option deprecated = true;
+  }
+
+  // ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data.
+  rpc ExchangeOAuthTokenForUserData(ExchangeOAuthTokenForUserDataRequest) returns (ExchangeOAuthTokenForUserDataResponse) {}
+
+  // ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data.
+  rpc ExchangeNEXTokenForUserData(ExchangeNEXTokenForUserDataRequest) returns (ExchangeNEXTokenForUserDataResponse) {}
+
+  // ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens.
+  rpc ExchangeIndependentServiceTokenForUserData(ExchangeIndependentServiceTokenForUserDataRequest) returns (ExchangeIndependentServiceTokenForUserDataResponse) {}
+
+  // ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data.
+  rpc ExchangePasswordResetTokenForUserData(ExchangePasswordResetTokenForUserDataRequest) returns (ExchangePasswordResetTokenForUserDataResponse) {}
+
+  // ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens.
+  rpc ValidateIndependentServiceToken(ValidateIndependentServiceTokenRequest) returns (ValidateIndependentServiceTokenResponse) {}
+
+  // DeleteAccount permanently deletes a PNID account.
+  // Deprecated: Use DeletePNID instead.
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {
+    option deprecated = true;
+  }
+
+  // ListDevices returns a paginated list of devices.
+  rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {}
+
+  // GetDevice retrieves details for a specific device.
+  rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse) {}
+
+  // UpdateDevice updates device information.
+  rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse) {}
+
+  // ListNEXAccounts returns a paginated list of NEX accounts.
+  rpc ListNEXAccounts(ListNEXAccountsRequest) returns (ListNEXAccountsResponse) {}
+
+  // GetNEXAccount retrieves details for a specific NEX account.
+  rpc GetNEXAccount(GetNEXAccountRequest) returns (GetNEXAccountResponse) {}
+
+  // UpdateNEXAccount updates NEX account information.
+  rpc UpdateNEXAccount(UpdateNEXAccountRequest) returns (UpdateNEXAccountResponse) {}
+
+  // ListServers returns a paginated list of server configurations.
+  rpc ListServers(ListServersRequest) returns (ListServersResponse) {}
+
+  // CreateServer creates a new server configuration.
+  rpc CreateServer(CreateServerRequest) returns (CreateServerResponse) {}
+
+  // GetServer retrieves the configuration for a specific server.
+  rpc GetServer(GetServerRequest) returns (GetServerResponse) {}
+
+  // UpdateServer updates a server configuration.
+  rpc UpdateServer(UpdateServerRequest) returns (UpdateServerResponse) {}
+
+  // DeleteServer removes a server configuration.
+  rpc DeleteServer(DeleteServerRequest) returns (DeleteServerResponse) {}
+
+  // ListPNIDs returns a paginated list of PNID accounts.
+  rpc ListPNIDs(ListPNIDsRequest) returns (ListPNIDsResponse) {}
+
+  // GetPNID retrieves details for a specific PNID account.
+  rpc GetPNID(GetPNIDRequest) returns (GetPNIDResponse) {}
+
+  // UpdatePNID updates PNID account information.
+  rpc UpdatePNID(UpdatePNIDRequest) returns (UpdatePNIDResponse) {}
+
+  // DeletePNID permanently deletes a PNID account.
+  rpc DeletePNID(DeletePNIDRequest) returns (DeletePNIDResponse) {}
+
+  // ListAuditLogs returns a paginated list of audit log entries.
+  rpc ListAuditLogs(ListAuditLogsRequest) returns (ListAuditLogsResponse) {}
+
+  // ListAuditLogComments returns comments for a specific audit log entry.
+  rpc ListAuditLogComments(ListAuditLogCommentsRequest) returns (ListAuditLogCommentsResponse) {}
+
+  // CreateAuditLogComment adds a comment to an audit log entry.
+  rpc CreateAuditLogComment(CreateAuditLogCommentRequest) returns (CreateAuditLogCommentResponse) {}
+
+  // ListBans returns a paginated list of bans.
+  rpc ListBans(ListBansRequest) returns (ListBansResponse) {}
+
+  // IssueBan creates a new ban. Can target both users and devices.
+  rpc IssueBan(IssueBanRequest) returns (IssueBanResponse) {}
+
+  // GetBan retrieves details for a specific ban.
+  rpc GetBan(GetBanRequest) returns (GetBanResponse) {}
+
+  // UpdateBan modifies an existing ban.
+  rpc UpdateBan(UpdateBanRequest) returns (UpdateBanResponse) {}
+
+  // PardonBan lifts a ban.
+  rpc PardonBan(PardonBanRequest) returns (PardonBanResponse) {}
+
+  // ListBanComments returns comments for a specific ban.
+  rpc ListBanComments(ListBanCommentsRequest) returns (ListBanCommentsResponse) {}
+
+  // CreateBanComment adds a comment to a ban entry.
+  rpc CreateBanComment(CreateBanCommentRequest) returns (CreateBanCommentResponse) {}
 }

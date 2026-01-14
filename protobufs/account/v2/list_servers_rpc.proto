@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/page.proto";
+import "account/v2/server.proto";
+
+message ListServersRequest {
+  message Filter {
+    optional string service_name = 1;
+    optional string extra_json = 2;
+  }
+
+  PageInput page = 1;
+  Filter filter = 2;
+}
+
+message ListServersResponse {
+  PageResults page = 1;
+  repeated Server items = 2;
+}

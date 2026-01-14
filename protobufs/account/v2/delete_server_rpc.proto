@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package account.v2;
+
+message DeleteServerRequest {
+  string id = 1;
+}
+
+message DeleteServerResponse {}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/comment.proto";
+
+message CreateBanCommentRequest {
+  string id = 1;
+  string content = 2;
+}
+
+message CreateBanCommentResponse {
+  Comment item = 1;
+}

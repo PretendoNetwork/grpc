@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package account.v2;
+
+message NEXAccount {
+  uint32 pid = 1;
+  optional uint32 owning_pid = 2;
+  int32 access_level = 3;
+  string server_access_level = 4;
+  optional string friend_code = 5;
+  optional string device_type = 6;
+}

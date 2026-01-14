@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "google/protobuf/timestamp.proto";
+
+message Comment {
+  string parent = 1;
+  string id = 2;
+  uint32 pid = 3;
+  google.protobuf.Timestamp created_timestamp = 4;
+  string content = 5;
+}

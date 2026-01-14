@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/page.proto";
+import "account/v2/device.proto";
+
+message ListDevicesRequest {
+  message Filter {
+    repeated uint32 pid = 1;
+    optional uint32 device_id = 2;
+    optional string serial = 3;
+    optional string extra_json = 4;
+  }
+
+  PageInput page = 1;
+  Filter filter = 2;
+}
+
+message ListDevicesResponse {
+  PageResults page = 1;
+  repeated Device items = 2;
+}

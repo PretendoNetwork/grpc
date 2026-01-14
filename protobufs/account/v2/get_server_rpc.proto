@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/server.proto";
+
+message GetServerRequest {
+  string id = 1;
+}
+
+message GetServerResponse {
+  Server server = 1;
+}

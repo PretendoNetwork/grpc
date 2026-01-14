@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/comment.proto";
+
+message ListAuditLogCommentsRequest {
+  string id = 1;
+}
+
+message ListAuditLogCommentsResponse {
+  repeated Comment items = 1;
+}

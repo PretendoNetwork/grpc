@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "google/protobuf/timestamp.proto";
+
+// TODO - Move this to own file
+enum BanTargetType {
+  BAN_TARGET_TYPE_UNSPECIFIED = 0;
+  BAN_TARGET_TYPE_NEX_ACCOUNT = 1;
+  BAN_TARGET_TYPE_NETWORK_ACCOUNT = 2;
+  BAN_TARGET_TYPE_DEVICE = 3;
+}
+
+// TODO - Move this to own file
+// * Relates to the official ban error codes:
+// * 102-2800 BANNED
+// * 102-2801 BANNED_ACCOUNT
+// * 102-2802 BANNED_ACCOUNT_ALL
+// * 102-2803 BANNED_ACCOUNT_IN_APPLICATION
+// * 102-2804 BANNED_ACCOUNT_IN_NEX_SERVICE
+// * 102-2805 BANNED_ACCOUNT_IN_INDEPENDENT_SERVICE
+// * 102-2811 BANNED_DEVICE
+// * 102-2812 BANNED_DEVICE_ALL
+// * 102-2813 BANNED_DEVICE_IN_APPLICATION
+// * 102-2814 BANNED_DEVICE_IN_NEX_SERVICE
+// * 102-2815 BANNED_DEVICE_IN_INDEPENDENT_SERVICE
+// * 102-2821 BANNED_ACCOUNT_TEMPORARILY
+// * 102-2822 BANNED_ACCOUNT_ALL_TEMPORARILY
+// * 102-2823 BANNED_ACCOUNT_IN_APPLICATION_TEMPORARILY
+// * 102-2824 BANNED_ACCOUNT_IN_NEX_SERVICE_TEMPORARILY
+// * 102-2825 BANNED_ACCOUNT_IN_INDEPENDENT_SERVICE_TEMPORARILY
+// * 102-2831 BANNED_DEVICE_TEMPORARILY
+// * 102-2832 BANNED_DEVICE_ALL_TEMPORARILY
+// * 102-2833 BANNED_DEVICE_IN_APPLICATION_TEMPORARILY
+// * 102-2834 BANNED_DEVICE_IN_NEX_SERVICE_TEMPORARILY
+// * 102-2835 BANNED_DEVICE_IN_INDEPENDENT_SERVICE_TEMPORARILY
+enum BanScopeType {
+  BAN_SCOPE_TYPE_UNSPECIFIED = 0;
+  BAN_SCOPE_TYPE_ALL = 1;
+  BAN_SCOPE_TYPE_APPLICATION = 2;
+  BAN_SCOPE_TYPE_NEX_SERVICE = 3;
+  BAN_SCOPE_TYPE_INDEPENDENT_SERVICE = 4;
+}
+
+message BanDetails {
+  BanTargetType target_type = 1;
+  string target = 2;
+  string issuer = 3; // * Set as a string to not limit this to PIDs
+  google.protobuf.Timestamp start_date = 4;
+  google.protobuf.Timestamp end_date = 5;
+  BanScopeType scope_type = 6;
+  string scope_target = 7;
+  string reason = 8;
+}
+
+// TODO - Move this to own file
+message Ban {
+  string id = 1;
+  BanDetails details = 2;
+  google.protobuf.Timestamp issued_date = 3;
+  google.protobuf.Timestamp updated_date = 4;
+  optional google.protobuf.Timestamp pardoned_date = 5;
+  optional string pardoned_reason = 6;
+}

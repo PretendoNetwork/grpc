@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "google/protobuf/timestamp.proto";
+import "account/v2/page.proto";
+import "account/v2/ban_details.proto";
+
+message ListBansRequest {
+  message Filter {
+    repeated BanTargetType target_type = 1;
+    repeated string target = 2;
+    repeated string issuer = 3;
+    optional google.protobuf.Timestamp start_date = 4;
+    optional google.protobuf.Timestamp end_date = 5;
+    repeated BanScopeType scope_type = 6;
+    repeated string scope_target = 7;
+    optional google.protobuf.Timestamp issued_date = 8;
+  }
+
+  PageInput page = 1;
+  Filter filter = 2;
+}
+
+message ListBansResponse {
+  PageResults page = 1;
+  repeated Ban items = 2;
+}

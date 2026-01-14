@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/audit_log_action_type.proto";
+
+message AuditLog {
+  string id = 1;
+  AuditLogActionType action_type = 2;
+  uint32 executed_by_pid = 3;
+  uint64 created_timestamp = 4;
+  uint32 comment_count = 5;
+  string metadata_json = 6;
+}
