@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package account.v2;
 
-import "account/v2/page.proto";
 import "account/v2/device.proto";
+import "account/v2/page.proto";
 
 message ListDevicesRequest {
   message Filter {

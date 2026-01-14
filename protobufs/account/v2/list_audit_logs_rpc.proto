@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package account.v2;
 
-import "account/v2/page.proto";
-import "account/v2/audit_log_action_type.proto";
 import "account/v2/audit_log.proto";
+import "account/v2/audit_log_action_type.proto";
+import "account/v2/page.proto";
 
 message ListAuditLogsRequest {
   message Filter {

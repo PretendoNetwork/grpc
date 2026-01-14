@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package account.v2;
 
-import "account/v2/page.proto";
 import "account/v2/get_user_data_rpc.proto";
+import "account/v2/page.proto";
 
 message ListPNIDsRequest {
   message Filter {

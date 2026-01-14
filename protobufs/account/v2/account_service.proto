@@ -2,43 +2,42 @@ syntax = "proto3";
 
 package account.v2;
 
+import "account/v2/create_audit_log_comment_rpc.proto";
+import "account/v2/create_ban_comment_rpc.proto";
+import "account/v2/create_server_rpc.proto";
 import "account/v2/delete_account_rpc.proto";
-import "account/v2/exchange_token_for_user_data_rpc.proto";
-import "account/v2/exchange_oauth_token_for_user_data_rpc.proto";
-import "account/v2/exchange_nex_token_for_user_data_rpc.proto";
+import "account/v2/delete_pnid_rpc.proto";
+import "account/v2/delete_server_rpc.proto";
 import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
+import "account/v2/exchange_nex_token_for_user_data_rpc.proto";
+import "account/v2/exchange_oauth_token_for_user_data_rpc.proto";
 import "account/v2/exchange_password_reset_token_for_user_data_rpc.proto";
-import "account/v2/validate_independent_service_token_rpc.proto";
+import "account/v2/exchange_token_for_user_data_rpc.proto";
+import "account/v2/get_ban_rpc.proto";
+import "account/v2/get_device_rpc.proto";
+import "account/v2/get_nex_account_rpc.proto";
 import "account/v2/get_nex_data_rpc.proto";
 import "account/v2/get_nex_password_rpc.proto";
-import "account/v2/get_user_data_rpc.proto";
-import "account/v2/update_pnid_permissions_rpc.proto";
-import "account/v2/list_devices_rpc.proto";
-import "account/v2/get_device_rpc.proto";
-import "account/v2/update_device_rpc.proto";
-import "account/v2/list_nex_accounts_rpc.proto";
-import "account/v2/get_nex_account_rpc.proto";
-import "account/v2/update_nex_account_rpc.proto";
-import "account/v2/list_servers_rpc.proto";
-import "account/v2/create_server_rpc.proto";
-import "account/v2/get_server_rpc.proto";
-import "account/v2/update_server_rpc.proto";
-import "account/v2/delete_server_rpc.proto";
-import "account/v2/list_pnids_rpc.proto";
 import "account/v2/get_pnid_rpc.proto"; // TODO - Replace get_user_data_rpc with this?
-import "account/v2/update_pnid_rpc.proto"; // TODO - Replace update_pnid_permissions_rpc with this?
-import "account/v2/delete_pnid_rpc.proto";
-import "account/v2/list_audit_logs_rpc.proto";
-import "account/v2/list_audit_log_comments_rpc.proto";
-import "account/v2/create_audit_log_comment_rpc.proto";
-
-import "account/v2/list_bans_rpc.proto";
+import "account/v2/get_server_rpc.proto";
+import "account/v2/get_user_data_rpc.proto";
 import "account/v2/issue_ban_rpc.proto";
-import "account/v2/get_ban_rpc.proto";
-import "account/v2/update_ban_rpc.proto";
-import "account/v2/pardon_ban_rpc.proto";
+import "account/v2/list_audit_log_comments_rpc.proto";
+import "account/v2/list_audit_logs_rpc.proto";
 import "account/v2/list_ban_comments_rpc.proto";
-import "account/v2/create_ban_comment_rpc.proto";
+import "account/v2/list_bans_rpc.proto";
+import "account/v2/list_devices_rpc.proto";
+import "account/v2/list_nex_accounts_rpc.proto";
+import "account/v2/list_pnids_rpc.proto";
+import "account/v2/list_servers_rpc.proto";
+import "account/v2/pardon_ban_rpc.proto";
+import "account/v2/update_ban_rpc.proto";
+import "account/v2/update_device_rpc.proto";
+import "account/v2/update_nex_account_rpc.proto";
+import "account/v2/update_pnid_permissions_rpc.proto";
+import "account/v2/update_pnid_rpc.proto"; // TODO - Replace update_pnid_permissions_rpc with this?
+import "account/v2/update_server_rpc.proto";
+import "account/v2/validate_independent_service_token_rpc.proto";
 
 // AccountService provides access to account server data.
 //

@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package account.v2;
 
-import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
 import "account/v2/ban_details.proto";
+import "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
 
 message ValidateIndependentServiceTokenRequest {
   IndependentServiceTokenProviderType provider = 1;

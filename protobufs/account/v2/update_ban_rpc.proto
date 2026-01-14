@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package account.v2;
 
-import "google/protobuf/timestamp.proto";
 import "account/v2/ban_details.proto";
+import "google/protobuf/timestamp.proto";
 
 message UpdateBanRequest {
   string id = 1;
