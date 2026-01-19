@@ -6,18 +6,9 @@ import "account/v2/get_pnid_rpc.proto";
 import "account/v2/nex_account.proto";
 import "account/v2/token_info.proto";
 
-// TODO - Move this to own file
-enum IndependentServiceTokenProviderType {
-  INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED = 0;
-  INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC = 1;
-  INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS = 2;
-}
-
 message ExchangeIndependentServiceTokenForUserDataRequest {
-  IndependentServiceTokenProviderType provider = 1;
-  optional string client_id = 2; // * For NNAS
-  repeated string title_ids = 3; // * For NASC
-  string token = 4;
+  repeated string client_ids = 1;
+  string token = 2;
 }
 
 message ExchangeIndependentServiceTokenForUserDataResponse {
