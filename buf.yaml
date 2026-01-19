@@ -5,7 +5,7 @@ lint:
   use:
     - STANDARD
   ignore:
-    # * We ignore all the old files as these should remain unchanged
+  # We ignore all the old files as these should remain unchanged
     - protobufs/account/account_service.proto
     - protobufs/account/exchange_token_for_user_data.proto
     - protobufs/account/get_nex_data_rpc.proto
@@ -50,6 +50,3 @@ lint:
 breaking:
   use:
     - FILE
-  except:
-    # TODO - Temporary for https://github.com/PretendoNetwork/grpc/pull/10, remove later
-    - FILE_NO_DELETE
