@@ -6,7 +6,7 @@ import "account/v2/nex_account.proto";
 import "account/v2/token_info.proto";
 
 message ExchangeNEXTokenForUserDataRequest {
-  string game_server_id = 1;
+  repeated string game_server_ids = 1;
   string token = 2;
 }
 
