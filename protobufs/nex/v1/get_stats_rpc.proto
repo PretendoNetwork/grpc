@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package nex.v1;
+
+message GetStatsRequest {}
+
+message GetStatsResponse {
+  uint64 player_count = 1;
+}
