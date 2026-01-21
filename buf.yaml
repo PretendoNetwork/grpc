@@ -50,5 +50,3 @@ lint:
 breaking:
   use:
     - FILE
-  ignore:
-    - protobufs/account/v2 # Temp, remove after https://github.com/PretendoNetwork/grpc/pull/15
