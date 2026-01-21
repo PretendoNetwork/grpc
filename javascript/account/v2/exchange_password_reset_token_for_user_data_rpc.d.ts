@@ -1,4 +1,5 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { TokenInfo } from "./token_info";
 export declare const protobufPackage = "account.v2";
@@ -8,6 +9,7 @@ export interface ExchangePasswordResetTokenForUserDataRequest {
 export interface ExchangePasswordResetTokenForUserDataResponse {
     pnid: GetPNIDResponse | undefined;
     tokenInfo: TokenInfo | undefined;
+    basicUserInfo: BasicUserInfo | undefined;
 }
 export declare const ExchangePasswordResetTokenForUserDataRequest: MessageFns<ExchangePasswordResetTokenForUserDataRequest>;
 export declare const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangePasswordResetTokenForUserDataResponse>;

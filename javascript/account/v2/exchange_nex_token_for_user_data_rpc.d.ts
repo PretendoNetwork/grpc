@@ -1,14 +1,16 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
 export declare const protobufPackage = "account.v2";
 export interface ExchangeNEXTokenForUserDataRequest {
-    gameServerId: string;
+    gameServerIds: string[];
     token: string;
 }
 export interface ExchangeNEXTokenForUserDataResponse {
     nexAccount: NEXAccount | undefined;
     tokenInfo: TokenInfo | undefined;
+    basicUserInfo: BasicUserInfo | undefined;
 }
 export declare const ExchangeNEXTokenForUserDataRequest: MessageFns<ExchangeNEXTokenForUserDataRequest>;
 export declare const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenForUserDataResponse>;

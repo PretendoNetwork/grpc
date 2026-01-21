@@ -68,7 +68,8 @@ func (x *ExchangePasswordResetTokenForUserDataRequest) GetToken() string {
 type ExchangePasswordResetTokenForUserDataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pnid          *GetPNIDResponse       `protobuf:"bytes,1,opt,name=pnid,proto3" json:"pnid,omitempty"`
-	TokenInfo     *TokenInfo             `protobuf:"bytes,3,opt,name=token_info,json=tokenInfo,proto3" json:"token_info,omitempty"`
+	TokenInfo     *TokenInfo             `protobuf:"bytes,2,opt,name=token_info,json=tokenInfo,proto3" json:"token_info,omitempty"`
+	BasicUserInfo *BasicUserInfo         `protobuf:"bytes,3,opt,name=basic_user_info,json=basicUserInfo,proto3" json:"basic_user_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -117,18 +118,26 @@ func (x *ExchangePasswordResetTokenForUserDataResponse) GetTokenInfo() *TokenInf
 	return nil
 }
 
+func (x *ExchangePasswordResetTokenForUserDataResponse) GetBasicUserInfo() *BasicUserInfo {
+	if x != nil {
+		return x.BasicUserInfo
+	}
+	return nil
+}
+
 var File_account_v2_exchange_password_reset_token_for_user_data_rpc_proto protoreflect.FileDescriptor
 
 const file_account_v2_exchange_password_reset_token_for_user_data_rpc_proto_rawDesc = "" +
 	"\n" +
 	"@account/v2/exchange_password_reset_token_for_user_data_rpc.proto\x12\n" +
-	"account.v2\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1baccount/v2/token_info.proto\"D\n" +
+	"account.v2\x1a account/v2/basic_user_info.proto\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1baccount/v2/token_info.proto\"D\n" +
 	",ExchangePasswordResetTokenForUserDataRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\x96\x01\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\xd9\x01\n" +
 	"-ExchangePasswordResetTokenForUserDataResponse\x12/\n" +
 	"\x04pnid\x18\x01 \x01(\v2\x1b.account.v2.GetPNIDResponseR\x04pnid\x124\n" +
 	"\n" +
-	"token_info\x18\x03 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfoB\xc1\x01\n" +
+	"token_info\x18\x02 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfo\x12A\n" +
+	"\x0fbasic_user_info\x18\x03 \x01(\v2\x19.account.v2.BasicUserInfoR\rbasicUserInfoB\xc1\x01\n" +
 	"\x0ecom.account.v2B-ExchangePasswordResetTokenForUserDataRpcProtoP\x01Z7github.com/PretendoNetwork/grpc/go/account/v2;accountv2\xa2\x02\x03AXX\xaa\x02\n" +
 	"Account.V2\xca\x02\n" +
 	"Account\\V2\xe2\x02\x16Account\\V2\\GPBMetadata\xea\x02\vAccount::V2b\x06proto3"
@@ -151,15 +160,17 @@ var file_account_v2_exchange_password_reset_token_for_user_data_rpc_proto_goType
 	(*ExchangePasswordResetTokenForUserDataResponse)(nil), // 1: account.v2.ExchangePasswordResetTokenForUserDataResponse
 	(*GetPNIDResponse)(nil),                               // 2: account.v2.GetPNIDResponse
 	(*TokenInfo)(nil),                                     // 3: account.v2.TokenInfo
+	(*BasicUserInfo)(nil),                                 // 4: account.v2.BasicUserInfo
 }
 var file_account_v2_exchange_password_reset_token_for_user_data_rpc_proto_depIdxs = []int32{
 	2, // 0: account.v2.ExchangePasswordResetTokenForUserDataResponse.pnid:type_name -> account.v2.GetPNIDResponse
 	3, // 1: account.v2.ExchangePasswordResetTokenForUserDataResponse.token_info:type_name -> account.v2.TokenInfo
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 2: account.v2.ExchangePasswordResetTokenForUserDataResponse.basic_user_info:type_name -> account.v2.BasicUserInfo
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_account_v2_exchange_password_reset_token_for_user_data_rpc_proto_init() }
@@ -167,6 +178,7 @@ func file_account_v2_exchange_password_reset_token_for_user_data_rpc_proto_init(
 	if File_account_v2_exchange_password_reset_token_for_user_data_rpc_proto != nil {
 		return
 	}
+	file_account_v2_basic_user_info_proto_init()
 	file_account_v2_get_pnid_rpc_proto_init()
 	file_account_v2_token_info_proto_init()
 	type x struct{}

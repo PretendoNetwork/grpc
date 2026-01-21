@@ -1,17 +1,13 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { BasicUserInfo } from "./basic_user_info";
+import { Ban } from "./ban_details";
 export declare const protobufPackage = "account.v2";
-export interface ValidateIndependentServiceTokenRequest {
-    clientIds: string[];
-    token: string;
+export interface BasicUserInfo {
+    accessBetaServers: boolean;
+    accessDeveloperServers: boolean;
+    /** Not present if not banned */
+    ban?: Ban | undefined;
 }
-export interface ValidateIndependentServiceTokenResponse {
-    isValid: boolean;
-    /** Not present if is_valid is false */
-    basicUserInfo?: BasicUserInfo | undefined;
-}
-export declare const ValidateIndependentServiceTokenRequest: MessageFns<ValidateIndependentServiceTokenRequest>;
-export declare const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndependentServiceTokenResponse>;
+export declare const BasicUserInfo: MessageFns<BasicUserInfo>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;

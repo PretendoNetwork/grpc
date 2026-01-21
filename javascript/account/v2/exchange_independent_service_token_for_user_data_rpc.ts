@@ -6,60 +6,15 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
 
 export const protobufPackage = "account.v2";
 
-/** TODO - Move this to own file */
-export enum IndependentServiceTokenProviderType {
-  INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED = 0,
-  INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC = 1,
-  INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS = 2,
-  UNRECOGNIZED = -1,
-}
-
-export function independentServiceTokenProviderTypeFromJSON(object: any): IndependentServiceTokenProviderType {
-  switch (object) {
-    case 0:
-    case "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED":
-      return IndependentServiceTokenProviderType.INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED;
-    case 1:
-    case "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC":
-      return IndependentServiceTokenProviderType.INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC;
-    case 2:
-    case "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS":
-      return IndependentServiceTokenProviderType.INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return IndependentServiceTokenProviderType.UNRECOGNIZED;
-  }
-}
-
-export function independentServiceTokenProviderTypeToJSON(object: IndependentServiceTokenProviderType): string {
-  switch (object) {
-    case IndependentServiceTokenProviderType.INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED:
-      return "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED";
-    case IndependentServiceTokenProviderType.INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC:
-      return "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC";
-    case IndependentServiceTokenProviderType.INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS:
-      return "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS";
-    case IndependentServiceTokenProviderType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export interface ExchangeIndependentServiceTokenForUserDataRequest {
-  provider: IndependentServiceTokenProviderType;
-  /** For NNAS */
-  clientId?:
-    | string
-    | undefined;
-  /** For NASC */
-  titleIds: string[];
+  clientIds: string[];
   token: string;
 }
 
@@ -68,10 +23,11 @@ export interface ExchangeIndependentServiceTokenForUserDataResponse {
   pnid?: GetPNIDResponse | undefined;
   nexAccount: NEXAccount | undefined;
   tokenInfo: TokenInfo | undefined;
+  basicUserInfo: BasicUserInfo | undefined;
 }
 
 function createBaseExchangeIndependentServiceTokenForUserDataRequest(): ExchangeIndependentServiceTokenForUserDataRequest {
-  return { provider: 0, clientId: undefined, titleIds: [], token: "" };
+  return { clientIds: [], token: "" };
 }
 
 export const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<
@@ -81,17 +37,11 @@ export const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<
     message: ExchangeIndependentServiceTokenForUserDataRequest,
     writer: BinaryWriter = new BinaryWriter(),
   ): BinaryWriter {
-    if (message.provider !== 0) {
-      writer.uint32(8).int32(message.provider);
-    }
-    if (message.clientId !== undefined) {
-      writer.uint32(18).string(message.clientId);
-    }
-    for (const v of message.titleIds) {
-      writer.uint32(26).string(v!);
+    for (const v of message.clientIds) {
+      writer.uint32(10).string(v!);
     }
     if (message.token !== "") {
-      writer.uint32(34).string(message.token);
+      writer.uint32(18).string(message.token);
     }
     return writer;
   },
@@ -104,31 +54,15 @@ export const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1: {
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.provider = reader.int32() as any;
+          message.clientIds.push(reader.string());
           continue;
         }
         case 2: {
           if (tag !== 18) {
-            break;
-          }
-
-          message.clientId = reader.string();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.titleIds.push(reader.string());
-          continue;
-        }
-        case 4: {
-          if (tag !== 34) {
             break;
           }
 
@@ -146,23 +80,17 @@ export const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<
 
   fromJSON(object: any): ExchangeIndependentServiceTokenForUserDataRequest {
     return {
-      provider: isSet(object.provider) ? independentServiceTokenProviderTypeFromJSON(object.provider) : 0,
-      clientId: isSet(object.clientId) ? globalThis.String(object.clientId) : undefined,
-      titleIds: globalThis.Array.isArray(object?.titleIds) ? object.titleIds.map((e: any) => globalThis.String(e)) : [],
+      clientIds: globalThis.Array.isArray(object?.clientIds)
+        ? object.clientIds.map((e: any) => globalThis.String(e))
+        : [],
       token: isSet(object.token) ? globalThis.String(object.token) : "",
     };
   },
 
   toJSON(message: ExchangeIndependentServiceTokenForUserDataRequest): unknown {
     const obj: any = {};
-    if (message.provider !== 0) {
-      obj.provider = independentServiceTokenProviderTypeToJSON(message.provider);
-    }
-    if (message.clientId !== undefined) {
-      obj.clientId = message.clientId;
-    }
-    if (message.titleIds?.length) {
-      obj.titleIds = message.titleIds;
+    if (message.clientIds?.length) {
+      obj.clientIds = message.clientIds;
     }
     if (message.token !== "") {
       obj.token = message.token;
@@ -179,16 +107,14 @@ export const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<
     object: DeepPartial<ExchangeIndependentServiceTokenForUserDataRequest>,
   ): ExchangeIndependentServiceTokenForUserDataRequest {
     const message = createBaseExchangeIndependentServiceTokenForUserDataRequest();
-    message.provider = object.provider ?? 0;
-    message.clientId = object.clientId ?? undefined;
-    message.titleIds = object.titleIds?.map((e) => e) || [];
+    message.clientIds = object.clientIds?.map((e) => e) || [];
     message.token = object.token ?? "";
     return message;
   },
 };
 
 function createBaseExchangeIndependentServiceTokenForUserDataResponse(): ExchangeIndependentServiceTokenForUserDataResponse {
-  return { pnid: undefined, nexAccount: undefined, tokenInfo: undefined };
+  return { pnid: undefined, nexAccount: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 
 export const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<
@@ -206,6 +132,9 @@ export const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<
     }
     if (message.tokenInfo !== undefined) {
       TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+    }
+    if (message.basicUserInfo !== undefined) {
+      BasicUserInfo.encode(message.basicUserInfo, writer.uint32(34).fork()).join();
     }
     return writer;
   },
@@ -241,6 +170,14 @@ export const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<
           message.tokenInfo = TokenInfo.decode(reader, reader.uint32());
           continue;
         }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.basicUserInfo = BasicUserInfo.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -255,6 +192,7 @@ export const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<
       pnid: isSet(object.pnid) ? GetPNIDResponse.fromJSON(object.pnid) : undefined,
       nexAccount: isSet(object.nexAccount) ? NEXAccount.fromJSON(object.nexAccount) : undefined,
       tokenInfo: isSet(object.tokenInfo) ? TokenInfo.fromJSON(object.tokenInfo) : undefined,
+      basicUserInfo: isSet(object.basicUserInfo) ? BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
     };
   },
 
@@ -268,6 +206,9 @@ export const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<
     }
     if (message.tokenInfo !== undefined) {
       obj.tokenInfo = TokenInfo.toJSON(message.tokenInfo);
+    }
+    if (message.basicUserInfo !== undefined) {
+      obj.basicUserInfo = BasicUserInfo.toJSON(message.basicUserInfo);
     }
     return obj;
   },
@@ -289,6 +230,9 @@ export const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<
       : undefined;
     message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
       ? TokenInfo.fromPartial(object.tokenInfo)
+      : undefined;
+    message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+      ? BasicUserInfo.fromPartial(object.basicUserInfo)
       : undefined;
     return message;
   },

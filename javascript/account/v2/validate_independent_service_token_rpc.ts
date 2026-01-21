@@ -6,56 +6,32 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { Ban } from "./ban_details";
-import {
-  IndependentServiceTokenProviderType,
-  independentServiceTokenProviderTypeFromJSON,
-  independentServiceTokenProviderTypeToJSON,
-} from "./exchange_independent_service_token_for_user_data_rpc";
+import { BasicUserInfo } from "./basic_user_info";
 
 export const protobufPackage = "account.v2";
 
 export interface ValidateIndependentServiceTokenRequest {
-  provider: IndependentServiceTokenProviderType;
-  /** For NNAS */
-  clientId?:
-    | string
-    | undefined;
-  /** For NASC */
-  titleIds: string[];
+  clientIds: string[];
   token: string;
 }
 
 export interface ValidateIndependentServiceTokenResponse {
   isValid: boolean;
   /** Not present if is_valid is false */
-  userInfo?: ValidateIndependentServiceTokenResponse_UserInfo | undefined;
-}
-
-export interface ValidateIndependentServiceTokenResponse_UserInfo {
-  accessBetaServers: boolean;
-  accessDeveloperServers: boolean;
-  /** Not present if not banned */
-  ban?: Ban | undefined;
+  basicUserInfo?: BasicUserInfo | undefined;
 }
 
 function createBaseValidateIndependentServiceTokenRequest(): ValidateIndependentServiceTokenRequest {
-  return { provider: 0, clientId: undefined, titleIds: [], token: "" };
+  return { clientIds: [], token: "" };
 }
 
 export const ValidateIndependentServiceTokenRequest: MessageFns<ValidateIndependentServiceTokenRequest> = {
   encode(message: ValidateIndependentServiceTokenRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.provider !== 0) {
-      writer.uint32(8).int32(message.provider);
-    }
-    if (message.clientId !== undefined) {
-      writer.uint32(18).string(message.clientId);
-    }
-    for (const v of message.titleIds) {
-      writer.uint32(26).string(v!);
+    for (const v of message.clientIds) {
+      writer.uint32(10).string(v!);
     }
     if (message.token !== "") {
-      writer.uint32(34).string(message.token);
+      writer.uint32(18).string(message.token);
     }
     return writer;
   },
@@ -68,31 +44,15 @@ export const ValidateIndependentServiceTokenRequest: MessageFns<ValidateIndepend
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1: {
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.provider = reader.int32() as any;
+          message.clientIds.push(reader.string());
           continue;
         }
         case 2: {
           if (tag !== 18) {
-            break;
-          }
-
-          message.clientId = reader.string();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.titleIds.push(reader.string());
-          continue;
-        }
-        case 4: {
-          if (tag !== 34) {
             break;
           }
 
@@ -110,23 +70,17 @@ export const ValidateIndependentServiceTokenRequest: MessageFns<ValidateIndepend
 
   fromJSON(object: any): ValidateIndependentServiceTokenRequest {
     return {
-      provider: isSet(object.provider) ? independentServiceTokenProviderTypeFromJSON(object.provider) : 0,
-      clientId: isSet(object.clientId) ? globalThis.String(object.clientId) : undefined,
-      titleIds: globalThis.Array.isArray(object?.titleIds) ? object.titleIds.map((e: any) => globalThis.String(e)) : [],
+      clientIds: globalThis.Array.isArray(object?.clientIds)
+        ? object.clientIds.map((e: any) => globalThis.String(e))
+        : [],
       token: isSet(object.token) ? globalThis.String(object.token) : "",
     };
   },
 
   toJSON(message: ValidateIndependentServiceTokenRequest): unknown {
     const obj: any = {};
-    if (message.provider !== 0) {
-      obj.provider = independentServiceTokenProviderTypeToJSON(message.provider);
-    }
-    if (message.clientId !== undefined) {
-      obj.clientId = message.clientId;
-    }
-    if (message.titleIds?.length) {
-      obj.titleIds = message.titleIds;
+    if (message.clientIds?.length) {
+      obj.clientIds = message.clientIds;
     }
     if (message.token !== "") {
       obj.token = message.token;
@@ -139,16 +93,14 @@ export const ValidateIndependentServiceTokenRequest: MessageFns<ValidateIndepend
   },
   fromPartial(object: DeepPartial<ValidateIndependentServiceTokenRequest>): ValidateIndependentServiceTokenRequest {
     const message = createBaseValidateIndependentServiceTokenRequest();
-    message.provider = object.provider ?? 0;
-    message.clientId = object.clientId ?? undefined;
-    message.titleIds = object.titleIds?.map((e) => e) || [];
+    message.clientIds = object.clientIds?.map((e) => e) || [];
     message.token = object.token ?? "";
     return message;
   },
 };
 
 function createBaseValidateIndependentServiceTokenResponse(): ValidateIndependentServiceTokenResponse {
-  return { isValid: false, userInfo: undefined };
+  return { isValid: false, basicUserInfo: undefined };
 }
 
 export const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndependentServiceTokenResponse> = {
@@ -156,8 +108,8 @@ export const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndepen
     if (message.isValid !== false) {
       writer.uint32(8).bool(message.isValid);
     }
-    if (message.userInfo !== undefined) {
-      ValidateIndependentServiceTokenResponse_UserInfo.encode(message.userInfo, writer.uint32(18).fork()).join();
+    if (message.basicUserInfo !== undefined) {
+      BasicUserInfo.encode(message.basicUserInfo, writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -182,7 +134,7 @@ export const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndepen
             break;
           }
 
-          message.userInfo = ValidateIndependentServiceTokenResponse_UserInfo.decode(reader, reader.uint32());
+          message.basicUserInfo = BasicUserInfo.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -197,9 +149,7 @@ export const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndepen
   fromJSON(object: any): ValidateIndependentServiceTokenResponse {
     return {
       isValid: isSet(object.isValid) ? globalThis.Boolean(object.isValid) : false,
-      userInfo: isSet(object.userInfo)
-        ? ValidateIndependentServiceTokenResponse_UserInfo.fromJSON(object.userInfo)
-        : undefined,
+      basicUserInfo: isSet(object.basicUserInfo) ? BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
     };
   },
 
@@ -208,8 +158,8 @@ export const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndepen
     if (message.isValid !== false) {
       obj.isValid = message.isValid;
     }
-    if (message.userInfo !== undefined) {
-      obj.userInfo = ValidateIndependentServiceTokenResponse_UserInfo.toJSON(message.userInfo);
+    if (message.basicUserInfo !== undefined) {
+      obj.basicUserInfo = BasicUserInfo.toJSON(message.basicUserInfo);
     }
     return obj;
   },
@@ -220,112 +170,9 @@ export const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndepen
   fromPartial(object: DeepPartial<ValidateIndependentServiceTokenResponse>): ValidateIndependentServiceTokenResponse {
     const message = createBaseValidateIndependentServiceTokenResponse();
     message.isValid = object.isValid ?? false;
-    message.userInfo = (object.userInfo !== undefined && object.userInfo !== null)
-      ? ValidateIndependentServiceTokenResponse_UserInfo.fromPartial(object.userInfo)
+    message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+      ? BasicUserInfo.fromPartial(object.basicUserInfo)
       : undefined;
-    return message;
-  },
-};
-
-function createBaseValidateIndependentServiceTokenResponse_UserInfo(): ValidateIndependentServiceTokenResponse_UserInfo {
-  return { accessBetaServers: false, accessDeveloperServers: false, ban: undefined };
-}
-
-export const ValidateIndependentServiceTokenResponse_UserInfo: MessageFns<
-  ValidateIndependentServiceTokenResponse_UserInfo
-> = {
-  encode(
-    message: ValidateIndependentServiceTokenResponse_UserInfo,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.accessBetaServers !== false) {
-      writer.uint32(8).bool(message.accessBetaServers);
-    }
-    if (message.accessDeveloperServers !== false) {
-      writer.uint32(16).bool(message.accessDeveloperServers);
-    }
-    if (message.ban !== undefined) {
-      Ban.encode(message.ban, writer.uint32(26).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ValidateIndependentServiceTokenResponse_UserInfo {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseValidateIndependentServiceTokenResponse_UserInfo();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.accessBetaServers = reader.bool();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.accessDeveloperServers = reader.bool();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.ban = Ban.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ValidateIndependentServiceTokenResponse_UserInfo {
-    return {
-      accessBetaServers: isSet(object.accessBetaServers) ? globalThis.Boolean(object.accessBetaServers) : false,
-      accessDeveloperServers: isSet(object.accessDeveloperServers)
-        ? globalThis.Boolean(object.accessDeveloperServers)
-        : false,
-      ban: isSet(object.ban) ? Ban.fromJSON(object.ban) : undefined,
-    };
-  },
-
-  toJSON(message: ValidateIndependentServiceTokenResponse_UserInfo): unknown {
-    const obj: any = {};
-    if (message.accessBetaServers !== false) {
-      obj.accessBetaServers = message.accessBetaServers;
-    }
-    if (message.accessDeveloperServers !== false) {
-      obj.accessDeveloperServers = message.accessDeveloperServers;
-    }
-    if (message.ban !== undefined) {
-      obj.ban = Ban.toJSON(message.ban);
-    }
-    return obj;
-  },
-
-  create(
-    base?: DeepPartial<ValidateIndependentServiceTokenResponse_UserInfo>,
-  ): ValidateIndependentServiceTokenResponse_UserInfo {
-    return ValidateIndependentServiceTokenResponse_UserInfo.fromPartial(base ?? {});
-  },
-  fromPartial(
-    object: DeepPartial<ValidateIndependentServiceTokenResponse_UserInfo>,
-  ): ValidateIndependentServiceTokenResponse_UserInfo {
-    const message = createBaseValidateIndependentServiceTokenResponse_UserInfo();
-    message.accessBetaServers = object.accessBetaServers ?? false;
-    message.accessDeveloperServers = object.accessDeveloperServers ?? false;
-    message.ban = (object.ban !== undefined && object.ban !== null) ? Ban.fromPartial(object.ban) : undefined;
     return message;
   },
 };

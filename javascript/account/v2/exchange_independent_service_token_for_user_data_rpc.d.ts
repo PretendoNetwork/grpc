@@ -1,23 +1,11 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
 export declare const protobufPackage = "account.v2";
-/** TODO - Move this to own file */
-export declare enum IndependentServiceTokenProviderType {
-    INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED = 0,
-    INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC = 1,
-    INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS = 2,
-    UNRECOGNIZED = -1
-}
-export declare function independentServiceTokenProviderTypeFromJSON(object: any): IndependentServiceTokenProviderType;
-export declare function independentServiceTokenProviderTypeToJSON(object: IndependentServiceTokenProviderType): string;
 export interface ExchangeIndependentServiceTokenForUserDataRequest {
-    provider: IndependentServiceTokenProviderType;
-    /** For NNAS */
-    clientId?: string | undefined;
-    /** For NASC */
-    titleIds: string[];
+    clientIds: string[];
     token: string;
 }
 export interface ExchangeIndependentServiceTokenForUserDataResponse {
@@ -25,6 +13,7 @@ export interface ExchangeIndependentServiceTokenForUserDataResponse {
     pnid?: GetPNIDResponse | undefined;
     nexAccount: NEXAccount | undefined;
     tokenInfo: TokenInfo | undefined;
+    basicUserInfo: BasicUserInfo | undefined;
 }
 export declare const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<ExchangeIndependentServiceTokenForUserDataRequest>;
 export declare const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<ExchangeIndependentServiceTokenForUserDataResponse>;

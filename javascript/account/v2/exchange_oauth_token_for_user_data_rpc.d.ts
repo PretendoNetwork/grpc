@@ -1,4 +1,5 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
@@ -12,6 +13,7 @@ export interface ExchangeOAuthTokenForUserDataResponse {
     pnid: GetPNIDResponse | undefined;
     nexAccount: NEXAccount | undefined;
     tokenInfo: TokenInfo | undefined;
+    basicUserInfo: BasicUserInfo | undefined;
 }
 export declare const ExchangeOAuthTokenForUserDataRequest: MessageFns<ExchangeOAuthTokenForUserDataRequest>;
 export declare const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthTokenForUserDataResponse>;

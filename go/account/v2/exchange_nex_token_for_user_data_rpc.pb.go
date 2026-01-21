@@ -23,7 +23,7 @@ const (
 
 type ExchangeNEXTokenForUserDataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameServerId  string                 `protobuf:"bytes,1,opt,name=game_server_id,json=gameServerId,proto3" json:"game_server_id,omitempty"`
+	GameServerIds []string               `protobuf:"bytes,1,rep,name=game_server_ids,json=gameServerIds,proto3" json:"game_server_ids,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -59,11 +59,11 @@ func (*ExchangeNEXTokenForUserDataRequest) Descriptor() ([]byte, []int) {
 	return file_account_v2_exchange_nex_token_for_user_data_rpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ExchangeNEXTokenForUserDataRequest) GetGameServerId() string {
+func (x *ExchangeNEXTokenForUserDataRequest) GetGameServerIds() []string {
 	if x != nil {
-		return x.GameServerId
+		return x.GameServerIds
 	}
-	return ""
+	return nil
 }
 
 func (x *ExchangeNEXTokenForUserDataRequest) GetToken() string {
@@ -76,7 +76,8 @@ func (x *ExchangeNEXTokenForUserDataRequest) GetToken() string {
 type ExchangeNEXTokenForUserDataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NexAccount    *NEXAccount            `protobuf:"bytes,1,opt,name=nex_account,json=nexAccount,proto3" json:"nex_account,omitempty"`
-	TokenInfo     *TokenInfo             `protobuf:"bytes,3,opt,name=token_info,json=tokenInfo,proto3" json:"token_info,omitempty"`
+	TokenInfo     *TokenInfo             `protobuf:"bytes,2,opt,name=token_info,json=tokenInfo,proto3" json:"token_info,omitempty"`
+	BasicUserInfo *BasicUserInfo         `protobuf:"bytes,3,opt,name=basic_user_info,json=basicUserInfo,proto3" json:"basic_user_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -125,20 +126,28 @@ func (x *ExchangeNEXTokenForUserDataResponse) GetTokenInfo() *TokenInfo {
 	return nil
 }
 
+func (x *ExchangeNEXTokenForUserDataResponse) GetBasicUserInfo() *BasicUserInfo {
+	if x != nil {
+		return x.BasicUserInfo
+	}
+	return nil
+}
+
 var File_account_v2_exchange_nex_token_for_user_data_rpc_proto protoreflect.FileDescriptor
 
 const file_account_v2_exchange_nex_token_for_user_data_rpc_proto_rawDesc = "" +
 	"\n" +
 	"5account/v2/exchange_nex_token_for_user_data_rpc.proto\x12\n" +
-	"account.v2\x1a\x1caccount/v2/nex_account.proto\x1a\x1baccount/v2/token_info.proto\"`\n" +
-	"\"ExchangeNEXTokenForUserDataRequest\x12$\n" +
-	"\x0egame_server_id\x18\x01 \x01(\tR\fgameServerId\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"\x94\x01\n" +
+	"account.v2\x1a account/v2/basic_user_info.proto\x1a\x1caccount/v2/nex_account.proto\x1a\x1baccount/v2/token_info.proto\"b\n" +
+	"\"ExchangeNEXTokenForUserDataRequest\x12&\n" +
+	"\x0fgame_server_ids\x18\x01 \x03(\tR\rgameServerIds\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\xd7\x01\n" +
 	"#ExchangeNEXTokenForUserDataResponse\x127\n" +
 	"\vnex_account\x18\x01 \x01(\v2\x16.account.v2.NEXAccountR\n" +
 	"nexAccount\x124\n" +
 	"\n" +
-	"token_info\x18\x03 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfoB\xb7\x01\n" +
+	"token_info\x18\x02 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfo\x12A\n" +
+	"\x0fbasic_user_info\x18\x03 \x01(\v2\x19.account.v2.BasicUserInfoR\rbasicUserInfoB\xb7\x01\n" +
 	"\x0ecom.account.v2B#ExchangeNexTokenForUserDataRpcProtoP\x01Z7github.com/PretendoNetwork/grpc/go/account/v2;accountv2\xa2\x02\x03AXX\xaa\x02\n" +
 	"Account.V2\xca\x02\n" +
 	"Account\\V2\xe2\x02\x16Account\\V2\\GPBMetadata\xea\x02\vAccount::V2b\x06proto3"
@@ -161,15 +170,17 @@ var file_account_v2_exchange_nex_token_for_user_data_rpc_proto_goTypes = []any{
 	(*ExchangeNEXTokenForUserDataResponse)(nil), // 1: account.v2.ExchangeNEXTokenForUserDataResponse
 	(*NEXAccount)(nil),                          // 2: account.v2.NEXAccount
 	(*TokenInfo)(nil),                           // 3: account.v2.TokenInfo
+	(*BasicUserInfo)(nil),                       // 4: account.v2.BasicUserInfo
 }
 var file_account_v2_exchange_nex_token_for_user_data_rpc_proto_depIdxs = []int32{
 	2, // 0: account.v2.ExchangeNEXTokenForUserDataResponse.nex_account:type_name -> account.v2.NEXAccount
 	3, // 1: account.v2.ExchangeNEXTokenForUserDataResponse.token_info:type_name -> account.v2.TokenInfo
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 2: account.v2.ExchangeNEXTokenForUserDataResponse.basic_user_info:type_name -> account.v2.BasicUserInfo
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_account_v2_exchange_nex_token_for_user_data_rpc_proto_init() }
@@ -177,6 +188,7 @@ func file_account_v2_exchange_nex_token_for_user_data_rpc_proto_init() {
 	if File_account_v2_exchange_nex_token_for_user_data_rpc_proto != nil {
 		return
 	}
+	file_account_v2_basic_user_info_proto_init()
 	file_account_v2_nex_account_proto_init()
 	file_account_v2_token_info_proto_init()
 	type x struct{}

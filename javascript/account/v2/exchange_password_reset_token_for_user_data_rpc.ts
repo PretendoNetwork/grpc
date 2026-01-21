@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { TokenInfo } from "./token_info";
 
@@ -18,6 +19,7 @@ export interface ExchangePasswordResetTokenForUserDataRequest {
 export interface ExchangePasswordResetTokenForUserDataResponse {
   pnid: GetPNIDResponse | undefined;
   tokenInfo: TokenInfo | undefined;
+  basicUserInfo: BasicUserInfo | undefined;
 }
 
 function createBaseExchangePasswordResetTokenForUserDataRequest(): ExchangePasswordResetTokenForUserDataRequest {
@@ -86,7 +88,7 @@ export const ExchangePasswordResetTokenForUserDataRequest: MessageFns<ExchangePa
 };
 
 function createBaseExchangePasswordResetTokenForUserDataResponse(): ExchangePasswordResetTokenForUserDataResponse {
-  return { pnid: undefined, tokenInfo: undefined };
+  return { pnid: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 
 export const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangePasswordResetTokenForUserDataResponse> =
@@ -99,7 +101,10 @@ export const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangeP
         GetPNIDResponse.encode(message.pnid, writer.uint32(10).fork()).join();
       }
       if (message.tokenInfo !== undefined) {
-        TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+        TokenInfo.encode(message.tokenInfo, writer.uint32(18).fork()).join();
+      }
+      if (message.basicUserInfo !== undefined) {
+        BasicUserInfo.encode(message.basicUserInfo, writer.uint32(26).fork()).join();
       }
       return writer;
     },
@@ -119,12 +124,20 @@ export const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangeP
             message.pnid = GetPNIDResponse.decode(reader, reader.uint32());
             continue;
           }
+          case 2: {
+            if (tag !== 18) {
+              break;
+            }
+
+            message.tokenInfo = TokenInfo.decode(reader, reader.uint32());
+            continue;
+          }
           case 3: {
             if (tag !== 26) {
               break;
             }
 
-            message.tokenInfo = TokenInfo.decode(reader, reader.uint32());
+            message.basicUserInfo = BasicUserInfo.decode(reader, reader.uint32());
             continue;
           }
         }
@@ -140,6 +153,7 @@ export const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangeP
       return {
         pnid: isSet(object.pnid) ? GetPNIDResponse.fromJSON(object.pnid) : undefined,
         tokenInfo: isSet(object.tokenInfo) ? TokenInfo.fromJSON(object.tokenInfo) : undefined,
+        basicUserInfo: isSet(object.basicUserInfo) ? BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
       };
     },
 
@@ -150,6 +164,9 @@ export const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangeP
       }
       if (message.tokenInfo !== undefined) {
         obj.tokenInfo = TokenInfo.toJSON(message.tokenInfo);
+      }
+      if (message.basicUserInfo !== undefined) {
+        obj.basicUserInfo = BasicUserInfo.toJSON(message.basicUserInfo);
       }
       return obj;
     },
@@ -168,6 +185,9 @@ export const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangeP
         : undefined;
       message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
         ? TokenInfo.fromPartial(object.tokenInfo)
+        : undefined;
+      message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+        ? BasicUserInfo.fromPartial(object.basicUserInfo)
         : undefined;
       return message;
     },

@@ -8,16 +8,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExchangeNEXTokenForUserDataResponse = exports.ExchangeNEXTokenForUserDataRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const basic_user_info_1 = require("./basic_user_info");
 const nex_account_1 = require("./nex_account");
 const token_info_1 = require("./token_info");
 exports.protobufPackage = "account.v2";
 function createBaseExchangeNEXTokenForUserDataRequest() {
-    return { gameServerId: "", token: "" };
+    return { gameServerIds: [], token: "" };
 }
 exports.ExchangeNEXTokenForUserDataRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
-        if (message.gameServerId !== "") {
-            writer.uint32(10).string(message.gameServerId);
+        for (const v of message.gameServerIds) {
+            writer.uint32(10).string(v);
         }
         if (message.token !== "") {
             writer.uint32(18).string(message.token);
@@ -35,7 +36,7 @@ exports.ExchangeNEXTokenForUserDataRequest = {
                     if (tag !== 10) {
                         break;
                     }
-                    message.gameServerId = reader.string();
+                    message.gameServerIds.push(reader.string());
                     continue;
                 }
                 case 2: {
@@ -55,14 +56,16 @@ exports.ExchangeNEXTokenForUserDataRequest = {
     },
     fromJSON(object) {
         return {
-            gameServerId: isSet(object.gameServerId) ? globalThis.String(object.gameServerId) : "",
+            gameServerIds: globalThis.Array.isArray(object?.gameServerIds)
+                ? object.gameServerIds.map((e) => globalThis.String(e))
+                : [],
             token: isSet(object.token) ? globalThis.String(object.token) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.gameServerId !== "") {
-            obj.gameServerId = message.gameServerId;
+        if (message.gameServerIds?.length) {
+            obj.gameServerIds = message.gameServerIds;
         }
         if (message.token !== "") {
             obj.token = message.token;
@@ -74,13 +77,13 @@ exports.ExchangeNEXTokenForUserDataRequest = {
     },
     fromPartial(object) {
         const message = createBaseExchangeNEXTokenForUserDataRequest();
-        message.gameServerId = object.gameServerId ?? "";
+        message.gameServerIds = object.gameServerIds?.map((e) => e) || [];
         message.token = object.token ?? "";
         return message;
     },
 };
 function createBaseExchangeNEXTokenForUserDataResponse() {
-    return { nexAccount: undefined, tokenInfo: undefined };
+    return { nexAccount: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 exports.ExchangeNEXTokenForUserDataResponse = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -88,7 +91,10 @@ exports.ExchangeNEXTokenForUserDataResponse = {
             nex_account_1.NEXAccount.encode(message.nexAccount, writer.uint32(10).fork()).join();
         }
         if (message.tokenInfo !== undefined) {
-            token_info_1.TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+            token_info_1.TokenInfo.encode(message.tokenInfo, writer.uint32(18).fork()).join();
+        }
+        if (message.basicUserInfo !== undefined) {
+            basic_user_info_1.BasicUserInfo.encode(message.basicUserInfo, writer.uint32(26).fork()).join();
         }
         return writer;
     },
@@ -106,11 +112,18 @@ exports.ExchangeNEXTokenForUserDataResponse = {
                     message.nexAccount = nex_account_1.NEXAccount.decode(reader, reader.uint32());
                     continue;
                 }
+                case 2: {
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.tokenInfo = token_info_1.TokenInfo.decode(reader, reader.uint32());
+                    continue;
+                }
                 case 3: {
                     if (tag !== 26) {
                         break;
                     }
-                    message.tokenInfo = token_info_1.TokenInfo.decode(reader, reader.uint32());
+                    message.basicUserInfo = basic_user_info_1.BasicUserInfo.decode(reader, reader.uint32());
                     continue;
                 }
             }
@@ -125,6 +138,7 @@ exports.ExchangeNEXTokenForUserDataResponse = {
         return {
             nexAccount: isSet(object.nexAccount) ? nex_account_1.NEXAccount.fromJSON(object.nexAccount) : undefined,
             tokenInfo: isSet(object.tokenInfo) ? token_info_1.TokenInfo.fromJSON(object.tokenInfo) : undefined,
+            basicUserInfo: isSet(object.basicUserInfo) ? basic_user_info_1.BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
         };
     },
     toJSON(message) {
@@ -134,6 +148,9 @@ exports.ExchangeNEXTokenForUserDataResponse = {
         }
         if (message.tokenInfo !== undefined) {
             obj.tokenInfo = token_info_1.TokenInfo.toJSON(message.tokenInfo);
+        }
+        if (message.basicUserInfo !== undefined) {
+            obj.basicUserInfo = basic_user_info_1.BasicUserInfo.toJSON(message.basicUserInfo);
         }
         return obj;
     },
@@ -147,6 +164,9 @@ exports.ExchangeNEXTokenForUserDataResponse = {
             : undefined;
         message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
             ? token_info_1.TokenInfo.fromPartial(object.tokenInfo)
+            : undefined;
+        message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+            ? basic_user_info_1.BasicUserInfo.fromPartial(object.basicUserInfo)
             : undefined;
         return message;
     },

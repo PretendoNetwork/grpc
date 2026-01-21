@@ -86,6 +86,7 @@ type ExchangeOAuthTokenForUserDataResponse struct {
 	Pnid          *GetPNIDResponse       `protobuf:"bytes,1,opt,name=pnid,proto3" json:"pnid,omitempty"`
 	NexAccount    *NEXAccount            `protobuf:"bytes,2,opt,name=nex_account,json=nexAccount,proto3" json:"nex_account,omitempty"`
 	TokenInfo     *TokenInfo             `protobuf:"bytes,3,opt,name=token_info,json=tokenInfo,proto3" json:"token_info,omitempty"`
+	BasicUserInfo *BasicUserInfo         `protobuf:"bytes,4,opt,name=basic_user_info,json=basicUserInfo,proto3" json:"basic_user_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -141,22 +142,30 @@ func (x *ExchangeOAuthTokenForUserDataResponse) GetTokenInfo() *TokenInfo {
 	return nil
 }
 
+func (x *ExchangeOAuthTokenForUserDataResponse) GetBasicUserInfo() *BasicUserInfo {
+	if x != nil {
+		return x.BasicUserInfo
+	}
+	return nil
+}
+
 var File_account_v2_exchange_oauth_token_for_user_data_rpc_proto protoreflect.FileDescriptor
 
 const file_account_v2_exchange_oauth_token_for_user_data_rpc_proto_rawDesc = "" +
 	"\n" +
 	"7account/v2/exchange_oauth_token_for_user_data_rpc.proto\x12\n" +
-	"account.v2\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1caccount/v2/nex_account.proto\x1a\x1baccount/v2/token_info.proto\"~\n" +
+	"account.v2\x1a account/v2/basic_user_info.proto\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1caccount/v2/nex_account.proto\x1a\x1baccount/v2/token_info.proto\"~\n" +
 	"$ExchangeOAuthTokenForUserDataRequest\x12\x1b\n" +
 	"\tclient_id\x18\x01 \x01(\tR\bclientId\x12#\n" +
 	"\rclient_secret\x18\x02 \x01(\tR\fclientSecret\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"\xc7\x01\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"\x8a\x02\n" +
 	"%ExchangeOAuthTokenForUserDataResponse\x12/\n" +
 	"\x04pnid\x18\x01 \x01(\v2\x1b.account.v2.GetPNIDResponseR\x04pnid\x127\n" +
 	"\vnex_account\x18\x02 \x01(\v2\x16.account.v2.NEXAccountR\n" +
 	"nexAccount\x124\n" +
 	"\n" +
-	"token_info\x18\x03 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfoB\xb9\x01\n" +
+	"token_info\x18\x03 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfo\x12A\n" +
+	"\x0fbasic_user_info\x18\x04 \x01(\v2\x19.account.v2.BasicUserInfoR\rbasicUserInfoB\xb9\x01\n" +
 	"\x0ecom.account.v2B%ExchangeOauthTokenForUserDataRpcProtoP\x01Z7github.com/PretendoNetwork/grpc/go/account/v2;accountv2\xa2\x02\x03AXX\xaa\x02\n" +
 	"Account.V2\xca\x02\n" +
 	"Account\\V2\xe2\x02\x16Account\\V2\\GPBMetadata\xea\x02\vAccount::V2b\x06proto3"
@@ -180,16 +189,18 @@ var file_account_v2_exchange_oauth_token_for_user_data_rpc_proto_goTypes = []any
 	(*GetPNIDResponse)(nil),                       // 2: account.v2.GetPNIDResponse
 	(*NEXAccount)(nil),                            // 3: account.v2.NEXAccount
 	(*TokenInfo)(nil),                             // 4: account.v2.TokenInfo
+	(*BasicUserInfo)(nil),                         // 5: account.v2.BasicUserInfo
 }
 var file_account_v2_exchange_oauth_token_for_user_data_rpc_proto_depIdxs = []int32{
 	2, // 0: account.v2.ExchangeOAuthTokenForUserDataResponse.pnid:type_name -> account.v2.GetPNIDResponse
 	3, // 1: account.v2.ExchangeOAuthTokenForUserDataResponse.nex_account:type_name -> account.v2.NEXAccount
 	4, // 2: account.v2.ExchangeOAuthTokenForUserDataResponse.token_info:type_name -> account.v2.TokenInfo
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	5, // 3: account.v2.ExchangeOAuthTokenForUserDataResponse.basic_user_info:type_name -> account.v2.BasicUserInfo
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_account_v2_exchange_oauth_token_for_user_data_rpc_proto_init() }
@@ -197,6 +208,7 @@ func file_account_v2_exchange_oauth_token_for_user_data_rpc_proto_init() {
 	if File_account_v2_exchange_oauth_token_for_user_data_rpc_proto != nil {
 		return
 	}
+	file_account_v2_basic_user_info_proto_init()
 	file_account_v2_get_pnid_rpc_proto_init()
 	file_account_v2_nex_account_proto_init()
 	file_account_v2_token_info_proto_init()

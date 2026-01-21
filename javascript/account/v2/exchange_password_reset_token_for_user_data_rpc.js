@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExchangePasswordResetTokenForUserDataResponse = exports.ExchangePasswordResetTokenForUserDataRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const basic_user_info_1 = require("./basic_user_info");
 const get_pnid_rpc_1 = require("./get_pnid_rpc");
 const token_info_1 = require("./token_info");
 exports.protobufPackage = "account.v2";
@@ -63,7 +64,7 @@ exports.ExchangePasswordResetTokenForUserDataRequest = {
     },
 };
 function createBaseExchangePasswordResetTokenForUserDataResponse() {
-    return { pnid: undefined, tokenInfo: undefined };
+    return { pnid: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 exports.ExchangePasswordResetTokenForUserDataResponse = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -71,7 +72,10 @@ exports.ExchangePasswordResetTokenForUserDataResponse = {
             get_pnid_rpc_1.GetPNIDResponse.encode(message.pnid, writer.uint32(10).fork()).join();
         }
         if (message.tokenInfo !== undefined) {
-            token_info_1.TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+            token_info_1.TokenInfo.encode(message.tokenInfo, writer.uint32(18).fork()).join();
+        }
+        if (message.basicUserInfo !== undefined) {
+            basic_user_info_1.BasicUserInfo.encode(message.basicUserInfo, writer.uint32(26).fork()).join();
         }
         return writer;
     },
@@ -89,11 +93,18 @@ exports.ExchangePasswordResetTokenForUserDataResponse = {
                     message.pnid = get_pnid_rpc_1.GetPNIDResponse.decode(reader, reader.uint32());
                     continue;
                 }
+                case 2: {
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.tokenInfo = token_info_1.TokenInfo.decode(reader, reader.uint32());
+                    continue;
+                }
                 case 3: {
                     if (tag !== 26) {
                         break;
                     }
-                    message.tokenInfo = token_info_1.TokenInfo.decode(reader, reader.uint32());
+                    message.basicUserInfo = basic_user_info_1.BasicUserInfo.decode(reader, reader.uint32());
                     continue;
                 }
             }
@@ -108,6 +119,7 @@ exports.ExchangePasswordResetTokenForUserDataResponse = {
         return {
             pnid: isSet(object.pnid) ? get_pnid_rpc_1.GetPNIDResponse.fromJSON(object.pnid) : undefined,
             tokenInfo: isSet(object.tokenInfo) ? token_info_1.TokenInfo.fromJSON(object.tokenInfo) : undefined,
+            basicUserInfo: isSet(object.basicUserInfo) ? basic_user_info_1.BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
         };
     },
     toJSON(message) {
@@ -117,6 +129,9 @@ exports.ExchangePasswordResetTokenForUserDataResponse = {
         }
         if (message.tokenInfo !== undefined) {
             obj.tokenInfo = token_info_1.TokenInfo.toJSON(message.tokenInfo);
+        }
+        if (message.basicUserInfo !== undefined) {
+            obj.basicUserInfo = basic_user_info_1.BasicUserInfo.toJSON(message.basicUserInfo);
         }
         return obj;
     },
@@ -130,6 +145,9 @@ exports.ExchangePasswordResetTokenForUserDataResponse = {
             : undefined;
         message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
             ? token_info_1.TokenInfo.fromPartial(object.tokenInfo)
+            : undefined;
+        message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+            ? basic_user_info_1.BasicUserInfo.fromPartial(object.basicUserInfo)
             : undefined;
         return message;
     },

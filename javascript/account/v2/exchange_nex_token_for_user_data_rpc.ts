@@ -6,29 +6,31 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
 
 export const protobufPackage = "account.v2";
 
 export interface ExchangeNEXTokenForUserDataRequest {
-  gameServerId: string;
+  gameServerIds: string[];
   token: string;
 }
 
 export interface ExchangeNEXTokenForUserDataResponse {
   nexAccount: NEXAccount | undefined;
   tokenInfo: TokenInfo | undefined;
+  basicUserInfo: BasicUserInfo | undefined;
 }
 
 function createBaseExchangeNEXTokenForUserDataRequest(): ExchangeNEXTokenForUserDataRequest {
-  return { gameServerId: "", token: "" };
+  return { gameServerIds: [], token: "" };
 }
 
 export const ExchangeNEXTokenForUserDataRequest: MessageFns<ExchangeNEXTokenForUserDataRequest> = {
   encode(message: ExchangeNEXTokenForUserDataRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.gameServerId !== "") {
-      writer.uint32(10).string(message.gameServerId);
+    for (const v of message.gameServerIds) {
+      writer.uint32(10).string(v!);
     }
     if (message.token !== "") {
       writer.uint32(18).string(message.token);
@@ -48,7 +50,7 @@ export const ExchangeNEXTokenForUserDataRequest: MessageFns<ExchangeNEXTokenForU
             break;
           }
 
-          message.gameServerId = reader.string();
+          message.gameServerIds.push(reader.string());
           continue;
         }
         case 2: {
@@ -70,15 +72,17 @@ export const ExchangeNEXTokenForUserDataRequest: MessageFns<ExchangeNEXTokenForU
 
   fromJSON(object: any): ExchangeNEXTokenForUserDataRequest {
     return {
-      gameServerId: isSet(object.gameServerId) ? globalThis.String(object.gameServerId) : "",
+      gameServerIds: globalThis.Array.isArray(object?.gameServerIds)
+        ? object.gameServerIds.map((e: any) => globalThis.String(e))
+        : [],
       token: isSet(object.token) ? globalThis.String(object.token) : "",
     };
   },
 
   toJSON(message: ExchangeNEXTokenForUserDataRequest): unknown {
     const obj: any = {};
-    if (message.gameServerId !== "") {
-      obj.gameServerId = message.gameServerId;
+    if (message.gameServerIds?.length) {
+      obj.gameServerIds = message.gameServerIds;
     }
     if (message.token !== "") {
       obj.token = message.token;
@@ -91,14 +95,14 @@ export const ExchangeNEXTokenForUserDataRequest: MessageFns<ExchangeNEXTokenForU
   },
   fromPartial(object: DeepPartial<ExchangeNEXTokenForUserDataRequest>): ExchangeNEXTokenForUserDataRequest {
     const message = createBaseExchangeNEXTokenForUserDataRequest();
-    message.gameServerId = object.gameServerId ?? "";
+    message.gameServerIds = object.gameServerIds?.map((e) => e) || [];
     message.token = object.token ?? "";
     return message;
   },
 };
 
 function createBaseExchangeNEXTokenForUserDataResponse(): ExchangeNEXTokenForUserDataResponse {
-  return { nexAccount: undefined, tokenInfo: undefined };
+  return { nexAccount: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 
 export const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenForUserDataResponse> = {
@@ -107,7 +111,10 @@ export const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenFor
       NEXAccount.encode(message.nexAccount, writer.uint32(10).fork()).join();
     }
     if (message.tokenInfo !== undefined) {
-      TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+      TokenInfo.encode(message.tokenInfo, writer.uint32(18).fork()).join();
+    }
+    if (message.basicUserInfo !== undefined) {
+      BasicUserInfo.encode(message.basicUserInfo, writer.uint32(26).fork()).join();
     }
     return writer;
   },
@@ -127,12 +134,20 @@ export const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenFor
           message.nexAccount = NEXAccount.decode(reader, reader.uint32());
           continue;
         }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.tokenInfo = TokenInfo.decode(reader, reader.uint32());
+          continue;
+        }
         case 3: {
           if (tag !== 26) {
             break;
           }
 
-          message.tokenInfo = TokenInfo.decode(reader, reader.uint32());
+          message.basicUserInfo = BasicUserInfo.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -148,6 +163,7 @@ export const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenFor
     return {
       nexAccount: isSet(object.nexAccount) ? NEXAccount.fromJSON(object.nexAccount) : undefined,
       tokenInfo: isSet(object.tokenInfo) ? TokenInfo.fromJSON(object.tokenInfo) : undefined,
+      basicUserInfo: isSet(object.basicUserInfo) ? BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
     };
   },
 
@@ -158,6 +174,9 @@ export const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenFor
     }
     if (message.tokenInfo !== undefined) {
       obj.tokenInfo = TokenInfo.toJSON(message.tokenInfo);
+    }
+    if (message.basicUserInfo !== undefined) {
+      obj.basicUserInfo = BasicUserInfo.toJSON(message.basicUserInfo);
     }
     return obj;
   },
@@ -172,6 +191,9 @@ export const ExchangeNEXTokenForUserDataResponse: MessageFns<ExchangeNEXTokenFor
       : undefined;
     message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
       ? TokenInfo.fromPartial(object.tokenInfo)
+      : undefined;
+    message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+      ? BasicUserInfo.fromPartial(object.basicUserInfo)
       : undefined;
     return message;
   },

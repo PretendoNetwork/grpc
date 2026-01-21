@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExchangeOAuthTokenForUserDataResponse = exports.ExchangeOAuthTokenForUserDataRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
+const basic_user_info_1 = require("./basic_user_info");
 const get_pnid_rpc_1 = require("./get_pnid_rpc");
 const nex_account_1 = require("./nex_account");
 const token_info_1 = require("./token_info");
@@ -96,7 +97,7 @@ exports.ExchangeOAuthTokenForUserDataRequest = {
     },
 };
 function createBaseExchangeOAuthTokenForUserDataResponse() {
-    return { pnid: undefined, nexAccount: undefined, tokenInfo: undefined };
+    return { pnid: undefined, nexAccount: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 exports.ExchangeOAuthTokenForUserDataResponse = {
     encode(message, writer = new wire_1.BinaryWriter()) {
@@ -108,6 +109,9 @@ exports.ExchangeOAuthTokenForUserDataResponse = {
         }
         if (message.tokenInfo !== undefined) {
             token_info_1.TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+        }
+        if (message.basicUserInfo !== undefined) {
+            basic_user_info_1.BasicUserInfo.encode(message.basicUserInfo, writer.uint32(34).fork()).join();
         }
         return writer;
     },
@@ -139,6 +143,13 @@ exports.ExchangeOAuthTokenForUserDataResponse = {
                     message.tokenInfo = token_info_1.TokenInfo.decode(reader, reader.uint32());
                     continue;
                 }
+                case 4: {
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.basicUserInfo = basic_user_info_1.BasicUserInfo.decode(reader, reader.uint32());
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -152,6 +163,7 @@ exports.ExchangeOAuthTokenForUserDataResponse = {
             pnid: isSet(object.pnid) ? get_pnid_rpc_1.GetPNIDResponse.fromJSON(object.pnid) : undefined,
             nexAccount: isSet(object.nexAccount) ? nex_account_1.NEXAccount.fromJSON(object.nexAccount) : undefined,
             tokenInfo: isSet(object.tokenInfo) ? token_info_1.TokenInfo.fromJSON(object.tokenInfo) : undefined,
+            basicUserInfo: isSet(object.basicUserInfo) ? basic_user_info_1.BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
         };
     },
     toJSON(message) {
@@ -164,6 +176,9 @@ exports.ExchangeOAuthTokenForUserDataResponse = {
         }
         if (message.tokenInfo !== undefined) {
             obj.tokenInfo = token_info_1.TokenInfo.toJSON(message.tokenInfo);
+        }
+        if (message.basicUserInfo !== undefined) {
+            obj.basicUserInfo = basic_user_info_1.BasicUserInfo.toJSON(message.basicUserInfo);
         }
         return obj;
     },
@@ -180,6 +195,9 @@ exports.ExchangeOAuthTokenForUserDataResponse = {
             : undefined;
         message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
             ? token_info_1.TokenInfo.fromPartial(object.tokenInfo)
+            : undefined;
+        message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+            ? basic_user_info_1.BasicUserInfo.fromPartial(object.basicUserInfo)
             : undefined;
         return message;
     },

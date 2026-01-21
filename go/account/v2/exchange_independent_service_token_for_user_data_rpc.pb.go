@@ -21,62 +21,10 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// TODO - Move this to own file
-type IndependentServiceTokenProviderType int32
-
-const (
-	IndependentServiceTokenProviderType_INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED IndependentServiceTokenProviderType = 0
-	IndependentServiceTokenProviderType_INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC        IndependentServiceTokenProviderType = 1
-	IndependentServiceTokenProviderType_INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS        IndependentServiceTokenProviderType = 2
-)
-
-// Enum value maps for IndependentServiceTokenProviderType.
-var (
-	IndependentServiceTokenProviderType_name = map[int32]string{
-		0: "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED",
-		1: "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC",
-		2: "INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS",
-	}
-	IndependentServiceTokenProviderType_value = map[string]int32{
-		"INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED": 0,
-		"INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC":        1,
-		"INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS":        2,
-	}
-)
-
-func (x IndependentServiceTokenProviderType) Enum() *IndependentServiceTokenProviderType {
-	p := new(IndependentServiceTokenProviderType)
-	*p = x
-	return p
-}
-
-func (x IndependentServiceTokenProviderType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (IndependentServiceTokenProviderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_enumTypes[0].Descriptor()
-}
-
-func (IndependentServiceTokenProviderType) Type() protoreflect.EnumType {
-	return &file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_enumTypes[0]
-}
-
-func (x IndependentServiceTokenProviderType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use IndependentServiceTokenProviderType.Descriptor instead.
-func (IndependentServiceTokenProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_rawDescGZIP(), []int{0}
-}
-
 type ExchangeIndependentServiceTokenForUserDataRequest struct {
-	state         protoimpl.MessageState              `protogen:"open.v1"`
-	Provider      IndependentServiceTokenProviderType `protobuf:"varint,1,opt,name=provider,proto3,enum=account.v2.IndependentServiceTokenProviderType" json:"provider,omitempty"`
-	ClientId      *string                             `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3,oneof" json:"client_id,omitempty"` // * For NNAS
-	TitleIds      []string                            `protobuf:"bytes,3,rep,name=title_ids,json=titleIds,proto3" json:"title_ids,omitempty"`       // * For NASC
-	Token         string                              `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ClientIds     []string               `protobuf:"bytes,1,rep,name=client_ids,json=clientIds,proto3" json:"client_ids,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -111,23 +59,9 @@ func (*ExchangeIndependentServiceTokenForUserDataRequest) Descriptor() ([]byte, 
 	return file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ExchangeIndependentServiceTokenForUserDataRequest) GetProvider() IndependentServiceTokenProviderType {
+func (x *ExchangeIndependentServiceTokenForUserDataRequest) GetClientIds() []string {
 	if x != nil {
-		return x.Provider
-	}
-	return IndependentServiceTokenProviderType_INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED
-}
-
-func (x *ExchangeIndependentServiceTokenForUserDataRequest) GetClientId() string {
-	if x != nil && x.ClientId != nil {
-		return *x.ClientId
-	}
-	return ""
-}
-
-func (x *ExchangeIndependentServiceTokenForUserDataRequest) GetTitleIds() []string {
-	if x != nil {
-		return x.TitleIds
+		return x.ClientIds
 	}
 	return nil
 }
@@ -144,6 +78,7 @@ type ExchangeIndependentServiceTokenForUserDataResponse struct {
 	Pnid          *GetPNIDResponse       `protobuf:"bytes,1,opt,name=pnid,proto3,oneof" json:"pnid,omitempty"` // * May not be present when using a NASC token
 	NexAccount    *NEXAccount            `protobuf:"bytes,2,opt,name=nex_account,json=nexAccount,proto3" json:"nex_account,omitempty"`
 	TokenInfo     *TokenInfo             `protobuf:"bytes,3,opt,name=token_info,json=tokenInfo,proto3" json:"token_info,omitempty"`
+	BasicUserInfo *BasicUserInfo         `protobuf:"bytes,4,opt,name=basic_user_info,json=basicUserInfo,proto3" json:"basic_user_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,30 +134,31 @@ func (x *ExchangeIndependentServiceTokenForUserDataResponse) GetTokenInfo() *Tok
 	return nil
 }
 
+func (x *ExchangeIndependentServiceTokenForUserDataResponse) GetBasicUserInfo() *BasicUserInfo {
+	if x != nil {
+		return x.BasicUserInfo
+	}
+	return nil
+}
+
 var File_account_v2_exchange_independent_service_token_for_user_data_rpc_proto protoreflect.FileDescriptor
 
 const file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_rawDesc = "" +
 	"\n" +
 	"Eaccount/v2/exchange_independent_service_token_for_user_data_rpc.proto\x12\n" +
-	"account.v2\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1caccount/v2/nex_account.proto\x1a\x1baccount/v2/token_info.proto\"\xe3\x01\n" +
-	"1ExchangeIndependentServiceTokenForUserDataRequest\x12K\n" +
-	"\bprovider\x18\x01 \x01(\x0e2/.account.v2.IndependentServiceTokenProviderTypeR\bprovider\x12 \n" +
-	"\tclient_id\x18\x02 \x01(\tH\x00R\bclientId\x88\x01\x01\x12\x1b\n" +
-	"\ttitle_ids\x18\x03 \x03(\tR\btitleIds\x12\x14\n" +
-	"\x05token\x18\x04 \x01(\tR\x05tokenB\f\n" +
+	"account.v2\x1a account/v2/basic_user_info.proto\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1caccount/v2/nex_account.proto\x1a\x1baccount/v2/token_info.proto\"h\n" +
+	"1ExchangeIndependentServiceTokenForUserDataRequest\x12\x1d\n" +
 	"\n" +
-	"_client_id\"\xe2\x01\n" +
+	"client_ids\x18\x01 \x03(\tR\tclientIds\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\xa5\x02\n" +
 	"2ExchangeIndependentServiceTokenForUserDataResponse\x124\n" +
 	"\x04pnid\x18\x01 \x01(\v2\x1b.account.v2.GetPNIDResponseH\x00R\x04pnid\x88\x01\x01\x127\n" +
 	"\vnex_account\x18\x02 \x01(\v2\x16.account.v2.NEXAccountR\n" +
 	"nexAccount\x124\n" +
 	"\n" +
-	"token_info\x18\x03 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfoB\a\n" +
-	"\x05_pnid*\xc2\x01\n" +
-	"#IndependentServiceTokenProviderType\x127\n" +
-	"3INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_UNSPECIFIED\x10\x00\x120\n" +
-	",INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NASC\x10\x01\x120\n" +
-	",INDEPENDENT_SERVICE_TOKEN_PROVIDER_TYPE_NNAS\x10\x02B\xc6\x01\n" +
+	"token_info\x18\x03 \x01(\v2\x15.account.v2.TokenInfoR\ttokenInfo\x12A\n" +
+	"\x0fbasic_user_info\x18\x04 \x01(\v2\x19.account.v2.BasicUserInfoR\rbasicUserInfoB\a\n" +
+	"\x05_pnidB\xc6\x01\n" +
 	"\x0ecom.account.v2B2ExchangeIndependentServiceTokenForUserDataRpcProtoP\x01Z7github.com/PretendoNetwork/grpc/go/account/v2;accountv2\xa2\x02\x03AXX\xaa\x02\n" +
 	"Account.V2\xca\x02\n" +
 	"Account\\V2\xe2\x02\x16Account\\V2\\GPBMetadata\xea\x02\vAccount::V2b\x06proto3"
@@ -239,21 +175,20 @@ func file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_
 	return file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_rawDescData
 }
 
-var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_goTypes = []any{
-	(IndependentServiceTokenProviderType)(0),                   // 0: account.v2.IndependentServiceTokenProviderType
-	(*ExchangeIndependentServiceTokenForUserDataRequest)(nil),  // 1: account.v2.ExchangeIndependentServiceTokenForUserDataRequest
-	(*ExchangeIndependentServiceTokenForUserDataResponse)(nil), // 2: account.v2.ExchangeIndependentServiceTokenForUserDataResponse
-	(*GetPNIDResponse)(nil),                                    // 3: account.v2.GetPNIDResponse
-	(*NEXAccount)(nil),                                         // 4: account.v2.NEXAccount
-	(*TokenInfo)(nil),                                          // 5: account.v2.TokenInfo
+	(*ExchangeIndependentServiceTokenForUserDataRequest)(nil),  // 0: account.v2.ExchangeIndependentServiceTokenForUserDataRequest
+	(*ExchangeIndependentServiceTokenForUserDataResponse)(nil), // 1: account.v2.ExchangeIndependentServiceTokenForUserDataResponse
+	(*GetPNIDResponse)(nil),                                    // 2: account.v2.GetPNIDResponse
+	(*NEXAccount)(nil),                                         // 3: account.v2.NEXAccount
+	(*TokenInfo)(nil),                                          // 4: account.v2.TokenInfo
+	(*BasicUserInfo)(nil),                                      // 5: account.v2.BasicUserInfo
 }
 var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_depIdxs = []int32{
-	0, // 0: account.v2.ExchangeIndependentServiceTokenForUserDataRequest.provider:type_name -> account.v2.IndependentServiceTokenProviderType
-	3, // 1: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.pnid:type_name -> account.v2.GetPNIDResponse
-	4, // 2: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.nex_account:type_name -> account.v2.NEXAccount
-	5, // 3: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.token_info:type_name -> account.v2.TokenInfo
+	2, // 0: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.pnid:type_name -> account.v2.GetPNIDResponse
+	3, // 1: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.nex_account:type_name -> account.v2.NEXAccount
+	4, // 2: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.token_info:type_name -> account.v2.TokenInfo
+	5, // 3: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.basic_user_info:type_name -> account.v2.BasicUserInfo
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -266,24 +201,23 @@ func file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_
 	if File_account_v2_exchange_independent_service_token_for_user_data_rpc_proto != nil {
 		return
 	}
+	file_account_v2_basic_user_info_proto_init()
 	file_account_v2_get_pnid_rpc_proto_init()
 	file_account_v2_nex_account_proto_init()
 	file_account_v2_token_info_proto_init()
-	file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_msgTypes[0].OneofWrappers = []any{}
 	file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_rawDesc), len(file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_goTypes,
 		DependencyIndexes: file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_depIdxs,
-		EnumInfos:         file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_enumTypes,
 		MessageInfos:      file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_msgTypes,
 	}.Build()
 	File_account_v2_exchange_independent_service_token_for_user_data_rpc_proto = out.File

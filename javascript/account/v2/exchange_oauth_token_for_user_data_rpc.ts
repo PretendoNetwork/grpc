@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
@@ -22,6 +23,7 @@ export interface ExchangeOAuthTokenForUserDataResponse {
   pnid: GetPNIDResponse | undefined;
   nexAccount: NEXAccount | undefined;
   tokenInfo: TokenInfo | undefined;
+  basicUserInfo: BasicUserInfo | undefined;
 }
 
 function createBaseExchangeOAuthTokenForUserDataRequest(): ExchangeOAuthTokenForUserDataRequest {
@@ -117,7 +119,7 @@ export const ExchangeOAuthTokenForUserDataRequest: MessageFns<ExchangeOAuthToken
 };
 
 function createBaseExchangeOAuthTokenForUserDataResponse(): ExchangeOAuthTokenForUserDataResponse {
-  return { pnid: undefined, nexAccount: undefined, tokenInfo: undefined };
+  return { pnid: undefined, nexAccount: undefined, tokenInfo: undefined, basicUserInfo: undefined };
 }
 
 export const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthTokenForUserDataResponse> = {
@@ -130,6 +132,9 @@ export const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthToke
     }
     if (message.tokenInfo !== undefined) {
       TokenInfo.encode(message.tokenInfo, writer.uint32(26).fork()).join();
+    }
+    if (message.basicUserInfo !== undefined) {
+      BasicUserInfo.encode(message.basicUserInfo, writer.uint32(34).fork()).join();
     }
     return writer;
   },
@@ -165,6 +170,14 @@ export const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthToke
           message.tokenInfo = TokenInfo.decode(reader, reader.uint32());
           continue;
         }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.basicUserInfo = BasicUserInfo.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -179,6 +192,7 @@ export const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthToke
       pnid: isSet(object.pnid) ? GetPNIDResponse.fromJSON(object.pnid) : undefined,
       nexAccount: isSet(object.nexAccount) ? NEXAccount.fromJSON(object.nexAccount) : undefined,
       tokenInfo: isSet(object.tokenInfo) ? TokenInfo.fromJSON(object.tokenInfo) : undefined,
+      basicUserInfo: isSet(object.basicUserInfo) ? BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
     };
   },
 
@@ -192,6 +206,9 @@ export const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthToke
     }
     if (message.tokenInfo !== undefined) {
       obj.tokenInfo = TokenInfo.toJSON(message.tokenInfo);
+    }
+    if (message.basicUserInfo !== undefined) {
+      obj.basicUserInfo = BasicUserInfo.toJSON(message.basicUserInfo);
     }
     return obj;
   },
@@ -209,6 +226,9 @@ export const ExchangeOAuthTokenForUserDataResponse: MessageFns<ExchangeOAuthToke
       : undefined;
     message.tokenInfo = (object.tokenInfo !== undefined && object.tokenInfo !== null)
       ? TokenInfo.fromPartial(object.tokenInfo)
+      : undefined;
+    message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+      ? BasicUserInfo.fromPartial(object.basicUserInfo)
       : undefined;
     return message;
   },

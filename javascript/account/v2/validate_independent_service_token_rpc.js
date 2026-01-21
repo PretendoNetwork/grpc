@@ -5,28 +5,21 @@
 //   protoc               unknown
 // source: account/v2/validate_independent_service_token_rpc.proto
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidateIndependentServiceTokenResponse_UserInfo = exports.ValidateIndependentServiceTokenResponse = exports.ValidateIndependentServiceTokenRequest = exports.protobufPackage = void 0;
+exports.ValidateIndependentServiceTokenResponse = exports.ValidateIndependentServiceTokenRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
-const ban_details_1 = require("./ban_details");
-const exchange_independent_service_token_for_user_data_rpc_1 = require("./exchange_independent_service_token_for_user_data_rpc");
+const basic_user_info_1 = require("./basic_user_info");
 exports.protobufPackage = "account.v2";
 function createBaseValidateIndependentServiceTokenRequest() {
-    return { provider: 0, clientId: undefined, titleIds: [], token: "" };
+    return { clientIds: [], token: "" };
 }
 exports.ValidateIndependentServiceTokenRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
-        if (message.provider !== 0) {
-            writer.uint32(8).int32(message.provider);
-        }
-        if (message.clientId !== undefined) {
-            writer.uint32(18).string(message.clientId);
-        }
-        for (const v of message.titleIds) {
-            writer.uint32(26).string(v);
+        for (const v of message.clientIds) {
+            writer.uint32(10).string(v);
         }
         if (message.token !== "") {
-            writer.uint32(34).string(message.token);
+            writer.uint32(18).string(message.token);
         }
         return writer;
     },
@@ -38,28 +31,14 @@ exports.ValidateIndependentServiceTokenRequest = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1: {
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.provider = reader.int32();
+                    message.clientIds.push(reader.string());
                     continue;
                 }
                 case 2: {
                     if (tag !== 18) {
-                        break;
-                    }
-                    message.clientId = reader.string();
-                    continue;
-                }
-                case 3: {
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.titleIds.push(reader.string());
-                    continue;
-                }
-                case 4: {
-                    if (tag !== 34) {
                         break;
                     }
                     message.token = reader.string();
@@ -75,22 +54,16 @@ exports.ValidateIndependentServiceTokenRequest = {
     },
     fromJSON(object) {
         return {
-            provider: isSet(object.provider) ? (0, exchange_independent_service_token_for_user_data_rpc_1.independentServiceTokenProviderTypeFromJSON)(object.provider) : 0,
-            clientId: isSet(object.clientId) ? globalThis.String(object.clientId) : undefined,
-            titleIds: globalThis.Array.isArray(object?.titleIds) ? object.titleIds.map((e) => globalThis.String(e)) : [],
+            clientIds: globalThis.Array.isArray(object?.clientIds)
+                ? object.clientIds.map((e) => globalThis.String(e))
+                : [],
             token: isSet(object.token) ? globalThis.String(object.token) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.provider !== 0) {
-            obj.provider = (0, exchange_independent_service_token_for_user_data_rpc_1.independentServiceTokenProviderTypeToJSON)(message.provider);
-        }
-        if (message.clientId !== undefined) {
-            obj.clientId = message.clientId;
-        }
-        if (message.titleIds?.length) {
-            obj.titleIds = message.titleIds;
+        if (message.clientIds?.length) {
+            obj.clientIds = message.clientIds;
         }
         if (message.token !== "") {
             obj.token = message.token;
@@ -102,23 +75,21 @@ exports.ValidateIndependentServiceTokenRequest = {
     },
     fromPartial(object) {
         const message = createBaseValidateIndependentServiceTokenRequest();
-        message.provider = object.provider ?? 0;
-        message.clientId = object.clientId ?? undefined;
-        message.titleIds = object.titleIds?.map((e) => e) || [];
+        message.clientIds = object.clientIds?.map((e) => e) || [];
         message.token = object.token ?? "";
         return message;
     },
 };
 function createBaseValidateIndependentServiceTokenResponse() {
-    return { isValid: false, userInfo: undefined };
+    return { isValid: false, basicUserInfo: undefined };
 }
 exports.ValidateIndependentServiceTokenResponse = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.isValid !== false) {
             writer.uint32(8).bool(message.isValid);
         }
-        if (message.userInfo !== undefined) {
-            exports.ValidateIndependentServiceTokenResponse_UserInfo.encode(message.userInfo, writer.uint32(18).fork()).join();
+        if (message.basicUserInfo !== undefined) {
+            basic_user_info_1.BasicUserInfo.encode(message.basicUserInfo, writer.uint32(18).fork()).join();
         }
         return writer;
     },
@@ -140,7 +111,7 @@ exports.ValidateIndependentServiceTokenResponse = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.userInfo = exports.ValidateIndependentServiceTokenResponse_UserInfo.decode(reader, reader.uint32());
+                    message.basicUserInfo = basic_user_info_1.BasicUserInfo.decode(reader, reader.uint32());
                     continue;
                 }
             }
@@ -154,9 +125,7 @@ exports.ValidateIndependentServiceTokenResponse = {
     fromJSON(object) {
         return {
             isValid: isSet(object.isValid) ? globalThis.Boolean(object.isValid) : false,
-            userInfo: isSet(object.userInfo)
-                ? exports.ValidateIndependentServiceTokenResponse_UserInfo.fromJSON(object.userInfo)
-                : undefined,
+            basicUserInfo: isSet(object.basicUserInfo) ? basic_user_info_1.BasicUserInfo.fromJSON(object.basicUserInfo) : undefined,
         };
     },
     toJSON(message) {
@@ -164,8 +133,8 @@ exports.ValidateIndependentServiceTokenResponse = {
         if (message.isValid !== false) {
             obj.isValid = message.isValid;
         }
-        if (message.userInfo !== undefined) {
-            obj.userInfo = exports.ValidateIndependentServiceTokenResponse_UserInfo.toJSON(message.userInfo);
+        if (message.basicUserInfo !== undefined) {
+            obj.basicUserInfo = basic_user_info_1.BasicUserInfo.toJSON(message.basicUserInfo);
         }
         return obj;
     },
@@ -175,94 +144,9 @@ exports.ValidateIndependentServiceTokenResponse = {
     fromPartial(object) {
         const message = createBaseValidateIndependentServiceTokenResponse();
         message.isValid = object.isValid ?? false;
-        message.userInfo = (object.userInfo !== undefined && object.userInfo !== null)
-            ? exports.ValidateIndependentServiceTokenResponse_UserInfo.fromPartial(object.userInfo)
+        message.basicUserInfo = (object.basicUserInfo !== undefined && object.basicUserInfo !== null)
+            ? basic_user_info_1.BasicUserInfo.fromPartial(object.basicUserInfo)
             : undefined;
-        return message;
-    },
-};
-function createBaseValidateIndependentServiceTokenResponse_UserInfo() {
-    return { accessBetaServers: false, accessDeveloperServers: false, ban: undefined };
-}
-exports.ValidateIndependentServiceTokenResponse_UserInfo = {
-    encode(message, writer = new wire_1.BinaryWriter()) {
-        if (message.accessBetaServers !== false) {
-            writer.uint32(8).bool(message.accessBetaServers);
-        }
-        if (message.accessDeveloperServers !== false) {
-            writer.uint32(16).bool(message.accessDeveloperServers);
-        }
-        if (message.ban !== undefined) {
-            ban_details_1.Ban.encode(message.ban, writer.uint32(26).fork()).join();
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseValidateIndependentServiceTokenResponse_UserInfo();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1: {
-                    if (tag !== 8) {
-                        break;
-                    }
-                    message.accessBetaServers = reader.bool();
-                    continue;
-                }
-                case 2: {
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.accessDeveloperServers = reader.bool();
-                    continue;
-                }
-                case 3: {
-                    if (tag !== 26) {
-                        break;
-                    }
-                    message.ban = ban_details_1.Ban.decode(reader, reader.uint32());
-                    continue;
-                }
-            }
-            if ((tag & 7) === 4 || tag === 0) {
-                break;
-            }
-            reader.skip(tag & 7);
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            accessBetaServers: isSet(object.accessBetaServers) ? globalThis.Boolean(object.accessBetaServers) : false,
-            accessDeveloperServers: isSet(object.accessDeveloperServers)
-                ? globalThis.Boolean(object.accessDeveloperServers)
-                : false,
-            ban: isSet(object.ban) ? ban_details_1.Ban.fromJSON(object.ban) : undefined,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        if (message.accessBetaServers !== false) {
-            obj.accessBetaServers = message.accessBetaServers;
-        }
-        if (message.accessDeveloperServers !== false) {
-            obj.accessDeveloperServers = message.accessDeveloperServers;
-        }
-        if (message.ban !== undefined) {
-            obj.ban = ban_details_1.Ban.toJSON(message.ban);
-        }
-        return obj;
-    },
-    create(base) {
-        return exports.ValidateIndependentServiceTokenResponse_UserInfo.fromPartial(base ?? {});
-    },
-    fromPartial(object) {
-        const message = createBaseValidateIndependentServiceTokenResponse_UserInfo();
-        message.accessBetaServers = object.accessBetaServers ?? false;
-        message.accessDeveloperServers = object.accessDeveloperServers ?? false;
-        message.ban = (object.ban !== undefined && object.ban !== null) ? ban_details_1.Ban.fromPartial(object.ban) : undefined;
         return message;
     },
 };
