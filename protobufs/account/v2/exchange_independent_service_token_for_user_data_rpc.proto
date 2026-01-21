@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package account.v2;
 
+import "account/v2/basic_user_info.proto";
 import "account/v2/get_pnid_rpc.proto";
 import "account/v2/nex_account.proto";
 import "account/v2/token_info.proto";
-import "account/v2/basic_user_info.proto";
 
 message ExchangeIndependentServiceTokenForUserDataRequest {
   repeated string client_ids = 1;
