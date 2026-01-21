@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/ban_details.proto";
+
+message BasicUserInfo {
+  bool access_beta_servers = 1;
+  bool access_developer_servers = 2;
+  optional Ban ban = 3; // * Not present if not banned
+}
