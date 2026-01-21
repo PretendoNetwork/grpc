@@ -4,6 +4,7 @@ package account.v2;
 
 import "account/v2/nex_account.proto";
 import "account/v2/token_info.proto";
+import "account/v2/basic_user_info.proto";
 
 message ExchangeNEXTokenForUserDataRequest {
   repeated string game_server_ids = 1;
@@ -12,5 +13,6 @@ message ExchangeNEXTokenForUserDataRequest {
 
 message ExchangeNEXTokenForUserDataResponse {
   NEXAccount nex_account = 1;
-  TokenInfo token_info = 3;
+  TokenInfo token_info = 2;
+  BasicUserInfo basic_user_info = 3;
 }
