@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package nex;
+
+import "google/protobuf/empty.proto";
+import "nex/get_active_matches.proto";
+
+service NEX {
+	rpc GetActiveMatches(google.protobuf.Empty) returns (ActiveMatchesResponse) {}
+}
