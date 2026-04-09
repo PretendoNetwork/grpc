@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package nex.v1;
+
+message GetActiveMatchesRequest {}
+
+message GetActiveMatchesResponse {
+	uint32 id = 1;
+	uint64 start_time = 2;
+	repeated uint32 participants = 3;
+	uint32 owner_pid = 4;
+	uint32 host_pid = 5;
+	uint64 game_mode = 6;
+	uint64 flags = 7;
+	optional bytes application_buffer = 8;
+}
