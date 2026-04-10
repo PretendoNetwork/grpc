@@ -1,8 +1,8 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-export declare const protobufPackage = "nex.v1";
+export declare const protobufPackage = "nex.matchmaking.v1";
 export interface GetActiveMatchesRequest {
 }
-export interface GetActiveMatchesResponse {
+export interface ActiveMatch {
     id: number;
     startTime: bigint;
     participants: number[];
@@ -12,7 +12,11 @@ export interface GetActiveMatchesResponse {
     flags: bigint;
     applicationBuffer?: Buffer | undefined;
 }
+export interface GetActiveMatchesResponse {
+    matches: ActiveMatch[];
+}
 export declare const GetActiveMatchesRequest: MessageFns<GetActiveMatchesRequest>;
+export declare const ActiveMatch: MessageFns<ActiveMatch>;
 export declare const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

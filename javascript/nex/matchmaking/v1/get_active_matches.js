@@ -3,12 +3,12 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: nex/v1/get_active_matches.proto
+// source: nex/matchmaking/v1/get_active_matches.proto
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetActiveMatchesResponse = exports.GetActiveMatchesRequest = exports.protobufPackage = void 0;
+exports.GetActiveMatchesResponse = exports.ActiveMatch = exports.GetActiveMatchesRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const wire_1 = require("@bufbuild/protobuf/wire");
-exports.protobufPackage = "nex.v1";
+exports.protobufPackage = "nex.matchmaking.v1";
 function createBaseGetActiveMatchesRequest() {
     return {};
 }
@@ -46,7 +46,7 @@ exports.GetActiveMatchesRequest = {
         return message;
     },
 };
-function createBaseGetActiveMatchesResponse() {
+function createBaseActiveMatch() {
     return {
         id: 0,
         startTime: 0n,
@@ -58,7 +58,7 @@ function createBaseGetActiveMatchesResponse() {
         applicationBuffer: undefined,
     };
 }
-exports.GetActiveMatchesResponse = {
+exports.ActiveMatch = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.id !== 0) {
             writer.uint32(8).uint32(message.id);
@@ -100,7 +100,7 @@ exports.GetActiveMatchesResponse = {
     decode(input, length) {
         const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseGetActiveMatchesResponse();
+        const message = createBaseActiveMatch();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -220,10 +220,10 @@ exports.GetActiveMatchesResponse = {
         return obj;
     },
     create(base) {
-        return exports.GetActiveMatchesResponse.fromPartial(base ?? {});
+        return exports.ActiveMatch.fromPartial(base ?? {});
     },
     fromPartial(object) {
-        const message = createBaseGetActiveMatchesResponse();
+        const message = createBaseActiveMatch();
         message.id = object.id ?? 0;
         message.startTime = object.startTime ?? 0n;
         message.participants = object.participants?.map((e) => e) || [];
@@ -232,6 +232,59 @@ exports.GetActiveMatchesResponse = {
         message.gameMode = object.gameMode ?? 0n;
         message.flags = object.flags ?? 0n;
         message.applicationBuffer = object.applicationBuffer ?? undefined;
+        return message;
+    },
+};
+function createBaseGetActiveMatchesResponse() {
+    return { matches: [] };
+}
+exports.GetActiveMatchesResponse = {
+    encode(message, writer = new wire_1.BinaryWriter()) {
+        for (const v of message.matches) {
+            exports.ActiveMatch.encode(v, writer.uint32(10).fork()).join();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof wire_1.BinaryReader ? input : new wire_1.BinaryReader(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseGetActiveMatchesResponse();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1: {
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.matches.push(exports.ActiveMatch.decode(reader, reader.uint32()));
+                    continue;
+                }
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skip(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            matches: globalThis.Array.isArray(object?.matches) ? object.matches.map((e) => exports.ActiveMatch.fromJSON(e)) : [],
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.matches?.length) {
+            obj.matches = message.matches.map((e) => exports.ActiveMatch.toJSON(e));
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.GetActiveMatchesResponse.fromPartial(base ?? {});
+    },
+    fromPartial(object) {
+        const message = createBaseGetActiveMatchesResponse();
+        message.matches = object.matches?.map((e) => exports.ActiveMatch.fromPartial(e)) || [];
         return message;
     },
 };

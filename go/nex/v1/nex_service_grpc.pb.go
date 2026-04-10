@@ -23,7 +23,6 @@ const (
 	NEXServiceV1_KickUser_FullMethodName           = "/nex.v1.NEXServiceV1/KickUser"
 	NEXServiceV1_KickUserAggressive_FullMethodName = "/nex.v1.NEXServiceV1/KickUserAggressive"
 	NEXServiceV1_KillUserConnection_FullMethodName = "/nex.v1.NEXServiceV1/KillUserConnection"
-	NEXServiceV1_GetActiveMatches_FullMethodName   = "/nex.v1.NEXServiceV1/GetActiveMatches"
 )
 
 // NEXServiceV1Client is the client API for NEXServiceV1 service.
@@ -37,8 +36,6 @@ type NEXServiceV1Client interface {
 	KickUserAggressive(ctx context.Context, in *KickUserAggressiveRequest, opts ...grpc.CallOption) (*KickUserAggressiveResponse, error)
 	// Remove a user by any means necessary
 	KillUserConnection(ctx context.Context, in *KillUserConnectionRequest, opts ...grpc.CallOption) (*KillUserConnectionResponse, error)
-	// Fetch active matches
-	GetActiveMatches(ctx context.Context, in *GetActiveMatchesRequest, opts ...grpc.CallOption) (*GetActiveMatchesResponse, error)
 }
 
 type nEXServiceV1Client struct {
@@ -89,16 +86,6 @@ func (c *nEXServiceV1Client) KillUserConnection(ctx context.Context, in *KillUse
 	return out, nil
 }
 
-func (c *nEXServiceV1Client) GetActiveMatches(ctx context.Context, in *GetActiveMatchesRequest, opts ...grpc.CallOption) (*GetActiveMatchesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetActiveMatchesResponse)
-	err := c.cc.Invoke(ctx, NEXServiceV1_GetActiveMatches_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // NEXServiceV1Server is the server API for NEXServiceV1 service.
 // All implementations must embed UnimplementedNEXServiceV1Server
 // for forward compatibility.
@@ -110,8 +97,6 @@ type NEXServiceV1Server interface {
 	KickUserAggressive(context.Context, *KickUserAggressiveRequest) (*KickUserAggressiveResponse, error)
 	// Remove a user by any means necessary
 	KillUserConnection(context.Context, *KillUserConnectionRequest) (*KillUserConnectionResponse, error)
-	// Fetch active matches
-	GetActiveMatches(context.Context, *GetActiveMatchesRequest) (*GetActiveMatchesResponse, error)
 	mustEmbedUnimplementedNEXServiceV1Server()
 }
 
@@ -133,9 +118,6 @@ func (UnimplementedNEXServiceV1Server) KickUserAggressive(context.Context, *Kick
 }
 func (UnimplementedNEXServiceV1Server) KillUserConnection(context.Context, *KillUserConnectionRequest) (*KillUserConnectionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method KillUserConnection not implemented")
-}
-func (UnimplementedNEXServiceV1Server) GetActiveMatches(context.Context, *GetActiveMatchesRequest) (*GetActiveMatchesResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetActiveMatches not implemented")
 }
 func (UnimplementedNEXServiceV1Server) mustEmbedUnimplementedNEXServiceV1Server() {}
 func (UnimplementedNEXServiceV1Server) testEmbeddedByValue()                      {}
@@ -230,24 +212,6 @@ func _NEXServiceV1_KillUserConnection_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NEXServiceV1_GetActiveMatches_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetActiveMatchesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NEXServiceV1Server).GetActiveMatches(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NEXServiceV1_GetActiveMatches_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NEXServiceV1Server).GetActiveMatches(ctx, req.(*GetActiveMatchesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // NEXServiceV1_ServiceDesc is the grpc.ServiceDesc for NEXServiceV1 service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -270,10 +234,6 @@ var NEXServiceV1_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "KillUserConnection",
 			Handler:    _NEXServiceV1_KillUserConnection_Handler,
-		},
-		{
-			MethodName: "GetActiveMatches",
-			Handler:    _NEXServiceV1_GetActiveMatches_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

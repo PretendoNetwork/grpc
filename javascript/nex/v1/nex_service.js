@@ -6,7 +6,6 @@
 // source: nex/v1/nex_service.proto
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NEXServiceV1Definition = exports.protobufPackage = void 0;
-const get_active_matches_1 = require("./get_active_matches");
 const get_stats_rpc_1 = require("./get_stats_rpc");
 const kick_user_aggressive_rpc_1 = require("./kick_user_aggressive_rpc");
 const kick_user_rpc_1 = require("./kick_user_rpc");
@@ -48,15 +47,6 @@ exports.NEXServiceV1Definition = {
             requestType: kill_user_connection_rpc_1.KillUserConnectionRequest,
             requestStream: false,
             responseType: kill_user_connection_rpc_1.KillUserConnectionResponse,
-            responseStream: false,
-            options: {},
-        },
-        /** Fetch active matches */
-        getActiveMatches: {
-            name: "GetActiveMatches",
-            requestType: get_active_matches_1.GetActiveMatchesRequest,
-            requestStream: false,
-            responseType: get_active_matches_1.GetActiveMatchesResponse,
             responseStream: false,
             options: {},
         },

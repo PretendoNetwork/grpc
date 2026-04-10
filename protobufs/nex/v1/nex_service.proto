@@ -6,7 +6,6 @@ import "nex/v1/get_stats_rpc.proto";
 import "nex/v1/kick_user_rpc.proto";
 import "nex/v1/kick_user_aggressive_rpc.proto";
 import "nex/v1/kill_user_connection_rpc.proto";
-import "nex/v1/get_active_matches.proto";
 
 service NEXServiceV1 {
   rpc GetStats(GetStatsRequest) returns (GetStatsResponse) {} // This name kinda blows
@@ -19,7 +18,4 @@ service NEXServiceV1 {
 
   // Remove a user by any means necessary
   rpc KillUserConnection(KillUserConnectionRequest) returns (KillUserConnectionResponse) {}
-
-  // Fetch active matches
-  rpc GetActiveMatches(GetActiveMatchesRequest) returns (GetActiveMatchesResponse) {}
 }

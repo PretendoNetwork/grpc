@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package nex.matchmaking.v1;
+
+import "nex/matchmaking/v1/get_active_matches.proto";
+
+service NEXMatchmakingServiceV1 {
+  // Fetch active matches
+  rpc GetActiveMatches(GetActiveMatchesRequest) returns (GetActiveMatchesResponse) {}
+}

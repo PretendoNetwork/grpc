@@ -6,7 +6,6 @@
 
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
-import { GetActiveMatchesRequest, GetActiveMatchesResponse } from "./get_active_matches";
 import { GetStatsRequest, GetStatsResponse } from "./get_stats_rpc";
 import { KickUserAggressiveRequest, KickUserAggressiveResponse } from "./kick_user_aggressive_rpc";
 import { KickUserRequest, KickUserResponse } from "./kick_user_rpc";
@@ -54,15 +53,6 @@ export const NEXServiceV1Definition = {
       responseStream: false,
       options: {},
     },
-    /** Fetch active matches */
-    getActiveMatches: {
-      name: "GetActiveMatches",
-      requestType: GetActiveMatchesRequest,
-      requestStream: false,
-      responseType: GetActiveMatchesResponse,
-      responseStream: false,
-      options: {},
-    },
   },
 } as const;
 
@@ -80,11 +70,6 @@ export interface NEXServiceV1ServiceImplementation<CallContextExt = {}> {
     request: KillUserConnectionRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<KillUserConnectionResponse>>;
-  /** Fetch active matches */
-  getActiveMatches(
-    request: GetActiveMatchesRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<GetActiveMatchesResponse>>;
 }
 
 export interface NEXServiceV1Client<CallOptionsExt = {}> {
@@ -101,11 +86,6 @@ export interface NEXServiceV1Client<CallOptionsExt = {}> {
     request: DeepPartial<KillUserConnectionRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<KillUserConnectionResponse>;
-  /** Fetch active matches */
-  getActiveMatches(
-    request: DeepPartial<GetActiveMatchesRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<GetActiveMatchesResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;

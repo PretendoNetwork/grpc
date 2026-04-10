@@ -24,13 +24,12 @@ var File_nex_v1_nex_service_proto protoreflect.FileDescriptor
 
 const file_nex_v1_nex_service_proto_rawDesc = "" +
 	"\n" +
-	"\x18nex/v1/nex_service.proto\x12\x06nex.v1\x1a\x1anex/v1/get_stats_rpc.proto\x1a\x1anex/v1/kick_user_rpc.proto\x1a%nex/v1/kick_user_aggressive_rpc.proto\x1a%nex/v1/kill_user_connection_rpc.proto\x1a\x1fnex/v1/get_active_matches.proto2\xa7\x03\n" +
+	"\x18nex/v1/nex_service.proto\x12\x06nex.v1\x1a\x1anex/v1/get_stats_rpc.proto\x1a\x1anex/v1/kick_user_rpc.proto\x1a%nex/v1/kick_user_aggressive_rpc.proto\x1a%nex/v1/kill_user_connection_rpc.proto2\xce\x02\n" +
 	"\fNEXServiceV1\x12?\n" +
 	"\bGetStats\x12\x17.nex.v1.GetStatsRequest\x1a\x18.nex.v1.GetStatsResponse\"\x00\x12?\n" +
 	"\bKickUser\x12\x17.nex.v1.KickUserRequest\x1a\x18.nex.v1.KickUserResponse\"\x00\x12]\n" +
 	"\x12KickUserAggressive\x12!.nex.v1.KickUserAggressiveRequest\x1a\".nex.v1.KickUserAggressiveResponse\"\x00\x12]\n" +
-	"\x12KillUserConnection\x12!.nex.v1.KillUserConnectionRequest\x1a\".nex.v1.KillUserConnectionResponse\"\x00\x12W\n" +
-	"\x10GetActiveMatches\x12\x1f.nex.v1.GetActiveMatchesRequest\x1a .nex.v1.GetActiveMatchesResponse\"\x00B\x87\x01\n" +
+	"\x12KillUserConnection\x12!.nex.v1.KillUserConnectionRequest\x1a\".nex.v1.KillUserConnectionResponse\"\x00B\x87\x01\n" +
 	"\n" +
 	"com.nex.v1B\x0fNexServiceProtoP\x01Z/github.com/PretendoNetwork/grpc/go/nex/v1;nexv1\xa2\x02\x03NXX\xaa\x02\x06Nex.V1\xca\x02\x06Nex\\V1\xe2\x02\x12Nex\\V1\\GPBMetadata\xea\x02\aNex::V1b\x06proto3"
 
@@ -39,26 +38,22 @@ var file_nex_v1_nex_service_proto_goTypes = []any{
 	(*KickUserRequest)(nil),            // 1: nex.v1.KickUserRequest
 	(*KickUserAggressiveRequest)(nil),  // 2: nex.v1.KickUserAggressiveRequest
 	(*KillUserConnectionRequest)(nil),  // 3: nex.v1.KillUserConnectionRequest
-	(*GetActiveMatchesRequest)(nil),    // 4: nex.v1.GetActiveMatchesRequest
-	(*GetStatsResponse)(nil),           // 5: nex.v1.GetStatsResponse
-	(*KickUserResponse)(nil),           // 6: nex.v1.KickUserResponse
-	(*KickUserAggressiveResponse)(nil), // 7: nex.v1.KickUserAggressiveResponse
-	(*KillUserConnectionResponse)(nil), // 8: nex.v1.KillUserConnectionResponse
-	(*GetActiveMatchesResponse)(nil),   // 9: nex.v1.GetActiveMatchesResponse
+	(*GetStatsResponse)(nil),           // 4: nex.v1.GetStatsResponse
+	(*KickUserResponse)(nil),           // 5: nex.v1.KickUserResponse
+	(*KickUserAggressiveResponse)(nil), // 6: nex.v1.KickUserAggressiveResponse
+	(*KillUserConnectionResponse)(nil), // 7: nex.v1.KillUserConnectionResponse
 }
 var file_nex_v1_nex_service_proto_depIdxs = []int32{
 	0, // 0: nex.v1.NEXServiceV1.GetStats:input_type -> nex.v1.GetStatsRequest
 	1, // 1: nex.v1.NEXServiceV1.KickUser:input_type -> nex.v1.KickUserRequest
 	2, // 2: nex.v1.NEXServiceV1.KickUserAggressive:input_type -> nex.v1.KickUserAggressiveRequest
 	3, // 3: nex.v1.NEXServiceV1.KillUserConnection:input_type -> nex.v1.KillUserConnectionRequest
-	4, // 4: nex.v1.NEXServiceV1.GetActiveMatches:input_type -> nex.v1.GetActiveMatchesRequest
-	5, // 5: nex.v1.NEXServiceV1.GetStats:output_type -> nex.v1.GetStatsResponse
-	6, // 6: nex.v1.NEXServiceV1.KickUser:output_type -> nex.v1.KickUserResponse
-	7, // 7: nex.v1.NEXServiceV1.KickUserAggressive:output_type -> nex.v1.KickUserAggressiveResponse
-	8, // 8: nex.v1.NEXServiceV1.KillUserConnection:output_type -> nex.v1.KillUserConnectionResponse
-	9, // 9: nex.v1.NEXServiceV1.GetActiveMatches:output_type -> nex.v1.GetActiveMatchesResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
+	4, // 4: nex.v1.NEXServiceV1.GetStats:output_type -> nex.v1.GetStatsResponse
+	5, // 5: nex.v1.NEXServiceV1.KickUser:output_type -> nex.v1.KickUserResponse
+	6, // 6: nex.v1.NEXServiceV1.KickUserAggressive:output_type -> nex.v1.KickUserAggressiveResponse
+	7, // 7: nex.v1.NEXServiceV1.KillUserConnection:output_type -> nex.v1.KillUserConnectionResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -73,7 +68,6 @@ func file_nex_v1_nex_service_proto_init() {
 	file_nex_v1_kick_user_rpc_proto_init()
 	file_nex_v1_kick_user_aggressive_rpc_proto_init()
 	file_nex_v1_kill_user_connection_rpc_proto_init()
-	file_nex_v1_get_active_matches_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

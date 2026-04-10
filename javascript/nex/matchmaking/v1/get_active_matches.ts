@@ -2,17 +2,17 @@
 // versions:
 //   protoc-gen-ts_proto  v2.3.0
 //   protoc               unknown
-// source: nex/v1/get_active_matches.proto
+// source: nex/matchmaking/v1/get_active_matches.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
-export const protobufPackage = "nex.v1";
+export const protobufPackage = "nex.matchmaking.v1";
 
 export interface GetActiveMatchesRequest {
 }
 
-export interface GetActiveMatchesResponse {
+export interface ActiveMatch {
   id: number;
   startTime: bigint;
   participants: number[];
@@ -21,6 +21,10 @@ export interface GetActiveMatchesResponse {
   gameMode: bigint;
   flags: bigint;
   applicationBuffer?: Buffer | undefined;
+}
+
+export interface GetActiveMatchesResponse {
+  matches: ActiveMatch[];
 }
 
 function createBaseGetActiveMatchesRequest(): GetActiveMatchesRequest {
@@ -66,7 +70,7 @@ export const GetActiveMatchesRequest: MessageFns<GetActiveMatchesRequest> = {
   },
 };
 
-function createBaseGetActiveMatchesResponse(): GetActiveMatchesResponse {
+function createBaseActiveMatch(): ActiveMatch {
   return {
     id: 0,
     startTime: 0n,
@@ -79,8 +83,8 @@ function createBaseGetActiveMatchesResponse(): GetActiveMatchesResponse {
   };
 }
 
-export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
-  encode(message: GetActiveMatchesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const ActiveMatch: MessageFns<ActiveMatch> = {
+  encode(message: ActiveMatch, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.id !== 0) {
       writer.uint32(8).uint32(message.id);
     }
@@ -119,10 +123,10 @@ export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): GetActiveMatchesResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): ActiveMatch {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetActiveMatchesResponse();
+    const message = createBaseActiveMatch();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -209,7 +213,7 @@ export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
     return message;
   },
 
-  fromJSON(object: any): GetActiveMatchesResponse {
+  fromJSON(object: any): ActiveMatch {
     return {
       id: isSet(object.id) ? globalThis.Number(object.id) : 0,
       startTime: isSet(object.startTime) ? BigInt(object.startTime) : 0n,
@@ -226,7 +230,7 @@ export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
     };
   },
 
-  toJSON(message: GetActiveMatchesResponse): unknown {
+  toJSON(message: ActiveMatch): unknown {
     const obj: any = {};
     if (message.id !== 0) {
       obj.id = Math.round(message.id);
@@ -255,11 +259,11 @@ export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetActiveMatchesResponse>): GetActiveMatchesResponse {
-    return GetActiveMatchesResponse.fromPartial(base ?? {});
+  create(base?: DeepPartial<ActiveMatch>): ActiveMatch {
+    return ActiveMatch.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<GetActiveMatchesResponse>): GetActiveMatchesResponse {
-    const message = createBaseGetActiveMatchesResponse();
+  fromPartial(object: DeepPartial<ActiveMatch>): ActiveMatch {
+    const message = createBaseActiveMatch();
     message.id = object.id ?? 0;
     message.startTime = object.startTime ?? 0n;
     message.participants = object.participants?.map((e) => e) || [];
@@ -268,6 +272,66 @@ export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
     message.gameMode = object.gameMode ?? 0n;
     message.flags = object.flags ?? 0n;
     message.applicationBuffer = object.applicationBuffer ?? undefined;
+    return message;
+  },
+};
+
+function createBaseGetActiveMatchesResponse(): GetActiveMatchesResponse {
+  return { matches: [] };
+}
+
+export const GetActiveMatchesResponse: MessageFns<GetActiveMatchesResponse> = {
+  encode(message: GetActiveMatchesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.matches) {
+      ActiveMatch.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetActiveMatchesResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetActiveMatchesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.matches.push(ActiveMatch.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetActiveMatchesResponse {
+    return {
+      matches: globalThis.Array.isArray(object?.matches) ? object.matches.map((e: any) => ActiveMatch.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: GetActiveMatchesResponse): unknown {
+    const obj: any = {};
+    if (message.matches?.length) {
+      obj.matches = message.matches.map((e) => ActiveMatch.toJSON(e));
+    }
+    return obj;
+  },
+
+  create(base?: DeepPartial<GetActiveMatchesResponse>): GetActiveMatchesResponse {
+    return GetActiveMatchesResponse.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<GetActiveMatchesResponse>): GetActiveMatchesResponse {
+    const message = createBaseGetActiveMatchesResponse();
+    message.matches = object.matches?.map((e) => ActiveMatch.fromPartial(e)) || [];
     return message;
   },
 };
