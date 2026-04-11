@@ -30,10 +30,3 @@ message GetPNIDResponse {
   repeated Device linked_devices = 15;
 }
 
-message HydratePNIDMapRequest {
-  repeated uint32 pid = 1;
-}
-
-message HydratePNIDMapResponse {
-  map<uint32, GetPNIDResponse> user_data = 1;
-}
