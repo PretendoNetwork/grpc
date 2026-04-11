@@ -35,6 +35,7 @@ import { GetNEXAccountRequest, GetNEXAccountResponse } from "./get_nex_account_r
 import { GetNEXDataRequest, GetNEXDataResponse } from "./get_nex_data_rpc";
 import { GetNEXPasswordRequest, GetNEXPasswordResponse } from "./get_nex_password_rpc";
 import { GetPNIDRequest, GetPNIDResponse } from "./get_pnid_rpc";
+import { GetPNIDsRequest, GetPNIDsResponse } from "./get_pnids_rpc";
 import { GetServerRequest, GetServerResponse } from "./get_server_rpc";
 import { GetUserDataRequest, GetUserDataResponse } from "./get_user_data_rpc";
 import { IssueBanRequest, IssueBanResponse } from "./issue_ban_rpc";
@@ -312,6 +313,15 @@ export const AccountServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /** GetPNIDs populates a map linking pid to PNID account data. */
+    getPNIDs: {
+      name: "GetPNIDs",
+      requestType: GetPNIDsRequest,
+      requestStream: false,
+      responseType: GetPNIDsResponse,
+      responseStream: false,
+      options: {},
+    },
     /** UpdatePNID updates PNID account information. */
     updatePNID: {
       name: "UpdatePNID",
@@ -557,6 +567,8 @@ export interface AccountServiceImplementation<CallContextExt = {}> {
   listPNIDs(request: ListPNIDsRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ListPNIDsResponse>>;
   /** GetPNID retrieves details for a specific PNID account. */
   getPNID(request: GetPNIDRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetPNIDResponse>>;
+  /** GetPNIDs populates a map linking pid to PNID account data. */
+  getPNIDs(request: GetPNIDsRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetPNIDsResponse>>;
   /** UpdatePNID updates PNID account information. */
   updatePNID(
     request: UpdatePNIDRequest,
@@ -738,6 +750,8 @@ export interface AccountServiceClient<CallOptionsExt = {}> {
   listPNIDs(request: DeepPartial<ListPNIDsRequest>, options?: CallOptions & CallOptionsExt): Promise<ListPNIDsResponse>;
   /** GetPNID retrieves details for a specific PNID account. */
   getPNID(request: DeepPartial<GetPNIDRequest>, options?: CallOptions & CallOptionsExt): Promise<GetPNIDResponse>;
+  /** GetPNIDs populates a map linking pid to PNID account data. */
+  getPNIDs(request: DeepPartial<GetPNIDsRequest>, options?: CallOptions & CallOptionsExt): Promise<GetPNIDsResponse>;
   /** UpdatePNID updates PNID account information. */
   updatePNID(
     request: DeepPartial<UpdatePNIDRequest>,

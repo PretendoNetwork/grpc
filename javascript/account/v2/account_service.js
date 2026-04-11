@@ -23,6 +23,7 @@ const get_nex_account_rpc_1 = require("./get_nex_account_rpc");
 const get_nex_data_rpc_1 = require("./get_nex_data_rpc");
 const get_nex_password_rpc_1 = require("./get_nex_password_rpc");
 const get_pnid_rpc_1 = require("./get_pnid_rpc");
+const get_pnids_rpc_1 = require("./get_pnids_rpc");
 const get_server_rpc_1 = require("./get_server_rpc");
 const get_user_data_rpc_1 = require("./get_user_data_rpc");
 const issue_ban_rpc_1 = require("./issue_ban_rpc");
@@ -285,6 +286,15 @@ exports.AccountServiceDefinition = {
             requestType: get_pnid_rpc_1.GetPNIDRequest,
             requestStream: false,
             responseType: get_pnid_rpc_1.GetPNIDResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetPNIDs populates a map linking pid to PNID account data. */
+        getPNIDs: {
+            name: "GetPNIDs",
+            requestType: get_pnids_rpc_1.GetPNIDsRequest,
+            requestStream: false,
+            responseType: get_pnids_rpc_1.GetPNIDsResponse,
             responseStream: false,
             options: {},
         },

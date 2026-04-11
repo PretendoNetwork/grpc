@@ -25,7 +25,7 @@ var File_account_v2_account_service_proto protoreflect.FileDescriptor
 const file_account_v2_account_service_proto_rawDesc = "" +
 	"\n" +
 	" account/v2/account_service.proto\x12\n" +
-	"account.v2\x1a-account/v2/create_audit_log_comment_rpc.proto\x1a'account/v2/create_ban_comment_rpc.proto\x1a\"account/v2/create_server_rpc.proto\x1a#account/v2/delete_account_rpc.proto\x1a account/v2/delete_pnid_rpc.proto\x1a\"account/v2/delete_server_rpc.proto\x1aEaccount/v2/exchange_independent_service_token_for_user_data_rpc.proto\x1a5account/v2/exchange_nex_token_for_user_data_rpc.proto\x1a7account/v2/exchange_oauth_token_for_user_data_rpc.proto\x1a@account/v2/exchange_password_reset_token_for_user_data_rpc.proto\x1a1account/v2/exchange_token_for_user_data_rpc.proto\x1a\x1caccount/v2/get_ban_rpc.proto\x1a\x1faccount/v2/get_device_rpc.proto\x1a$account/v2/get_nex_account_rpc.proto\x1a!account/v2/get_nex_data_rpc.proto\x1a%account/v2/get_nex_password_rpc.proto\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1faccount/v2/get_server_rpc.proto\x1a\"account/v2/get_user_data_rpc.proto\x1a\x1eaccount/v2/issue_ban_rpc.proto\x1a,account/v2/list_audit_log_comments_rpc.proto\x1a$account/v2/list_audit_logs_rpc.proto\x1a&account/v2/list_ban_comments_rpc.proto\x1a\x1eaccount/v2/list_bans_rpc.proto\x1a!account/v2/list_devices_rpc.proto\x1a&account/v2/list_nex_accounts_rpc.proto\x1a\x1faccount/v2/list_pnids_rpc.proto\x1a!account/v2/list_servers_rpc.proto\x1a\x1faccount/v2/pardon_ban_rpc.proto\x1a\x1faccount/v2/update_ban_rpc.proto\x1a\"account/v2/update_device_rpc.proto\x1a'account/v2/update_nex_account_rpc.proto\x1a,account/v2/update_pnid_permissions_rpc.proto\x1a account/v2/update_pnid_rpc.proto\x1a\"account/v2/update_server_rpc.proto\x1a7account/v2/validate_independent_service_token_rpc.proto2\x80\x1b\n" +
+	"account.v2\x1a-account/v2/create_audit_log_comment_rpc.proto\x1a'account/v2/create_ban_comment_rpc.proto\x1a\"account/v2/create_server_rpc.proto\x1a#account/v2/delete_account_rpc.proto\x1a account/v2/delete_pnid_rpc.proto\x1a\"account/v2/delete_server_rpc.proto\x1aEaccount/v2/exchange_independent_service_token_for_user_data_rpc.proto\x1a5account/v2/exchange_nex_token_for_user_data_rpc.proto\x1a7account/v2/exchange_oauth_token_for_user_data_rpc.proto\x1a@account/v2/exchange_password_reset_token_for_user_data_rpc.proto\x1a1account/v2/exchange_token_for_user_data_rpc.proto\x1a\x1caccount/v2/get_ban_rpc.proto\x1a\x1faccount/v2/get_device_rpc.proto\x1a$account/v2/get_nex_account_rpc.proto\x1a!account/v2/get_nex_data_rpc.proto\x1a%account/v2/get_nex_password_rpc.proto\x1a\x1daccount/v2/get_pnid_rpc.proto\x1a\x1eaccount/v2/get_pnids_rpc.proto\x1a\x1faccount/v2/get_server_rpc.proto\x1a\"account/v2/get_user_data_rpc.proto\x1a\x1eaccount/v2/issue_ban_rpc.proto\x1a,account/v2/list_audit_log_comments_rpc.proto\x1a$account/v2/list_audit_logs_rpc.proto\x1a&account/v2/list_ban_comments_rpc.proto\x1a\x1eaccount/v2/list_bans_rpc.proto\x1a!account/v2/list_devices_rpc.proto\x1a&account/v2/list_nex_accounts_rpc.proto\x1a\x1faccount/v2/list_pnids_rpc.proto\x1a!account/v2/list_servers_rpc.proto\x1a\x1faccount/v2/pardon_ban_rpc.proto\x1a\x1faccount/v2/update_ban_rpc.proto\x1a\"account/v2/update_device_rpc.proto\x1a'account/v2/update_nex_account_rpc.proto\x1a,account/v2/update_pnid_permissions_rpc.proto\x1a account/v2/update_pnid_rpc.proto\x1a\"account/v2/update_server_rpc.proto\x1a7account/v2/validate_independent_service_token_rpc.proto2\xc9\x1b\n" +
 	"\x0eAccountService\x12S\n" +
 	"\vGetUserData\x12\x1e.account.v2.GetUserDataRequest\x1a\x1f.account.v2.GetUserDataResponse\"\x03\x88\x02\x01\x12Y\n" +
 	"\x0eGetNEXPassword\x12!.account.v2.GetNEXPasswordRequest\x1a\".account.v2.GetNEXPasswordResponse\"\x00\x12P\n" +
@@ -51,7 +51,8 @@ const file_account_v2_account_service_proto_rawDesc = "" +
 	"\fUpdateServer\x12\x1f.account.v2.UpdateServerRequest\x1a .account.v2.UpdateServerResponse\"\x00\x12S\n" +
 	"\fDeleteServer\x12\x1f.account.v2.DeleteServerRequest\x1a .account.v2.DeleteServerResponse\"\x00\x12J\n" +
 	"\tListPNIDs\x12\x1c.account.v2.ListPNIDsRequest\x1a\x1d.account.v2.ListPNIDsResponse\"\x00\x12D\n" +
-	"\aGetPNID\x12\x1a.account.v2.GetPNIDRequest\x1a\x1b.account.v2.GetPNIDResponse\"\x00\x12M\n" +
+	"\aGetPNID\x12\x1a.account.v2.GetPNIDRequest\x1a\x1b.account.v2.GetPNIDResponse\"\x00\x12G\n" +
+	"\bGetPNIDs\x12\x1b.account.v2.GetPNIDsRequest\x1a\x1c.account.v2.GetPNIDsResponse\"\x00\x12M\n" +
 	"\n" +
 	"UpdatePNID\x12\x1d.account.v2.UpdatePNIDRequest\x1a\x1e.account.v2.UpdatePNIDResponse\"\x00\x12M\n" +
 	"\n" +
@@ -95,54 +96,56 @@ var file_account_v2_account_service_proto_goTypes = []any{
 	(*DeleteServerRequest)(nil),                                // 21: account.v2.DeleteServerRequest
 	(*ListPNIDsRequest)(nil),                                   // 22: account.v2.ListPNIDsRequest
 	(*GetPNIDRequest)(nil),                                     // 23: account.v2.GetPNIDRequest
-	(*UpdatePNIDRequest)(nil),                                  // 24: account.v2.UpdatePNIDRequest
-	(*DeletePNIDRequest)(nil),                                  // 25: account.v2.DeletePNIDRequest
-	(*ListAuditLogsRequest)(nil),                               // 26: account.v2.ListAuditLogsRequest
-	(*ListAuditLogCommentsRequest)(nil),                        // 27: account.v2.ListAuditLogCommentsRequest
-	(*CreateAuditLogCommentRequest)(nil),                       // 28: account.v2.CreateAuditLogCommentRequest
-	(*ListBansRequest)(nil),                                    // 29: account.v2.ListBansRequest
-	(*IssueBanRequest)(nil),                                    // 30: account.v2.IssueBanRequest
-	(*GetBanRequest)(nil),                                      // 31: account.v2.GetBanRequest
-	(*UpdateBanRequest)(nil),                                   // 32: account.v2.UpdateBanRequest
-	(*PardonBanRequest)(nil),                                   // 33: account.v2.PardonBanRequest
-	(*ListBanCommentsRequest)(nil),                             // 34: account.v2.ListBanCommentsRequest
-	(*CreateBanCommentRequest)(nil),                            // 35: account.v2.CreateBanCommentRequest
-	(*GetUserDataResponse)(nil),                                // 36: account.v2.GetUserDataResponse
-	(*GetNEXPasswordResponse)(nil),                             // 37: account.v2.GetNEXPasswordResponse
-	(*GetNEXDataResponse)(nil),                                 // 38: account.v2.GetNEXDataResponse
-	(*UpdatePNIDPermissionsResponse)(nil),                      // 39: account.v2.UpdatePNIDPermissionsResponse
-	(*ExchangeTokenForUserDataResponse)(nil),                   // 40: account.v2.ExchangeTokenForUserDataResponse
-	(*ExchangeOAuthTokenForUserDataResponse)(nil),              // 41: account.v2.ExchangeOAuthTokenForUserDataResponse
-	(*ExchangeNEXTokenForUserDataResponse)(nil),                // 42: account.v2.ExchangeNEXTokenForUserDataResponse
-	(*ExchangeIndependentServiceTokenForUserDataResponse)(nil), // 43: account.v2.ExchangeIndependentServiceTokenForUserDataResponse
-	(*ExchangePasswordResetTokenForUserDataResponse)(nil),      // 44: account.v2.ExchangePasswordResetTokenForUserDataResponse
-	(*ValidateIndependentServiceTokenResponse)(nil),            // 45: account.v2.ValidateIndependentServiceTokenResponse
-	(*DeleteAccountResponse)(nil),                              // 46: account.v2.DeleteAccountResponse
-	(*ListDevicesResponse)(nil),                                // 47: account.v2.ListDevicesResponse
-	(*GetDeviceResponse)(nil),                                  // 48: account.v2.GetDeviceResponse
-	(*UpdateDeviceResponse)(nil),                               // 49: account.v2.UpdateDeviceResponse
-	(*ListNEXAccountsResponse)(nil),                            // 50: account.v2.ListNEXAccountsResponse
-	(*GetNEXAccountResponse)(nil),                              // 51: account.v2.GetNEXAccountResponse
-	(*UpdateNEXAccountResponse)(nil),                           // 52: account.v2.UpdateNEXAccountResponse
-	(*ListServersResponse)(nil),                                // 53: account.v2.ListServersResponse
-	(*CreateServerResponse)(nil),                               // 54: account.v2.CreateServerResponse
-	(*GetServerResponse)(nil),                                  // 55: account.v2.GetServerResponse
-	(*UpdateServerResponse)(nil),                               // 56: account.v2.UpdateServerResponse
-	(*DeleteServerResponse)(nil),                               // 57: account.v2.DeleteServerResponse
-	(*ListPNIDsResponse)(nil),                                  // 58: account.v2.ListPNIDsResponse
-	(*GetPNIDResponse)(nil),                                    // 59: account.v2.GetPNIDResponse
-	(*UpdatePNIDResponse)(nil),                                 // 60: account.v2.UpdatePNIDResponse
-	(*DeletePNIDResponse)(nil),                                 // 61: account.v2.DeletePNIDResponse
-	(*ListAuditLogsResponse)(nil),                              // 62: account.v2.ListAuditLogsResponse
-	(*ListAuditLogCommentsResponse)(nil),                       // 63: account.v2.ListAuditLogCommentsResponse
-	(*CreateAuditLogCommentResponse)(nil),                      // 64: account.v2.CreateAuditLogCommentResponse
-	(*ListBansResponse)(nil),                                   // 65: account.v2.ListBansResponse
-	(*IssueBanResponse)(nil),                                   // 66: account.v2.IssueBanResponse
-	(*GetBanResponse)(nil),                                     // 67: account.v2.GetBanResponse
-	(*UpdateBanResponse)(nil),                                  // 68: account.v2.UpdateBanResponse
-	(*PardonBanResponse)(nil),                                  // 69: account.v2.PardonBanResponse
-	(*ListBanCommentsResponse)(nil),                            // 70: account.v2.ListBanCommentsResponse
-	(*CreateBanCommentResponse)(nil),                           // 71: account.v2.CreateBanCommentResponse
+	(*GetPNIDsRequest)(nil),                                    // 24: account.v2.GetPNIDsRequest
+	(*UpdatePNIDRequest)(nil),                                  // 25: account.v2.UpdatePNIDRequest
+	(*DeletePNIDRequest)(nil),                                  // 26: account.v2.DeletePNIDRequest
+	(*ListAuditLogsRequest)(nil),                               // 27: account.v2.ListAuditLogsRequest
+	(*ListAuditLogCommentsRequest)(nil),                        // 28: account.v2.ListAuditLogCommentsRequest
+	(*CreateAuditLogCommentRequest)(nil),                       // 29: account.v2.CreateAuditLogCommentRequest
+	(*ListBansRequest)(nil),                                    // 30: account.v2.ListBansRequest
+	(*IssueBanRequest)(nil),                                    // 31: account.v2.IssueBanRequest
+	(*GetBanRequest)(nil),                                      // 32: account.v2.GetBanRequest
+	(*UpdateBanRequest)(nil),                                   // 33: account.v2.UpdateBanRequest
+	(*PardonBanRequest)(nil),                                   // 34: account.v2.PardonBanRequest
+	(*ListBanCommentsRequest)(nil),                             // 35: account.v2.ListBanCommentsRequest
+	(*CreateBanCommentRequest)(nil),                            // 36: account.v2.CreateBanCommentRequest
+	(*GetUserDataResponse)(nil),                                // 37: account.v2.GetUserDataResponse
+	(*GetNEXPasswordResponse)(nil),                             // 38: account.v2.GetNEXPasswordResponse
+	(*GetNEXDataResponse)(nil),                                 // 39: account.v2.GetNEXDataResponse
+	(*UpdatePNIDPermissionsResponse)(nil),                      // 40: account.v2.UpdatePNIDPermissionsResponse
+	(*ExchangeTokenForUserDataResponse)(nil),                   // 41: account.v2.ExchangeTokenForUserDataResponse
+	(*ExchangeOAuthTokenForUserDataResponse)(nil),              // 42: account.v2.ExchangeOAuthTokenForUserDataResponse
+	(*ExchangeNEXTokenForUserDataResponse)(nil),                // 43: account.v2.ExchangeNEXTokenForUserDataResponse
+	(*ExchangeIndependentServiceTokenForUserDataResponse)(nil), // 44: account.v2.ExchangeIndependentServiceTokenForUserDataResponse
+	(*ExchangePasswordResetTokenForUserDataResponse)(nil),      // 45: account.v2.ExchangePasswordResetTokenForUserDataResponse
+	(*ValidateIndependentServiceTokenResponse)(nil),            // 46: account.v2.ValidateIndependentServiceTokenResponse
+	(*DeleteAccountResponse)(nil),                              // 47: account.v2.DeleteAccountResponse
+	(*ListDevicesResponse)(nil),                                // 48: account.v2.ListDevicesResponse
+	(*GetDeviceResponse)(nil),                                  // 49: account.v2.GetDeviceResponse
+	(*UpdateDeviceResponse)(nil),                               // 50: account.v2.UpdateDeviceResponse
+	(*ListNEXAccountsResponse)(nil),                            // 51: account.v2.ListNEXAccountsResponse
+	(*GetNEXAccountResponse)(nil),                              // 52: account.v2.GetNEXAccountResponse
+	(*UpdateNEXAccountResponse)(nil),                           // 53: account.v2.UpdateNEXAccountResponse
+	(*ListServersResponse)(nil),                                // 54: account.v2.ListServersResponse
+	(*CreateServerResponse)(nil),                               // 55: account.v2.CreateServerResponse
+	(*GetServerResponse)(nil),                                  // 56: account.v2.GetServerResponse
+	(*UpdateServerResponse)(nil),                               // 57: account.v2.UpdateServerResponse
+	(*DeleteServerResponse)(nil),                               // 58: account.v2.DeleteServerResponse
+	(*ListPNIDsResponse)(nil),                                  // 59: account.v2.ListPNIDsResponse
+	(*GetPNIDResponse)(nil),                                    // 60: account.v2.GetPNIDResponse
+	(*GetPNIDsResponse)(nil),                                   // 61: account.v2.GetPNIDsResponse
+	(*UpdatePNIDResponse)(nil),                                 // 62: account.v2.UpdatePNIDResponse
+	(*DeletePNIDResponse)(nil),                                 // 63: account.v2.DeletePNIDResponse
+	(*ListAuditLogsResponse)(nil),                              // 64: account.v2.ListAuditLogsResponse
+	(*ListAuditLogCommentsResponse)(nil),                       // 65: account.v2.ListAuditLogCommentsResponse
+	(*CreateAuditLogCommentResponse)(nil),                      // 66: account.v2.CreateAuditLogCommentResponse
+	(*ListBansResponse)(nil),                                   // 67: account.v2.ListBansResponse
+	(*IssueBanResponse)(nil),                                   // 68: account.v2.IssueBanResponse
+	(*GetBanResponse)(nil),                                     // 69: account.v2.GetBanResponse
+	(*UpdateBanResponse)(nil),                                  // 70: account.v2.UpdateBanResponse
+	(*PardonBanResponse)(nil),                                  // 71: account.v2.PardonBanResponse
+	(*ListBanCommentsResponse)(nil),                            // 72: account.v2.ListBanCommentsResponse
+	(*CreateBanCommentResponse)(nil),                           // 73: account.v2.CreateBanCommentResponse
 }
 var file_account_v2_account_service_proto_depIdxs = []int32{
 	0,  // 0: account.v2.AccountService.GetUserData:input_type -> account.v2.GetUserDataRequest
@@ -169,56 +172,58 @@ var file_account_v2_account_service_proto_depIdxs = []int32{
 	21, // 21: account.v2.AccountService.DeleteServer:input_type -> account.v2.DeleteServerRequest
 	22, // 22: account.v2.AccountService.ListPNIDs:input_type -> account.v2.ListPNIDsRequest
 	23, // 23: account.v2.AccountService.GetPNID:input_type -> account.v2.GetPNIDRequest
-	24, // 24: account.v2.AccountService.UpdatePNID:input_type -> account.v2.UpdatePNIDRequest
-	25, // 25: account.v2.AccountService.DeletePNID:input_type -> account.v2.DeletePNIDRequest
-	26, // 26: account.v2.AccountService.ListAuditLogs:input_type -> account.v2.ListAuditLogsRequest
-	27, // 27: account.v2.AccountService.ListAuditLogComments:input_type -> account.v2.ListAuditLogCommentsRequest
-	28, // 28: account.v2.AccountService.CreateAuditLogComment:input_type -> account.v2.CreateAuditLogCommentRequest
-	29, // 29: account.v2.AccountService.ListBans:input_type -> account.v2.ListBansRequest
-	30, // 30: account.v2.AccountService.IssueBan:input_type -> account.v2.IssueBanRequest
-	31, // 31: account.v2.AccountService.GetBan:input_type -> account.v2.GetBanRequest
-	32, // 32: account.v2.AccountService.UpdateBan:input_type -> account.v2.UpdateBanRequest
-	33, // 33: account.v2.AccountService.PardonBan:input_type -> account.v2.PardonBanRequest
-	34, // 34: account.v2.AccountService.ListBanComments:input_type -> account.v2.ListBanCommentsRequest
-	35, // 35: account.v2.AccountService.CreateBanComment:input_type -> account.v2.CreateBanCommentRequest
-	36, // 36: account.v2.AccountService.GetUserData:output_type -> account.v2.GetUserDataResponse
-	37, // 37: account.v2.AccountService.GetNEXPassword:output_type -> account.v2.GetNEXPasswordResponse
-	38, // 38: account.v2.AccountService.GetNEXData:output_type -> account.v2.GetNEXDataResponse
-	39, // 39: account.v2.AccountService.UpdatePNIDPermissions:output_type -> account.v2.UpdatePNIDPermissionsResponse
-	40, // 40: account.v2.AccountService.ExchangeTokenForUserData:output_type -> account.v2.ExchangeTokenForUserDataResponse
-	41, // 41: account.v2.AccountService.ExchangeOAuthTokenForUserData:output_type -> account.v2.ExchangeOAuthTokenForUserDataResponse
-	42, // 42: account.v2.AccountService.ExchangeNEXTokenForUserData:output_type -> account.v2.ExchangeNEXTokenForUserDataResponse
-	43, // 43: account.v2.AccountService.ExchangeIndependentServiceTokenForUserData:output_type -> account.v2.ExchangeIndependentServiceTokenForUserDataResponse
-	44, // 44: account.v2.AccountService.ExchangePasswordResetTokenForUserData:output_type -> account.v2.ExchangePasswordResetTokenForUserDataResponse
-	45, // 45: account.v2.AccountService.ValidateIndependentServiceToken:output_type -> account.v2.ValidateIndependentServiceTokenResponse
-	46, // 46: account.v2.AccountService.DeleteAccount:output_type -> account.v2.DeleteAccountResponse
-	47, // 47: account.v2.AccountService.ListDevices:output_type -> account.v2.ListDevicesResponse
-	48, // 48: account.v2.AccountService.GetDevice:output_type -> account.v2.GetDeviceResponse
-	49, // 49: account.v2.AccountService.UpdateDevice:output_type -> account.v2.UpdateDeviceResponse
-	50, // 50: account.v2.AccountService.ListNEXAccounts:output_type -> account.v2.ListNEXAccountsResponse
-	51, // 51: account.v2.AccountService.GetNEXAccount:output_type -> account.v2.GetNEXAccountResponse
-	52, // 52: account.v2.AccountService.UpdateNEXAccount:output_type -> account.v2.UpdateNEXAccountResponse
-	53, // 53: account.v2.AccountService.ListServers:output_type -> account.v2.ListServersResponse
-	54, // 54: account.v2.AccountService.CreateServer:output_type -> account.v2.CreateServerResponse
-	55, // 55: account.v2.AccountService.GetServer:output_type -> account.v2.GetServerResponse
-	56, // 56: account.v2.AccountService.UpdateServer:output_type -> account.v2.UpdateServerResponse
-	57, // 57: account.v2.AccountService.DeleteServer:output_type -> account.v2.DeleteServerResponse
-	58, // 58: account.v2.AccountService.ListPNIDs:output_type -> account.v2.ListPNIDsResponse
-	59, // 59: account.v2.AccountService.GetPNID:output_type -> account.v2.GetPNIDResponse
-	60, // 60: account.v2.AccountService.UpdatePNID:output_type -> account.v2.UpdatePNIDResponse
-	61, // 61: account.v2.AccountService.DeletePNID:output_type -> account.v2.DeletePNIDResponse
-	62, // 62: account.v2.AccountService.ListAuditLogs:output_type -> account.v2.ListAuditLogsResponse
-	63, // 63: account.v2.AccountService.ListAuditLogComments:output_type -> account.v2.ListAuditLogCommentsResponse
-	64, // 64: account.v2.AccountService.CreateAuditLogComment:output_type -> account.v2.CreateAuditLogCommentResponse
-	65, // 65: account.v2.AccountService.ListBans:output_type -> account.v2.ListBansResponse
-	66, // 66: account.v2.AccountService.IssueBan:output_type -> account.v2.IssueBanResponse
-	67, // 67: account.v2.AccountService.GetBan:output_type -> account.v2.GetBanResponse
-	68, // 68: account.v2.AccountService.UpdateBan:output_type -> account.v2.UpdateBanResponse
-	69, // 69: account.v2.AccountService.PardonBan:output_type -> account.v2.PardonBanResponse
-	70, // 70: account.v2.AccountService.ListBanComments:output_type -> account.v2.ListBanCommentsResponse
-	71, // 71: account.v2.AccountService.CreateBanComment:output_type -> account.v2.CreateBanCommentResponse
-	36, // [36:72] is the sub-list for method output_type
-	0,  // [0:36] is the sub-list for method input_type
+	24, // 24: account.v2.AccountService.GetPNIDs:input_type -> account.v2.GetPNIDsRequest
+	25, // 25: account.v2.AccountService.UpdatePNID:input_type -> account.v2.UpdatePNIDRequest
+	26, // 26: account.v2.AccountService.DeletePNID:input_type -> account.v2.DeletePNIDRequest
+	27, // 27: account.v2.AccountService.ListAuditLogs:input_type -> account.v2.ListAuditLogsRequest
+	28, // 28: account.v2.AccountService.ListAuditLogComments:input_type -> account.v2.ListAuditLogCommentsRequest
+	29, // 29: account.v2.AccountService.CreateAuditLogComment:input_type -> account.v2.CreateAuditLogCommentRequest
+	30, // 30: account.v2.AccountService.ListBans:input_type -> account.v2.ListBansRequest
+	31, // 31: account.v2.AccountService.IssueBan:input_type -> account.v2.IssueBanRequest
+	32, // 32: account.v2.AccountService.GetBan:input_type -> account.v2.GetBanRequest
+	33, // 33: account.v2.AccountService.UpdateBan:input_type -> account.v2.UpdateBanRequest
+	34, // 34: account.v2.AccountService.PardonBan:input_type -> account.v2.PardonBanRequest
+	35, // 35: account.v2.AccountService.ListBanComments:input_type -> account.v2.ListBanCommentsRequest
+	36, // 36: account.v2.AccountService.CreateBanComment:input_type -> account.v2.CreateBanCommentRequest
+	37, // 37: account.v2.AccountService.GetUserData:output_type -> account.v2.GetUserDataResponse
+	38, // 38: account.v2.AccountService.GetNEXPassword:output_type -> account.v2.GetNEXPasswordResponse
+	39, // 39: account.v2.AccountService.GetNEXData:output_type -> account.v2.GetNEXDataResponse
+	40, // 40: account.v2.AccountService.UpdatePNIDPermissions:output_type -> account.v2.UpdatePNIDPermissionsResponse
+	41, // 41: account.v2.AccountService.ExchangeTokenForUserData:output_type -> account.v2.ExchangeTokenForUserDataResponse
+	42, // 42: account.v2.AccountService.ExchangeOAuthTokenForUserData:output_type -> account.v2.ExchangeOAuthTokenForUserDataResponse
+	43, // 43: account.v2.AccountService.ExchangeNEXTokenForUserData:output_type -> account.v2.ExchangeNEXTokenForUserDataResponse
+	44, // 44: account.v2.AccountService.ExchangeIndependentServiceTokenForUserData:output_type -> account.v2.ExchangeIndependentServiceTokenForUserDataResponse
+	45, // 45: account.v2.AccountService.ExchangePasswordResetTokenForUserData:output_type -> account.v2.ExchangePasswordResetTokenForUserDataResponse
+	46, // 46: account.v2.AccountService.ValidateIndependentServiceToken:output_type -> account.v2.ValidateIndependentServiceTokenResponse
+	47, // 47: account.v2.AccountService.DeleteAccount:output_type -> account.v2.DeleteAccountResponse
+	48, // 48: account.v2.AccountService.ListDevices:output_type -> account.v2.ListDevicesResponse
+	49, // 49: account.v2.AccountService.GetDevice:output_type -> account.v2.GetDeviceResponse
+	50, // 50: account.v2.AccountService.UpdateDevice:output_type -> account.v2.UpdateDeviceResponse
+	51, // 51: account.v2.AccountService.ListNEXAccounts:output_type -> account.v2.ListNEXAccountsResponse
+	52, // 52: account.v2.AccountService.GetNEXAccount:output_type -> account.v2.GetNEXAccountResponse
+	53, // 53: account.v2.AccountService.UpdateNEXAccount:output_type -> account.v2.UpdateNEXAccountResponse
+	54, // 54: account.v2.AccountService.ListServers:output_type -> account.v2.ListServersResponse
+	55, // 55: account.v2.AccountService.CreateServer:output_type -> account.v2.CreateServerResponse
+	56, // 56: account.v2.AccountService.GetServer:output_type -> account.v2.GetServerResponse
+	57, // 57: account.v2.AccountService.UpdateServer:output_type -> account.v2.UpdateServerResponse
+	58, // 58: account.v2.AccountService.DeleteServer:output_type -> account.v2.DeleteServerResponse
+	59, // 59: account.v2.AccountService.ListPNIDs:output_type -> account.v2.ListPNIDsResponse
+	60, // 60: account.v2.AccountService.GetPNID:output_type -> account.v2.GetPNIDResponse
+	61, // 61: account.v2.AccountService.GetPNIDs:output_type -> account.v2.GetPNIDsResponse
+	62, // 62: account.v2.AccountService.UpdatePNID:output_type -> account.v2.UpdatePNIDResponse
+	63, // 63: account.v2.AccountService.DeletePNID:output_type -> account.v2.DeletePNIDResponse
+	64, // 64: account.v2.AccountService.ListAuditLogs:output_type -> account.v2.ListAuditLogsResponse
+	65, // 65: account.v2.AccountService.ListAuditLogComments:output_type -> account.v2.ListAuditLogCommentsResponse
+	66, // 66: account.v2.AccountService.CreateAuditLogComment:output_type -> account.v2.CreateAuditLogCommentResponse
+	67, // 67: account.v2.AccountService.ListBans:output_type -> account.v2.ListBansResponse
+	68, // 68: account.v2.AccountService.IssueBan:output_type -> account.v2.IssueBanResponse
+	69, // 69: account.v2.AccountService.GetBan:output_type -> account.v2.GetBanResponse
+	70, // 70: account.v2.AccountService.UpdateBan:output_type -> account.v2.UpdateBanResponse
+	71, // 71: account.v2.AccountService.PardonBan:output_type -> account.v2.PardonBanResponse
+	72, // 72: account.v2.AccountService.ListBanComments:output_type -> account.v2.ListBanCommentsResponse
+	73, // 73: account.v2.AccountService.CreateBanComment:output_type -> account.v2.CreateBanCommentResponse
+	37, // [37:74] is the sub-list for method output_type
+	0,  // [0:37] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -246,6 +251,7 @@ func file_account_v2_account_service_proto_init() {
 	file_account_v2_get_nex_data_rpc_proto_init()
 	file_account_v2_get_nex_password_rpc_proto_init()
 	file_account_v2_get_pnid_rpc_proto_init()
+	file_account_v2_get_pnids_rpc_proto_init()
 	file_account_v2_get_server_rpc_proto_init()
 	file_account_v2_get_user_data_rpc_proto_init()
 	file_account_v2_issue_ban_rpc_proto_init()
