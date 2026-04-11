@@ -131,6 +131,9 @@ service AccountService {
   // GetPNID retrieves details for a specific PNID account.
   rpc GetPNID(GetPNIDRequest) returns (GetPNIDResponse) {}
 
+  // HydratePNIDMap populates a map linking pid to PNID account data.
+  rpc HydratePNIDMap(HydratePNIDMapRequest) returns (HydratePNIDMapResponse) {}
+
   // UpdatePNID updates PNID account information.
   rpc UpdatePNID(UpdatePNIDRequest) returns (UpdatePNIDResponse) {}
 
