@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package nex.matchmaking.v1.types;
+
+import "nex/matchmaking/v1/types/gathering.proto";
+import "google/protobuf/timestamp.proto";
+
+message PersistentGathering {
+  Gathering gathering = 1;
+  uint32 community_type = 2;
+  string password = 3;
+  repeated uint32 attributes = 4;
+  bytes application_buffer = 5;
+  google.protobuf.Timestamp participation_open_date = 6;
+  google.protobuf.Timestamp participation_close_date = 7;
+  uint32 matchmake_session_count = 8;
+  uint32 registered_participants_count = 9;
+}

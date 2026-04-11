@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package nex.types.v1;
+
+// TODO - Add the other types, like "Result" as an enum or something?
+
+message PID {
+  uint64 value = 1;
+}
+
+message StationURL {
+  string value = 1;
+  // TODO - Add the other fields. Leave "value" as the raw string
+}

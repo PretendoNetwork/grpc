@@ -2,9 +2,17 @@ syntax = "proto3";
 
 package nex.matchmaking.v1;
 
-import "nex/matchmaking/v1/get_active_matches.proto";
+import "nex/matchmaking/v1/list_gatherings_rpc.proto";
+import "nex/matchmaking/v1/list_persistent_gatherings_rpc.proto";
+import "nex/matchmaking/v1/list_matchmake_sessions_rpc.proto";
 
 service NEXMatchmakingServiceV1 {
-  // Fetch active matches
-  rpc GetActiveMatches(GetActiveMatchesRequest) returns (GetActiveMatchesResponse) {}
+  // Fetches a list of Gatherings. Gathering simply represents a collection of users, and is the base type for sessions and communities. See ListPersistentGatherings and ListMatchmakeSessions
+  rpc ListGatherings(ListGatheringsRequest) returns (ListGatheringsResponse) {}
+
+  // Fetches a list of PersistentGatherings. PersistentGathering, also seen as "Community" represents a long-standing Gathering that users may join and create MatchmakeSessions under, such as a tournament
+  rpc ListPersistentGatherings(ListPersistentGatheringsRequest) returns (ListPersistentGatheringsResponse) {}
+
+  // Fetches a list of MatchmakeSessions. MatchmakeSession represents a mesh of connected users. This can be used to request both historical and active sessions
+  rpc ListMatchmakeSessions(ListMatchmakeSessionsRequest) returns (ListMatchmakeSessionsResponse) {}
 }

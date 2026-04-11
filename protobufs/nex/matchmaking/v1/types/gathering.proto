@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package nex.matchmaking.v1.types;
+
+import "nex/types/v1/types.proto";
+
+enum GatheringState {
+  GatheringStateInvalidDoNotUseThisDoesntExistYouWillBeFired = 0; // * Only exists because proto3 requires the first value to be 0
+  GatheringStateLocked = 1;
+  GatheringStateStarted = 2;
+  GatheringStateFinished = 4;
+}
+
+message Gathering {
+  uint32 id = 1;
+  nex.types.v1.PID owner = 2;
+  nex.types.v1.PID host = 3;
+  uint32 minimum_participants = 4;
+  uint32 maximum_participants = 5;
+  uint32 participation_policy = 6;
+  uint32 participation_policy_argument = 7;
+  uint32 flags = 8;
+  GatheringState state = 9;
+  string description = 10;
+}

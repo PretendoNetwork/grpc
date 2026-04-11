@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package nex.matchmaking.v1;
+
+import "nex/matchmaking/v1/types/gathering.proto";
+
+message ListPersistentGatheringsRequest {
+  // TODO - Add filters here
+}
+
+message ListPersistentGatheringsResponse {
+  repeated nex.matchmaking.v1.types.PersistentGathering persistent_gatherings = 1;
+}

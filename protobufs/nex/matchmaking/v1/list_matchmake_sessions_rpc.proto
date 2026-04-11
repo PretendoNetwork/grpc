@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package nex.matchmaking.v1;
+
+import "nex/matchmaking/v1/types/matchmake_session.proto";
+
+message ListMatchmakeSessionsRequest {
+  // TODO - Add filters here
+  bool active_only = 1; // * If true, do not return historical session data
+}
+
+message ListMatchmakeSessionsResponse {
+  repeated nex.matchmaking.v1.types.MatchmakeSession matchmake_sessions = 1;
+}

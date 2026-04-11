@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package nex.matchmaking.v1.types;
+
+import "nex/matchmaking/v1/types/gathering.proto";
+import "google/protobuf/timestamp.proto";
+
+message MatchmakeSession {
+  Gathering gathering = 1;
+  uint32 game_mode = 2;
+  repeated uint32 attributes = 3;
+  bool participation_open = 4;
+  // MatchmakeSystemType matchmake_system_type = 5; // * This field is only used when a client tries to join a session, not useful here
+  bytes application_buffer = 6;
+  uint32 participants_count = 7;
+  uint32 progress = 8; // * 0-100
+  bytes session_key = 9;
+  // Option0 option0 = 10; // * This field is only used when a client tries to join a session, not useful here
+  // matchmake_paramater = 11; // * This field is only used when a client tries to join a session, not useful here
+  google.protobuf.Timestamp started_time = 12;
+  string user_password = 13;
+  uint32 referred_gathering_id = 14;
+  bool user_password_enabled = 15;
+  bool system_password_enabled = 16;
+  string codeword = 17;
+}
