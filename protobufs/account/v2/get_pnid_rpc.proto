@@ -29,3 +29,4 @@ message GetPNIDResponse {
   PNIDPermissionFlags permissions = 14;
   repeated Device linked_devices = 15;
 }
+

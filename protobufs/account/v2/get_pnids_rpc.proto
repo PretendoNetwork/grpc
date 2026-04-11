@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account.v2;
+
+import "account/v2/get_pnid_rpc.proto";
+
+message GetPNIDsRequest {
+  repeated uint32 pid = 1;
+}
+
+message GetPNIDsResponse {
+  map<uint32, GetPNIDResponse> user_data = 1;
+}
