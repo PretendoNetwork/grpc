@@ -54,13 +54,14 @@ jobs:
           git diff --quiet --staged || git commit -m "Format Protobufs"
       - name: Extract NPM Package Version
         id: extract_version
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+        run: echo "version=$(node -p "require('./package.json').version")" >>
+          $GITHUB_OUTPUT
       - name: Build Protobufs
         run: npm run build
       - name: Commit Protobuf Language Bindings
         id: commit_protobufs
         run: |
-          git add go javascript
+          git add go javascript typescript
           git diff --quiet --staged || git commit -m "[${{steps.extract_version.outputs.version}}] Generate Protobuf Language Bindings"
           echo "latest_commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
       - name: Push
