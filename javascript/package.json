@@ -1,6 +1,6 @@
 {
   "name": "@pretendonetwork/grpc",
-  "version": "2.4.4",
+  "version": "2.5.0",
   "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
@@ -10,9 +10,10 @@
     "breaking:gh_actions": "buf breaking --against=.git#ref=master --error-format=github-actions=main",
     "breaking": "buf breaking --against=.git#ref=master",
     "build": "npm-run-all clean generate copy:*",
-    "clean": "rimraf javascript go",
+    "clean": "rimraf javascript go typescript",
     "copy:go": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md template/go/* go",
     "copy:js": "copyfiles -f package.json README.md LICENSE template/GENERATED_DO_NOT_EDIT.md javascript",
+    "copy:ts": "copyfiles -f template/GENERATED_DO_NOT_EDIT.md typescript",
     "format": "buf format -w",
     "generate:debug": "buf generate --debug && tsc",
     "generate": "buf generate && tsc",
