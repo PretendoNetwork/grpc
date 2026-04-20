@@ -22,10 +22,11 @@ const (
 )
 
 type DeleteAccountRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pid           uint32                 `protobuf:"varint,1,opt,name=pid,proto3" json:"pid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Pid               uint32                 `protobuf:"varint,1,opt,name=pid,proto3" json:"pid,omitempty"`
+	BypassGracePeriod *bool                  `protobuf:"varint,2,opt,name=bypass_grace_period,json=bypassGracePeriod,proto3,oneof" json:"bypass_grace_period,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *DeleteAccountRequest) Reset() {
@@ -63,6 +64,13 @@ func (x *DeleteAccountRequest) GetPid() uint32 {
 		return x.Pid
 	}
 	return 0
+}
+
+func (x *DeleteAccountRequest) GetBypassGracePeriod() bool {
+	if x != nil && x.BypassGracePeriod != nil {
+		return *x.BypassGracePeriod
+	}
+	return false
 }
 
 type DeleteAccountResponse struct {
@@ -114,9 +122,11 @@ var File_account_v2_delete_account_rpc_proto protoreflect.FileDescriptor
 const file_account_v2_delete_account_rpc_proto_rawDesc = "" +
 	"\n" +
 	"#account/v2/delete_account_rpc.proto\x12\n" +
-	"account.v2\"(\n" +
+	"account.v2\"u\n" +
 	"\x14DeleteAccountRequest\x12\x10\n" +
-	"\x03pid\x18\x01 \x01(\rR\x03pid\"8\n" +
+	"\x03pid\x18\x01 \x01(\rR\x03pid\x123\n" +
+	"\x13bypass_grace_period\x18\x02 \x01(\bH\x00R\x11bypassGracePeriod\x88\x01\x01B\x16\n" +
+	"\x14_bypass_grace_period\"8\n" +
 	"\x15DeleteAccountResponse\x12\x1f\n" +
 	"\vhas_deleted\x18\x01 \x01(\bR\n" +
 	"hasDeletedB\xa9\x01\n" +
@@ -154,6 +164,7 @@ func file_account_v2_delete_account_rpc_proto_init() {
 	if File_account_v2_delete_account_rpc_proto != nil {
 		return
 	}
+	file_account_v2_delete_account_rpc_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

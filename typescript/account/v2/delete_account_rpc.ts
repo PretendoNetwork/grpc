@@ -11,6 +11,7 @@ export const protobufPackage = "account.v2";
 
 export interface DeleteAccountRequest {
   pid: number;
+  bypassGracePeriod?: boolean | undefined;
 }
 
 export interface DeleteAccountResponse {
@@ -18,13 +19,16 @@ export interface DeleteAccountResponse {
 }
 
 function createBaseDeleteAccountRequest(): DeleteAccountRequest {
-  return { pid: 0 };
+  return { pid: 0, bypassGracePeriod: undefined };
 }
 
 export const DeleteAccountRequest: MessageFns<DeleteAccountRequest> = {
   encode(message: DeleteAccountRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.pid !== 0) {
       writer.uint32(8).uint32(message.pid);
+    }
+    if (message.bypassGracePeriod !== undefined) {
+      writer.uint32(16).bool(message.bypassGracePeriod);
     }
     return writer;
   },
@@ -44,6 +48,14 @@ export const DeleteAccountRequest: MessageFns<DeleteAccountRequest> = {
           message.pid = reader.uint32();
           continue;
         }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.bypassGracePeriod = reader.bool();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -54,13 +66,19 @@ export const DeleteAccountRequest: MessageFns<DeleteAccountRequest> = {
   },
 
   fromJSON(object: any): DeleteAccountRequest {
-    return { pid: isSet(object.pid) ? globalThis.Number(object.pid) : 0 };
+    return {
+      pid: isSet(object.pid) ? globalThis.Number(object.pid) : 0,
+      bypassGracePeriod: isSet(object.bypassGracePeriod) ? globalThis.Boolean(object.bypassGracePeriod) : undefined,
+    };
   },
 
   toJSON(message: DeleteAccountRequest): unknown {
     const obj: any = {};
     if (message.pid !== 0) {
       obj.pid = Math.round(message.pid);
+    }
+    if (message.bypassGracePeriod !== undefined) {
+      obj.bypassGracePeriod = message.bypassGracePeriod;
     }
     return obj;
   },
@@ -71,6 +89,7 @@ export const DeleteAccountRequest: MessageFns<DeleteAccountRequest> = {
   fromPartial(object: DeepPartial<DeleteAccountRequest>): DeleteAccountRequest {
     const message = createBaseDeleteAccountRequest();
     message.pid = object.pid ?? 0;
+    message.bypassGracePeriod = object.bypassGracePeriod ?? undefined;
     return message;
   },
 };

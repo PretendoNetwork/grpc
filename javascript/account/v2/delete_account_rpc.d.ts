@@ -2,6 +2,7 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export declare const protobufPackage = "account.v2";
 export interface DeleteAccountRequest {
     pid: number;
+    bypassGracePeriod?: boolean | undefined;
 }
 export interface DeleteAccountResponse {
     hasDeleted: boolean;
