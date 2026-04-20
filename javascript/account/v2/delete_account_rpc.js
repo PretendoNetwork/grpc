@@ -10,12 +10,15 @@ exports.DeleteAccountResponse = exports.DeleteAccountRequest = exports.protobufP
 const wire_1 = require("@bufbuild/protobuf/wire");
 exports.protobufPackage = "account.v2";
 function createBaseDeleteAccountRequest() {
-    return { pid: 0 };
+    return { pid: 0, bypassGracePeriod: undefined };
 }
 exports.DeleteAccountRequest = {
     encode(message, writer = new wire_1.BinaryWriter()) {
         if (message.pid !== 0) {
             writer.uint32(8).uint32(message.pid);
+        }
+        if (message.bypassGracePeriod !== undefined) {
+            writer.uint32(16).bool(message.bypassGracePeriod);
         }
         return writer;
     },
@@ -33,6 +36,13 @@ exports.DeleteAccountRequest = {
                     message.pid = reader.uint32();
                     continue;
                 }
+                case 2: {
+                    if (tag !== 16) {
+                        break;
+                    }
+                    message.bypassGracePeriod = reader.bool();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -42,12 +52,18 @@ exports.DeleteAccountRequest = {
         return message;
     },
     fromJSON(object) {
-        return { pid: isSet(object.pid) ? globalThis.Number(object.pid) : 0 };
+        return {
+            pid: isSet(object.pid) ? globalThis.Number(object.pid) : 0,
+            bypassGracePeriod: isSet(object.bypassGracePeriod) ? globalThis.Boolean(object.bypassGracePeriod) : undefined,
+        };
     },
     toJSON(message) {
         const obj = {};
         if (message.pid !== 0) {
             obj.pid = Math.round(message.pid);
+        }
+        if (message.bypassGracePeriod !== undefined) {
+            obj.bypassGracePeriod = message.bypassGracePeriod;
         }
         return obj;
     },
@@ -57,6 +73,7 @@ exports.DeleteAccountRequest = {
     fromPartial(object) {
         const message = createBaseDeleteAccountRequest();
         message.pid = object.pid ?? 0;
+        message.bypassGracePeriod = object.bypassGracePeriod ?? undefined;
         return message;
     },
 };
