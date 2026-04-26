@@ -12,15 +12,15 @@ message Comment {
 /* 3DS Mii */
 message Mii {
   string name = 1;
-	bool profanity_flag = 2;
-	uint32 character_set = 3;
-	bytes mii_data = 4;
+  bool profanity_flag = 2;
+  uint32 character_set = 3;
+  bytes mii_data = 4;
 }
 
 message FriendMii {
-	uint32 pid = 1;
-	Mii mii = 2;
-	google.protobuf.Timestamp modified_at = 3;
+  uint32 pid = 1;
+  Mii mii = 2;
+  google.protobuf.Timestamp modified_at = 3;
 }
 
 /* Wii U Mii */
@@ -59,16 +59,16 @@ message NintendoPresenceV2 {
 
 /* 3DS Presence */
 message NintendoPresence {
-	uint32 changed_flags = 1;
-	GameKey game_key = 2;
-	string message = 3;
-	uint32 join_available_flag = 4;
-	uint32 matchmake_type = 5;
-	uint32 join_game_id = 6;
-	uint32 join_game_mode = 7;
-	uint32 owner_pid = 8;
-	uint32 join_group_id = 9;
-	bytes application_arg = 10;
+  uint32 changed_flags = 1;
+  GameKey game_key = 2;
+  string message = 3;
+  uint32 join_available_flag = 4;
+  uint32 matchmake_type = 5;
+  uint32 join_game_id = 6;
+  uint32 join_game_mode = 7;
+  uint32 owner_pid = 8;
+  uint32 join_group_id = 9;
+  bytes application_arg = 10;
 }
 
 message FriendInfoWiiU {
