@@ -9,6 +9,21 @@ message Comment {
   google.protobuf.Timestamp last_changed = 3;
 }
 
+/* 3DS Mii */
+message Mii {
+  string name = 1;
+	bool profanity_flag = 2;
+	uint32 character_set = 3;
+	bytes mii_data = 4;
+}
+
+message FriendMii {
+	uint32 pid = 1;
+	Mii mii = 2;
+	google.protobuf.Timestamp modified_at = 3;
+}
+
+/* Wii U Mii */
 message MiiV2 {
   string name = 1;
   bytes mii_data = 4;
@@ -30,6 +45,7 @@ message GameKey {
   uint32 title_version = 2;
 }
 
+/* Wii U Presence */
 message NintendoPresenceV2 {
   uint32 changed_flags = 1;
   bool online = 2;
@@ -39,6 +55,20 @@ message NintendoPresenceV2 {
   uint32 pid = 10;
   uint32 gathering_id = 11;
   bytes application_data = 12;
+}
+
+/* 3DS Presence */
+message NintendoPresence {
+	uint32 changed_flags = 1;
+	GameKey game_key = 2;
+	string message = 3;
+	uint32 join_available_flag = 4;
+	uint32 matchmake_type = 5;
+	uint32 join_game_id = 6;
+	uint32 join_game_mode = 7;
+	uint32 owner_pid = 8;
+	uint32 join_group_id = 9;
+	bytes application_arg = 10;
 }
 
 message FriendInfoWiiU {
@@ -56,10 +86,11 @@ message FriendInfo3DS {
   uint32 area = 4;
   uint32 language = 5;
   uint32 platform = 6;
-  GameKey game_key = 7;
-  string message = 8;
-  google.protobuf.Timestamp message_updated_at = 9;
-  google.protobuf.Timestamp mii_modified_at = 10;
-  google.protobuf.Timestamp last_online = 11;
-  MiiV2 mii = 12;
+  NintendoPresence presence = 7;
+  GameKey game_key = 8;
+  string message = 9;
+  google.protobuf.Timestamp message_updated_at = 10;
+  google.protobuf.Timestamp mii_modified_at = 11;
+  google.protobuf.Timestamp last_online = 12;
+  FriendMii mii = 13;
 }
