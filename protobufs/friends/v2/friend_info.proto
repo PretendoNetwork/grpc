@@ -15,6 +15,7 @@ message Mii {
   bool profanity_flag = 2;
   uint32 character_set = 3;
   bytes mii_data = 4;
+  bytes mii_data_encrypted = 5;
 }
 
 message FriendMii {
