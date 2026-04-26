@@ -8,6 +8,7 @@ import "friends/v2/get_user_friend_pids_rpc.proto";
 import "friends/v2/get_user_friend_requests_incoming_rpc.proto";
 import "friends/v2/send_user_friend_request_rpc.proto";
 import "friends/v2/send_user_notification_wiiu_rpc.proto";
+import "friends/v2/get_user_friend_data_rpc.proto";
 
 service FriendsService {
   rpc SendUserNotificationWiiU(SendUserNotificationWiiURequest) returns (SendUserNotificationWiiUResponse) {}
@@ -16,4 +17,8 @@ service FriendsService {
   rpc GetUserFriendRequestsIncoming(GetUserFriendRequestsIncomingRequest) returns (GetUserFriendRequestsIncomingResponse) {}
   rpc AcceptFriendRequest(AcceptFriendRequestRequest) returns (AcceptFriendRequestResponse) {}
   rpc DenyFriendRequest(DenyFriendRequestRequest) returns (DenyFriendRequestResponse) {}
+  // GetUserFriendsData returns a list of Wii U friends and their associated data
+  rpc GetUserFriendsDataWiiU(GetUserFriendsDataRequest) returns (GetUserFriendsDataWiiUResponse) {}
+  // GetUserFriendsData returns a list of 3DS friends and their associated data
+  rpc GetUserFriendsData3DS(GetUserFriendsDataRequest) returns (GetUserFriendsData3DSResponse) {}
 }

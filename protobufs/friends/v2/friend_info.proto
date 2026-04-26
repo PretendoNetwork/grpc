@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package friends.v2;
+
+message Comment {
+  string contents = 2;
+  uint64 last_changed = 3;
+}
+
+message MiiV2 {
+  string name = 1;
+  bytes mii_data = 4;
+	uint64 datetime = 5;
+}
+
+message PrincipalBasicInfo {
+	uint32 pid = 1;
+	string nnid = 2;
+	MiiV2 mii = 3;
+}
+
+message NNAInfo {
+	PrincipalBasicInfo principal_basic_info = 1;
+}
+
+message GameKey {
+	uint64 title_id = 1;
+	uint32 title_version = 2;
+}
+
+message NintendoPresenceV2 {
+	uint32 changed_flags = 1;
+	bool online = 2;
+	GameKey game_key = 3;
+	string message = 5;
+	uint32 game_server_id = 8;
+	uint32 pid = 10;
+	uint32 gathering_id = 11;
+	bytes application_data = 12;
+}
+
+message FriendInfoWiiU {
+	NNAInfo nna_info = 1;
+	NintendoPresenceV2 presence = 2;
+	Comment status = 3;
+	uint64 became_friend = 4;
+	uint64 last_online = 5;
+}
+
+message FriendInfo3DS {
+  uint32 pid = 1;
+	uint32 region = 2;
+	uint32 country = 3;
+	uint32 area = 4;
+	uint32 language = 5;
+	uint32 platform = 6;
+	GameKey game_key = 7;
+	string message = 8;
+	uint64 message_updated_at = 9;
+	uint64 mii_modified_at = 10;
+	uint64 last_online = 11;
+  MiiV2 mii = 12;
+}
