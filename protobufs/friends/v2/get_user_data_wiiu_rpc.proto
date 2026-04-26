@@ -8,14 +8,6 @@ message GetUserDataWiiURequest {
   uint32 pid = 1;
 }
 
-message GetUserData3DSRequest {
-  uint32 pid = 1;
-}
-
 message GetUserDataWiiUResponse {
   FriendInfoWiiU user = 1;
-}
-
-message GetUserData3DSResponse {
-  FriendInfo3DS user = 1;
 }

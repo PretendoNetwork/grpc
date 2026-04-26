@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package friends.v2;
+
+import "friends/v2/friend_info.proto";
+
+message GetUserData3DSRequest {
+  uint32 pid = 1;
+}
+
+message GetUserData3DSResponse {
+  FriendInfo3DS user = 1;
+}

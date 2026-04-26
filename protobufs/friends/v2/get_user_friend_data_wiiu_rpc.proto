@@ -7,15 +7,6 @@ import "friends/v2/friend_info.proto";
 message GetUserFriendsDataWiiURequest {
   uint32 pid = 1;
 }
-
-message GetUserFriendsData3DSRequest {
-  uint32 pid = 1;
-}
-
 message GetUserFriendsDataWiiUResponse {
   repeated FriendInfoWiiU friends = 1;
-}
-
-message GetUserFriendsData3DSResponse {
-  repeated FriendInfo3DS friends = 1;
 }
