@@ -18,7 +18,7 @@ service FriendsService {
   rpc AcceptFriendRequest(AcceptFriendRequestRequest) returns (AcceptFriendRequestResponse) {}
   rpc DenyFriendRequest(DenyFriendRequestRequest) returns (DenyFriendRequestResponse) {}
   // GetUserFriendsData returns a list of Wii U friends and their associated data
-  rpc GetUserFriendsDataWiiU(GetUserFriendsDataRequest) returns (GetUserFriendsDataWiiUResponse) {}
+  rpc GetUserFriendsDataWiiU(GetUserFriendsDataWiiURequest) returns (GetUserFriendsDataWiiUResponse) {}
   // GetUserFriendsData returns a list of 3DS friends and their associated data
-  rpc GetUserFriendsData3DS(GetUserFriendsDataRequest) returns (GetUserFriendsData3DSResponse) {}
+  rpc GetUserFriendsData3DS(GetUserFriendsData3DSRequest) returns (GetUserFriendsData3DSResponse) {}
 }

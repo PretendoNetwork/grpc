@@ -4,7 +4,11 @@ package friends.v2;
 
 import "friends/v2/friend_info.proto";
 
-message GetUserFriendsDataRequest {
+message GetUserFriendsDataWiiURequest {
+  uint32 pid = 1;
+}
+
+message GetUserFriendsData3DSRequest {
   uint32 pid = 1;
 }
 
