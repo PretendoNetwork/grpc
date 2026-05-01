@@ -25,6 +25,10 @@ const (
 	FriendsService_GetUserFriendRequestsIncoming_FullMethodName = "/friends.v2.FriendsService/GetUserFriendRequestsIncoming"
 	FriendsService_AcceptFriendRequest_FullMethodName           = "/friends.v2.FriendsService/AcceptFriendRequest"
 	FriendsService_DenyFriendRequest_FullMethodName             = "/friends.v2.FriendsService/DenyFriendRequest"
+	FriendsService_GetUserFriendsDataWiiU_FullMethodName        = "/friends.v2.FriendsService/GetUserFriendsDataWiiU"
+	FriendsService_GetUserFriendsData3DS_FullMethodName         = "/friends.v2.FriendsService/GetUserFriendsData3DS"
+	FriendsService_GetUserDataWiiU_FullMethodName               = "/friends.v2.FriendsService/GetUserDataWiiU"
+	FriendsService_GetUserData3DS_FullMethodName                = "/friends.v2.FriendsService/GetUserData3DS"
 )
 
 // FriendsServiceClient is the client API for FriendsService service.
@@ -37,6 +41,14 @@ type FriendsServiceClient interface {
 	GetUserFriendRequestsIncoming(ctx context.Context, in *GetUserFriendRequestsIncomingRequest, opts ...grpc.CallOption) (*GetUserFriendRequestsIncomingResponse, error)
 	AcceptFriendRequest(ctx context.Context, in *AcceptFriendRequestRequest, opts ...grpc.CallOption) (*AcceptFriendRequestResponse, error)
 	DenyFriendRequest(ctx context.Context, in *DenyFriendRequestRequest, opts ...grpc.CallOption) (*DenyFriendRequestResponse, error)
+	// GetUserFriendsDataWiiU returns a list of Wii U friends and their associated data
+	GetUserFriendsDataWiiU(ctx context.Context, in *GetUserFriendsDataWiiURequest, opts ...grpc.CallOption) (*GetUserFriendsDataWiiUResponse, error)
+	// GetUserFriendsData3DS returns a list of 3DS friends and their associated data
+	GetUserFriendsData3DS(ctx context.Context, in *GetUserFriendsData3DSRequest, opts ...grpc.CallOption) (*GetUserFriendsData3DSResponse, error)
+	// GetUserDataWiiU returns the Wii U data for a specified user
+	GetUserDataWiiU(ctx context.Context, in *GetUserDataWiiURequest, opts ...grpc.CallOption) (*GetUserDataWiiUResponse, error)
+	// GetUserData3DS returns the 3DS data for a specified user
+	GetUserData3DS(ctx context.Context, in *GetUserData3DSRequest, opts ...grpc.CallOption) (*GetUserData3DSResponse, error)
 }
 
 type friendsServiceClient struct {
@@ -107,6 +119,46 @@ func (c *friendsServiceClient) DenyFriendRequest(ctx context.Context, in *DenyFr
 	return out, nil
 }
 
+func (c *friendsServiceClient) GetUserFriendsDataWiiU(ctx context.Context, in *GetUserFriendsDataWiiURequest, opts ...grpc.CallOption) (*GetUserFriendsDataWiiUResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserFriendsDataWiiUResponse)
+	err := c.cc.Invoke(ctx, FriendsService_GetUserFriendsDataWiiU_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendsServiceClient) GetUserFriendsData3DS(ctx context.Context, in *GetUserFriendsData3DSRequest, opts ...grpc.CallOption) (*GetUserFriendsData3DSResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserFriendsData3DSResponse)
+	err := c.cc.Invoke(ctx, FriendsService_GetUserFriendsData3DS_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendsServiceClient) GetUserDataWiiU(ctx context.Context, in *GetUserDataWiiURequest, opts ...grpc.CallOption) (*GetUserDataWiiUResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserDataWiiUResponse)
+	err := c.cc.Invoke(ctx, FriendsService_GetUserDataWiiU_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendsServiceClient) GetUserData3DS(ctx context.Context, in *GetUserData3DSRequest, opts ...grpc.CallOption) (*GetUserData3DSResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserData3DSResponse)
+	err := c.cc.Invoke(ctx, FriendsService_GetUserData3DS_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FriendsServiceServer is the server API for FriendsService service.
 // All implementations must embed UnimplementedFriendsServiceServer
 // for forward compatibility.
@@ -117,6 +169,14 @@ type FriendsServiceServer interface {
 	GetUserFriendRequestsIncoming(context.Context, *GetUserFriendRequestsIncomingRequest) (*GetUserFriendRequestsIncomingResponse, error)
 	AcceptFriendRequest(context.Context, *AcceptFriendRequestRequest) (*AcceptFriendRequestResponse, error)
 	DenyFriendRequest(context.Context, *DenyFriendRequestRequest) (*DenyFriendRequestResponse, error)
+	// GetUserFriendsDataWiiU returns a list of Wii U friends and their associated data
+	GetUserFriendsDataWiiU(context.Context, *GetUserFriendsDataWiiURequest) (*GetUserFriendsDataWiiUResponse, error)
+	// GetUserFriendsData3DS returns a list of 3DS friends and their associated data
+	GetUserFriendsData3DS(context.Context, *GetUserFriendsData3DSRequest) (*GetUserFriendsData3DSResponse, error)
+	// GetUserDataWiiU returns the Wii U data for a specified user
+	GetUserDataWiiU(context.Context, *GetUserDataWiiURequest) (*GetUserDataWiiUResponse, error)
+	// GetUserData3DS returns the 3DS data for a specified user
+	GetUserData3DS(context.Context, *GetUserData3DSRequest) (*GetUserData3DSResponse, error)
 	mustEmbedUnimplementedFriendsServiceServer()
 }
 
@@ -144,6 +204,18 @@ func (UnimplementedFriendsServiceServer) AcceptFriendRequest(context.Context, *A
 }
 func (UnimplementedFriendsServiceServer) DenyFriendRequest(context.Context, *DenyFriendRequestRequest) (*DenyFriendRequestResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DenyFriendRequest not implemented")
+}
+func (UnimplementedFriendsServiceServer) GetUserFriendsDataWiiU(context.Context, *GetUserFriendsDataWiiURequest) (*GetUserFriendsDataWiiUResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserFriendsDataWiiU not implemented")
+}
+func (UnimplementedFriendsServiceServer) GetUserFriendsData3DS(context.Context, *GetUserFriendsData3DSRequest) (*GetUserFriendsData3DSResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserFriendsData3DS not implemented")
+}
+func (UnimplementedFriendsServiceServer) GetUserDataWiiU(context.Context, *GetUserDataWiiURequest) (*GetUserDataWiiUResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserDataWiiU not implemented")
+}
+func (UnimplementedFriendsServiceServer) GetUserData3DS(context.Context, *GetUserData3DSRequest) (*GetUserData3DSResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserData3DS not implemented")
 }
 func (UnimplementedFriendsServiceServer) mustEmbedUnimplementedFriendsServiceServer() {}
 func (UnimplementedFriendsServiceServer) testEmbeddedByValue()                        {}
@@ -274,6 +346,78 @@ func _FriendsService_DenyFriendRequest_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FriendsService_GetUserFriendsDataWiiU_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserFriendsDataWiiURequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendsServiceServer).GetUserFriendsDataWiiU(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FriendsService_GetUserFriendsDataWiiU_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendsServiceServer).GetUserFriendsDataWiiU(ctx, req.(*GetUserFriendsDataWiiURequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FriendsService_GetUserFriendsData3DS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserFriendsData3DSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendsServiceServer).GetUserFriendsData3DS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FriendsService_GetUserFriendsData3DS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendsServiceServer).GetUserFriendsData3DS(ctx, req.(*GetUserFriendsData3DSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FriendsService_GetUserDataWiiU_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserDataWiiURequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendsServiceServer).GetUserDataWiiU(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FriendsService_GetUserDataWiiU_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendsServiceServer).GetUserDataWiiU(ctx, req.(*GetUserDataWiiURequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FriendsService_GetUserData3DS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserData3DSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendsServiceServer).GetUserData3DS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FriendsService_GetUserData3DS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendsServiceServer).GetUserData3DS(ctx, req.(*GetUserData3DSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FriendsService_ServiceDesc is the grpc.ServiceDesc for FriendsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +448,22 @@ var FriendsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DenyFriendRequest",
 			Handler:    _FriendsService_DenyFriendRequest_Handler,
+		},
+		{
+			MethodName: "GetUserFriendsDataWiiU",
+			Handler:    _FriendsService_GetUserFriendsDataWiiU_Handler,
+		},
+		{
+			MethodName: "GetUserFriendsData3DS",
+			Handler:    _FriendsService_GetUserFriendsData3DS_Handler,
+		},
+		{
+			MethodName: "GetUserDataWiiU",
+			Handler:    _FriendsService_GetUserDataWiiU_Handler,
+		},
+		{
+			MethodName: "GetUserData3DS",
+			Handler:    _FriendsService_GetUserData3DS_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

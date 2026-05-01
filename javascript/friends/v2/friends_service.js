@@ -8,6 +8,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FriendsServiceDefinition = exports.protobufPackage = void 0;
 const accept_friend_request_rpc_1 = require("./accept_friend_request_rpc");
 const deny_friend_request_rpc_1 = require("./deny_friend_request_rpc");
+const get_user_data_3ds_rpc_1 = require("./get_user_data_3ds_rpc");
+const get_user_data_wiiu_rpc_1 = require("./get_user_data_wiiu_rpc");
+const get_user_friend_data_3ds_rpc_1 = require("./get_user_friend_data_3ds_rpc");
+const get_user_friend_data_wiiu_rpc_1 = require("./get_user_friend_data_wiiu_rpc");
 const get_user_friend_pids_rpc_1 = require("./get_user_friend_pids_rpc");
 const get_user_friend_requests_incoming_rpc_1 = require("./get_user_friend_requests_incoming_rpc");
 const send_user_friend_request_rpc_1 = require("./send_user_friend_request_rpc");
@@ -62,6 +66,42 @@ exports.FriendsServiceDefinition = {
             requestType: deny_friend_request_rpc_1.DenyFriendRequestRequest,
             requestStream: false,
             responseType: deny_friend_request_rpc_1.DenyFriendRequestResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetUserFriendsDataWiiU returns a list of Wii U friends and their associated data */
+        getUserFriendsDataWiiU: {
+            name: "GetUserFriendsDataWiiU",
+            requestType: get_user_friend_data_wiiu_rpc_1.GetUserFriendsDataWiiURequest,
+            requestStream: false,
+            responseType: get_user_friend_data_wiiu_rpc_1.GetUserFriendsDataWiiUResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetUserFriendsData3DS returns a list of 3DS friends and their associated data */
+        getUserFriendsData3DS: {
+            name: "GetUserFriendsData3DS",
+            requestType: get_user_friend_data_3ds_rpc_1.GetUserFriendsData3DSRequest,
+            requestStream: false,
+            responseType: get_user_friend_data_3ds_rpc_1.GetUserFriendsData3DSResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetUserDataWiiU returns the Wii U data for a specified user */
+        getUserDataWiiU: {
+            name: "GetUserDataWiiU",
+            requestType: get_user_data_wiiu_rpc_1.GetUserDataWiiURequest,
+            requestStream: false,
+            responseType: get_user_data_wiiu_rpc_1.GetUserDataWiiUResponse,
+            responseStream: false,
+            options: {},
+        },
+        /** GetUserData3DS returns the 3DS data for a specified user */
+        getUserData3DS: {
+            name: "GetUserData3DS",
+            requestType: get_user_data_3ds_rpc_1.GetUserData3DSRequest,
+            requestStream: false,
+            responseType: get_user_data_3ds_rpc_1.GetUserData3DSResponse,
             responseStream: false,
             options: {},
         },

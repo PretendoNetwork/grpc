@@ -8,6 +8,10 @@
 import { type CallContext, type CallOptions } from "nice-grpc-common";
 import { AcceptFriendRequestRequest, AcceptFriendRequestResponse } from "./accept_friend_request_rpc";
 import { DenyFriendRequestRequest, DenyFriendRequestResponse } from "./deny_friend_request_rpc";
+import { GetUserData3DSRequest, GetUserData3DSResponse } from "./get_user_data_3ds_rpc";
+import { GetUserDataWiiURequest, GetUserDataWiiUResponse } from "./get_user_data_wiiu_rpc";
+import { GetUserFriendsData3DSRequest, GetUserFriendsData3DSResponse } from "./get_user_friend_data_3ds_rpc";
+import { GetUserFriendsDataWiiURequest, GetUserFriendsDataWiiUResponse } from "./get_user_friend_data_wiiu_rpc";
 import { GetUserFriendPIDsRequest, GetUserFriendPIDsResponse } from "./get_user_friend_pids_rpc";
 import {
   GetUserFriendRequestsIncomingRequest,
@@ -71,6 +75,42 @@ export const FriendsServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    /** GetUserFriendsDataWiiU returns a list of Wii U friends and their associated data */
+    getUserFriendsDataWiiU: {
+      name: "GetUserFriendsDataWiiU",
+      requestType: GetUserFriendsDataWiiURequest,
+      requestStream: false,
+      responseType: GetUserFriendsDataWiiUResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetUserFriendsData3DS returns a list of 3DS friends and their associated data */
+    getUserFriendsData3DS: {
+      name: "GetUserFriendsData3DS",
+      requestType: GetUserFriendsData3DSRequest,
+      requestStream: false,
+      responseType: GetUserFriendsData3DSResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetUserDataWiiU returns the Wii U data for a specified user */
+    getUserDataWiiU: {
+      name: "GetUserDataWiiU",
+      requestType: GetUserDataWiiURequest,
+      requestStream: false,
+      responseType: GetUserDataWiiUResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** GetUserData3DS returns the 3DS data for a specified user */
+    getUserData3DS: {
+      name: "GetUserData3DS",
+      requestType: GetUserData3DSRequest,
+      requestStream: false,
+      responseType: GetUserData3DSResponse,
+      responseStream: false,
+      options: {},
+    },
   },
 } as const;
 
@@ -99,6 +139,26 @@ export interface FriendsServiceImplementation<CallContextExt = {}> {
     request: DenyFriendRequestRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<DenyFriendRequestResponse>>;
+  /** GetUserFriendsDataWiiU returns a list of Wii U friends and their associated data */
+  getUserFriendsDataWiiU(
+    request: GetUserFriendsDataWiiURequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetUserFriendsDataWiiUResponse>>;
+  /** GetUserFriendsData3DS returns a list of 3DS friends and their associated data */
+  getUserFriendsData3DS(
+    request: GetUserFriendsData3DSRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetUserFriendsData3DSResponse>>;
+  /** GetUserDataWiiU returns the Wii U data for a specified user */
+  getUserDataWiiU(
+    request: GetUserDataWiiURequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetUserDataWiiUResponse>>;
+  /** GetUserData3DS returns the 3DS data for a specified user */
+  getUserData3DS(
+    request: GetUserData3DSRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetUserData3DSResponse>>;
 }
 
 export interface FriendsServiceClient<CallOptionsExt = {}> {
@@ -126,6 +186,26 @@ export interface FriendsServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<DenyFriendRequestRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<DenyFriendRequestResponse>;
+  /** GetUserFriendsDataWiiU returns a list of Wii U friends and their associated data */
+  getUserFriendsDataWiiU(
+    request: DeepPartial<GetUserFriendsDataWiiURequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetUserFriendsDataWiiUResponse>;
+  /** GetUserFriendsData3DS returns a list of 3DS friends and their associated data */
+  getUserFriendsData3DS(
+    request: DeepPartial<GetUserFriendsData3DSRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetUserFriendsData3DSResponse>;
+  /** GetUserDataWiiU returns the Wii U data for a specified user */
+  getUserDataWiiU(
+    request: DeepPartial<GetUserDataWiiURequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetUserDataWiiUResponse>;
+  /** GetUserData3DS returns the 3DS data for a specified user */
+  getUserData3DS(
+    request: DeepPartial<GetUserData3DSRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetUserData3DSResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
