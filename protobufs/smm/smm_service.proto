@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package smm;
+
+import "smm/delete_course_rpc.proto";
+
+service SMM {
+  rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse) {}
+}
