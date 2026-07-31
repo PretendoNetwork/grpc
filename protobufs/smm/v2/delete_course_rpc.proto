@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package smm;
+package smm.v2;
 
 message DeleteCourseRequest {
   uint64 data_id = 1;
