@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package smm.v1;
+
+message DeleteCourseRequest {
+  uint64 data_id = 1;
+}
+
+message DeleteCourseResponse {
+  bool success = 1;
+  string course_name = 2;
+}
