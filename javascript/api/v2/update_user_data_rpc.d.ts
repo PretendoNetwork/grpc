@@ -2,8 +2,15 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { Mii } from "./mii";
 import { UserConnections } from "./user_connections";
 export declare const protobufPackage = "api.v2";
-/** TODO - Not implemented yet, stubbed */
 export interface UpdateUserDataRequest {
+    serverAccessLevel?: string | undefined;
+    mii?: Mii | undefined;
+    birthday?: string | undefined;
+    gender?: string | undefined;
+    country?: string | undefined;
+    timezone?: string | undefined;
+    language?: string | undefined;
+    marketingFlag?: boolean | undefined;
 }
 export interface UpdateUserDataResponse {
     deleted: boolean;

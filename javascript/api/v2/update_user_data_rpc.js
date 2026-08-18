@@ -12,10 +12,43 @@ const mii_1 = require("./mii");
 const user_connections_1 = require("./user_connections");
 exports.protobufPackage = "api.v2";
 function createBaseUpdateUserDataRequest() {
-    return {};
+    return {
+        serverAccessLevel: undefined,
+        mii: undefined,
+        birthday: undefined,
+        gender: undefined,
+        country: undefined,
+        timezone: undefined,
+        language: undefined,
+        marketingFlag: undefined,
+    };
 }
 exports.UpdateUserDataRequest = {
-    encode(_, writer = new wire_1.BinaryWriter()) {
+    encode(message, writer = new wire_1.BinaryWriter()) {
+        if (message.serverAccessLevel !== undefined) {
+            writer.uint32(10).string(message.serverAccessLevel);
+        }
+        if (message.mii !== undefined) {
+            mii_1.Mii.encode(message.mii, writer.uint32(18).fork()).join();
+        }
+        if (message.birthday !== undefined) {
+            writer.uint32(26).string(message.birthday);
+        }
+        if (message.gender !== undefined) {
+            writer.uint32(34).string(message.gender);
+        }
+        if (message.country !== undefined) {
+            writer.uint32(42).string(message.country);
+        }
+        if (message.timezone !== undefined) {
+            writer.uint32(50).string(message.timezone);
+        }
+        if (message.language !== undefined) {
+            writer.uint32(58).string(message.language);
+        }
+        if (message.marketingFlag !== undefined) {
+            writer.uint32(64).bool(message.marketingFlag);
+        }
         return writer;
     },
     decode(input, length) {
@@ -25,6 +58,62 @@ exports.UpdateUserDataRequest = {
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
+                case 1: {
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.serverAccessLevel = reader.string();
+                    continue;
+                }
+                case 2: {
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.mii = mii_1.Mii.decode(reader, reader.uint32());
+                    continue;
+                }
+                case 3: {
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.birthday = reader.string();
+                    continue;
+                }
+                case 4: {
+                    if (tag !== 34) {
+                        break;
+                    }
+                    message.gender = reader.string();
+                    continue;
+                }
+                case 5: {
+                    if (tag !== 42) {
+                        break;
+                    }
+                    message.country = reader.string();
+                    continue;
+                }
+                case 6: {
+                    if (tag !== 50) {
+                        break;
+                    }
+                    message.timezone = reader.string();
+                    continue;
+                }
+                case 7: {
+                    if (tag !== 58) {
+                        break;
+                    }
+                    message.language = reader.string();
+                    continue;
+                }
+                case 8: {
+                    if (tag !== 64) {
+                        break;
+                    }
+                    message.marketingFlag = reader.bool();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -33,18 +122,59 @@ exports.UpdateUserDataRequest = {
         }
         return message;
     },
-    fromJSON(_) {
-        return {};
+    fromJSON(object) {
+        return {
+            serverAccessLevel: isSet(object.serverAccessLevel) ? globalThis.String(object.serverAccessLevel) : undefined,
+            mii: isSet(object.mii) ? mii_1.Mii.fromJSON(object.mii) : undefined,
+            birthday: isSet(object.birthday) ? globalThis.String(object.birthday) : undefined,
+            gender: isSet(object.gender) ? globalThis.String(object.gender) : undefined,
+            country: isSet(object.country) ? globalThis.String(object.country) : undefined,
+            timezone: isSet(object.timezone) ? globalThis.String(object.timezone) : undefined,
+            language: isSet(object.language) ? globalThis.String(object.language) : undefined,
+            marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : undefined,
+        };
     },
-    toJSON(_) {
+    toJSON(message) {
         const obj = {};
+        if (message.serverAccessLevel !== undefined) {
+            obj.serverAccessLevel = message.serverAccessLevel;
+        }
+        if (message.mii !== undefined) {
+            obj.mii = mii_1.Mii.toJSON(message.mii);
+        }
+        if (message.birthday !== undefined) {
+            obj.birthday = message.birthday;
+        }
+        if (message.gender !== undefined) {
+            obj.gender = message.gender;
+        }
+        if (message.country !== undefined) {
+            obj.country = message.country;
+        }
+        if (message.timezone !== undefined) {
+            obj.timezone = message.timezone;
+        }
+        if (message.language !== undefined) {
+            obj.language = message.language;
+        }
+        if (message.marketingFlag !== undefined) {
+            obj.marketingFlag = message.marketingFlag;
+        }
         return obj;
     },
     create(base) {
         return exports.UpdateUserDataRequest.fromPartial(base ?? {});
     },
-    fromPartial(_) {
+    fromPartial(object) {
         const message = createBaseUpdateUserDataRequest();
+        message.serverAccessLevel = object.serverAccessLevel ?? undefined;
+        message.mii = (object.mii !== undefined && object.mii !== null) ? mii_1.Mii.fromPartial(object.mii) : undefined;
+        message.birthday = object.birthday ?? undefined;
+        message.gender = object.gender ?? undefined;
+        message.country = object.country ?? undefined;
+        message.timezone = object.timezone ?? undefined;
+        message.language = object.language ?? undefined;
+        message.marketingFlag = object.marketingFlag ?? undefined;
         return message;
     },
 };
