@@ -24,4 +24,5 @@ message GetUserDataResponse {
   string email_address = 14;
   UserConnections connections = 15;
   bool marketing_flag = 16;
+  int32 region = 17;
 }
