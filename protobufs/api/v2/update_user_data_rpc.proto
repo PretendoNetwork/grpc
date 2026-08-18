@@ -7,13 +7,14 @@ import "api/v2/user_connections.proto";
 
 message UpdateUserDataRequest {
   optional string server_access_level = 1;
-  optional Mii mii = 2;
+  optional string mii = 2;
   optional string birthday = 3;
   optional string gender = 4;
   optional string country = 5;
   optional string timezone = 6;
   optional string language = 7;
   optional bool marketing_flag = 8;
+  optional int32 region = 9;
 }
 
 message UpdateUserDataResponse {
@@ -33,4 +34,5 @@ message UpdateUserDataResponse {
   string email_address = 14;
   UserConnections connections = 15;
   bool marketing_flag = 16;
+  int32 region = 17;
 }
