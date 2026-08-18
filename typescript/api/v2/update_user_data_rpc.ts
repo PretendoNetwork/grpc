@@ -13,13 +13,14 @@ export const protobufPackage = "api.v2";
 
 export interface UpdateUserDataRequest {
   serverAccessLevel?: string | undefined;
-  mii?: Mii | undefined;
+  mii?: string | undefined;
   birthday?: string | undefined;
   gender?: string | undefined;
   country?: string | undefined;
   timezone?: string | undefined;
   language?: string | undefined;
   marketingFlag?: boolean | undefined;
+  region?: number | undefined;
 }
 
 export interface UpdateUserDataResponse {
@@ -39,6 +40,7 @@ export interface UpdateUserDataResponse {
   emailAddress: string;
   connections: UserConnections | undefined;
   marketingFlag: boolean;
+  region: number;
 }
 
 function createBaseUpdateUserDataRequest(): UpdateUserDataRequest {
@@ -51,6 +53,7 @@ function createBaseUpdateUserDataRequest(): UpdateUserDataRequest {
     timezone: undefined,
     language: undefined,
     marketingFlag: undefined,
+    region: undefined,
   };
 }
 
@@ -60,7 +63,7 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
       writer.uint32(10).string(message.serverAccessLevel);
     }
     if (message.mii !== undefined) {
-      Mii.encode(message.mii, writer.uint32(18).fork()).join();
+      writer.uint32(18).string(message.mii);
     }
     if (message.birthday !== undefined) {
       writer.uint32(26).string(message.birthday);
@@ -79,6 +82,9 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
     }
     if (message.marketingFlag !== undefined) {
       writer.uint32(64).bool(message.marketingFlag);
+    }
+    if (message.region !== undefined) {
+      writer.uint32(72).int32(message.region);
     }
     return writer;
   },
@@ -103,7 +109,7 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
             break;
           }
 
-          message.mii = Mii.decode(reader, reader.uint32());
+          message.mii = reader.string();
           continue;
         }
         case 3: {
@@ -154,6 +160,14 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
           message.marketingFlag = reader.bool();
           continue;
         }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.region = reader.int32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -166,13 +180,14 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
   fromJSON(object: any): UpdateUserDataRequest {
     return {
       serverAccessLevel: isSet(object.serverAccessLevel) ? globalThis.String(object.serverAccessLevel) : undefined,
-      mii: isSet(object.mii) ? Mii.fromJSON(object.mii) : undefined,
+      mii: isSet(object.mii) ? globalThis.String(object.mii) : undefined,
       birthday: isSet(object.birthday) ? globalThis.String(object.birthday) : undefined,
       gender: isSet(object.gender) ? globalThis.String(object.gender) : undefined,
       country: isSet(object.country) ? globalThis.String(object.country) : undefined,
       timezone: isSet(object.timezone) ? globalThis.String(object.timezone) : undefined,
       language: isSet(object.language) ? globalThis.String(object.language) : undefined,
       marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : undefined,
+      region: isSet(object.region) ? globalThis.Number(object.region) : undefined,
     };
   },
 
@@ -182,7 +197,7 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
       obj.serverAccessLevel = message.serverAccessLevel;
     }
     if (message.mii !== undefined) {
-      obj.mii = Mii.toJSON(message.mii);
+      obj.mii = message.mii;
     }
     if (message.birthday !== undefined) {
       obj.birthday = message.birthday;
@@ -202,6 +217,9 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
     if (message.marketingFlag !== undefined) {
       obj.marketingFlag = message.marketingFlag;
     }
+    if (message.region !== undefined) {
+      obj.region = Math.round(message.region);
+    }
     return obj;
   },
 
@@ -211,13 +229,14 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
   fromPartial(object: DeepPartial<UpdateUserDataRequest>): UpdateUserDataRequest {
     const message = createBaseUpdateUserDataRequest();
     message.serverAccessLevel = object.serverAccessLevel ?? undefined;
-    message.mii = (object.mii !== undefined && object.mii !== null) ? Mii.fromPartial(object.mii) : undefined;
+    message.mii = object.mii ?? undefined;
     message.birthday = object.birthday ?? undefined;
     message.gender = object.gender ?? undefined;
     message.country = object.country ?? undefined;
     message.timezone = object.timezone ?? undefined;
     message.language = object.language ?? undefined;
     message.marketingFlag = object.marketingFlag ?? undefined;
+    message.region = object.region ?? undefined;
     return message;
   },
 };
@@ -240,6 +259,7 @@ function createBaseUpdateUserDataResponse(): UpdateUserDataResponse {
     emailAddress: "",
     connections: undefined,
     marketingFlag: false,
+    region: 0,
   };
 }
 
@@ -292,6 +312,9 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
     }
     if (message.marketingFlag !== false) {
       writer.uint32(128).bool(message.marketingFlag);
+    }
+    if (message.region !== 0) {
+      writer.uint32(136).int32(message.region);
     }
     return writer;
   },
@@ -431,6 +454,14 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
           message.marketingFlag = reader.bool();
           continue;
         }
+        case 17: {
+          if (tag !== 136) {
+            break;
+          }
+
+          message.region = reader.int32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -458,6 +489,7 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
       emailAddress: isSet(object.emailAddress) ? globalThis.String(object.emailAddress) : "",
       connections: isSet(object.connections) ? UserConnections.fromJSON(object.connections) : undefined,
       marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : false,
+      region: isSet(object.region) ? globalThis.Number(object.region) : 0,
     };
   },
 
@@ -511,6 +543,9 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
     if (message.marketingFlag !== false) {
       obj.marketingFlag = message.marketingFlag;
     }
+    if (message.region !== 0) {
+      obj.region = Math.round(message.region);
+    }
     return obj;
   },
 
@@ -537,6 +572,7 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
       ? UserConnections.fromPartial(object.connections)
       : undefined;
     message.marketingFlag = object.marketingFlag ?? false;
+    message.region = object.region ?? 0;
     return message;
   },
 };

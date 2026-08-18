@@ -21,6 +21,7 @@ export interface GetUserDataResponse {
     emailAddress: string;
     connections: UserConnections | undefined;
     marketingFlag: boolean;
+    region: number;
 }
 export declare const GetUserDataRequest: MessageFns<GetUserDataRequest>;
 export declare const GetUserDataResponse: MessageFns<GetUserDataResponse>;

@@ -4,13 +4,14 @@ import { UserConnections } from "./user_connections";
 export declare const protobufPackage = "api.v2";
 export interface UpdateUserDataRequest {
     serverAccessLevel?: string | undefined;
-    mii?: Mii | undefined;
+    mii?: string | undefined;
     birthday?: string | undefined;
     gender?: string | undefined;
     country?: string | undefined;
     timezone?: string | undefined;
     language?: string | undefined;
     marketingFlag?: boolean | undefined;
+    region?: number | undefined;
 }
 export interface UpdateUserDataResponse {
     deleted: boolean;
@@ -29,6 +30,7 @@ export interface UpdateUserDataResponse {
     emailAddress: string;
     connections: UserConnections | undefined;
     marketingFlag: boolean;
+    region: number;
 }
 export declare const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest>;
 export declare const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse>;

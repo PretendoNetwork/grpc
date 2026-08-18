@@ -66,6 +66,7 @@ function createBaseGetUserDataResponse() {
         emailAddress: "",
         connections: undefined,
         marketingFlag: false,
+        region: 0,
     };
 }
 exports.GetUserDataResponse = {
@@ -117,6 +118,9 @@ exports.GetUserDataResponse = {
         }
         if (message.marketingFlag !== false) {
             writer.uint32(128).bool(message.marketingFlag);
+        }
+        if (message.region !== 0) {
+            writer.uint32(136).int32(message.region);
         }
         return writer;
     },
@@ -239,6 +243,13 @@ exports.GetUserDataResponse = {
                     message.marketingFlag = reader.bool();
                     continue;
                 }
+                case 17: {
+                    if (tag !== 136) {
+                        break;
+                    }
+                    message.region = reader.int32();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -265,6 +276,7 @@ exports.GetUserDataResponse = {
             emailAddress: isSet(object.emailAddress) ? globalThis.String(object.emailAddress) : "",
             connections: isSet(object.connections) ? user_connections_1.UserConnections.fromJSON(object.connections) : undefined,
             marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : false,
+            region: isSet(object.region) ? globalThis.Number(object.region) : 0,
         };
     },
     toJSON(message) {
@@ -317,6 +329,9 @@ exports.GetUserDataResponse = {
         if (message.marketingFlag !== false) {
             obj.marketingFlag = message.marketingFlag;
         }
+        if (message.region !== 0) {
+            obj.region = Math.round(message.region);
+        }
         return obj;
     },
     create(base) {
@@ -342,6 +357,7 @@ exports.GetUserDataResponse = {
             ? user_connections_1.UserConnections.fromPartial(object.connections)
             : undefined;
         message.marketingFlag = object.marketingFlag ?? false;
+        message.region = object.region ?? 0;
         return message;
     },
 };

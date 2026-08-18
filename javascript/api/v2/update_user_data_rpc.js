@@ -21,6 +21,7 @@ function createBaseUpdateUserDataRequest() {
         timezone: undefined,
         language: undefined,
         marketingFlag: undefined,
+        region: undefined,
     };
 }
 exports.UpdateUserDataRequest = {
@@ -29,7 +30,7 @@ exports.UpdateUserDataRequest = {
             writer.uint32(10).string(message.serverAccessLevel);
         }
         if (message.mii !== undefined) {
-            mii_1.Mii.encode(message.mii, writer.uint32(18).fork()).join();
+            writer.uint32(18).string(message.mii);
         }
         if (message.birthday !== undefined) {
             writer.uint32(26).string(message.birthday);
@@ -48,6 +49,9 @@ exports.UpdateUserDataRequest = {
         }
         if (message.marketingFlag !== undefined) {
             writer.uint32(64).bool(message.marketingFlag);
+        }
+        if (message.region !== undefined) {
+            writer.uint32(72).int32(message.region);
         }
         return writer;
     },
@@ -69,7 +73,7 @@ exports.UpdateUserDataRequest = {
                     if (tag !== 18) {
                         break;
                     }
-                    message.mii = mii_1.Mii.decode(reader, reader.uint32());
+                    message.mii = reader.string();
                     continue;
                 }
                 case 3: {
@@ -114,6 +118,13 @@ exports.UpdateUserDataRequest = {
                     message.marketingFlag = reader.bool();
                     continue;
                 }
+                case 9: {
+                    if (tag !== 72) {
+                        break;
+                    }
+                    message.region = reader.int32();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -125,13 +136,14 @@ exports.UpdateUserDataRequest = {
     fromJSON(object) {
         return {
             serverAccessLevel: isSet(object.serverAccessLevel) ? globalThis.String(object.serverAccessLevel) : undefined,
-            mii: isSet(object.mii) ? mii_1.Mii.fromJSON(object.mii) : undefined,
+            mii: isSet(object.mii) ? globalThis.String(object.mii) : undefined,
             birthday: isSet(object.birthday) ? globalThis.String(object.birthday) : undefined,
             gender: isSet(object.gender) ? globalThis.String(object.gender) : undefined,
             country: isSet(object.country) ? globalThis.String(object.country) : undefined,
             timezone: isSet(object.timezone) ? globalThis.String(object.timezone) : undefined,
             language: isSet(object.language) ? globalThis.String(object.language) : undefined,
             marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : undefined,
+            region: isSet(object.region) ? globalThis.Number(object.region) : undefined,
         };
     },
     toJSON(message) {
@@ -140,7 +152,7 @@ exports.UpdateUserDataRequest = {
             obj.serverAccessLevel = message.serverAccessLevel;
         }
         if (message.mii !== undefined) {
-            obj.mii = mii_1.Mii.toJSON(message.mii);
+            obj.mii = message.mii;
         }
         if (message.birthday !== undefined) {
             obj.birthday = message.birthday;
@@ -160,6 +172,9 @@ exports.UpdateUserDataRequest = {
         if (message.marketingFlag !== undefined) {
             obj.marketingFlag = message.marketingFlag;
         }
+        if (message.region !== undefined) {
+            obj.region = Math.round(message.region);
+        }
         return obj;
     },
     create(base) {
@@ -168,13 +183,14 @@ exports.UpdateUserDataRequest = {
     fromPartial(object) {
         const message = createBaseUpdateUserDataRequest();
         message.serverAccessLevel = object.serverAccessLevel ?? undefined;
-        message.mii = (object.mii !== undefined && object.mii !== null) ? mii_1.Mii.fromPartial(object.mii) : undefined;
+        message.mii = object.mii ?? undefined;
         message.birthday = object.birthday ?? undefined;
         message.gender = object.gender ?? undefined;
         message.country = object.country ?? undefined;
         message.timezone = object.timezone ?? undefined;
         message.language = object.language ?? undefined;
         message.marketingFlag = object.marketingFlag ?? undefined;
+        message.region = object.region ?? undefined;
         return message;
     },
 };
@@ -196,6 +212,7 @@ function createBaseUpdateUserDataResponse() {
         emailAddress: "",
         connections: undefined,
         marketingFlag: false,
+        region: 0,
     };
 }
 exports.UpdateUserDataResponse = {
@@ -247,6 +264,9 @@ exports.UpdateUserDataResponse = {
         }
         if (message.marketingFlag !== false) {
             writer.uint32(128).bool(message.marketingFlag);
+        }
+        if (message.region !== 0) {
+            writer.uint32(136).int32(message.region);
         }
         return writer;
     },
@@ -369,6 +389,13 @@ exports.UpdateUserDataResponse = {
                     message.marketingFlag = reader.bool();
                     continue;
                 }
+                case 17: {
+                    if (tag !== 136) {
+                        break;
+                    }
+                    message.region = reader.int32();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -395,6 +422,7 @@ exports.UpdateUserDataResponse = {
             emailAddress: isSet(object.emailAddress) ? globalThis.String(object.emailAddress) : "",
             connections: isSet(object.connections) ? user_connections_1.UserConnections.fromJSON(object.connections) : undefined,
             marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : false,
+            region: isSet(object.region) ? globalThis.Number(object.region) : 0,
         };
     },
     toJSON(message) {
@@ -447,6 +475,9 @@ exports.UpdateUserDataResponse = {
         if (message.marketingFlag !== false) {
             obj.marketingFlag = message.marketingFlag;
         }
+        if (message.region !== 0) {
+            obj.region = Math.round(message.region);
+        }
         return obj;
     },
     create(base) {
@@ -472,6 +503,7 @@ exports.UpdateUserDataResponse = {
             ? user_connections_1.UserConnections.fromPartial(object.connections)
             : undefined;
         message.marketingFlag = object.marketingFlag ?? false;
+        message.region = object.region ?? 0;
         return message;
     },
 };
