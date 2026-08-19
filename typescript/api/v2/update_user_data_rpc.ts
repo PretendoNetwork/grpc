@@ -16,7 +16,6 @@ export interface UpdateUserDataRequest {
   mii?: string | undefined;
   birthday?: string | undefined;
   gender?: string | undefined;
-  country?: string | undefined;
   timezone?: string | undefined;
   language?: string | undefined;
   marketingFlag?: boolean | undefined;
@@ -49,7 +48,6 @@ function createBaseUpdateUserDataRequest(): UpdateUserDataRequest {
     mii: undefined,
     birthday: undefined,
     gender: undefined,
-    country: undefined,
     timezone: undefined,
     language: undefined,
     marketingFlag: undefined,
@@ -71,20 +69,17 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
     if (message.gender !== undefined) {
       writer.uint32(34).string(message.gender);
     }
-    if (message.country !== undefined) {
-      writer.uint32(42).string(message.country);
-    }
     if (message.timezone !== undefined) {
-      writer.uint32(50).string(message.timezone);
+      writer.uint32(42).string(message.timezone);
     }
     if (message.language !== undefined) {
-      writer.uint32(58).string(message.language);
+      writer.uint32(50).string(message.language);
     }
     if (message.marketingFlag !== undefined) {
-      writer.uint32(64).bool(message.marketingFlag);
+      writer.uint32(56).bool(message.marketingFlag);
     }
     if (message.region !== undefined) {
-      writer.uint32(72).int32(message.region);
+      writer.uint32(64).uint32(message.region);
     }
     return writer;
   },
@@ -133,7 +128,7 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
             break;
           }
 
-          message.country = reader.string();
+          message.timezone = reader.string();
           continue;
         }
         case 6: {
@@ -141,15 +136,15 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
             break;
           }
 
-          message.timezone = reader.string();
+          message.language = reader.string();
           continue;
         }
         case 7: {
-          if (tag !== 58) {
+          if (tag !== 56) {
             break;
           }
 
-          message.language = reader.string();
+          message.marketingFlag = reader.bool();
           continue;
         }
         case 8: {
@@ -157,15 +152,7 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
             break;
           }
 
-          message.marketingFlag = reader.bool();
-          continue;
-        }
-        case 9: {
-          if (tag !== 72) {
-            break;
-          }
-
-          message.region = reader.int32();
+          message.region = reader.uint32();
           continue;
         }
       }
@@ -183,7 +170,6 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
       mii: isSet(object.mii) ? globalThis.String(object.mii) : undefined,
       birthday: isSet(object.birthday) ? globalThis.String(object.birthday) : undefined,
       gender: isSet(object.gender) ? globalThis.String(object.gender) : undefined,
-      country: isSet(object.country) ? globalThis.String(object.country) : undefined,
       timezone: isSet(object.timezone) ? globalThis.String(object.timezone) : undefined,
       language: isSet(object.language) ? globalThis.String(object.language) : undefined,
       marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : undefined,
@@ -204,9 +190,6 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
     }
     if (message.gender !== undefined) {
       obj.gender = message.gender;
-    }
-    if (message.country !== undefined) {
-      obj.country = message.country;
     }
     if (message.timezone !== undefined) {
       obj.timezone = message.timezone;
@@ -232,7 +215,6 @@ export const UpdateUserDataRequest: MessageFns<UpdateUserDataRequest> = {
     message.mii = object.mii ?? undefined;
     message.birthday = object.birthday ?? undefined;
     message.gender = object.gender ?? undefined;
-    message.country = object.country ?? undefined;
     message.timezone = object.timezone ?? undefined;
     message.language = object.language ?? undefined;
     message.marketingFlag = object.marketingFlag ?? undefined;
@@ -314,7 +296,7 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
       writer.uint32(128).bool(message.marketingFlag);
     }
     if (message.region !== 0) {
-      writer.uint32(136).int32(message.region);
+      writer.uint32(136).uint32(message.region);
     }
     return writer;
   },
@@ -459,7 +441,7 @@ export const UpdateUserDataResponse: MessageFns<UpdateUserDataResponse> = {
             break;
           }
 
-          message.region = reader.int32();
+          message.region = reader.uint32();
           continue;
         }
       }

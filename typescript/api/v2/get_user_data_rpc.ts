@@ -150,7 +150,7 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
       writer.uint32(128).bool(message.marketingFlag);
     }
     if (message.region !== 0) {
-      writer.uint32(136).int32(message.region);
+      writer.uint32(136).uint32(message.region);
     }
     return writer;
   },
@@ -295,7 +295,7 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
             break;
           }
 
-          message.region = reader.int32();
+          message.region = reader.uint32();
           continue;
         }
       }

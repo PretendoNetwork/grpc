@@ -27,11 +27,10 @@ type UpdateUserDataRequest struct {
 	Mii               *string                `protobuf:"bytes,2,opt,name=mii,proto3,oneof" json:"mii,omitempty"`
 	Birthday          *string                `protobuf:"bytes,3,opt,name=birthday,proto3,oneof" json:"birthday,omitempty"`
 	Gender            *string                `protobuf:"bytes,4,opt,name=gender,proto3,oneof" json:"gender,omitempty"`
-	Country           *string                `protobuf:"bytes,5,opt,name=country,proto3,oneof" json:"country,omitempty"`
-	Timezone          *string                `protobuf:"bytes,6,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
-	Language          *string                `protobuf:"bytes,7,opt,name=language,proto3,oneof" json:"language,omitempty"`
-	MarketingFlag     *bool                  `protobuf:"varint,8,opt,name=marketing_flag,json=marketingFlag,proto3,oneof" json:"marketing_flag,omitempty"`
-	Region            *int32                 `protobuf:"varint,9,opt,name=region,proto3,oneof" json:"region,omitempty"`
+	Timezone          *string                `protobuf:"bytes,5,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
+	Language          *string                `protobuf:"bytes,6,opt,name=language,proto3,oneof" json:"language,omitempty"`
+	MarketingFlag     *bool                  `protobuf:"varint,7,opt,name=marketing_flag,json=marketingFlag,proto3,oneof" json:"marketing_flag,omitempty"`
+	Region            *uint32                `protobuf:"varint,8,opt,name=region,proto3,oneof" json:"region,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -94,13 +93,6 @@ func (x *UpdateUserDataRequest) GetGender() string {
 	return ""
 }
 
-func (x *UpdateUserDataRequest) GetCountry() string {
-	if x != nil && x.Country != nil {
-		return *x.Country
-	}
-	return ""
-}
-
 func (x *UpdateUserDataRequest) GetTimezone() string {
 	if x != nil && x.Timezone != nil {
 		return *x.Timezone
@@ -122,7 +114,7 @@ func (x *UpdateUserDataRequest) GetMarketingFlag() bool {
 	return false
 }
 
-func (x *UpdateUserDataRequest) GetRegion() int32 {
+func (x *UpdateUserDataRequest) GetRegion() uint32 {
 	if x != nil && x.Region != nil {
 		return *x.Region
 	}
@@ -147,7 +139,7 @@ type UpdateUserDataResponse struct {
 	EmailAddress      string                 `protobuf:"bytes,14,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty"`
 	Connections       *UserConnections       `protobuf:"bytes,15,opt,name=connections,proto3" json:"connections,omitempty"`
 	MarketingFlag     bool                   `protobuf:"varint,16,opt,name=marketing_flag,json=marketingFlag,proto3" json:"marketing_flag,omitempty"`
-	Region            int32                  `protobuf:"varint,17,opt,name=region,proto3" json:"region,omitempty"`
+	Region            uint32                 `protobuf:"varint,17,opt,name=region,proto3" json:"region,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -294,7 +286,7 @@ func (x *UpdateUserDataResponse) GetMarketingFlag() bool {
 	return false
 }
 
-func (x *UpdateUserDataResponse) GetRegion() int32 {
+func (x *UpdateUserDataResponse) GetRegion() uint32 {
 	if x != nil {
 		return x.Region
 	}
@@ -305,23 +297,20 @@ var File_api_v2_update_user_data_rpc_proto protoreflect.FileDescriptor
 
 const file_api_v2_update_user_data_rpc_proto_rawDesc = "" +
 	"\n" +
-	"!api/v2/update_user_data_rpc.proto\x12\x06api.v2\x1a\x10api/v2/mii.proto\x1a\x1dapi/v2/user_connections.proto\"\xc7\x03\n" +
+	"!api/v2/update_user_data_rpc.proto\x12\x06api.v2\x1a\x10api/v2/mii.proto\x1a\x1dapi/v2/user_connections.proto\"\x9c\x03\n" +
 	"\x15UpdateUserDataRequest\x123\n" +
 	"\x13server_access_level\x18\x01 \x01(\tH\x00R\x11serverAccessLevel\x88\x01\x01\x12\x15\n" +
 	"\x03mii\x18\x02 \x01(\tH\x01R\x03mii\x88\x01\x01\x12\x1f\n" +
 	"\bbirthday\x18\x03 \x01(\tH\x02R\bbirthday\x88\x01\x01\x12\x1b\n" +
-	"\x06gender\x18\x04 \x01(\tH\x03R\x06gender\x88\x01\x01\x12\x1d\n" +
-	"\acountry\x18\x05 \x01(\tH\x04R\acountry\x88\x01\x01\x12\x1f\n" +
-	"\btimezone\x18\x06 \x01(\tH\x05R\btimezone\x88\x01\x01\x12\x1f\n" +
-	"\blanguage\x18\a \x01(\tH\x06R\blanguage\x88\x01\x01\x12*\n" +
-	"\x0emarketing_flag\x18\b \x01(\bH\aR\rmarketingFlag\x88\x01\x01\x12\x1b\n" +
-	"\x06region\x18\t \x01(\x05H\bR\x06region\x88\x01\x01B\x16\n" +
+	"\x06gender\x18\x04 \x01(\tH\x03R\x06gender\x88\x01\x01\x12\x1f\n" +
+	"\btimezone\x18\x05 \x01(\tH\x04R\btimezone\x88\x01\x01\x12\x1f\n" +
+	"\blanguage\x18\x06 \x01(\tH\x05R\blanguage\x88\x01\x01\x12*\n" +
+	"\x0emarketing_flag\x18\a \x01(\bH\x06R\rmarketingFlag\x88\x01\x01\x12\x1b\n" +
+	"\x06region\x18\b \x01(\rH\aR\x06region\x88\x01\x01B\x16\n" +
 	"\x14_server_access_levelB\x06\n" +
 	"\x04_miiB\v\n" +
 	"\t_birthdayB\t\n" +
-	"\a_genderB\n" +
-	"\n" +
-	"\b_countryB\v\n" +
+	"\a_genderB\v\n" +
 	"\t_timezoneB\v\n" +
 	"\t_languageB\x11\n" +
 	"\x0f_marketing_flagB\t\n" +
@@ -344,7 +333,7 @@ const file_api_v2_update_user_data_rpc_proto_rawDesc = "" +
 	"\remail_address\x18\x0e \x01(\tR\femailAddress\x129\n" +
 	"\vconnections\x18\x0f \x01(\v2\x17.api.v2.UserConnectionsR\vconnections\x12%\n" +
 	"\x0emarketing_flag\x18\x10 \x01(\bR\rmarketingFlag\x12\x16\n" +
-	"\x06region\x18\x11 \x01(\x05R\x06regionB\x8e\x01\n" +
+	"\x06region\x18\x11 \x01(\rR\x06regionB\x8e\x01\n" +
 	"\n" +
 	"com.api.v2B\x16UpdateUserDataRpcProtoP\x01Z/github.com/PretendoNetwork/grpc/go/api/v2;apiv2\xa2\x02\x03AXX\xaa\x02\x06Api.V2\xca\x02\x06Api\\V2\xe2\x02\x12Api\\V2\\GPBMetadata\xea\x02\aApi::V2b\x06proto3"
 

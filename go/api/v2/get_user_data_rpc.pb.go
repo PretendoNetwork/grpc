@@ -75,7 +75,7 @@ type GetUserDataResponse struct {
 	EmailAddress      string                 `protobuf:"bytes,14,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty"`
 	Connections       *UserConnections       `protobuf:"bytes,15,opt,name=connections,proto3" json:"connections,omitempty"`
 	MarketingFlag     bool                   `protobuf:"varint,16,opt,name=marketing_flag,json=marketingFlag,proto3" json:"marketing_flag,omitempty"`
-	Region            int32                  `protobuf:"varint,17,opt,name=region,proto3" json:"region,omitempty"`
+	Region            uint32                 `protobuf:"varint,17,opt,name=region,proto3" json:"region,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -222,7 +222,7 @@ func (x *GetUserDataResponse) GetMarketingFlag() bool {
 	return false
 }
 
-func (x *GetUserDataResponse) GetRegion() int32 {
+func (x *GetUserDataResponse) GetRegion() uint32 {
 	if x != nil {
 		return x.Region
 	}
@@ -253,7 +253,7 @@ const file_api_v2_get_user_data_rpc_proto_rawDesc = "" +
 	"\remail_address\x18\x0e \x01(\tR\femailAddress\x129\n" +
 	"\vconnections\x18\x0f \x01(\v2\x17.api.v2.UserConnectionsR\vconnections\x12%\n" +
 	"\x0emarketing_flag\x18\x10 \x01(\bR\rmarketingFlag\x12\x16\n" +
-	"\x06region\x18\x11 \x01(\x05R\x06regionB\x8b\x01\n" +
+	"\x06region\x18\x11 \x01(\rR\x06regionB\x8b\x01\n" +
 	"\n" +
 	"com.api.v2B\x13GetUserDataRpcProtoP\x01Z/github.com/PretendoNetwork/grpc/go/api/v2;apiv2\xa2\x02\x03AXX\xaa\x02\x06Api.V2\xca\x02\x06Api\\V2\xe2\x02\x12Api\\V2\\GPBMetadata\xea\x02\aApi::V2b\x06proto3"
 

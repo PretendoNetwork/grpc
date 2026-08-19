@@ -7,7 +7,6 @@ export interface UpdateUserDataRequest {
     mii?: string | undefined;
     birthday?: string | undefined;
     gender?: string | undefined;
-    country?: string | undefined;
     timezone?: string | undefined;
     language?: string | undefined;
     marketingFlag?: boolean | undefined;
