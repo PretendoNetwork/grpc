@@ -18,8 +18,8 @@ service MiiverseService {
   // Used by Super Mario Maker
   rpc SMMRequestPostId(SMMRequestPostIdRequest) returns (SMMRequestPostIdResponse) {}
 
-  rpc GetCommunityByID(GetCommunityByIdRequest) returns (GetCommunityByIdResponse) {}
-  rpc GetCommunityByTitleID(GetCommunityByTitleIdRequest) returns (GetCommunityByTitleIdResponse) {}
+  rpc GetCommunityByID(GetCommunityByIDRequest) returns (GetCommunityByIDResponse) {}
+  rpc GetCommunityByTitleID(GetCommunityByTitleIDRequest) returns (GetCommunityByTitleIDResponse) {}
   rpc GetCommunityPosts(GetCommunityPostsRequest) returns (GetCommunityPostsResponse) {}
 
   rpc GetPost(GetPostRequest) returns (GetPostResponse) {}

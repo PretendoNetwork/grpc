@@ -4,10 +4,10 @@ package miiverse.v2;
 
 import "miiverse/v2/community.proto";
 
-message GetCommunityByIdRequest {
+message GetCommunityByIDRequest {
   string community_id = 1;
 }
 
-message GetCommunityByIdResponse {
+message GetCommunityByIDResponse {
   CommunityData community = 1;
 }

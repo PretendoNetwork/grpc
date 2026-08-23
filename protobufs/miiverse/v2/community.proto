@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package miiverse.v2;
+
 message CommunityPermissions {
   bool open = 1;
   uint32 minimum_new_post_access_level = 2;
@@ -22,12 +23,6 @@ message CommunityData {
   string description = 3;
   bool open = 4;
   bool allows_comments = 5;
-  /**
-     * 0: Main Community
-     * 1: Sub-Community
-     * 2: Announcement Community
-     * 3: Private Community
-     */
   uint32 type = 6;
   string parent = 7;
   repeated uint32 admins = 8;

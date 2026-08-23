@@ -3,19 +3,22 @@ syntax = "proto3";
 package miiverse.v2;
 
 enum PostType {
-  text = 0;
-  memo = 1;
-  screenshot = 2;
+  POST_TYPE_ANY_UNSPECIFIED = 0;
+  POST_TYPE_TEXT = 1;
+  POST_TYPE_MEMO = 2;
+  POST_TYPE_SCREENSHOT = 3;
 }
 
 enum QueryType {
-  followings = 0;
-  self = 1;
+  QUERY_TYPE_UNSPECIFIED = 0;
+  QUERY_TYPE_FOLLOWINGS = 1;
+  QUERY_TYPE_SELF = 2;
 }
 
 enum SortBy {
-  new = 0;
-  popular = 1;
+  SORT_BY_UNSPECIFIED = 0;
+  SORT_BY_NEW = 1;
+  SORT_BY_POPULAR = 2;
 }
 
 message PostPainting {
