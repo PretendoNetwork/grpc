@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+import "miiverse/v2/post.proto";
+
+message GetCommunityPostsRequest {
+  string community_id = 1;
+  bool distinct_pid = 2;
+  bool allow_spoiler = 3;
+  bool with_mii = 4;
+  optional string search_key = 5;
+  optional PostType type = 6;
+  optional QueryType query_by = 7;
+  optional SortBy sort_by = 8;
+  optional uint32 limit = 9;
+  optional string before_date = 10;
+  optional string after_date = 11;
+}
+
+message GetCommunityPostsResponse {
+  repeated PostData posts = 1;
+}

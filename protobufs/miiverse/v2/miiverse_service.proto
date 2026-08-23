@@ -4,10 +4,27 @@ package miiverse.v2;
 
 import "miiverse/v2/delete_account_data_rpc.proto";
 import "miiverse/v2/smm_request_post_id_rpc.proto";
+import "miiverse/v2/get_community_by_id_rpc.proto";
+import "miiverse/v2/get_community_by_title_id_rpc.proto";
+import "miiverse/v2/get_community_posts_rpc.proto";
+import "miiverse/v2/get_post_replies_rpc.proto";
+import "miiverse/v2/get_post_rpc.proto";
+import "miiverse/v2/get_user_data_rpc.proto";
+import "miiverse/v2/get_user_posts_rpc.proto";
 
 service MiiverseService {
   rpc DeleteAccountData(DeleteAccountDataRequest) returns (DeleteAccountDataResponse) {}
 
   // Used by Super Mario Maker
   rpc SMMRequestPostId(SMMRequestPostIdRequest) returns (SMMRequestPostIdResponse) {}
+
+  rpc GetCommunityByID(GetCommunityByIdRequest) returns (GetCommunityByIdResponse) {}
+  rpc GetCommunityByTitleID(GetCommunityByTitleIdRequest) returns (GetCommunityByTitleIdResponse) {}
+  rpc GetCommunityPosts(GetCommunityPostsRequest) returns (GetCommunityPostsResponse) {}
+
+  rpc GetPost(GetPostRequest) returns (GetPostResponse) {}
+  rpc GetPostReplies(GetPostRepliesRequest) returns (GetPostRepliesResponse) {}
+
+  rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
+  rpc GetUserPosts(GetUserPostsRequest) returns (GetUserPostsResponse) {}
 }

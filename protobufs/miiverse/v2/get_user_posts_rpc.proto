@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+import "miiverse/v2/post.proto";
+
+message GetUserPostsRequest {
+  uint32 pid = 1;
+  bool allow_spoiler = 2;
+  bool with_mii = 3;
+  optional string search_key = 4;
+  optional PostType type = 5;
+  optional SortBy sort_by = 6;
+  optional uint32 limit = 7;
+  optional string before_date = 8;
+  optional string after_date = 9;
+}
+
+message GetUserPostsResponse {
+  repeated PostData posts = 1;
+}

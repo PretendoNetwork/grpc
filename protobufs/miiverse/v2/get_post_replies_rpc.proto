@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+import "miiverse/v2/post.proto";
+
+message GetPostRepliesRequest {
+  string post_id = 1;
+  uint32 limit = 2;
+}
+
+message GetPostRepliesResponse {
+  repeated PostData posts = 1;
+}

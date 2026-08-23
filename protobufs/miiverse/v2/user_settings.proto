@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+message UserSettings {
+  uint32 pid = 1;
+  string screen_name = 2;
+  uint32 account_status = 3;
+  string ban_lift_date = 4;
+  uint32 banned_by = 5;
+  string ban_reason = 6;
+  string profile_comment = 7;
+  bool profile_comment_visibility = 8;
+  uint32 game_skill = 9;
+  bool game_skill_visibility = 10;
+  bool birthday_visibility = 11;
+  bool relationship_visibility = 12;
+  bool country_visibility = 13;
+  bool profile_favorite_community_visibility = 14;
+  bool receive_notifications = 15;
+  string created_at = 16;
+  string last_active = 17;
+}

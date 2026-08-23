@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package miiverse.v2;
+message CommunityPermissions {
+  bool open = 1;
+  uint32 minimum_new_post_access_level = 2;
+  uint32 minimum_new_comment_access_level = 3;
+  uint32 minimum_new_community_access_level = 4;
+}
+
+message CommunityIcons {
+  string size_32 = 1;
+  string size_48 = 2;
+  string size_64 = 3;
+  string size_96 = 4;
+  string size_128 = 5;
+}
+
+message CommunityData {
+  uint32 platform_id = 1;
+  string name = 2;
+  string description = 3;
+  bool open = 4;
+  bool allows_comments = 5;
+  /**
+     * 0: Main Community
+     * 1: Sub-Community
+     * 2: Announcement Community
+     * 3: Private Community
+     */
+  uint32 type = 6;
+  string parent = 7;
+  repeated uint32 admins = 8;
+  uint32 owner = 9;
+  string created_at = 10;
+  uint32 empathy_count = 11;
+  uint32 followers = 12;
+  bool has_shop_page = 13;
+  string icon = 14;
+  string ctr_header = 15;
+  string wup_header = 16;
+  CommunityIcons icon_paths = 17;
+  repeated string title_ids = 18;
+  repeated string title_id = 19;
+  string community_id = 20;
+  string olive_community_id = 21;
+  bool is_recommended = 22;
+  string app_data = 23;
+  repeated uint32 user_favorites = 24;
+  CommunityPermissions permissions = 25;
+  string shot_mode = 26;
+  repeated string shot_extra_title_id = 27;
+}
