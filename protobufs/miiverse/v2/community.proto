@@ -24,8 +24,8 @@ message CommunityData {
   string name = 4;
   string description = 5;
   uint32 platform_id = 6;
-  optional uint32 pid = 7;
-  string icon = 8; // Owner PID
+  optional uint32 pid = 7; // Owner PID
+  string icon = 8;
   CommunityIcons icon_paths = 9;
   string ctr_header = 10;
   string wup_header = 11;
