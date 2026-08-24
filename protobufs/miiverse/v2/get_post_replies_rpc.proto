@@ -7,6 +7,8 @@ import "miiverse/v2/post.proto";
 message GetPostRepliesRequest {
   string post_id = 1;
   uint32 limit = 2;
+  optional string before_date = 3;
+  optional string after_date = 4;
 }
 
 message GetPostRepliesResponse {
