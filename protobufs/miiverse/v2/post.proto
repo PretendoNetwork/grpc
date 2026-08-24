@@ -21,47 +21,85 @@ enum SortBy {
   SORT_BY_POPULAR = 2;
 }
 
+enum FeelingID {
+  FEELING_ID_NORMAL_UNSPECIFIED = 0;
+  FEELING_ID_HAPPY = 1;
+  FEELING_ID_LIKE = 2;
+  FEELING_ID_SURPRISED = 3;
+  FEELING_ID_FRUSTRATED = 4;
+  FEELING_ID_PUZZLED = 5;
+}
+
+enum LanguageID {
+  LANGUAGE_ID_JAPANESE_UNSPECIFIED = 0;
+  LANGUAGE_ID_ENGLISH = 1;
+  LANGUAGE_ID_FRENCH = 2;
+  LANGUAGE_ID_GERMAN = 3;
+  LANGUAGE_ID_ITALIAN = 4;
+  LANGUAGE_ID_SPANISH = 5;
+  LANGUAGE_ID_SIMPLIFIED_CHINESE = 6;
+  LANGUAGE_ID_KOREAN = 7;
+  LANGUAGE_ID_DUTCH = 8;
+  LANGUAGE_ID_PORTUGUESE = 9;
+  LANGUAGE_ID_RUSSIAN = 10;
+  LANGUAGE_ID_TRADITIONAL_CHINESE = 11;
+  LANGUAGE_ID_ANY = 254;
+  LANGUAGE_ID_INVALID = 255;
+}
+
+enum PaintingType {
+  PAINTING_TYPE_TGA = 0;
+  PAINTING_TYPE_BMP = 1;
+}
+
 message PostPainting {
-  string format = 1;
+  PaintingType format = 1;
   string content = 2;
   uint32 size = 3;
   string url = 4;
-};
+}
 
 message PostScreenshot {
   uint32 size = 1;
   string url = 2;
-};
+}
 
 message PostTopicTag {
   string name = 1;
   string title_id = 2;
-};
+}
+
+message PostBinaryData {
+  string url = 1;
+  uint32 size = 2;
+}
 
 message PostData {
-  optional string app_data = 1;
-  optional string body = 2;
-  string community_id = 3;
-  uint32 country_id = 4;
-  string created_at = 5;
-  uint32 feeling_id = 6;
-  string id = 7;
-  uint32 is_autopost = 8;
-  uint32 is_community_private_autopost = 9;
-  uint32 is_spoiler = 10;
-  uint32 is_app_jumpable = 11;
-  uint32 empathy_count = 12;
-  uint32 language_id = 13;
-  optional string mii = 14;
-  optional string mii_face_url = 15;
-  uint32 number = 16;
-  optional PostPainting painting = 17;
-  uint32 pid = 18;
-  uint32 platform_id = 19;
+  string community_id = 1;
+  uint32 empathy_count = 2;
+  uint32 reply_count = 3;
+  optional string app_data = 4;
+  optional string body = 5;
+  string created_at = 6;
+  optional PostBinaryData data = 7;
+  optional PostScreenshot screenshot = 8;
+  optional string url = 9;
+  optional PostPainting painting = 10;
+  FeelingID feeling_id = 11;
+  string id = 12;
+  bool is_autopost = 13;
+  bool is_spoiler = 14;
+  optional string mii = 15;
+  optional string mii_face_url = 16;
+  uint32 pid = 17;
+  string screen_name = 18;
+  optional PostTopicTag topic_tag = 19;
   uint32 region_id = 20;
-  uint32 reply_count = 21;
-  string screen_name = 22;
-  optional PostScreenshot screenshot = 23;
-  optional PostTopicTag topic_tag = 24;
-  string title_id = 25;
+  uint32 platform_id = 21;
+  LanguageID language_id = 22;
+  uint32 country_id = 23;
+  bool is_community_private_autopost = 24;
+  bool is_app_jumpable = 25;
+  uint32 number = 26;
+  string title_id = 27;
 };
