@@ -48,7 +48,7 @@ enum LanguageID {
 }
 
 enum PaintingType {
-  PAINTING_TYPE_TGA = 0;
+  PAINTING_TYPE_TG_UNSPECIFIED = 0;
   PAINTING_TYPE_BMP = 1;
 }
 
