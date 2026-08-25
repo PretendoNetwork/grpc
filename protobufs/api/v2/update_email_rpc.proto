@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package api.v2;
+
+message UpdateEmailRequest {
+  string email = 1;
+}
+
+message UpdateEmailResponse {}
