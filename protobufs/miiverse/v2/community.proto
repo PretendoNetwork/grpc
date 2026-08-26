@@ -4,12 +4,12 @@ package miiverse.v2;
 
 message CommunityData {
   string community_id = 1;
-	string name = 2;
-	string description = 3;
-	map<string, string> icons = 4;
-	uint32 pid = 5; // Owner PID
-	string app_data = 6;
-	bool is_user_community = 7;
+  string name = 2;
+  string description = 3;
+  map<string, string> icons = 4;
+  uint32 pid = 5; // Owner PID
+  string app_data = 6;
+  bool is_user_community = 7;
   optional string screen_name = 8;
   optional string mii = 9;
   string created_at = 10;

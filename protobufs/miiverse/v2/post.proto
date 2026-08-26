@@ -96,4 +96,4 @@ message PostData {
   optional PostTopicTag topic_tag = 24;
   string title_id = 25;
   optional PostBinaryData data = 26;
-};
+}
