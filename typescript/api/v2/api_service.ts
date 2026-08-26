@@ -14,6 +14,7 @@ import { RegisterRequest, RegisterResponse } from "./register_rpc";
 import { ResetPasswordRequest, ResetPasswordResponse } from "./reset_password_rpc";
 import { SetDiscordConnectionDataRequest, SetDiscordConnectionDataResponse } from "./set_discord_connection_data_rpc";
 import { SetStripeConnectionDataRequest, SetStripeConnectionDataResponse } from "./set_stripe_connection_data_rpc";
+import { UpdateEmailRequest, UpdateEmailResponse } from "./update_email_rpc";
 import { UpdateUserDataRequest, UpdateUserDataResponse } from "./update_user_data_rpc";
 
 export const protobufPackage = "api.v2";
@@ -52,6 +53,14 @@ export const ApiServiceDefinition = {
       requestType: UpdateUserDataRequest,
       requestStream: false,
       responseType: UpdateUserDataResponse,
+      responseStream: false,
+      options: {},
+    },
+    updateEmail: {
+      name: "UpdateEmail",
+      requestType: UpdateEmailRequest,
+      requestStream: false,
+      responseType: UpdateEmailResponse,
       responseStream: false,
       options: {},
     },
@@ -109,6 +118,10 @@ export interface ApiServiceImplementation<CallContextExt = {}> {
     request: UpdateUserDataRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<UpdateUserDataResponse>>;
+  updateEmail(
+    request: UpdateEmailRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdateEmailResponse>>;
   forgotPassword(
     request: ForgotPasswordRequest,
     context: CallContext & CallContextExt,
@@ -142,6 +155,10 @@ export interface ApiServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<UpdateUserDataRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<UpdateUserDataResponse>;
+  updateEmail(
+    request: DeepPartial<UpdateEmailRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdateEmailResponse>;
   forgotPassword(
     request: DeepPartial<ForgotPasswordRequest>,
     options?: CallOptions & CallOptionsExt,

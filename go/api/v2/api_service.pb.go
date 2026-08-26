@@ -24,13 +24,14 @@ var File_api_v2_api_service_proto protoreflect.FileDescriptor
 
 const file_api_v2_api_service_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/v2/api_service.proto\x12\x06api.v2\x1a\x1fapi/v2/delete_account_rpc.proto\x1a api/v2/forgot_password_rpc.proto\x1a\x1eapi/v2/get_user_data_rpc.proto\x1a\x16api/v2/login_rpc.proto\x1a\x19api/v2/register_rpc.proto\x1a\x1fapi/v2/reset_password_rpc.proto\x1a,api/v2/set_discord_connection_data_rpc.proto\x1a+api/v2/set_stripe_connection_data_rpc.proto\x1a!api/v2/update_user_data_rpc.proto2\xf4\x05\n" +
+	"\x18api/v2/api_service.proto\x12\x06api.v2\x1a\x1fapi/v2/delete_account_rpc.proto\x1a api/v2/forgot_password_rpc.proto\x1a\x1eapi/v2/get_user_data_rpc.proto\x1a\x16api/v2/login_rpc.proto\x1a\x19api/v2/register_rpc.proto\x1a\x1fapi/v2/reset_password_rpc.proto\x1a,api/v2/set_discord_connection_data_rpc.proto\x1a+api/v2/set_stripe_connection_data_rpc.proto\x1a\x1dapi/v2/update_email_rpc.proto\x1a!api/v2/update_user_data_rpc.proto2\xbe\x06\n" +
 	"\n" +
 	"ApiService\x12?\n" +
 	"\bRegister\x12\x17.api.v2.RegisterRequest\x1a\x18.api.v2.RegisterResponse\"\x00\x126\n" +
 	"\x05Login\x12\x14.api.v2.LoginRequest\x1a\x15.api.v2.LoginResponse\"\x00\x12H\n" +
 	"\vGetUserData\x12\x1a.api.v2.GetUserDataRequest\x1a\x1b.api.v2.GetUserDataResponse\"\x00\x12Q\n" +
-	"\x0eUpdateUserData\x12\x1d.api.v2.UpdateUserDataRequest\x1a\x1e.api.v2.UpdateUserDataResponse\"\x00\x12Q\n" +
+	"\x0eUpdateUserData\x12\x1d.api.v2.UpdateUserDataRequest\x1a\x1e.api.v2.UpdateUserDataResponse\"\x00\x12H\n" +
+	"\vUpdateEmail\x12\x1a.api.v2.UpdateEmailRequest\x1a\x1b.api.v2.UpdateEmailResponse\"\x00\x12Q\n" +
 	"\x0eForgotPassword\x12\x1d.api.v2.ForgotPasswordRequest\x1a\x1e.api.v2.ForgotPasswordResponse\"\x00\x12N\n" +
 	"\rResetPassword\x12\x1c.api.v2.ResetPasswordRequest\x1a\x1d.api.v2.ResetPasswordResponse\"\x00\x12o\n" +
 	"\x18SetDiscordConnectionData\x12'.api.v2.SetDiscordConnectionDataRequest\x1a(.api.v2.SetDiscordConnectionDataResponse\"\x00\x12l\n" +
@@ -44,42 +45,46 @@ var file_api_v2_api_service_proto_goTypes = []any{
 	(*LoginRequest)(nil),                     // 1: api.v2.LoginRequest
 	(*GetUserDataRequest)(nil),               // 2: api.v2.GetUserDataRequest
 	(*UpdateUserDataRequest)(nil),            // 3: api.v2.UpdateUserDataRequest
-	(*ForgotPasswordRequest)(nil),            // 4: api.v2.ForgotPasswordRequest
-	(*ResetPasswordRequest)(nil),             // 5: api.v2.ResetPasswordRequest
-	(*SetDiscordConnectionDataRequest)(nil),  // 6: api.v2.SetDiscordConnectionDataRequest
-	(*SetStripeConnectionDataRequest)(nil),   // 7: api.v2.SetStripeConnectionDataRequest
-	(*DeleteAccountRequest)(nil),             // 8: api.v2.DeleteAccountRequest
-	(*RegisterResponse)(nil),                 // 9: api.v2.RegisterResponse
-	(*LoginResponse)(nil),                    // 10: api.v2.LoginResponse
-	(*GetUserDataResponse)(nil),              // 11: api.v2.GetUserDataResponse
-	(*UpdateUserDataResponse)(nil),           // 12: api.v2.UpdateUserDataResponse
-	(*ForgotPasswordResponse)(nil),           // 13: api.v2.ForgotPasswordResponse
-	(*ResetPasswordResponse)(nil),            // 14: api.v2.ResetPasswordResponse
-	(*SetDiscordConnectionDataResponse)(nil), // 15: api.v2.SetDiscordConnectionDataResponse
-	(*SetStripeConnectionDataResponse)(nil),  // 16: api.v2.SetStripeConnectionDataResponse
-	(*DeleteAccountResponse)(nil),            // 17: api.v2.DeleteAccountResponse
+	(*UpdateEmailRequest)(nil),               // 4: api.v2.UpdateEmailRequest
+	(*ForgotPasswordRequest)(nil),            // 5: api.v2.ForgotPasswordRequest
+	(*ResetPasswordRequest)(nil),             // 6: api.v2.ResetPasswordRequest
+	(*SetDiscordConnectionDataRequest)(nil),  // 7: api.v2.SetDiscordConnectionDataRequest
+	(*SetStripeConnectionDataRequest)(nil),   // 8: api.v2.SetStripeConnectionDataRequest
+	(*DeleteAccountRequest)(nil),             // 9: api.v2.DeleteAccountRequest
+	(*RegisterResponse)(nil),                 // 10: api.v2.RegisterResponse
+	(*LoginResponse)(nil),                    // 11: api.v2.LoginResponse
+	(*GetUserDataResponse)(nil),              // 12: api.v2.GetUserDataResponse
+	(*UpdateUserDataResponse)(nil),           // 13: api.v2.UpdateUserDataResponse
+	(*UpdateEmailResponse)(nil),              // 14: api.v2.UpdateEmailResponse
+	(*ForgotPasswordResponse)(nil),           // 15: api.v2.ForgotPasswordResponse
+	(*ResetPasswordResponse)(nil),            // 16: api.v2.ResetPasswordResponse
+	(*SetDiscordConnectionDataResponse)(nil), // 17: api.v2.SetDiscordConnectionDataResponse
+	(*SetStripeConnectionDataResponse)(nil),  // 18: api.v2.SetStripeConnectionDataResponse
+	(*DeleteAccountResponse)(nil),            // 19: api.v2.DeleteAccountResponse
 }
 var file_api_v2_api_service_proto_depIdxs = []int32{
 	0,  // 0: api.v2.ApiService.Register:input_type -> api.v2.RegisterRequest
 	1,  // 1: api.v2.ApiService.Login:input_type -> api.v2.LoginRequest
 	2,  // 2: api.v2.ApiService.GetUserData:input_type -> api.v2.GetUserDataRequest
 	3,  // 3: api.v2.ApiService.UpdateUserData:input_type -> api.v2.UpdateUserDataRequest
-	4,  // 4: api.v2.ApiService.ForgotPassword:input_type -> api.v2.ForgotPasswordRequest
-	5,  // 5: api.v2.ApiService.ResetPassword:input_type -> api.v2.ResetPasswordRequest
-	6,  // 6: api.v2.ApiService.SetDiscordConnectionData:input_type -> api.v2.SetDiscordConnectionDataRequest
-	7,  // 7: api.v2.ApiService.SetStripeConnectionData:input_type -> api.v2.SetStripeConnectionDataRequest
-	8,  // 8: api.v2.ApiService.DeleteAccount:input_type -> api.v2.DeleteAccountRequest
-	9,  // 9: api.v2.ApiService.Register:output_type -> api.v2.RegisterResponse
-	10, // 10: api.v2.ApiService.Login:output_type -> api.v2.LoginResponse
-	11, // 11: api.v2.ApiService.GetUserData:output_type -> api.v2.GetUserDataResponse
-	12, // 12: api.v2.ApiService.UpdateUserData:output_type -> api.v2.UpdateUserDataResponse
-	13, // 13: api.v2.ApiService.ForgotPassword:output_type -> api.v2.ForgotPasswordResponse
-	14, // 14: api.v2.ApiService.ResetPassword:output_type -> api.v2.ResetPasswordResponse
-	15, // 15: api.v2.ApiService.SetDiscordConnectionData:output_type -> api.v2.SetDiscordConnectionDataResponse
-	16, // 16: api.v2.ApiService.SetStripeConnectionData:output_type -> api.v2.SetStripeConnectionDataResponse
-	17, // 17: api.v2.ApiService.DeleteAccount:output_type -> api.v2.DeleteAccountResponse
-	9,  // [9:18] is the sub-list for method output_type
-	0,  // [0:9] is the sub-list for method input_type
+	4,  // 4: api.v2.ApiService.UpdateEmail:input_type -> api.v2.UpdateEmailRequest
+	5,  // 5: api.v2.ApiService.ForgotPassword:input_type -> api.v2.ForgotPasswordRequest
+	6,  // 6: api.v2.ApiService.ResetPassword:input_type -> api.v2.ResetPasswordRequest
+	7,  // 7: api.v2.ApiService.SetDiscordConnectionData:input_type -> api.v2.SetDiscordConnectionDataRequest
+	8,  // 8: api.v2.ApiService.SetStripeConnectionData:input_type -> api.v2.SetStripeConnectionDataRequest
+	9,  // 9: api.v2.ApiService.DeleteAccount:input_type -> api.v2.DeleteAccountRequest
+	10, // 10: api.v2.ApiService.Register:output_type -> api.v2.RegisterResponse
+	11, // 11: api.v2.ApiService.Login:output_type -> api.v2.LoginResponse
+	12, // 12: api.v2.ApiService.GetUserData:output_type -> api.v2.GetUserDataResponse
+	13, // 13: api.v2.ApiService.UpdateUserData:output_type -> api.v2.UpdateUserDataResponse
+	14, // 14: api.v2.ApiService.UpdateEmail:output_type -> api.v2.UpdateEmailResponse
+	15, // 15: api.v2.ApiService.ForgotPassword:output_type -> api.v2.ForgotPasswordResponse
+	16, // 16: api.v2.ApiService.ResetPassword:output_type -> api.v2.ResetPasswordResponse
+	17, // 17: api.v2.ApiService.SetDiscordConnectionData:output_type -> api.v2.SetDiscordConnectionDataResponse
+	18, // 18: api.v2.ApiService.SetStripeConnectionData:output_type -> api.v2.SetStripeConnectionDataResponse
+	19, // 19: api.v2.ApiService.DeleteAccount:output_type -> api.v2.DeleteAccountResponse
+	10, // [10:20] is the sub-list for method output_type
+	0,  // [0:10] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -98,6 +103,7 @@ func file_api_v2_api_service_proto_init() {
 	file_api_v2_reset_password_rpc_proto_init()
 	file_api_v2_set_discord_connection_data_rpc_proto_init()
 	file_api_v2_set_stripe_connection_data_rpc_proto_init()
+	file_api_v2_update_email_rpc_proto_init()
 	file_api_v2_update_user_data_rpc_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

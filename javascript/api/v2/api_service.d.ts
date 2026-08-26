@@ -7,6 +7,7 @@ import { RegisterRequest, RegisterResponse } from "./register_rpc";
 import { ResetPasswordRequest, ResetPasswordResponse } from "./reset_password_rpc";
 import { SetDiscordConnectionDataRequest, SetDiscordConnectionDataResponse } from "./set_discord_connection_data_rpc";
 import { SetStripeConnectionDataRequest, SetStripeConnectionDataResponse } from "./set_stripe_connection_data_rpc";
+import { UpdateEmailRequest, UpdateEmailResponse } from "./update_email_rpc";
 import { UpdateUserDataRequest, UpdateUserDataResponse } from "./update_user_data_rpc";
 export declare const protobufPackage = "api.v2";
 export type ApiServiceDefinition = typeof ApiServiceDefinition;
@@ -43,6 +44,14 @@ export declare const ApiServiceDefinition: {
             readonly requestType: import("./update_user_data_rpc").MessageFns<UpdateUserDataRequest>;
             readonly requestStream: false;
             readonly responseType: import("./update_user_data_rpc").MessageFns<UpdateUserDataResponse>;
+            readonly responseStream: false;
+            readonly options: {};
+        };
+        readonly updateEmail: {
+            readonly name: "UpdateEmail";
+            readonly requestType: import("./update_email_rpc").MessageFns<UpdateEmailRequest>;
+            readonly requestStream: false;
+            readonly responseType: import("./update_email_rpc").MessageFns<UpdateEmailResponse>;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -93,6 +102,7 @@ export interface ApiServiceImplementation<CallContextExt = {}> {
     login(request: LoginRequest, context: CallContext & CallContextExt): Promise<DeepPartial<LoginResponse>>;
     getUserData(request: GetUserDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetUserDataResponse>>;
     updateUserData(request: UpdateUserDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateUserDataResponse>>;
+    updateEmail(request: UpdateEmailRequest, context: CallContext & CallContextExt): Promise<DeepPartial<UpdateEmailResponse>>;
     forgotPassword(request: ForgotPasswordRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ForgotPasswordResponse>>;
     resetPassword(request: ResetPasswordRequest, context: CallContext & CallContextExt): Promise<DeepPartial<ResetPasswordResponse>>;
     setDiscordConnectionData(request: SetDiscordConnectionDataRequest, context: CallContext & CallContextExt): Promise<DeepPartial<SetDiscordConnectionDataResponse>>;
@@ -104,6 +114,7 @@ export interface ApiServiceClient<CallOptionsExt = {}> {
     login(request: DeepPartial<LoginRequest>, options?: CallOptions & CallOptionsExt): Promise<LoginResponse>;
     getUserData(request: DeepPartial<GetUserDataRequest>, options?: CallOptions & CallOptionsExt): Promise<GetUserDataResponse>;
     updateUserData(request: DeepPartial<UpdateUserDataRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateUserDataResponse>;
+    updateEmail(request: DeepPartial<UpdateEmailRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateEmailResponse>;
     forgotPassword(request: DeepPartial<ForgotPasswordRequest>, options?: CallOptions & CallOptionsExt): Promise<ForgotPasswordResponse>;
     resetPassword(request: DeepPartial<ResetPasswordRequest>, options?: CallOptions & CallOptionsExt): Promise<ResetPasswordResponse>;
     setDiscordConnectionData(request: DeepPartial<SetDiscordConnectionDataRequest>, options?: CallOptions & CallOptionsExt): Promise<SetDiscordConnectionDataResponse>;
