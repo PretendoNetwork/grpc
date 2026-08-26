@@ -32,6 +32,7 @@ export interface GetUserDataResponse {
   connections: UserConnections | undefined;
   marketingFlag: boolean;
   region: number;
+  emailValidated: boolean;
 }
 
 function createBaseGetUserDataRequest(): GetUserDataRequest {
@@ -96,6 +97,7 @@ function createBaseGetUserDataResponse(): GetUserDataResponse {
     connections: undefined,
     marketingFlag: false,
     region: 0,
+    emailValidated: false,
   };
 }
 
@@ -151,6 +153,9 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
     }
     if (message.region !== 0) {
       writer.uint32(136).uint32(message.region);
+    }
+    if (message.emailValidated !== false) {
+      writer.uint32(144).bool(message.emailValidated);
     }
     return writer;
   },
@@ -298,6 +303,14 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
           message.region = reader.uint32();
           continue;
         }
+        case 18: {
+          if (tag !== 144) {
+            break;
+          }
+
+          message.emailValidated = reader.bool();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -326,6 +339,7 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
       connections: isSet(object.connections) ? UserConnections.fromJSON(object.connections) : undefined,
       marketingFlag: isSet(object.marketingFlag) ? globalThis.Boolean(object.marketingFlag) : false,
       region: isSet(object.region) ? globalThis.Number(object.region) : 0,
+      emailValidated: isSet(object.emailValidated) ? globalThis.Boolean(object.emailValidated) : false,
     };
   },
 
@@ -382,6 +396,9 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
     if (message.region !== 0) {
       obj.region = Math.round(message.region);
     }
+    if (message.emailValidated !== false) {
+      obj.emailValidated = message.emailValidated;
+    }
     return obj;
   },
 
@@ -409,6 +426,7 @@ export const GetUserDataResponse: MessageFns<GetUserDataResponse> = {
       : undefined;
     message.marketingFlag = object.marketingFlag ?? false;
     message.region = object.region ?? 0;
+    message.emailValidated = object.emailValidated ?? false;
     return message;
   },
 };

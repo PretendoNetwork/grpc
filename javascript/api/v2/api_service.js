@@ -16,6 +16,7 @@ const set_discord_connection_data_rpc_1 = require("./set_discord_connection_data
 const set_stripe_connection_data_rpc_1 = require("./set_stripe_connection_data_rpc");
 const update_email_rpc_1 = require("./update_email_rpc");
 const update_user_data_rpc_1 = require("./update_user_data_rpc");
+const verify_email_rpc_1 = require("./verify_email_rpc");
 exports.protobufPackage = "api.v2";
 exports.ApiServiceDefinition = {
     name: "ApiService",
@@ -58,6 +59,14 @@ exports.ApiServiceDefinition = {
             requestType: update_email_rpc_1.UpdateEmailRequest,
             requestStream: false,
             responseType: update_email_rpc_1.UpdateEmailResponse,
+            responseStream: false,
+            options: {},
+        },
+        verifyEmail: {
+            name: "VerifyEmail",
+            requestType: verify_email_rpc_1.VerifyEmailRequest,
+            requestStream: false,
+            responseType: verify_email_rpc_1.VerifyEmailResponse,
             responseStream: false,
             options: {},
         },

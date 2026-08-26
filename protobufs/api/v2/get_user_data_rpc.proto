@@ -25,4 +25,5 @@ message GetUserDataResponse {
   UserConnections connections = 15;
   bool marketing_flag = 16;
   uint32 region = 17;
+  bool email_validated = 18;
 }

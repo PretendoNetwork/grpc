@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package api.v2;
+
+message VerifyEmailRequest {
+  string token = 1;
+}
+
+message VerifyEmailResponse {}
