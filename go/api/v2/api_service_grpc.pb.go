@@ -24,6 +24,7 @@ const (
 	ApiService_GetUserData_FullMethodName              = "/api.v2.ApiService/GetUserData"
 	ApiService_UpdateUserData_FullMethodName           = "/api.v2.ApiService/UpdateUserData"
 	ApiService_UpdateEmail_FullMethodName              = "/api.v2.ApiService/UpdateEmail"
+	ApiService_VerifyEmail_FullMethodName              = "/api.v2.ApiService/VerifyEmail"
 	ApiService_ForgotPassword_FullMethodName           = "/api.v2.ApiService/ForgotPassword"
 	ApiService_ResetPassword_FullMethodName            = "/api.v2.ApiService/ResetPassword"
 	ApiService_SetDiscordConnectionData_FullMethodName = "/api.v2.ApiService/SetDiscordConnectionData"
@@ -40,6 +41,7 @@ type ApiServiceClient interface {
 	GetUserData(ctx context.Context, in *GetUserDataRequest, opts ...grpc.CallOption) (*GetUserDataResponse, error)
 	UpdateUserData(ctx context.Context, in *UpdateUserDataRequest, opts ...grpc.CallOption) (*UpdateUserDataResponse, error)
 	UpdateEmail(ctx context.Context, in *UpdateEmailRequest, opts ...grpc.CallOption) (*UpdateEmailResponse, error)
+	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 	SetDiscordConnectionData(ctx context.Context, in *SetDiscordConnectionDataRequest, opts ...grpc.CallOption) (*SetDiscordConnectionDataResponse, error)
@@ -105,6 +107,16 @@ func (c *apiServiceClient) UpdateEmail(ctx context.Context, in *UpdateEmailReque
 	return out, nil
 }
 
+func (c *apiServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerifyEmailResponse)
+	err := c.cc.Invoke(ctx, ApiService_VerifyEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ForgotPasswordResponse)
@@ -164,6 +176,7 @@ type ApiServiceServer interface {
 	GetUserData(context.Context, *GetUserDataRequest) (*GetUserDataResponse, error)
 	UpdateUserData(context.Context, *UpdateUserDataRequest) (*UpdateUserDataResponse, error)
 	UpdateEmail(context.Context, *UpdateEmailRequest) (*UpdateEmailResponse, error)
+	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	SetDiscordConnectionData(context.Context, *SetDiscordConnectionDataRequest) (*SetDiscordConnectionDataResponse, error)
@@ -193,6 +206,9 @@ func (UnimplementedApiServiceServer) UpdateUserData(context.Context, *UpdateUser
 }
 func (UnimplementedApiServiceServer) UpdateEmail(context.Context, *UpdateEmailRequest) (*UpdateEmailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateEmail not implemented")
+}
+func (UnimplementedApiServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method VerifyEmail not implemented")
 }
 func (UnimplementedApiServiceServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ForgotPassword not implemented")
@@ -320,6 +336,24 @@ func _ApiService_UpdateEmail_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).VerifyEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_VerifyEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ForgotPasswordRequest)
 	if err := dec(in); err != nil {
@@ -436,6 +470,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateEmail",
 			Handler:    _ApiService_UpdateEmail_Handler,
+		},
+		{
+			MethodName: "VerifyEmail",
+			Handler:    _ApiService_VerifyEmail_Handler,
 		},
 		{
 			MethodName: "ForgotPassword",

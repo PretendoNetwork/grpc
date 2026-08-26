@@ -76,6 +76,7 @@ type GetUserDataResponse struct {
 	Connections       *UserConnections       `protobuf:"bytes,15,opt,name=connections,proto3" json:"connections,omitempty"`
 	MarketingFlag     bool                   `protobuf:"varint,16,opt,name=marketing_flag,json=marketingFlag,proto3" json:"marketing_flag,omitempty"`
 	Region            uint32                 `protobuf:"varint,17,opt,name=region,proto3" json:"region,omitempty"`
+	EmailValidated    bool                   `protobuf:"varint,18,opt,name=email_validated,json=emailValidated,proto3" json:"email_validated,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -229,12 +230,19 @@ func (x *GetUserDataResponse) GetRegion() uint32 {
 	return 0
 }
 
+func (x *GetUserDataResponse) GetEmailValidated() bool {
+	if x != nil {
+		return x.EmailValidated
+	}
+	return false
+}
+
 var File_api_v2_get_user_data_rpc_proto protoreflect.FileDescriptor
 
 const file_api_v2_get_user_data_rpc_proto_rawDesc = "" +
 	"\n" +
 	"\x1eapi/v2/get_user_data_rpc.proto\x12\x06api.v2\x1a\x10api/v2/mii.proto\x1a\x1dapi/v2/user_connections.proto\"\x14\n" +
-	"\x12GetUserDataRequest\"\xbc\x04\n" +
+	"\x12GetUserDataRequest\"\xe5\x04\n" +
 	"\x13GetUserDataResponse\x12\x18\n" +
 	"\adeleted\x18\x01 \x01(\bR\adeleted\x12#\n" +
 	"\rcreation_date\x18\x02 \x01(\tR\fcreationDate\x12!\n" +
@@ -253,7 +261,8 @@ const file_api_v2_get_user_data_rpc_proto_rawDesc = "" +
 	"\remail_address\x18\x0e \x01(\tR\femailAddress\x129\n" +
 	"\vconnections\x18\x0f \x01(\v2\x17.api.v2.UserConnectionsR\vconnections\x12%\n" +
 	"\x0emarketing_flag\x18\x10 \x01(\bR\rmarketingFlag\x12\x16\n" +
-	"\x06region\x18\x11 \x01(\rR\x06regionB\x8b\x01\n" +
+	"\x06region\x18\x11 \x01(\rR\x06region\x12'\n" +
+	"\x0femail_validated\x18\x12 \x01(\bR\x0eemailValidatedB\x8b\x01\n" +
 	"\n" +
 	"com.api.v2B\x13GetUserDataRpcProtoP\x01Z/github.com/PretendoNetwork/grpc/go/api/v2;apiv2\xa2\x02\x03AXX\xaa\x02\x06Api.V2\xca\x02\x06Api\\V2\xe2\x02\x12Api\\V2\\GPBMetadata\xea\x02\aApi::V2b\x06proto3"
 
