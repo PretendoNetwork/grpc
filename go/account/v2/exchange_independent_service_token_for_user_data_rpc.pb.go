@@ -179,10 +179,10 @@ var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_m
 var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_goTypes = []any{
 	(*ExchangeIndependentServiceTokenForUserDataRequest)(nil),  // 0: account.v2.ExchangeIndependentServiceTokenForUserDataRequest
 	(*ExchangeIndependentServiceTokenForUserDataResponse)(nil), // 1: account.v2.ExchangeIndependentServiceTokenForUserDataResponse
-	(*GetPNIDResponse)(nil),                                    // 2: account.v2.GetPNIDResponse
-	(*NEXAccount)(nil),                                         // 3: account.v2.NEXAccount
-	(*TokenInfo)(nil),                                          // 4: account.v2.TokenInfo
-	(*BasicUserInfo)(nil),                                      // 5: account.v2.BasicUserInfo
+	(*GetPNIDResponse)(nil), // 2: account.v2.GetPNIDResponse
+	(*NEXAccount)(nil),      // 3: account.v2.NEXAccount
+	(*TokenInfo)(nil),       // 4: account.v2.TokenInfo
+	(*BasicUserInfo)(nil),   // 5: account.v2.BasicUserInfo
 }
 var file_account_v2_exchange_independent_service_token_for_user_data_rpc_proto_depIdxs = []int32{
 	2, // 0: account.v2.ExchangeIndependentServiceTokenForUserDataResponse.pnid:type_name -> account.v2.GetPNIDResponse

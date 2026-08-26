@@ -14,6 +14,7 @@ const register_rpc_1 = require("./register_rpc");
 const reset_password_rpc_1 = require("./reset_password_rpc");
 const set_discord_connection_data_rpc_1 = require("./set_discord_connection_data_rpc");
 const set_stripe_connection_data_rpc_1 = require("./set_stripe_connection_data_rpc");
+const update_email_rpc_1 = require("./update_email_rpc");
 const update_user_data_rpc_1 = require("./update_user_data_rpc");
 exports.protobufPackage = "api.v2";
 exports.ApiServiceDefinition = {
@@ -49,6 +50,14 @@ exports.ApiServiceDefinition = {
             requestType: update_user_data_rpc_1.UpdateUserDataRequest,
             requestStream: false,
             responseType: update_user_data_rpc_1.UpdateUserDataResponse,
+            responseStream: false,
+            options: {},
+        },
+        updateEmail: {
+            name: "UpdateEmail",
+            requestType: update_email_rpc_1.UpdateEmailRequest,
+            requestStream: false,
+            responseType: update_email_rpc_1.UpdateEmailResponse,
             responseStream: false,
             options: {},
         },
