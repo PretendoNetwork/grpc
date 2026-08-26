@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+import "miiverse/v2/post.proto";
+
+message GetPostRequest {
+  string post_id = 1;
+}
+
+message GetPostResponse {
+  PostData post = 1;
+}

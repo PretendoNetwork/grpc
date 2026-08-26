@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package miiverse.v2;
+
+import "miiverse/v2/community.proto";
+
+message GetCommunityByTitleIDRequest {
+  string title_id = 1;
+}
+
+message GetCommunityByTitleIDResponse {
+  CommunityData community = 1;
+}
