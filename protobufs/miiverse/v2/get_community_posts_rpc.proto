@@ -16,6 +16,7 @@ message GetCommunityPostsRequest {
   optional uint32 limit = 9;
   optional string before_date = 10;
   optional string after_date = 11;
+  optional uint32 offset = 12;
 }
 
 message GetCommunityPostsResponse {

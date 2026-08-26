@@ -14,6 +14,7 @@ message GetUserPostsRequest {
   optional uint32 limit = 7;
   optional string before_date = 8;
   optional string after_date = 9;
+  optional uint32 offset = 10;
 }
 
 message GetUserPostsResponse {

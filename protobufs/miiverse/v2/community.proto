@@ -2,48 +2,18 @@ syntax = "proto3";
 
 package miiverse.v2;
 
-message CommunityPermissions {
-  bool open = 1;
-  uint32 minimum_new_post_access_level = 2;
-  uint32 minimum_new_comment_access_level = 3;
-  uint32 minimum_new_community_access_level = 4;
-}
-
-message CommunityIcons {
-  string size_32 = 1;
-  string size_48 = 2;
-  string size_64 = 3;
-  string size_96 = 4;
-  string size_128 = 5;
-}
-
 message CommunityData {
-  string app_data = 1;
-  string community_id = 2;
-  string olive_community_id = 3;
-  string name = 4;
-  string description = 5;
-  uint32 platform_id = 6;
-  optional uint32 pid = 7; // Owner PID
-  string icon = 8;
-  CommunityIcons icon_paths = 9;
-  string ctr_header = 10;
-  string wup_header = 11;
-  optional string mii = 12;
-  optional string screen_name = 13;
-  string created_at = 14;
-  uint32 type = 15;
-  string parent = 16;
-  repeated string title_ids = 17;
-  uint32 empathy_count = 18;
-  uint32 followers = 19;
-  bool open = 20;
-  bool allows_comments = 21;
-  repeated uint32 admins = 22;
-  bool has_shop_page = 23;
-  bool is_recommended = 24;
-  repeated uint32 user_favorites = 25;
-  CommunityPermissions permissions = 26;
-  string shot_mode = 27;
-  repeated string shot_extra_title_id = 28;
+  string community_id = 1;
+	string name = 2;
+	string description = 3;
+	map<string, string> icons = 4;
+	uint32 pid = 5; // Owner PID
+	string app_data = 6;
+	bool is_user_community = 7;
+  optional string screen_name = 8;
+  optional string mii = 9;
+  string created_at = 10;
+  bool has_shop_page = 11;
+  bool is_recommended = 12;
+  repeated string title_id = 13;
 }
