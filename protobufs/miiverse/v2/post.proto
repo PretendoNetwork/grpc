@@ -56,6 +56,7 @@ message PostPainting {
 message PostScreenshot {
   uint32 size = 1;
   string url = 2;
+  optional string screenshot_aspect = 3;
 }
 
 message PostTopicTag {
