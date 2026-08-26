@@ -19,8 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MiiverseService_DeleteAccountData_FullMethodName = "/miiverse.v2.MiiverseService/DeleteAccountData"
-	MiiverseService_SMMRequestPostId_FullMethodName  = "/miiverse.v2.MiiverseService/SMMRequestPostId"
+	MiiverseService_DeleteAccountData_FullMethodName     = "/miiverse.v2.MiiverseService/DeleteAccountData"
+	MiiverseService_SMMRequestPostId_FullMethodName      = "/miiverse.v2.MiiverseService/SMMRequestPostId"
+	MiiverseService_GetCommunityByID_FullMethodName      = "/miiverse.v2.MiiverseService/GetCommunityByID"
+	MiiverseService_GetCommunityByTitleID_FullMethodName = "/miiverse.v2.MiiverseService/GetCommunityByTitleID"
+	MiiverseService_GetCommunityPosts_FullMethodName     = "/miiverse.v2.MiiverseService/GetCommunityPosts"
+	MiiverseService_GetPost_FullMethodName               = "/miiverse.v2.MiiverseService/GetPost"
+	MiiverseService_GetPostReplies_FullMethodName        = "/miiverse.v2.MiiverseService/GetPostReplies"
+	MiiverseService_GetUserPosts_FullMethodName          = "/miiverse.v2.MiiverseService/GetUserPosts"
 )
 
 // MiiverseServiceClient is the client API for MiiverseService service.
@@ -30,6 +36,12 @@ type MiiverseServiceClient interface {
 	DeleteAccountData(ctx context.Context, in *DeleteAccountDataRequest, opts ...grpc.CallOption) (*DeleteAccountDataResponse, error)
 	// Used by Super Mario Maker
 	SMMRequestPostId(ctx context.Context, in *SMMRequestPostIdRequest, opts ...grpc.CallOption) (*SMMRequestPostIdResponse, error)
+	GetCommunityByID(ctx context.Context, in *GetCommunityByIDRequest, opts ...grpc.CallOption) (*GetCommunityByIDResponse, error)
+	GetCommunityByTitleID(ctx context.Context, in *GetCommunityByTitleIDRequest, opts ...grpc.CallOption) (*GetCommunityByTitleIDResponse, error)
+	GetCommunityPosts(ctx context.Context, in *GetCommunityPostsRequest, opts ...grpc.CallOption) (*GetCommunityPostsResponse, error)
+	GetPost(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*GetPostResponse, error)
+	GetPostReplies(ctx context.Context, in *GetPostRepliesRequest, opts ...grpc.CallOption) (*GetPostRepliesResponse, error)
+	GetUserPosts(ctx context.Context, in *GetUserPostsRequest, opts ...grpc.CallOption) (*GetUserPostsResponse, error)
 }
 
 type miiverseServiceClient struct {
@@ -60,6 +72,66 @@ func (c *miiverseServiceClient) SMMRequestPostId(ctx context.Context, in *SMMReq
 	return out, nil
 }
 
+func (c *miiverseServiceClient) GetCommunityByID(ctx context.Context, in *GetCommunityByIDRequest, opts ...grpc.CallOption) (*GetCommunityByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCommunityByIDResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_GetCommunityByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *miiverseServiceClient) GetCommunityByTitleID(ctx context.Context, in *GetCommunityByTitleIDRequest, opts ...grpc.CallOption) (*GetCommunityByTitleIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCommunityByTitleIDResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_GetCommunityByTitleID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *miiverseServiceClient) GetCommunityPosts(ctx context.Context, in *GetCommunityPostsRequest, opts ...grpc.CallOption) (*GetCommunityPostsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCommunityPostsResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_GetCommunityPosts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *miiverseServiceClient) GetPost(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*GetPostResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPostResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_GetPost_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *miiverseServiceClient) GetPostReplies(ctx context.Context, in *GetPostRepliesRequest, opts ...grpc.CallOption) (*GetPostRepliesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPostRepliesResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_GetPostReplies_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *miiverseServiceClient) GetUserPosts(ctx context.Context, in *GetUserPostsRequest, opts ...grpc.CallOption) (*GetUserPostsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserPostsResponse)
+	err := c.cc.Invoke(ctx, MiiverseService_GetUserPosts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MiiverseServiceServer is the server API for MiiverseService service.
 // All implementations must embed UnimplementedMiiverseServiceServer
 // for forward compatibility.
@@ -67,6 +139,12 @@ type MiiverseServiceServer interface {
 	DeleteAccountData(context.Context, *DeleteAccountDataRequest) (*DeleteAccountDataResponse, error)
 	// Used by Super Mario Maker
 	SMMRequestPostId(context.Context, *SMMRequestPostIdRequest) (*SMMRequestPostIdResponse, error)
+	GetCommunityByID(context.Context, *GetCommunityByIDRequest) (*GetCommunityByIDResponse, error)
+	GetCommunityByTitleID(context.Context, *GetCommunityByTitleIDRequest) (*GetCommunityByTitleIDResponse, error)
+	GetCommunityPosts(context.Context, *GetCommunityPostsRequest) (*GetCommunityPostsResponse, error)
+	GetPost(context.Context, *GetPostRequest) (*GetPostResponse, error)
+	GetPostReplies(context.Context, *GetPostRepliesRequest) (*GetPostRepliesResponse, error)
+	GetUserPosts(context.Context, *GetUserPostsRequest) (*GetUserPostsResponse, error)
 	mustEmbedUnimplementedMiiverseServiceServer()
 }
 
@@ -82,6 +160,24 @@ func (UnimplementedMiiverseServiceServer) DeleteAccountData(context.Context, *De
 }
 func (UnimplementedMiiverseServiceServer) SMMRequestPostId(context.Context, *SMMRequestPostIdRequest) (*SMMRequestPostIdResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SMMRequestPostId not implemented")
+}
+func (UnimplementedMiiverseServiceServer) GetCommunityByID(context.Context, *GetCommunityByIDRequest) (*GetCommunityByIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCommunityByID not implemented")
+}
+func (UnimplementedMiiverseServiceServer) GetCommunityByTitleID(context.Context, *GetCommunityByTitleIDRequest) (*GetCommunityByTitleIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCommunityByTitleID not implemented")
+}
+func (UnimplementedMiiverseServiceServer) GetCommunityPosts(context.Context, *GetCommunityPostsRequest) (*GetCommunityPostsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCommunityPosts not implemented")
+}
+func (UnimplementedMiiverseServiceServer) GetPost(context.Context, *GetPostRequest) (*GetPostResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPost not implemented")
+}
+func (UnimplementedMiiverseServiceServer) GetPostReplies(context.Context, *GetPostRepliesRequest) (*GetPostRepliesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPostReplies not implemented")
+}
+func (UnimplementedMiiverseServiceServer) GetUserPosts(context.Context, *GetUserPostsRequest) (*GetUserPostsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserPosts not implemented")
 }
 func (UnimplementedMiiverseServiceServer) mustEmbedUnimplementedMiiverseServiceServer() {}
 func (UnimplementedMiiverseServiceServer) testEmbeddedByValue()                         {}
@@ -140,6 +236,114 @@ func _MiiverseService_SMMRequestPostId_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MiiverseService_GetCommunityByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommunityByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).GetCommunityByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_GetCommunityByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).GetCommunityByID(ctx, req.(*GetCommunityByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MiiverseService_GetCommunityByTitleID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommunityByTitleIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).GetCommunityByTitleID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_GetCommunityByTitleID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).GetCommunityByTitleID(ctx, req.(*GetCommunityByTitleIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MiiverseService_GetCommunityPosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommunityPostsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).GetCommunityPosts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_GetCommunityPosts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).GetCommunityPosts(ctx, req.(*GetCommunityPostsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MiiverseService_GetPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).GetPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_GetPost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).GetPost(ctx, req.(*GetPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MiiverseService_GetPostReplies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPostRepliesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).GetPostReplies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_GetPostReplies_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).GetPostReplies(ctx, req.(*GetPostRepliesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MiiverseService_GetUserPosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPostsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MiiverseServiceServer).GetUserPosts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MiiverseService_GetUserPosts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MiiverseServiceServer).GetUserPosts(ctx, req.(*GetUserPostsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MiiverseService_ServiceDesc is the grpc.ServiceDesc for MiiverseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -154,6 +358,30 @@ var MiiverseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SMMRequestPostId",
 			Handler:    _MiiverseService_SMMRequestPostId_Handler,
+		},
+		{
+			MethodName: "GetCommunityByID",
+			Handler:    _MiiverseService_GetCommunityByID_Handler,
+		},
+		{
+			MethodName: "GetCommunityByTitleID",
+			Handler:    _MiiverseService_GetCommunityByTitleID_Handler,
+		},
+		{
+			MethodName: "GetCommunityPosts",
+			Handler:    _MiiverseService_GetCommunityPosts_Handler,
+		},
+		{
+			MethodName: "GetPost",
+			Handler:    _MiiverseService_GetPost_Handler,
+		},
+		{
+			MethodName: "GetPostReplies",
+			Handler:    _MiiverseService_GetPostReplies_Handler,
+		},
+		{
+			MethodName: "GetUserPosts",
+			Handler:    _MiiverseService_GetUserPosts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

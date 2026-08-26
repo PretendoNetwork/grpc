@@ -7,6 +7,12 @@
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
 import { DeleteAccountDataRequest, DeleteAccountDataResponse } from "./delete_account_data_rpc";
+import { GetCommunityByIDRequest, GetCommunityByIDResponse } from "./get_community_by_id_rpc";
+import { GetCommunityByTitleIDRequest, GetCommunityByTitleIDResponse } from "./get_community_by_title_id_rpc";
+import { GetCommunityPostsRequest, GetCommunityPostsResponse } from "./get_community_posts_rpc";
+import { GetPostRepliesRequest, GetPostRepliesResponse } from "./get_post_replies_rpc";
+import { GetPostRequest, GetPostResponse } from "./get_post_rpc";
+import { GetUserPostsRequest, GetUserPostsResponse } from "./get_user_posts_rpc";
 import { SMMRequestPostIdRequest, SMMRequestPostIdResponse } from "./smm_request_post_id_rpc";
 
 export const protobufPackage = "miiverse.v2";
@@ -33,6 +39,54 @@ export const MiiverseServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    getCommunityByID: {
+      name: "GetCommunityByID",
+      requestType: GetCommunityByIDRequest,
+      requestStream: false,
+      responseType: GetCommunityByIDResponse,
+      responseStream: false,
+      options: {},
+    },
+    getCommunityByTitleID: {
+      name: "GetCommunityByTitleID",
+      requestType: GetCommunityByTitleIDRequest,
+      requestStream: false,
+      responseType: GetCommunityByTitleIDResponse,
+      responseStream: false,
+      options: {},
+    },
+    getCommunityPosts: {
+      name: "GetCommunityPosts",
+      requestType: GetCommunityPostsRequest,
+      requestStream: false,
+      responseType: GetCommunityPostsResponse,
+      responseStream: false,
+      options: {},
+    },
+    getPost: {
+      name: "GetPost",
+      requestType: GetPostRequest,
+      requestStream: false,
+      responseType: GetPostResponse,
+      responseStream: false,
+      options: {},
+    },
+    getPostReplies: {
+      name: "GetPostReplies",
+      requestType: GetPostRepliesRequest,
+      requestStream: false,
+      responseType: GetPostRepliesResponse,
+      responseStream: false,
+      options: {},
+    },
+    getUserPosts: {
+      name: "GetUserPosts",
+      requestType: GetUserPostsRequest,
+      requestStream: false,
+      responseType: GetUserPostsResponse,
+      responseStream: false,
+      options: {},
+    },
   },
 } as const;
 
@@ -46,6 +100,27 @@ export interface MiiverseServiceImplementation<CallContextExt = {}> {
     request: SMMRequestPostIdRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<SMMRequestPostIdResponse>>;
+  getCommunityByID(
+    request: GetCommunityByIDRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetCommunityByIDResponse>>;
+  getCommunityByTitleID(
+    request: GetCommunityByTitleIDRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetCommunityByTitleIDResponse>>;
+  getCommunityPosts(
+    request: GetCommunityPostsRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetCommunityPostsResponse>>;
+  getPost(request: GetPostRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetPostResponse>>;
+  getPostReplies(
+    request: GetPostRepliesRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetPostRepliesResponse>>;
+  getUserPosts(
+    request: GetUserPostsRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<GetUserPostsResponse>>;
 }
 
 export interface MiiverseServiceClient<CallOptionsExt = {}> {
@@ -58,6 +133,27 @@ export interface MiiverseServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<SMMRequestPostIdRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<SMMRequestPostIdResponse>;
+  getCommunityByID(
+    request: DeepPartial<GetCommunityByIDRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetCommunityByIDResponse>;
+  getCommunityByTitleID(
+    request: DeepPartial<GetCommunityByTitleIDRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetCommunityByTitleIDResponse>;
+  getCommunityPosts(
+    request: DeepPartial<GetCommunityPostsRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetCommunityPostsResponse>;
+  getPost(request: DeepPartial<GetPostRequest>, options?: CallOptions & CallOptionsExt): Promise<GetPostResponse>;
+  getPostReplies(
+    request: DeepPartial<GetPostRepliesRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetPostRepliesResponse>;
+  getUserPosts(
+    request: DeepPartial<GetUserPostsRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<GetUserPostsResponse>;
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
