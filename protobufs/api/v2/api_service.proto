@@ -18,6 +18,7 @@ service ApiService {
   rpc Login(LoginRequest) returns (LoginResponse) {}
   rpc GetUserData(GetUserDataRequest) returns (GetUserDataResponse) {}
   rpc UpdateUserData(UpdateUserDataRequest) returns (UpdateUserDataResponse) {}
+  rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse) {}
   rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
   rpc SetDiscordConnectionData(SetDiscordConnectionDataRequest) returns (SetDiscordConnectionDataResponse) {}
