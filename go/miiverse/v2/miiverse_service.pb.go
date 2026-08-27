@@ -24,28 +24,58 @@ var File_miiverse_v2_miiverse_service_proto protoreflect.FileDescriptor
 
 const file_miiverse_v2_miiverse_service_proto_rawDesc = "" +
 	"\n" +
-	"\"miiverse/v2/miiverse_service.proto\x12\vmiiverse.v2\x1a)miiverse/v2/delete_account_data_rpc.proto\x1a)miiverse/v2/smm_request_post_id_rpc.proto2\xda\x01\n" +
+	"\"miiverse/v2/miiverse_service.proto\x12\vmiiverse.v2\x1a)miiverse/v2/delete_account_data_rpc.proto\x1a)miiverse/v2/get_community_by_id_rpc.proto\x1a/miiverse/v2/get_community_by_title_id_rpc.proto\x1a)miiverse/v2/get_community_posts_rpc.proto\x1a&miiverse/v2/get_post_replies_rpc.proto\x1a\x1emiiverse/v2/get_post_rpc.proto\x1a$miiverse/v2/get_user_posts_rpc.proto\x1a)miiverse/v2/smm_request_post_id_rpc.proto2\x91\x06\n" +
 	"\x0fMiiverseService\x12d\n" +
 	"\x11DeleteAccountData\x12%.miiverse.v2.DeleteAccountDataRequest\x1a&.miiverse.v2.DeleteAccountDataResponse\"\x00\x12a\n" +
-	"\x10SMMRequestPostId\x12$.miiverse.v2.SMMRequestPostIdRequest\x1a%.miiverse.v2.SMMRequestPostIdResponse\"\x00B\xaf\x01\n" +
+	"\x10SMMRequestPostId\x12$.miiverse.v2.SMMRequestPostIdRequest\x1a%.miiverse.v2.SMMRequestPostIdResponse\"\x00\x12a\n" +
+	"\x10GetCommunityByID\x12$.miiverse.v2.GetCommunityByIDRequest\x1a%.miiverse.v2.GetCommunityByIDResponse\"\x00\x12p\n" +
+	"\x15GetCommunityByTitleID\x12).miiverse.v2.GetCommunityByTitleIDRequest\x1a*.miiverse.v2.GetCommunityByTitleIDResponse\"\x00\x12d\n" +
+	"\x11GetCommunityPosts\x12%.miiverse.v2.GetCommunityPostsRequest\x1a&.miiverse.v2.GetCommunityPostsResponse\"\x00\x12F\n" +
+	"\aGetPost\x12\x1b.miiverse.v2.GetPostRequest\x1a\x1c.miiverse.v2.GetPostResponse\"\x00\x12[\n" +
+	"\x0eGetPostReplies\x12\".miiverse.v2.GetPostRepliesRequest\x1a#.miiverse.v2.GetPostRepliesResponse\"\x00\x12U\n" +
+	"\fGetUserPosts\x12 .miiverse.v2.GetUserPostsRequest\x1a!.miiverse.v2.GetUserPostsResponse\"\x00B\xaf\x01\n" +
 	"\x0fcom.miiverse.v2B\x14MiiverseServiceProtoP\x01Z9github.com/PretendoNetwork/grpc/go/miiverse/v2;miiversev2\xa2\x02\x03MXX\xaa\x02\vMiiverse.V2\xca\x02\vMiiverse\\V2\xe2\x02\x17Miiverse\\V2\\GPBMetadata\xea\x02\fMiiverse::V2b\x06proto3"
 
 var file_miiverse_v2_miiverse_service_proto_goTypes = []any{
-	(*DeleteAccountDataRequest)(nil),  // 0: miiverse.v2.DeleteAccountDataRequest
-	(*SMMRequestPostIdRequest)(nil),   // 1: miiverse.v2.SMMRequestPostIdRequest
-	(*DeleteAccountDataResponse)(nil), // 2: miiverse.v2.DeleteAccountDataResponse
-	(*SMMRequestPostIdResponse)(nil),  // 3: miiverse.v2.SMMRequestPostIdResponse
+	(*DeleteAccountDataRequest)(nil),      // 0: miiverse.v2.DeleteAccountDataRequest
+	(*SMMRequestPostIdRequest)(nil),       // 1: miiverse.v2.SMMRequestPostIdRequest
+	(*GetCommunityByIDRequest)(nil),       // 2: miiverse.v2.GetCommunityByIDRequest
+	(*GetCommunityByTitleIDRequest)(nil),  // 3: miiverse.v2.GetCommunityByTitleIDRequest
+	(*GetCommunityPostsRequest)(nil),      // 4: miiverse.v2.GetCommunityPostsRequest
+	(*GetPostRequest)(nil),                // 5: miiverse.v2.GetPostRequest
+	(*GetPostRepliesRequest)(nil),         // 6: miiverse.v2.GetPostRepliesRequest
+	(*GetUserPostsRequest)(nil),           // 7: miiverse.v2.GetUserPostsRequest
+	(*DeleteAccountDataResponse)(nil),     // 8: miiverse.v2.DeleteAccountDataResponse
+	(*SMMRequestPostIdResponse)(nil),      // 9: miiverse.v2.SMMRequestPostIdResponse
+	(*GetCommunityByIDResponse)(nil),      // 10: miiverse.v2.GetCommunityByIDResponse
+	(*GetCommunityByTitleIDResponse)(nil), // 11: miiverse.v2.GetCommunityByTitleIDResponse
+	(*GetCommunityPostsResponse)(nil),     // 12: miiverse.v2.GetCommunityPostsResponse
+	(*GetPostResponse)(nil),               // 13: miiverse.v2.GetPostResponse
+	(*GetPostRepliesResponse)(nil),        // 14: miiverse.v2.GetPostRepliesResponse
+	(*GetUserPostsResponse)(nil),          // 15: miiverse.v2.GetUserPostsResponse
 }
 var file_miiverse_v2_miiverse_service_proto_depIdxs = []int32{
-	0, // 0: miiverse.v2.MiiverseService.DeleteAccountData:input_type -> miiverse.v2.DeleteAccountDataRequest
-	1, // 1: miiverse.v2.MiiverseService.SMMRequestPostId:input_type -> miiverse.v2.SMMRequestPostIdRequest
-	2, // 2: miiverse.v2.MiiverseService.DeleteAccountData:output_type -> miiverse.v2.DeleteAccountDataResponse
-	3, // 3: miiverse.v2.MiiverseService.SMMRequestPostId:output_type -> miiverse.v2.SMMRequestPostIdResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: miiverse.v2.MiiverseService.DeleteAccountData:input_type -> miiverse.v2.DeleteAccountDataRequest
+	1,  // 1: miiverse.v2.MiiverseService.SMMRequestPostId:input_type -> miiverse.v2.SMMRequestPostIdRequest
+	2,  // 2: miiverse.v2.MiiverseService.GetCommunityByID:input_type -> miiverse.v2.GetCommunityByIDRequest
+	3,  // 3: miiverse.v2.MiiverseService.GetCommunityByTitleID:input_type -> miiverse.v2.GetCommunityByTitleIDRequest
+	4,  // 4: miiverse.v2.MiiverseService.GetCommunityPosts:input_type -> miiverse.v2.GetCommunityPostsRequest
+	5,  // 5: miiverse.v2.MiiverseService.GetPost:input_type -> miiverse.v2.GetPostRequest
+	6,  // 6: miiverse.v2.MiiverseService.GetPostReplies:input_type -> miiverse.v2.GetPostRepliesRequest
+	7,  // 7: miiverse.v2.MiiverseService.GetUserPosts:input_type -> miiverse.v2.GetUserPostsRequest
+	8,  // 8: miiverse.v2.MiiverseService.DeleteAccountData:output_type -> miiverse.v2.DeleteAccountDataResponse
+	9,  // 9: miiverse.v2.MiiverseService.SMMRequestPostId:output_type -> miiverse.v2.SMMRequestPostIdResponse
+	10, // 10: miiverse.v2.MiiverseService.GetCommunityByID:output_type -> miiverse.v2.GetCommunityByIDResponse
+	11, // 11: miiverse.v2.MiiverseService.GetCommunityByTitleID:output_type -> miiverse.v2.GetCommunityByTitleIDResponse
+	12, // 12: miiverse.v2.MiiverseService.GetCommunityPosts:output_type -> miiverse.v2.GetCommunityPostsResponse
+	13, // 13: miiverse.v2.MiiverseService.GetPost:output_type -> miiverse.v2.GetPostResponse
+	14, // 14: miiverse.v2.MiiverseService.GetPostReplies:output_type -> miiverse.v2.GetPostRepliesResponse
+	15, // 15: miiverse.v2.MiiverseService.GetUserPosts:output_type -> miiverse.v2.GetUserPostsResponse
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_miiverse_v2_miiverse_service_proto_init() }
@@ -54,6 +84,12 @@ func file_miiverse_v2_miiverse_service_proto_init() {
 		return
 	}
 	file_miiverse_v2_delete_account_data_rpc_proto_init()
+	file_miiverse_v2_get_community_by_id_rpc_proto_init()
+	file_miiverse_v2_get_community_by_title_id_rpc_proto_init()
+	file_miiverse_v2_get_community_posts_rpc_proto_init()
+	file_miiverse_v2_get_post_replies_rpc_proto_init()
+	file_miiverse_v2_get_post_rpc_proto_init()
+	file_miiverse_v2_get_user_posts_rpc_proto_init()
 	file_miiverse_v2_smm_request_post_id_rpc_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

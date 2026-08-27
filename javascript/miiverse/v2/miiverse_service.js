@@ -7,6 +7,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MiiverseServiceDefinition = exports.protobufPackage = void 0;
 const delete_account_data_rpc_1 = require("./delete_account_data_rpc");
+const get_community_by_id_rpc_1 = require("./get_community_by_id_rpc");
+const get_community_by_title_id_rpc_1 = require("./get_community_by_title_id_rpc");
+const get_community_posts_rpc_1 = require("./get_community_posts_rpc");
+const get_post_replies_rpc_1 = require("./get_post_replies_rpc");
+const get_post_rpc_1 = require("./get_post_rpc");
+const get_user_posts_rpc_1 = require("./get_user_posts_rpc");
 const smm_request_post_id_rpc_1 = require("./smm_request_post_id_rpc");
 exports.protobufPackage = "miiverse.v2";
 exports.MiiverseServiceDefinition = {
@@ -27,6 +33,54 @@ exports.MiiverseServiceDefinition = {
             requestType: smm_request_post_id_rpc_1.SMMRequestPostIdRequest,
             requestStream: false,
             responseType: smm_request_post_id_rpc_1.SMMRequestPostIdResponse,
+            responseStream: false,
+            options: {},
+        },
+        getCommunityByID: {
+            name: "GetCommunityByID",
+            requestType: get_community_by_id_rpc_1.GetCommunityByIDRequest,
+            requestStream: false,
+            responseType: get_community_by_id_rpc_1.GetCommunityByIDResponse,
+            responseStream: false,
+            options: {},
+        },
+        getCommunityByTitleID: {
+            name: "GetCommunityByTitleID",
+            requestType: get_community_by_title_id_rpc_1.GetCommunityByTitleIDRequest,
+            requestStream: false,
+            responseType: get_community_by_title_id_rpc_1.GetCommunityByTitleIDResponse,
+            responseStream: false,
+            options: {},
+        },
+        getCommunityPosts: {
+            name: "GetCommunityPosts",
+            requestType: get_community_posts_rpc_1.GetCommunityPostsRequest,
+            requestStream: false,
+            responseType: get_community_posts_rpc_1.GetCommunityPostsResponse,
+            responseStream: false,
+            options: {},
+        },
+        getPost: {
+            name: "GetPost",
+            requestType: get_post_rpc_1.GetPostRequest,
+            requestStream: false,
+            responseType: get_post_rpc_1.GetPostResponse,
+            responseStream: false,
+            options: {},
+        },
+        getPostReplies: {
+            name: "GetPostReplies",
+            requestType: get_post_replies_rpc_1.GetPostRepliesRequest,
+            requestStream: false,
+            responseType: get_post_replies_rpc_1.GetPostRepliesResponse,
+            responseStream: false,
+            options: {},
+        },
+        getUserPosts: {
+            name: "GetUserPosts",
+            requestType: get_user_posts_rpc_1.GetUserPostsRequest,
+            requestStream: false,
+            responseType: get_user_posts_rpc_1.GetUserPostsResponse,
             responseStream: false,
             options: {},
         },
