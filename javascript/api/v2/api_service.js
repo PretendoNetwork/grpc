@@ -15,6 +15,7 @@ const reset_password_rpc_1 = require("./reset_password_rpc");
 const set_discord_connection_data_rpc_1 = require("./set_discord_connection_data_rpc");
 const set_stripe_connection_data_rpc_1 = require("./set_stripe_connection_data_rpc");
 const update_email_rpc_1 = require("./update_email_rpc");
+const update_password_rpc_1 = require("./update_password_rpc");
 const update_user_data_rpc_1 = require("./update_user_data_rpc");
 const verify_email_rpc_1 = require("./verify_email_rpc");
 exports.protobufPackage = "api.v2";
@@ -83,6 +84,14 @@ exports.ApiServiceDefinition = {
             requestType: reset_password_rpc_1.ResetPasswordRequest,
             requestStream: false,
             responseType: reset_password_rpc_1.ResetPasswordResponse,
+            responseStream: false,
+            options: {},
+        },
+        updatePassword: {
+            name: "UpdatePassword",
+            requestType: update_password_rpc_1.UpdatePasswordRequest,
+            requestStream: false,
+            responseType: update_password_rpc_1.UpdatePasswordResponse,
             responseStream: false,
             options: {},
         },

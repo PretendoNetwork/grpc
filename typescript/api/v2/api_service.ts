@@ -15,6 +15,7 @@ import { ResetPasswordRequest, ResetPasswordResponse } from "./reset_password_rp
 import { SetDiscordConnectionDataRequest, SetDiscordConnectionDataResponse } from "./set_discord_connection_data_rpc";
 import { SetStripeConnectionDataRequest, SetStripeConnectionDataResponse } from "./set_stripe_connection_data_rpc";
 import { UpdateEmailRequest, UpdateEmailResponse } from "./update_email_rpc";
+import { UpdatePasswordRequest, UpdatePasswordResponse } from "./update_password_rpc";
 import { UpdateUserDataRequest, UpdateUserDataResponse } from "./update_user_data_rpc";
 import { VerifyEmailRequest, VerifyEmailResponse } from "./verify_email_rpc";
 
@@ -89,6 +90,14 @@ export const ApiServiceDefinition = {
       responseStream: false,
       options: {},
     },
+    updatePassword: {
+      name: "UpdatePassword",
+      requestType: UpdatePasswordRequest,
+      requestStream: false,
+      responseType: UpdatePasswordResponse,
+      responseStream: false,
+      options: {},
+    },
     setDiscordConnectionData: {
       name: "SetDiscordConnectionData",
       requestType: SetDiscordConnectionDataRequest,
@@ -143,6 +152,10 @@ export interface ApiServiceImplementation<CallContextExt = {}> {
     request: ResetPasswordRequest,
     context: CallContext & CallContextExt,
   ): Promise<DeepPartial<ResetPasswordResponse>>;
+  updatePassword(
+    request: UpdatePasswordRequest,
+    context: CallContext & CallContextExt,
+  ): Promise<DeepPartial<UpdatePasswordResponse>>;
   setDiscordConnectionData(
     request: SetDiscordConnectionDataRequest,
     context: CallContext & CallContextExt,
@@ -184,6 +197,10 @@ export interface ApiServiceClient<CallOptionsExt = {}> {
     request: DeepPartial<ResetPasswordRequest>,
     options?: CallOptions & CallOptionsExt,
   ): Promise<ResetPasswordResponse>;
+  updatePassword(
+    request: DeepPartial<UpdatePasswordRequest>,
+    options?: CallOptions & CallOptionsExt,
+  ): Promise<UpdatePasswordResponse>;
   setDiscordConnectionData(
     request: DeepPartial<SetDiscordConnectionDataRequest>,
     options?: CallOptions & CallOptionsExt,
