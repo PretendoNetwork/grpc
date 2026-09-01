@@ -7,7 +7,7 @@ message CommunityData {
   string name = 2;
   string description = 3;
   map<string, string> icons = 4;
-  optional uint32 pid = 5; // Owner PID
+  uint32 pid = 5; // Owner PID
   string app_data = 6;
   bool is_user_community = 7;
   optional string screen_name = 8;
