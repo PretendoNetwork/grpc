@@ -17,6 +17,7 @@ message GetCommunityPostsRequest {
   optional string before_date = 10;
   optional string after_date = 11;
   optional uint32 offset = 12;
+  optional uint32 pid = 13;
 }
 
 message GetCommunityPostsResponse {
