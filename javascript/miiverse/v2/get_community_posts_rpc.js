@@ -24,6 +24,7 @@ function createBaseGetCommunityPostsRequest() {
         beforeDate: undefined,
         afterDate: undefined,
         offset: undefined,
+        pid: undefined,
     };
 }
 exports.GetCommunityPostsRequest = {
@@ -63,6 +64,9 @@ exports.GetCommunityPostsRequest = {
         }
         if (message.offset !== undefined) {
             writer.uint32(96).uint32(message.offset);
+        }
+        if (message.pid !== undefined) {
+            writer.uint32(104).uint32(message.pid);
         }
         return writer;
     },
@@ -157,6 +161,13 @@ exports.GetCommunityPostsRequest = {
                     message.offset = reader.uint32();
                     continue;
                 }
+                case 13: {
+                    if (tag !== 104) {
+                        break;
+                    }
+                    message.pid = reader.uint32();
+                    continue;
+                }
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -181,6 +192,7 @@ exports.GetCommunityPostsRequest = {
             beforeDate: isSet(object.beforeDate) ? globalThis.String(object.beforeDate) : undefined,
             afterDate: isSet(object.afterDate) ? globalThis.String(object.afterDate) : undefined,
             offset: isSet(object.offset) ? globalThis.Number(object.offset) : undefined,
+            pid: isSet(object.pid) ? globalThis.Number(object.pid) : undefined,
         };
     },
     toJSON(message) {
@@ -221,6 +233,9 @@ exports.GetCommunityPostsRequest = {
         if (message.offset !== undefined) {
             obj.offset = Math.round(message.offset);
         }
+        if (message.pid !== undefined) {
+            obj.pid = Math.round(message.pid);
+        }
         return obj;
     },
     create(base) {
@@ -240,6 +255,7 @@ exports.GetCommunityPostsRequest = {
         message.beforeDate = object.beforeDate ?? undefined;
         message.afterDate = object.afterDate ?? undefined;
         message.offset = object.offset ?? undefined;
+        message.pid = object.pid ?? undefined;
         return message;
     },
 };

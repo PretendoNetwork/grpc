@@ -14,6 +14,7 @@ export interface GetCommunityPostsRequest {
     beforeDate?: string | undefined;
     afterDate?: string | undefined;
     offset?: number | undefined;
+    pid?: number | undefined;
 }
 export interface GetCommunityPostsResponse {
     posts: PostData[];

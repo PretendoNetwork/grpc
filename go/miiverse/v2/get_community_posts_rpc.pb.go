@@ -35,6 +35,7 @@ type GetCommunityPostsRequest struct {
 	BeforeDate    *string                `protobuf:"bytes,10,opt,name=before_date,json=beforeDate,proto3,oneof" json:"before_date,omitempty"`
 	AfterDate     *string                `protobuf:"bytes,11,opt,name=after_date,json=afterDate,proto3,oneof" json:"after_date,omitempty"`
 	Offset        *uint32                `protobuf:"varint,12,opt,name=offset,proto3,oneof" json:"offset,omitempty"`
+	Pid           *uint32                `protobuf:"varint,13,opt,name=pid,proto3,oneof" json:"pid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -153,6 +154,13 @@ func (x *GetCommunityPostsRequest) GetOffset() uint32 {
 	return 0
 }
 
+func (x *GetCommunityPostsRequest) GetPid() uint32 {
+	if x != nil && x.Pid != nil {
+		return *x.Pid
+	}
+	return 0
+}
+
 type GetCommunityPostsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Posts         []*PostData            `protobuf:"bytes,1,rep,name=posts,proto3" json:"posts,omitempty"`
@@ -201,7 +209,7 @@ var File_miiverse_v2_get_community_posts_rpc_proto protoreflect.FileDescriptor
 
 const file_miiverse_v2_get_community_posts_rpc_proto_rawDesc = "" +
 	"\n" +
-	")miiverse/v2/get_community_posts_rpc.proto\x12\vmiiverse.v2\x1a\x16miiverse/v2/post.proto\"\xb2\x04\n" +
+	")miiverse/v2/get_community_posts_rpc.proto\x12\vmiiverse.v2\x1a\x16miiverse/v2/post.proto\"\xd1\x04\n" +
 	"\x18GetCommunityPostsRequest\x12!\n" +
 	"\fcommunity_id\x18\x01 \x01(\tR\vcommunityId\x12!\n" +
 	"\fdistinct_pid\x18\x02 \x01(\bR\vdistinctPid\x12#\n" +
@@ -218,7 +226,8 @@ const file_miiverse_v2_get_community_posts_rpc_proto_rawDesc = "" +
 	"beforeDate\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"after_date\x18\v \x01(\tH\x05R\tafterDate\x88\x01\x01\x12\x1b\n" +
-	"\x06offset\x18\f \x01(\rH\x06R\x06offset\x88\x01\x01B\a\n" +
+	"\x06offset\x18\f \x01(\rH\x06R\x06offset\x88\x01\x01\x12\x15\n" +
+	"\x03pid\x18\r \x01(\rH\aR\x03pid\x88\x01\x01B\a\n" +
 	"\x05_typeB\v\n" +
 	"\t_query_byB\n" +
 	"\n" +
@@ -226,7 +235,8 @@ const file_miiverse_v2_get_community_posts_rpc_proto_rawDesc = "" +
 	"\x06_limitB\x0e\n" +
 	"\f_before_dateB\r\n" +
 	"\v_after_dateB\t\n" +
-	"\a_offset\"H\n" +
+	"\a_offsetB\x06\n" +
+	"\x04_pid\"H\n" +
 	"\x19GetCommunityPostsResponse\x12+\n" +
 	"\x05posts\x18\x01 \x03(\v2\x15.miiverse.v2.PostDataR\x05postsB\xb4\x01\n" +
 	"\x0fcom.miiverse.v2B\x19GetCommunityPostsRpcProtoP\x01Z9github.com/PretendoNetwork/grpc/go/miiverse/v2;miiversev2\xa2\x02\x03MXX\xaa\x02\vMiiverse.V2\xca\x02\vMiiverse\\V2\xe2\x02\x17Miiverse\\V2\\GPBMetadata\xea\x02\fMiiverse::V2b\x06proto3"
