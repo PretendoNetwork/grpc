@@ -9,7 +9,7 @@ message GetCommunityPostsRequest {
   bool distinct_pid = 2;
   bool allow_spoiler = 3;
   bool with_mii = 4;
-  string search_key = 5;
+  repeated string search_key = 5;
   optional PostType type = 6;
   optional QueryType query_by = 7;
   optional SortBy sort_by = 8;
