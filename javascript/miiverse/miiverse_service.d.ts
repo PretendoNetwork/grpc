@@ -1,6 +1,7 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { SMMRequestPostIDRequest, SMMRequestPostIDResponse } from "./smm_request_post_id_rpc";
 export declare const protobufPackage = "miiverse";
+export declare const protobufFileName = "miiverse/miiverse_service.proto";
 export type MiiverseDefinition = typeof MiiverseDefinition;
 export declare const MiiverseDefinition: {
     readonly name: "Miiverse";
@@ -9,9 +10,9 @@ export declare const MiiverseDefinition: {
         /** Used by Super Mario Maker */
         readonly sMMRequestPostId: {
             readonly name: "SMMRequestPostId";
-            readonly requestType: import("./smm_request_post_id_rpc").MessageFns<SMMRequestPostIDRequest>;
+            readonly requestType: typeof SMMRequestPostIDRequest;
             readonly requestStream: false;
-            readonly responseType: import("./smm_request_post_id_rpc").MessageFns<SMMRequestPostIDResponse>;
+            readonly responseType: typeof SMMRequestPostIDResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -26,7 +27,7 @@ export interface MiiverseClient<CallOptionsExt = {}> {
     sMMRequestPostId(request: DeepPartial<SMMRequestPostIDRequest>, options?: CallOptions & CallOptionsExt): Promise<SMMRequestPostIDResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

@@ -3,6 +3,7 @@ import { CTRBOSSFlags } from "./ctr_boss_flags";
 import { FileAttributes } from "./file_attributes";
 import { PayloadContentInfoCTR } from "./payload_content_info_ctr";
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/file_ctr.proto";
 export interface FileCTR {
     deleted: boolean;
     /** Used for distinguishing files internally */
@@ -24,7 +25,7 @@ export interface FileCTR {
 }
 export declare const FileCTR: MessageFns<FileCTR>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

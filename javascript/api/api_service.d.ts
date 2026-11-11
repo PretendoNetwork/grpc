@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { Empty } from "../google/protobuf/empty";
 import { ForgotPasswordRequest } from "./forgot_password_rpc";
 import { GetUserDataResponse } from "./get_user_data_rpc";
@@ -9,6 +9,7 @@ import { SetDiscordConnectionDataRequest } from "./set_discord_connection_data_r
 import { SetStripeConnectionDataRequest } from "./set_stripe_connection_data_rpc";
 import { UpdateUserDataRequest } from "./update_user_data_rpc";
 export declare const protobufPackage = "api";
+export declare const protobufFileName = "api/api_service.proto";
 export type APIDefinition = typeof APIDefinition;
 export declare const APIDefinition: {
     readonly name: "API";
@@ -16,65 +17,65 @@ export declare const APIDefinition: {
     readonly methods: {
         readonly register: {
             readonly name: "Register";
-            readonly requestType: import("./register_rpc").MessageFns<RegisterRequest>;
+            readonly requestType: typeof RegisterRequest;
             readonly requestStream: false;
-            readonly responseType: import("./login_rpc").MessageFns<LoginResponse>;
+            readonly responseType: typeof LoginResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly login: {
             readonly name: "Login";
-            readonly requestType: import("./login_rpc").MessageFns<LoginRequest>;
+            readonly requestType: typeof LoginRequest;
             readonly requestStream: false;
-            readonly responseType: import("./login_rpc").MessageFns<LoginResponse>;
+            readonly responseType: typeof LoginResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getUserData: {
             readonly name: "GetUserData";
-            readonly requestType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly requestType: typeof Empty;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_data_rpc").MessageFns<GetUserDataResponse>;
+            readonly responseType: typeof GetUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateUserData: {
             readonly name: "UpdateUserData";
-            readonly requestType: import("./update_user_data_rpc").MessageFns<UpdateUserDataRequest>;
+            readonly requestType: typeof UpdateUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_data_rpc").MessageFns<GetUserDataResponse>;
+            readonly responseType: typeof GetUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly forgotPassword: {
             readonly name: "ForgotPassword";
-            readonly requestType: import("./forgot_password_rpc").MessageFns<ForgotPasswordRequest>;
+            readonly requestType: typeof ForgotPasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly resetPassword: {
             readonly name: "ResetPassword";
-            readonly requestType: import("./reset_password_rpc").MessageFns<ResetPasswordRequest>;
+            readonly requestType: typeof ResetPasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly setDiscordConnectionData: {
             readonly name: "SetDiscordConnectionData";
-            readonly requestType: import("./set_discord_connection_data_rpc").MessageFns<SetDiscordConnectionDataRequest>;
+            readonly requestType: typeof SetDiscordConnectionDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly setStripeConnectionData: {
             readonly name: "SetStripeConnectionData";
-            readonly requestType: import("./set_stripe_connection_data_rpc").MessageFns<SetStripeConnectionDataRequest>;
+            readonly requestType: typeof SetStripeConnectionDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -101,7 +102,7 @@ export interface APIClient<CallOptionsExt = {}> {
     setStripeConnectionData(request: DeepPartial<SetStripeConnectionDataRequest>, options?: CallOptions & CallOptionsExt): Promise<Empty>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

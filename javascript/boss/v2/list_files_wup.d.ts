@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FileWUP } from "./file_wup";
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/list_files_wup.proto";
 export interface ListFilesWUPRequest {
     taskId: string;
     bossAppId: string;
@@ -14,7 +15,7 @@ export interface ListFilesWUPResponse {
 export declare const ListFilesWUPRequest: MessageFns<ListFilesWUPRequest>;
 export declare const ListFilesWUPResponse: MessageFns<ListFilesWUPResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

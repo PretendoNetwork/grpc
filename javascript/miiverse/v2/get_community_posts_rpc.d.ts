@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { PostData, PostType, QueryType, SortBy } from "./post";
 export declare const protobufPackage = "miiverse.v2";
+export declare const protobufFileName = "miiverse/v2/get_community_posts_rpc.proto";
 export interface GetCommunityPostsRequest {
     communityId: string;
     distinctPid: boolean;
@@ -22,7 +23,7 @@ export interface GetCommunityPostsResponse {
 export declare const GetCommunityPostsRequest: MessageFns<GetCommunityPostsRequest>;
 export declare const GetCommunityPostsResponse: MessageFns<GetCommunityPostsResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

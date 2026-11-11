@@ -25,10 +25,11 @@ var File_friends_v2_friends_service_proto protoreflect.FileDescriptor
 const file_friends_v2_friends_service_proto_rawDesc = "" +
 	"\n" +
 	" friends/v2/friends_service.proto\x12\n" +
-	"friends.v2\x1a*friends/v2/accept_friend_request_rpc.proto\x1a(friends/v2/deny_friend_request_rpc.proto\x1a&friends/v2/get_user_data_3ds_rpc.proto\x1a'friends/v2/get_user_data_wiiu_rpc.proto\x1a-friends/v2/get_user_friend_data_3ds_rpc.proto\x1a.friends/v2/get_user_friend_data_wiiu_rpc.proto\x1a)friends/v2/get_user_friend_pids_rpc.proto\x1a6friends/v2/get_user_friend_requests_incoming_rpc.proto\x1a-friends/v2/send_user_friend_request_rpc.proto\x1a0friends/v2/send_user_notification_wiiu_rpc.proto2\xd0\b\n" +
+	"friends.v2\x1a*friends/v2/accept_friend_request_rpc.proto\x1a(friends/v2/deny_friend_request_rpc.proto\x1a&friends/v2/get_user_data_3ds_rpc.proto\x1a'friends/v2/get_user_data_wiiu_rpc.proto\x1a-friends/v2/get_user_friend_data_3ds_rpc.proto\x1a.friends/v2/get_user_friend_data_wiiu_rpc.proto\x1a/friends/v2/get_user_friend_pids_multi_rpc.proto\x1a)friends/v2/get_user_friend_pids_rpc.proto\x1a6friends/v2/get_user_friend_requests_incoming_rpc.proto\x1a-friends/v2/send_user_friend_request_rpc.proto\x1a0friends/v2/send_user_notification_wiiu_rpc.proto2\xc3\t\n" +
 	"\x0eFriendsService\x12w\n" +
 	"\x18SendUserNotificationWiiU\x12+.friends.v2.SendUserNotificationWiiURequest\x1a,.friends.v2.SendUserNotificationWiiUResponse\"\x00\x12b\n" +
-	"\x11GetUserFriendPIDs\x12$.friends.v2.GetUserFriendPIDsRequest\x1a%.friends.v2.GetUserFriendPIDsResponse\"\x00\x12n\n" +
+	"\x11GetUserFriendPIDs\x12$.friends.v2.GetUserFriendPIDsRequest\x1a%.friends.v2.GetUserFriendPIDsResponse\"\x00\x12q\n" +
+	"\x16GetUserFriendPIDsMulti\x12).friends.v2.GetUserFriendPIDsMultiRequest\x1a*.friends.v2.GetUserFriendPIDsMultiResponse\"\x00\x12n\n" +
 	"\x15SendUserFriendRequest\x12(.friends.v2.SendUserFriendRequestRequest\x1a).friends.v2.SendUserFriendRequestResponse\"\x00\x12\x86\x01\n" +
 	"\x1dGetUserFriendRequestsIncoming\x120.friends.v2.GetUserFriendRequestsIncomingRequest\x1a1.friends.v2.GetUserFriendRequestsIncomingResponse\"\x00\x12h\n" +
 	"\x13AcceptFriendRequest\x12&.friends.v2.AcceptFriendRequestRequest\x1a'.friends.v2.AcceptFriendRequestResponse\"\x00\x12b\n" +
@@ -44,48 +45,52 @@ const file_friends_v2_friends_service_proto_rawDesc = "" +
 var file_friends_v2_friends_service_proto_goTypes = []any{
 	(*SendUserNotificationWiiURequest)(nil),       // 0: friends.v2.SendUserNotificationWiiURequest
 	(*GetUserFriendPIDsRequest)(nil),              // 1: friends.v2.GetUserFriendPIDsRequest
-	(*SendUserFriendRequestRequest)(nil),          // 2: friends.v2.SendUserFriendRequestRequest
-	(*GetUserFriendRequestsIncomingRequest)(nil),  // 3: friends.v2.GetUserFriendRequestsIncomingRequest
-	(*AcceptFriendRequestRequest)(nil),            // 4: friends.v2.AcceptFriendRequestRequest
-	(*DenyFriendRequestRequest)(nil),              // 5: friends.v2.DenyFriendRequestRequest
-	(*GetUserFriendsDataWiiURequest)(nil),         // 6: friends.v2.GetUserFriendsDataWiiURequest
-	(*GetUserFriendsData3DSRequest)(nil),          // 7: friends.v2.GetUserFriendsData3DSRequest
-	(*GetUserDataWiiURequest)(nil),                // 8: friends.v2.GetUserDataWiiURequest
-	(*GetUserData3DSRequest)(nil),                 // 9: friends.v2.GetUserData3DSRequest
-	(*SendUserNotificationWiiUResponse)(nil),      // 10: friends.v2.SendUserNotificationWiiUResponse
-	(*GetUserFriendPIDsResponse)(nil),             // 11: friends.v2.GetUserFriendPIDsResponse
-	(*SendUserFriendRequestResponse)(nil),         // 12: friends.v2.SendUserFriendRequestResponse
-	(*GetUserFriendRequestsIncomingResponse)(nil), // 13: friends.v2.GetUserFriendRequestsIncomingResponse
-	(*AcceptFriendRequestResponse)(nil),           // 14: friends.v2.AcceptFriendRequestResponse
-	(*DenyFriendRequestResponse)(nil),             // 15: friends.v2.DenyFriendRequestResponse
-	(*GetUserFriendsDataWiiUResponse)(nil),        // 16: friends.v2.GetUserFriendsDataWiiUResponse
-	(*GetUserFriendsData3DSResponse)(nil),         // 17: friends.v2.GetUserFriendsData3DSResponse
-	(*GetUserDataWiiUResponse)(nil),               // 18: friends.v2.GetUserDataWiiUResponse
-	(*GetUserData3DSResponse)(nil),                // 19: friends.v2.GetUserData3DSResponse
+	(*GetUserFriendPIDsMultiRequest)(nil),         // 2: friends.v2.GetUserFriendPIDsMultiRequest
+	(*SendUserFriendRequestRequest)(nil),          // 3: friends.v2.SendUserFriendRequestRequest
+	(*GetUserFriendRequestsIncomingRequest)(nil),  // 4: friends.v2.GetUserFriendRequestsIncomingRequest
+	(*AcceptFriendRequestRequest)(nil),            // 5: friends.v2.AcceptFriendRequestRequest
+	(*DenyFriendRequestRequest)(nil),              // 6: friends.v2.DenyFriendRequestRequest
+	(*GetUserFriendsDataWiiURequest)(nil),         // 7: friends.v2.GetUserFriendsDataWiiURequest
+	(*GetUserFriendsData3DSRequest)(nil),          // 8: friends.v2.GetUserFriendsData3DSRequest
+	(*GetUserDataWiiURequest)(nil),                // 9: friends.v2.GetUserDataWiiURequest
+	(*GetUserData3DSRequest)(nil),                 // 10: friends.v2.GetUserData3DSRequest
+	(*SendUserNotificationWiiUResponse)(nil),      // 11: friends.v2.SendUserNotificationWiiUResponse
+	(*GetUserFriendPIDsResponse)(nil),             // 12: friends.v2.GetUserFriendPIDsResponse
+	(*GetUserFriendPIDsMultiResponse)(nil),        // 13: friends.v2.GetUserFriendPIDsMultiResponse
+	(*SendUserFriendRequestResponse)(nil),         // 14: friends.v2.SendUserFriendRequestResponse
+	(*GetUserFriendRequestsIncomingResponse)(nil), // 15: friends.v2.GetUserFriendRequestsIncomingResponse
+	(*AcceptFriendRequestResponse)(nil),           // 16: friends.v2.AcceptFriendRequestResponse
+	(*DenyFriendRequestResponse)(nil),             // 17: friends.v2.DenyFriendRequestResponse
+	(*GetUserFriendsDataWiiUResponse)(nil),        // 18: friends.v2.GetUserFriendsDataWiiUResponse
+	(*GetUserFriendsData3DSResponse)(nil),         // 19: friends.v2.GetUserFriendsData3DSResponse
+	(*GetUserDataWiiUResponse)(nil),               // 20: friends.v2.GetUserDataWiiUResponse
+	(*GetUserData3DSResponse)(nil),                // 21: friends.v2.GetUserData3DSResponse
 }
 var file_friends_v2_friends_service_proto_depIdxs = []int32{
 	0,  // 0: friends.v2.FriendsService.SendUserNotificationWiiU:input_type -> friends.v2.SendUserNotificationWiiURequest
 	1,  // 1: friends.v2.FriendsService.GetUserFriendPIDs:input_type -> friends.v2.GetUserFriendPIDsRequest
-	2,  // 2: friends.v2.FriendsService.SendUserFriendRequest:input_type -> friends.v2.SendUserFriendRequestRequest
-	3,  // 3: friends.v2.FriendsService.GetUserFriendRequestsIncoming:input_type -> friends.v2.GetUserFriendRequestsIncomingRequest
-	4,  // 4: friends.v2.FriendsService.AcceptFriendRequest:input_type -> friends.v2.AcceptFriendRequestRequest
-	5,  // 5: friends.v2.FriendsService.DenyFriendRequest:input_type -> friends.v2.DenyFriendRequestRequest
-	6,  // 6: friends.v2.FriendsService.GetUserFriendsDataWiiU:input_type -> friends.v2.GetUserFriendsDataWiiURequest
-	7,  // 7: friends.v2.FriendsService.GetUserFriendsData3DS:input_type -> friends.v2.GetUserFriendsData3DSRequest
-	8,  // 8: friends.v2.FriendsService.GetUserDataWiiU:input_type -> friends.v2.GetUserDataWiiURequest
-	9,  // 9: friends.v2.FriendsService.GetUserData3DS:input_type -> friends.v2.GetUserData3DSRequest
-	10, // 10: friends.v2.FriendsService.SendUserNotificationWiiU:output_type -> friends.v2.SendUserNotificationWiiUResponse
-	11, // 11: friends.v2.FriendsService.GetUserFriendPIDs:output_type -> friends.v2.GetUserFriendPIDsResponse
-	12, // 12: friends.v2.FriendsService.SendUserFriendRequest:output_type -> friends.v2.SendUserFriendRequestResponse
-	13, // 13: friends.v2.FriendsService.GetUserFriendRequestsIncoming:output_type -> friends.v2.GetUserFriendRequestsIncomingResponse
-	14, // 14: friends.v2.FriendsService.AcceptFriendRequest:output_type -> friends.v2.AcceptFriendRequestResponse
-	15, // 15: friends.v2.FriendsService.DenyFriendRequest:output_type -> friends.v2.DenyFriendRequestResponse
-	16, // 16: friends.v2.FriendsService.GetUserFriendsDataWiiU:output_type -> friends.v2.GetUserFriendsDataWiiUResponse
-	17, // 17: friends.v2.FriendsService.GetUserFriendsData3DS:output_type -> friends.v2.GetUserFriendsData3DSResponse
-	18, // 18: friends.v2.FriendsService.GetUserDataWiiU:output_type -> friends.v2.GetUserDataWiiUResponse
-	19, // 19: friends.v2.FriendsService.GetUserData3DS:output_type -> friends.v2.GetUserData3DSResponse
-	10, // [10:20] is the sub-list for method output_type
-	0,  // [0:10] is the sub-list for method input_type
+	2,  // 2: friends.v2.FriendsService.GetUserFriendPIDsMulti:input_type -> friends.v2.GetUserFriendPIDsMultiRequest
+	3,  // 3: friends.v2.FriendsService.SendUserFriendRequest:input_type -> friends.v2.SendUserFriendRequestRequest
+	4,  // 4: friends.v2.FriendsService.GetUserFriendRequestsIncoming:input_type -> friends.v2.GetUserFriendRequestsIncomingRequest
+	5,  // 5: friends.v2.FriendsService.AcceptFriendRequest:input_type -> friends.v2.AcceptFriendRequestRequest
+	6,  // 6: friends.v2.FriendsService.DenyFriendRequest:input_type -> friends.v2.DenyFriendRequestRequest
+	7,  // 7: friends.v2.FriendsService.GetUserFriendsDataWiiU:input_type -> friends.v2.GetUserFriendsDataWiiURequest
+	8,  // 8: friends.v2.FriendsService.GetUserFriendsData3DS:input_type -> friends.v2.GetUserFriendsData3DSRequest
+	9,  // 9: friends.v2.FriendsService.GetUserDataWiiU:input_type -> friends.v2.GetUserDataWiiURequest
+	10, // 10: friends.v2.FriendsService.GetUserData3DS:input_type -> friends.v2.GetUserData3DSRequest
+	11, // 11: friends.v2.FriendsService.SendUserNotificationWiiU:output_type -> friends.v2.SendUserNotificationWiiUResponse
+	12, // 12: friends.v2.FriendsService.GetUserFriendPIDs:output_type -> friends.v2.GetUserFriendPIDsResponse
+	13, // 13: friends.v2.FriendsService.GetUserFriendPIDsMulti:output_type -> friends.v2.GetUserFriendPIDsMultiResponse
+	14, // 14: friends.v2.FriendsService.SendUserFriendRequest:output_type -> friends.v2.SendUserFriendRequestResponse
+	15, // 15: friends.v2.FriendsService.GetUserFriendRequestsIncoming:output_type -> friends.v2.GetUserFriendRequestsIncomingResponse
+	16, // 16: friends.v2.FriendsService.AcceptFriendRequest:output_type -> friends.v2.AcceptFriendRequestResponse
+	17, // 17: friends.v2.FriendsService.DenyFriendRequest:output_type -> friends.v2.DenyFriendRequestResponse
+	18, // 18: friends.v2.FriendsService.GetUserFriendsDataWiiU:output_type -> friends.v2.GetUserFriendsDataWiiUResponse
+	19, // 19: friends.v2.FriendsService.GetUserFriendsData3DS:output_type -> friends.v2.GetUserFriendsData3DSResponse
+	20, // 20: friends.v2.FriendsService.GetUserDataWiiU:output_type -> friends.v2.GetUserDataWiiUResponse
+	21, // 21: friends.v2.FriendsService.GetUserData3DS:output_type -> friends.v2.GetUserData3DSResponse
+	11, // [11:22] is the sub-list for method output_type
+	0,  // [0:11] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -102,6 +107,7 @@ func file_friends_v2_friends_service_proto_init() {
 	file_friends_v2_get_user_data_wiiu_rpc_proto_init()
 	file_friends_v2_get_user_friend_data_3ds_rpc_proto_init()
 	file_friends_v2_get_user_friend_data_wiiu_rpc_proto_init()
+	file_friends_v2_get_user_friend_pids_multi_rpc_proto_init()
 	file_friends_v2_get_user_friend_pids_rpc_proto_init()
 	file_friends_v2_get_user_friend_requests_incoming_rpc_proto_init()
 	file_friends_v2_send_user_friend_request_rpc_proto_init()

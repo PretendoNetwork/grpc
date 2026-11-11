@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { DeleteAccountDataRequest, DeleteAccountDataResponse } from "./delete_account_data_rpc";
 import { GetCommunityByIDRequest, GetCommunityByIDResponse } from "./get_community_by_id_rpc";
 import { GetCommunityByTitleIDRequest, GetCommunityByTitleIDResponse } from "./get_community_by_title_id_rpc";
@@ -8,6 +8,7 @@ import { GetPostRequest, GetPostResponse } from "./get_post_rpc";
 import { GetUserPostsRequest, GetUserPostsResponse } from "./get_user_posts_rpc";
 import { SMMRequestPostIdRequest, SMMRequestPostIdResponse } from "./smm_request_post_id_rpc";
 export declare const protobufPackage = "miiverse.v2";
+export declare const protobufFileName = "miiverse/v2/miiverse_service.proto";
 export type MiiverseServiceDefinition = typeof MiiverseServiceDefinition;
 export declare const MiiverseServiceDefinition: {
     readonly name: "MiiverseService";
@@ -15,66 +16,66 @@ export declare const MiiverseServiceDefinition: {
     readonly methods: {
         readonly deleteAccountData: {
             readonly name: "DeleteAccountData";
-            readonly requestType: import("./delete_account_data_rpc").MessageFns<DeleteAccountDataRequest>;
+            readonly requestType: typeof DeleteAccountDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_account_data_rpc").MessageFns<DeleteAccountDataResponse>;
+            readonly responseType: typeof DeleteAccountDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** Used by Super Mario Maker */
         readonly sMMRequestPostId: {
             readonly name: "SMMRequestPostId";
-            readonly requestType: import("./smm_request_post_id_rpc").MessageFns<SMMRequestPostIdRequest>;
+            readonly requestType: typeof SMMRequestPostIdRequest;
             readonly requestStream: false;
-            readonly responseType: import("./smm_request_post_id_rpc").MessageFns<SMMRequestPostIdResponse>;
+            readonly responseType: typeof SMMRequestPostIdResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getCommunityByID: {
             readonly name: "GetCommunityByID";
-            readonly requestType: import("./get_community_by_id_rpc").MessageFns<GetCommunityByIDRequest>;
+            readonly requestType: typeof GetCommunityByIDRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_community_by_id_rpc").MessageFns<GetCommunityByIDResponse>;
+            readonly responseType: typeof GetCommunityByIDResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getCommunityByTitleID: {
             readonly name: "GetCommunityByTitleID";
-            readonly requestType: import("./get_community_by_title_id_rpc").MessageFns<GetCommunityByTitleIDRequest>;
+            readonly requestType: typeof GetCommunityByTitleIDRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_community_by_title_id_rpc").MessageFns<GetCommunityByTitleIDResponse>;
+            readonly responseType: typeof GetCommunityByTitleIDResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getCommunityPosts: {
             readonly name: "GetCommunityPosts";
-            readonly requestType: import("./get_community_posts_rpc").MessageFns<GetCommunityPostsRequest>;
+            readonly requestType: typeof GetCommunityPostsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_community_posts_rpc").MessageFns<GetCommunityPostsResponse>;
+            readonly responseType: typeof GetCommunityPostsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getPost: {
             readonly name: "GetPost";
-            readonly requestType: import("./get_post_rpc").MessageFns<GetPostRequest>;
+            readonly requestType: typeof GetPostRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_post_rpc").MessageFns<GetPostResponse>;
+            readonly responseType: typeof GetPostResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getPostReplies: {
             readonly name: "GetPostReplies";
-            readonly requestType: import("./get_post_replies_rpc").MessageFns<GetPostRepliesRequest>;
+            readonly requestType: typeof GetPostRepliesRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_post_replies_rpc").MessageFns<GetPostRepliesResponse>;
+            readonly responseType: typeof GetPostRepliesResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getUserPosts: {
             readonly name: "GetUserPosts";
-            readonly requestType: import("./get_user_posts_rpc").MessageFns<GetUserPostsRequest>;
+            readonly requestType: typeof GetUserPostsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_posts_rpc").MessageFns<GetUserPostsResponse>;
+            readonly responseType: typeof GetUserPostsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -103,7 +104,7 @@ export interface MiiverseServiceClient<CallOptionsExt = {}> {
     getUserPosts(request: DeepPartial<GetUserPostsRequest>, options?: CallOptions & CallOptionsExt): Promise<GetUserPostsResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

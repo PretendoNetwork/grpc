@@ -1,4 +1,5 @@
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/audit_log_action_type.proto";
 export declare enum AuditLogActionType {
     AUDIT_LOG_ACTION_TYPE_UNSPECIFIED = 0,
     AUDIT_LOG_ACTION_TYPE_CREATE_SERVER = 1,

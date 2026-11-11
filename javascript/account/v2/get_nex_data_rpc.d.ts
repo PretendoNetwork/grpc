@@ -1,5 +1,6 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/get_nex_data_rpc.proto";
 export declare enum DeviceType {
     DEVICE_TYPE_UNSPECIFIED = 0,
     DEVICE_TYPE_CTR = 1,
@@ -23,7 +24,7 @@ export interface GetNEXDataResponse {
 export declare const GetNEXDataRequest: MessageFns<GetNEXDataRequest>;
 export declare const GetNEXDataResponse: MessageFns<GetNEXDataResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

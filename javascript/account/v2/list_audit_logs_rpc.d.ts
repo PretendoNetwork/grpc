@@ -3,6 +3,7 @@ import { AuditLog } from "./audit_log";
 import { AuditLogActionType } from "./audit_log_action_type";
 import { PageInput, PageResults } from "./page";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/list_audit_logs_rpc.proto";
 export interface ListAuditLogsRequest {
     page: PageInput | undefined;
     filter: ListAuditLogsRequest_Filter | undefined;
@@ -20,7 +21,7 @@ export declare const ListAuditLogsRequest: MessageFns<ListAuditLogsRequest>;
 export declare const ListAuditLogsRequest_Filter: MessageFns<ListAuditLogsRequest_Filter>;
 export declare const ListAuditLogsResponse: MessageFns<ListAuditLogsResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

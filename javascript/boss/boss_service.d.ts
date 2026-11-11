@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { Empty } from "../google/protobuf/empty";
 import { DeleteFileRequest } from "./delete_file";
 import { DeleteTaskRequest } from "./delete_task";
@@ -10,6 +10,7 @@ import { UpdateFileMetadataRequest } from "./update_file_metadata";
 import { UpdateTaskRequest } from "./update_task";
 import { UploadFileRequest, UploadFileResponse } from "./upload_file";
 export declare const protobufPackage = "boss";
+export declare const protobufFileName = "boss/boss_service.proto";
 export type BOSSDefinition = typeof BOSSDefinition;
 export declare const BOSSDefinition: {
     readonly name: "BOSS";
@@ -17,73 +18,73 @@ export declare const BOSSDefinition: {
     readonly methods: {
         readonly listKnownBOSSApps: {
             readonly name: "ListKnownBOSSApps";
-            readonly requestType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly requestType: typeof Empty;
             readonly requestStream: false;
-            readonly responseType: import("./list_known_boss_apps").MessageFns<ListKnownBOSSAppsResponse>;
+            readonly responseType: typeof ListKnownBOSSAppsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly listTasks: {
             readonly name: "ListTasks";
-            readonly requestType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly requestType: typeof Empty;
             readonly requestStream: false;
-            readonly responseType: import("./list_tasks").MessageFns<ListTasksResponse>;
+            readonly responseType: typeof ListTasksResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly registerTask: {
             readonly name: "RegisterTask";
-            readonly requestType: import("./register_task").MessageFns<RegisterTaskRequest>;
+            readonly requestType: typeof RegisterTaskRequest;
             readonly requestStream: false;
-            readonly responseType: import("./register_task").MessageFns<RegisterTaskResponse>;
+            readonly responseType: typeof RegisterTaskResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateTask: {
             readonly name: "UpdateTask";
-            readonly requestType: import("./update_task").MessageFns<UpdateTaskRequest>;
+            readonly requestType: typeof UpdateTaskRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly deleteTask: {
             readonly name: "DeleteTask";
-            readonly requestType: import("./delete_task").MessageFns<DeleteTaskRequest>;
+            readonly requestType: typeof DeleteTaskRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly listFiles: {
             readonly name: "ListFiles";
-            readonly requestType: import("./list_files").MessageFns<ListFilesRequest>;
+            readonly requestType: typeof ListFilesRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_files").MessageFns<ListFilesResponse>;
+            readonly responseType: typeof ListFilesResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly uploadFile: {
             readonly name: "UploadFile";
-            readonly requestType: import("./upload_file").MessageFns<UploadFileRequest>;
+            readonly requestType: typeof UploadFileRequest;
             readonly requestStream: false;
-            readonly responseType: import("./upload_file").MessageFns<UploadFileResponse>;
+            readonly responseType: typeof UploadFileResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateFileMetadata: {
             readonly name: "UpdateFileMetadata";
-            readonly requestType: import("./update_file_metadata").MessageFns<UpdateFileMetadataRequest>;
+            readonly requestType: typeof UpdateFileMetadataRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly deleteFile: {
             readonly name: "DeleteFile";
-            readonly requestType: import("./delete_file").MessageFns<DeleteFileRequest>;
+            readonly requestType: typeof DeleteFileRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -112,7 +113,7 @@ export interface BOSSClient<CallOptionsExt = {}> {
     deleteFile(request: DeepPartial<DeleteFileRequest>, options?: CallOptions & CallOptionsExt): Promise<Empty>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

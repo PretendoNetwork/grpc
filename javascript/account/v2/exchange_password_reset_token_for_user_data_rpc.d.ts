@@ -3,6 +3,7 @@ import { BasicUserInfo } from "./basic_user_info";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 import { TokenInfo } from "./token_info";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/exchange_password_reset_token_for_user_data_rpc.proto";
 export interface ExchangePasswordResetTokenForUserDataRequest {
     token: string;
 }
@@ -14,7 +15,7 @@ export interface ExchangePasswordResetTokenForUserDataResponse {
 export declare const ExchangePasswordResetTokenForUserDataRequest: MessageFns<ExchangePasswordResetTokenForUserDataRequest>;
 export declare const ExchangePasswordResetTokenForUserDataResponse: MessageFns<ExchangePasswordResetTokenForUserDataResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

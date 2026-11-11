@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { DeleteFileRequest, DeleteFileResponse } from "./delete_file";
 import { DeleteTaskRequest, DeleteTaskResponse } from "./delete_task";
 import { ListFilesCTRRequest, ListFilesCTRResponse } from "./list_files_ctr";
@@ -12,6 +12,7 @@ import { UpdateTaskRequest, UpdateTaskResponse } from "./update_task";
 import { UploadFileCTRRequest, UploadFileCTRResponse } from "./upload_file_ctr";
 import { UploadFileWUPRequest, UploadFileWUPResponse } from "./upload_file_wup";
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/boss_service.proto";
 export type BossServiceDefinition = typeof BossServiceDefinition;
 export declare const BossServiceDefinition: {
     readonly name: "BossService";
@@ -19,97 +20,97 @@ export declare const BossServiceDefinition: {
     readonly methods: {
         readonly listKnownBOSSApps: {
             readonly name: "ListKnownBOSSApps";
-            readonly requestType: import("./list_known_boss_apps").MessageFns<ListKnownBOSSAppsRequest>;
+            readonly requestType: typeof ListKnownBOSSAppsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_known_boss_apps").MessageFns<ListKnownBOSSAppsResponse>;
+            readonly responseType: typeof ListKnownBOSSAppsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly listTasks: {
             readonly name: "ListTasks";
-            readonly requestType: import("./list_tasks").MessageFns<ListTasksRequest>;
+            readonly requestType: typeof ListTasksRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_tasks").MessageFns<ListTasksResponse>;
+            readonly responseType: typeof ListTasksResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly registerTask: {
             readonly name: "RegisterTask";
-            readonly requestType: import("./register_task").MessageFns<RegisterTaskRequest>;
+            readonly requestType: typeof RegisterTaskRequest;
             readonly requestStream: false;
-            readonly responseType: import("./register_task").MessageFns<RegisterTaskResponse>;
+            readonly responseType: typeof RegisterTaskResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateTask: {
             readonly name: "UpdateTask";
-            readonly requestType: import("./update_task").MessageFns<UpdateTaskRequest>;
+            readonly requestType: typeof UpdateTaskRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_task").MessageFns<UpdateTaskResponse>;
+            readonly responseType: typeof UpdateTaskResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly deleteTask: {
             readonly name: "DeleteTask";
-            readonly requestType: import("./delete_task").MessageFns<DeleteTaskRequest>;
+            readonly requestType: typeof DeleteTaskRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_task").MessageFns<DeleteTaskResponse>;
+            readonly responseType: typeof DeleteTaskResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly deleteFile: {
             readonly name: "DeleteFile";
-            readonly requestType: import("./delete_file").MessageFns<DeleteFileRequest>;
+            readonly requestType: typeof DeleteFileRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_file").MessageFns<DeleteFileResponse>;
+            readonly responseType: typeof DeleteFileResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly listFilesWUP: {
             readonly name: "ListFilesWUP";
-            readonly requestType: import("./list_files_wup").MessageFns<ListFilesWUPRequest>;
+            readonly requestType: typeof ListFilesWUPRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_files_wup").MessageFns<ListFilesWUPResponse>;
+            readonly responseType: typeof ListFilesWUPResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly uploadFileWUP: {
             readonly name: "UploadFileWUP";
-            readonly requestType: import("./upload_file_wup").MessageFns<UploadFileWUPRequest>;
+            readonly requestType: typeof UploadFileWUPRequest;
             readonly requestStream: false;
-            readonly responseType: import("./upload_file_wup").MessageFns<UploadFileWUPResponse>;
+            readonly responseType: typeof UploadFileWUPResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateFileMetadataWUP: {
             readonly name: "UpdateFileMetadataWUP";
-            readonly requestType: import("./update_file_metadata_wup").MessageFns<UpdateFileMetadataWUPRequest>;
+            readonly requestType: typeof UpdateFileMetadataWUPRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_file_metadata_wup").MessageFns<UpdateFileMetadataWUPResponse>;
+            readonly responseType: typeof UpdateFileMetadataWUPResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly listFilesCTR: {
             readonly name: "ListFilesCTR";
-            readonly requestType: import("./list_files_ctr").MessageFns<ListFilesCTRRequest>;
+            readonly requestType: typeof ListFilesCTRRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_files_ctr").MessageFns<ListFilesCTRResponse>;
+            readonly responseType: typeof ListFilesCTRResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly uploadFileCTR: {
             readonly name: "UploadFileCTR";
-            readonly requestType: import("./upload_file_ctr").MessageFns<UploadFileCTRRequest>;
+            readonly requestType: typeof UploadFileCTRRequest;
             readonly requestStream: false;
-            readonly responseType: import("./upload_file_ctr").MessageFns<UploadFileCTRResponse>;
+            readonly responseType: typeof UploadFileCTRResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateFileMetadataCTR: {
             readonly name: "UpdateFileMetadataCTR";
-            readonly requestType: import("./update_file_metadata_ctr").MessageFns<UpdateFileMetadataCTRRequest>;
+            readonly requestType: typeof UpdateFileMetadataCTRRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_file_metadata_ctr").MessageFns<UpdateFileMetadataCTRResponse>;
+            readonly responseType: typeof UpdateFileMetadataCTRResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -144,7 +145,7 @@ export interface BossServiceClient<CallOptionsExt = {}> {
     updateFileMetadataCTR(request: DeepPartial<UpdateFileMetadataCTRRequest>, options?: CallOptions & CallOptionsExt): Promise<UpdateFileMetadataCTRResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

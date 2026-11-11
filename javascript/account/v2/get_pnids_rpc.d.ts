@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { GetPNIDResponse } from "./get_pnid_rpc";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/get_pnids_rpc.proto";
 export interface GetPNIDsRequest {
     pid: number[];
 }
@@ -17,7 +18,7 @@ export declare const GetPNIDsRequest: MessageFns<GetPNIDsRequest>;
 export declare const GetPNIDsResponse: MessageFns<GetPNIDsResponse>;
 export declare const GetPNIDsResponse_UserDataEntry: MessageFns<GetPNIDsResponse_UserDataEntry>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

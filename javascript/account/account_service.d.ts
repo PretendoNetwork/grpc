@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { Empty } from "../google/protobuf/empty";
 import { ExchangeTokenForUserDataRequest } from "./exchange_token_for_user_data";
 import { GetNEXDataRequest, GetNEXDataResponse } from "./get_nex_data_rpc";
@@ -6,6 +6,7 @@ import { GetNEXPasswordRequest, GetNEXPasswordResponse } from "./get_nex_passwor
 import { GetUserDataRequest, GetUserDataResponse } from "./get_user_data_rpc";
 import { UpdatePNIDPermissionsRequest } from "./update_pnid_permissions";
 export declare const protobufPackage = "account";
+export declare const protobufFileName = "account/account_service.proto";
 export type AccountDefinition = typeof AccountDefinition;
 export declare const AccountDefinition: {
     readonly name: "Account";
@@ -13,41 +14,41 @@ export declare const AccountDefinition: {
     readonly methods: {
         readonly getUserData: {
             readonly name: "GetUserData";
-            readonly requestType: import("./get_user_data_rpc").MessageFns<GetUserDataRequest>;
+            readonly requestType: typeof GetUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_data_rpc").MessageFns<GetUserDataResponse>;
+            readonly responseType: typeof GetUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getNEXPassword: {
             readonly name: "GetNEXPassword";
-            readonly requestType: import("./get_nex_password_rpc").MessageFns<GetNEXPasswordRequest>;
+            readonly requestType: typeof GetNEXPasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_nex_password_rpc").MessageFns<GetNEXPasswordResponse>;
+            readonly responseType: typeof GetNEXPasswordResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getNEXData: {
             readonly name: "GetNEXData";
-            readonly requestType: import("./get_nex_data_rpc").MessageFns<GetNEXDataRequest>;
+            readonly requestType: typeof GetNEXDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_nex_data_rpc").MessageFns<GetNEXDataResponse>;
+            readonly responseType: typeof GetNEXDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updatePNIDPermissions: {
             readonly name: "UpdatePNIDPermissions";
-            readonly requestType: import("./update_pnid_permissions").MessageFns<UpdatePNIDPermissionsRequest>;
+            readonly requestType: typeof UpdatePNIDPermissionsRequest;
             readonly requestStream: false;
-            readonly responseType: import("../google/protobuf/empty").MessageFns<Empty>;
+            readonly responseType: typeof Empty;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly exchangeTokenForUserData: {
             readonly name: "ExchangeTokenForUserData";
-            readonly requestType: import("./exchange_token_for_user_data").MessageFns<ExchangeTokenForUserDataRequest>;
+            readonly requestType: typeof ExchangeTokenForUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_data_rpc").MessageFns<GetUserDataResponse>;
+            readonly responseType: typeof GetUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -68,7 +69,7 @@ export interface AccountClient<CallOptionsExt = {}> {
     exchangeTokenForUserData(request: DeepPartial<ExchangeTokenForUserDataRequest>, options?: CallOptions & CallOptionsExt): Promise<GetUserDataResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

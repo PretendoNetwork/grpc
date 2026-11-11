@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FriendInfoWiiU } from "./friend_info";
 export declare const protobufPackage = "friends.v2";
+export declare const protobufFileName = "friends/v2/get_user_friend_data_wiiu_rpc.proto";
 export interface GetUserFriendsDataWiiURequest {
     pid: number;
 }
@@ -10,7 +11,7 @@ export interface GetUserFriendsDataWiiUResponse {
 export declare const GetUserFriendsDataWiiURequest: MessageFns<GetUserFriendsDataWiiURequest>;
 export declare const GetUserFriendsDataWiiUResponse: MessageFns<GetUserFriendsDataWiiUResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

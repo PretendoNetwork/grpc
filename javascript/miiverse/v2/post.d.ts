@@ -1,5 +1,6 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export declare const protobufPackage = "miiverse.v2";
+export declare const protobufFileName = "miiverse/v2/post.proto";
 export declare enum PostType {
     POST_TYPE_ANY_UNSPECIFIED = 0,
     POST_TYPE_TEXT = 1,
@@ -107,7 +108,7 @@ export declare const PostTopicTag: MessageFns<PostTopicTag>;
 export declare const PostBinaryData: MessageFns<PostBinaryData>;
 export declare const PostData: MessageFns<PostData>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

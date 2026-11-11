@@ -1,13 +1,14 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { PNIDPermissionFlags } from "./pnid_permission_flags";
 export declare const protobufPackage = "account";
+export declare const protobufFileName = "account/update_pnid_permissions.proto";
 export interface UpdatePNIDPermissionsRequest {
     pid: number;
     permissions: PNIDPermissionFlags | undefined;
 }
 export declare const UpdatePNIDPermissionsRequest: MessageFns<UpdatePNIDPermissionsRequest>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

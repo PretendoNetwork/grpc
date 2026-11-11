@@ -4,6 +4,7 @@ import { GetPNIDResponse } from "./get_pnid_rpc";
 import { NEXAccount } from "./nex_account";
 import { TokenInfo } from "./token_info";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/exchange_independent_service_token_for_user_data_rpc.proto";
 export interface ExchangeIndependentServiceTokenForUserDataRequest {
     clientIds: string[];
     token: string;
@@ -18,7 +19,7 @@ export interface ExchangeIndependentServiceTokenForUserDataResponse {
 export declare const ExchangeIndependentServiceTokenForUserDataRequest: MessageFns<ExchangeIndependentServiceTokenForUserDataRequest>;
 export declare const ExchangeIndependentServiceTokenForUserDataResponse: MessageFns<ExchangeIndependentServiceTokenForUserDataResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FileAttributes } from "./file_attributes";
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/update_file_metadata_wup.proto";
 export interface UpdateFileMetadataDataWUP {
     taskId: string;
     bossAppId: string;
@@ -24,7 +25,7 @@ export declare const UpdateFileMetadataDataWUP: MessageFns<UpdateFileMetadataDat
 export declare const UpdateFileMetadataWUPRequest: MessageFns<UpdateFileMetadataWUPRequest>;
 export declare const UpdateFileMetadataWUPResponse: MessageFns<UpdateFileMetadataWUPResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

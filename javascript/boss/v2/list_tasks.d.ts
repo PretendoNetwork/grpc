@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { Task } from "./task";
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/list_tasks.proto";
 export interface ListTasksRequest {
 }
 export interface ListTasksResponse {
@@ -9,7 +10,7 @@ export interface ListTasksResponse {
 export declare const ListTasksRequest: MessageFns<ListTasksRequest>;
 export declare const ListTasksResponse: MessageFns<ListTasksResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

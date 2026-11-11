@@ -4,6 +4,7 @@ import { FileAttributes } from "./file_attributes";
 import { FileCTR } from "./file_ctr";
 import { PayloadContentCTR } from "./payload_content_ctr";
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/upload_file_ctr.proto";
 export interface UploadFileCTRRequest {
     taskId: string;
     bossAppId: string;
@@ -21,7 +22,7 @@ export interface UploadFileCTRResponse {
 export declare const UploadFileCTRRequest: MessageFns<UploadFileCTRRequest>;
 export declare const UploadFileCTRResponse: MessageFns<UploadFileCTRResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

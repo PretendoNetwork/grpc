@@ -3,6 +3,7 @@ import { Device } from "./device";
 import { Mii } from "./mii";
 import { PNIDPermissionFlags } from "./pnid_permission_flags";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/get_user_data_rpc.proto";
 export interface GetUserDataRequest {
     pid: number;
 }
@@ -26,7 +27,7 @@ export interface GetUserDataResponse {
 export declare const GetUserDataRequest: MessageFns<GetUserDataRequest>;
 export declare const GetUserDataResponse: MessageFns<GetUserDataResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

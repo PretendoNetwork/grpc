@@ -1,4 +1,5 @@
 export declare const protobufPackage = "boss.v2";
+export declare const protobufFileName = "boss/v2/platform_type.proto";
 export declare enum PlatformType {
     PLATFORM_TYPE_UNSPECIFIED = 0,
     PLATFORM_TYPE_CTR = 1,

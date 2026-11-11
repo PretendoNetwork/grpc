@@ -2,6 +2,7 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { PageInput, PageResults } from "./page";
 import { Server } from "./server";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/list_servers_rpc.proto";
 export interface ListServersRequest {
     page: PageInput | undefined;
     filter: ListServersRequest_Filter | undefined;
@@ -18,7 +19,7 @@ export declare const ListServersRequest: MessageFns<ListServersRequest>;
 export declare const ListServersRequest_Filter: MessageFns<ListServersRequest_Filter>;
 export declare const ListServersResponse: MessageFns<ListServersResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

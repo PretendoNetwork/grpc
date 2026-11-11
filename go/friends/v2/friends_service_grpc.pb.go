@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	FriendsService_SendUserNotificationWiiU_FullMethodName      = "/friends.v2.FriendsService/SendUserNotificationWiiU"
 	FriendsService_GetUserFriendPIDs_FullMethodName             = "/friends.v2.FriendsService/GetUserFriendPIDs"
+	FriendsService_GetUserFriendPIDsMulti_FullMethodName        = "/friends.v2.FriendsService/GetUserFriendPIDsMulti"
 	FriendsService_SendUserFriendRequest_FullMethodName         = "/friends.v2.FriendsService/SendUserFriendRequest"
 	FriendsService_GetUserFriendRequestsIncoming_FullMethodName = "/friends.v2.FriendsService/GetUserFriendRequestsIncoming"
 	FriendsService_AcceptFriendRequest_FullMethodName           = "/friends.v2.FriendsService/AcceptFriendRequest"
@@ -36,7 +37,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FriendsServiceClient interface {
 	SendUserNotificationWiiU(ctx context.Context, in *SendUserNotificationWiiURequest, opts ...grpc.CallOption) (*SendUserNotificationWiiUResponse, error)
+	// GetUserFriendPIDs returns the PIDs of a single users friends list. PIDs are uint32
 	GetUserFriendPIDs(ctx context.Context, in *GetUserFriendPIDsRequest, opts ...grpc.CallOption) (*GetUserFriendPIDsResponse, error)
+	// GetUserFriendPIDsMulti returns the PIDs of multiple users friends list. PIDs are uint64
+	GetUserFriendPIDsMulti(ctx context.Context, in *GetUserFriendPIDsMultiRequest, opts ...grpc.CallOption) (*GetUserFriendPIDsMultiResponse, error)
 	SendUserFriendRequest(ctx context.Context, in *SendUserFriendRequestRequest, opts ...grpc.CallOption) (*SendUserFriendRequestResponse, error)
 	GetUserFriendRequestsIncoming(ctx context.Context, in *GetUserFriendRequestsIncomingRequest, opts ...grpc.CallOption) (*GetUserFriendRequestsIncomingResponse, error)
 	AcceptFriendRequest(ctx context.Context, in *AcceptFriendRequestRequest, opts ...grpc.CallOption) (*AcceptFriendRequestResponse, error)
@@ -73,6 +77,16 @@ func (c *friendsServiceClient) GetUserFriendPIDs(ctx context.Context, in *GetUse
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserFriendPIDsResponse)
 	err := c.cc.Invoke(ctx, FriendsService_GetUserFriendPIDs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendsServiceClient) GetUserFriendPIDsMulti(ctx context.Context, in *GetUserFriendPIDsMultiRequest, opts ...grpc.CallOption) (*GetUserFriendPIDsMultiResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserFriendPIDsMultiResponse)
+	err := c.cc.Invoke(ctx, FriendsService_GetUserFriendPIDsMulti_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -164,7 +178,10 @@ func (c *friendsServiceClient) GetUserData3DS(ctx context.Context, in *GetUserDa
 // for forward compatibility.
 type FriendsServiceServer interface {
 	SendUserNotificationWiiU(context.Context, *SendUserNotificationWiiURequest) (*SendUserNotificationWiiUResponse, error)
+	// GetUserFriendPIDs returns the PIDs of a single users friends list. PIDs are uint32
 	GetUserFriendPIDs(context.Context, *GetUserFriendPIDsRequest) (*GetUserFriendPIDsResponse, error)
+	// GetUserFriendPIDsMulti returns the PIDs of multiple users friends list. PIDs are uint64
+	GetUserFriendPIDsMulti(context.Context, *GetUserFriendPIDsMultiRequest) (*GetUserFriendPIDsMultiResponse, error)
 	SendUserFriendRequest(context.Context, *SendUserFriendRequestRequest) (*SendUserFriendRequestResponse, error)
 	GetUserFriendRequestsIncoming(context.Context, *GetUserFriendRequestsIncomingRequest) (*GetUserFriendRequestsIncomingResponse, error)
 	AcceptFriendRequest(context.Context, *AcceptFriendRequestRequest) (*AcceptFriendRequestResponse, error)
@@ -192,6 +209,9 @@ func (UnimplementedFriendsServiceServer) SendUserNotificationWiiU(context.Contex
 }
 func (UnimplementedFriendsServiceServer) GetUserFriendPIDs(context.Context, *GetUserFriendPIDsRequest) (*GetUserFriendPIDsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserFriendPIDs not implemented")
+}
+func (UnimplementedFriendsServiceServer) GetUserFriendPIDsMulti(context.Context, *GetUserFriendPIDsMultiRequest) (*GetUserFriendPIDsMultiResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserFriendPIDsMulti not implemented")
 }
 func (UnimplementedFriendsServiceServer) SendUserFriendRequest(context.Context, *SendUserFriendRequestRequest) (*SendUserFriendRequestResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendUserFriendRequest not implemented")
@@ -270,6 +290,24 @@ func _FriendsService_GetUserFriendPIDs_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FriendsServiceServer).GetUserFriendPIDs(ctx, req.(*GetUserFriendPIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FriendsService_GetUserFriendPIDsMulti_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserFriendPIDsMultiRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendsServiceServer).GetUserFriendPIDsMulti(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FriendsService_GetUserFriendPIDsMulti_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendsServiceServer).GetUserFriendPIDsMulti(ctx, req.(*GetUserFriendPIDsMultiRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -432,6 +470,10 @@ var FriendsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserFriendPIDs",
 			Handler:    _FriendsService_GetUserFriendPIDs_Handler,
+		},
+		{
+			MethodName: "GetUserFriendPIDsMulti",
+			Handler:    _FriendsService_GetUserFriendPIDsMulti_Handler,
 		},
 		{
 			MethodName: "SendUserFriendRequest",

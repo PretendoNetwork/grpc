@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { CreateAuditLogCommentRequest, CreateAuditLogCommentResponse } from "./create_audit_log_comment_rpc";
 import { CreateBanCommentRequest, CreateBanCommentResponse } from "./create_ban_comment_rpc";
 import { CreateServerRequest, CreateServerResponse } from "./create_server_rpc";
@@ -37,6 +37,7 @@ import { UpdatePNIDRequest, UpdatePNIDResponse } from "./update_pnid_rpc";
 import { UpdateServerRequest, UpdateServerResponse } from "./update_server_rpc";
 import { ValidateIndependentServiceTokenRequest, ValidateIndependentServiceTokenResponse } from "./validate_independent_service_token_rpc";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/account_service.proto";
 /**
  * AccountService provides access to account server data.
  *
@@ -56,18 +57,18 @@ export declare const AccountServiceDefinition: {
          */
         readonly getUserData: {
             readonly name: "GetUserData";
-            readonly requestType: import("./get_user_data_rpc").MessageFns<GetUserDataRequest>;
+            readonly requestType: typeof GetUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_data_rpc").MessageFns<GetUserDataResponse>;
+            readonly responseType: typeof GetUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetNEXPassword retrieves a NEX accounts password. Used only by game servers for Kerberos. */
         readonly getNEXPassword: {
             readonly name: "GetNEXPassword";
-            readonly requestType: import("./get_nex_password_rpc").MessageFns<GetNEXPasswordRequest>;
+            readonly requestType: typeof GetNEXPasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_nex_password_rpc").MessageFns<GetNEXPasswordResponse>;
+            readonly responseType: typeof GetNEXPasswordResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -79,9 +80,9 @@ export declare const AccountServiceDefinition: {
          */
         readonly getNEXData: {
             readonly name: "GetNEXData";
-            readonly requestType: import("./get_nex_data_rpc").MessageFns<GetNEXDataRequest>;
+            readonly requestType: typeof GetNEXDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_nex_data_rpc").MessageFns<GetNEXDataResponse>;
+            readonly responseType: typeof GetNEXDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -93,9 +94,9 @@ export declare const AccountServiceDefinition: {
          */
         readonly updatePNIDPermissions: {
             readonly name: "UpdatePNIDPermissions";
-            readonly requestType: import("./update_pnid_permissions_rpc").MessageFns<UpdatePNIDPermissionsRequest>;
+            readonly requestType: typeof UpdatePNIDPermissionsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_pnid_permissions_rpc").MessageFns<UpdatePNIDPermissionsResponse>;
+            readonly responseType: typeof UpdatePNIDPermissionsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -107,54 +108,54 @@ export declare const AccountServiceDefinition: {
          */
         readonly exchangeTokenForUserData: {
             readonly name: "ExchangeTokenForUserData";
-            readonly requestType: import("./exchange_token_for_user_data_rpc").MessageFns<ExchangeTokenForUserDataRequest>;
+            readonly requestType: typeof ExchangeTokenForUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./exchange_token_for_user_data_rpc").MessageFns<ExchangeTokenForUserDataResponse>;
+            readonly responseType: typeof ExchangeTokenForUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ExchangeOAuthTokenForUserData exchanges an authentication token for PNID data. */
         readonly exchangeOAuthTokenForUserData: {
             readonly name: "ExchangeOAuthTokenForUserData";
-            readonly requestType: import("./exchange_oauth_token_for_user_data_rpc").MessageFns<ExchangeOAuthTokenForUserDataRequest>;
+            readonly requestType: typeof ExchangeOAuthTokenForUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./exchange_oauth_token_for_user_data_rpc").MessageFns<ExchangeOAuthTokenForUserDataResponse>;
+            readonly responseType: typeof ExchangeOAuthTokenForUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ExchangeNEXTokenForUserData exchanges a NEX token for NEX account data. */
         readonly exchangeNEXTokenForUserData: {
             readonly name: "ExchangeNEXTokenForUserData";
-            readonly requestType: import("./exchange_nex_token_for_user_data_rpc").MessageFns<ExchangeNEXTokenForUserDataRequest>;
+            readonly requestType: typeof ExchangeNEXTokenForUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./exchange_nex_token_for_user_data_rpc").MessageFns<ExchangeNEXTokenForUserDataResponse>;
+            readonly responseType: typeof ExchangeNEXTokenForUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ExchangeIndependentServiceTokenForUserData exchanges a service token for user data. PNID data is not returned for NASC tokens. */
         readonly exchangeIndependentServiceTokenForUserData: {
             readonly name: "ExchangeIndependentServiceTokenForUserData";
-            readonly requestType: import("./exchange_independent_service_token_for_user_data_rpc").MessageFns<ExchangeIndependentServiceTokenForUserDataRequest>;
+            readonly requestType: typeof ExchangeIndependentServiceTokenForUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./exchange_independent_service_token_for_user_data_rpc").MessageFns<ExchangeIndependentServiceTokenForUserDataResponse>;
+            readonly responseType: typeof ExchangeIndependentServiceTokenForUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ExchangePasswordResetTokenForUserData exchanges a password reset token for PNID data. */
         readonly exchangePasswordResetTokenForUserData: {
             readonly name: "ExchangePasswordResetTokenForUserData";
-            readonly requestType: import("./exchange_password_reset_token_for_user_data_rpc").MessageFns<ExchangePasswordResetTokenForUserDataRequest>;
+            readonly requestType: typeof ExchangePasswordResetTokenForUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./exchange_password_reset_token_for_user_data_rpc").MessageFns<ExchangePasswordResetTokenForUserDataResponse>;
+            readonly responseType: typeof ExchangePasswordResetTokenForUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ValidateIndependentServiceToken validates that a service token data is correct, even on expired tokens. */
         readonly validateIndependentServiceToken: {
             readonly name: "ValidateIndependentServiceToken";
-            readonly requestType: import("./validate_independent_service_token_rpc").MessageFns<ValidateIndependentServiceTokenRequest>;
+            readonly requestType: typeof ValidateIndependentServiceTokenRequest;
             readonly requestStream: false;
-            readonly responseType: import("./validate_independent_service_token_rpc").MessageFns<ValidateIndependentServiceTokenResponse>;
+            readonly responseType: typeof ValidateIndependentServiceTokenResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -166,243 +167,243 @@ export declare const AccountServiceDefinition: {
          */
         readonly deleteAccount: {
             readonly name: "DeleteAccount";
-            readonly requestType: import("./delete_account_rpc").MessageFns<DeleteAccountRequest>;
+            readonly requestType: typeof DeleteAccountRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_account_rpc").MessageFns<DeleteAccountResponse>;
+            readonly responseType: typeof DeleteAccountResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListDevices returns a paginated list of devices. */
         readonly listDevices: {
             readonly name: "ListDevices";
-            readonly requestType: import("./list_devices_rpc").MessageFns<ListDevicesRequest>;
+            readonly requestType: typeof ListDevicesRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_devices_rpc").MessageFns<ListDevicesResponse>;
+            readonly responseType: typeof ListDevicesResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetDevice retrieves details for a specific device. */
         readonly getDevice: {
             readonly name: "GetDevice";
-            readonly requestType: import("./get_device_rpc").MessageFns<GetDeviceRequest>;
+            readonly requestType: typeof GetDeviceRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_device_rpc").MessageFns<GetDeviceResponse>;
+            readonly responseType: typeof GetDeviceResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** UpdateDevice updates device information. */
         readonly updateDevice: {
             readonly name: "UpdateDevice";
-            readonly requestType: import("./update_device_rpc").MessageFns<UpdateDeviceRequest>;
+            readonly requestType: typeof UpdateDeviceRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_device_rpc").MessageFns<UpdateDeviceResponse>;
+            readonly responseType: typeof UpdateDeviceResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListNEXAccounts returns a paginated list of NEX accounts. */
         readonly listNEXAccounts: {
             readonly name: "ListNEXAccounts";
-            readonly requestType: import("./list_nex_accounts_rpc").MessageFns<ListNEXAccountsRequest>;
+            readonly requestType: typeof ListNEXAccountsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_nex_accounts_rpc").MessageFns<ListNEXAccountsResponse>;
+            readonly responseType: typeof ListNEXAccountsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetNEXAccount retrieves details for a specific NEX account. */
         readonly getNEXAccount: {
             readonly name: "GetNEXAccount";
-            readonly requestType: import("./get_nex_account_rpc").MessageFns<GetNEXAccountRequest>;
+            readonly requestType: typeof GetNEXAccountRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_nex_account_rpc").MessageFns<GetNEXAccountResponse>;
+            readonly responseType: typeof GetNEXAccountResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** UpdateNEXAccount updates NEX account information. */
         readonly updateNEXAccount: {
             readonly name: "UpdateNEXAccount";
-            readonly requestType: import("./update_nex_account_rpc").MessageFns<UpdateNEXAccountRequest>;
+            readonly requestType: typeof UpdateNEXAccountRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_nex_account_rpc").MessageFns<UpdateNEXAccountResponse>;
+            readonly responseType: typeof UpdateNEXAccountResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListServers returns a paginated list of server configurations. */
         readonly listServers: {
             readonly name: "ListServers";
-            readonly requestType: import("./list_servers_rpc").MessageFns<ListServersRequest>;
+            readonly requestType: typeof ListServersRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_servers_rpc").MessageFns<ListServersResponse>;
+            readonly responseType: typeof ListServersResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** CreateServer creates a new server configuration. */
         readonly createServer: {
             readonly name: "CreateServer";
-            readonly requestType: import("./create_server_rpc").MessageFns<CreateServerRequest>;
+            readonly requestType: typeof CreateServerRequest;
             readonly requestStream: false;
-            readonly responseType: import("./create_server_rpc").MessageFns<CreateServerResponse>;
+            readonly responseType: typeof CreateServerResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetServer retrieves the configuration for a specific server. */
         readonly getServer: {
             readonly name: "GetServer";
-            readonly requestType: import("./get_server_rpc").MessageFns<GetServerRequest>;
+            readonly requestType: typeof GetServerRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_server_rpc").MessageFns<GetServerResponse>;
+            readonly responseType: typeof GetServerResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** UpdateServer updates a server configuration. */
         readonly updateServer: {
             readonly name: "UpdateServer";
-            readonly requestType: import("./update_server_rpc").MessageFns<UpdateServerRequest>;
+            readonly requestType: typeof UpdateServerRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_server_rpc").MessageFns<UpdateServerResponse>;
+            readonly responseType: typeof UpdateServerResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** DeleteServer removes a server configuration. */
         readonly deleteServer: {
             readonly name: "DeleteServer";
-            readonly requestType: import("./delete_server_rpc").MessageFns<DeleteServerRequest>;
+            readonly requestType: typeof DeleteServerRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_server_rpc").MessageFns<DeleteServerResponse>;
+            readonly responseType: typeof DeleteServerResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListPNIDs returns a paginated list of PNID accounts. */
         readonly listPNIDs: {
             readonly name: "ListPNIDs";
-            readonly requestType: import("./list_pnids_rpc").MessageFns<ListPNIDsRequest>;
+            readonly requestType: typeof ListPNIDsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_pnids_rpc").MessageFns<ListPNIDsResponse>;
+            readonly responseType: typeof ListPNIDsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetPNID retrieves details for a specific PNID account. */
         readonly getPNID: {
             readonly name: "GetPNID";
-            readonly requestType: import("./get_pnid_rpc").MessageFns<GetPNIDRequest>;
+            readonly requestType: typeof GetPNIDRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_pnid_rpc").MessageFns<GetPNIDResponse>;
+            readonly responseType: typeof GetPNIDResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetPNIDs populates a map linking pid to PNID account data. */
         readonly getPNIDs: {
             readonly name: "GetPNIDs";
-            readonly requestType: import("./get_pnids_rpc").MessageFns<GetPNIDsRequest>;
+            readonly requestType: typeof GetPNIDsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_pnids_rpc").MessageFns<GetPNIDsResponse>;
+            readonly responseType: typeof GetPNIDsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** UpdatePNID updates PNID account information. */
         readonly updatePNID: {
             readonly name: "UpdatePNID";
-            readonly requestType: import("./update_pnid_rpc").MessageFns<UpdatePNIDRequest>;
+            readonly requestType: typeof UpdatePNIDRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_pnid_rpc").MessageFns<UpdatePNIDResponse>;
+            readonly responseType: typeof UpdatePNIDResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** DeletePNID permanently deletes a PNID account. */
         readonly deletePNID: {
             readonly name: "DeletePNID";
-            readonly requestType: import("./delete_pnid_rpc").MessageFns<DeletePNIDRequest>;
+            readonly requestType: typeof DeletePNIDRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_pnid_rpc").MessageFns<DeletePNIDResponse>;
+            readonly responseType: typeof DeletePNIDResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListAuditLogs returns a paginated list of audit log entries. */
         readonly listAuditLogs: {
             readonly name: "ListAuditLogs";
-            readonly requestType: import("./list_audit_logs_rpc").MessageFns<ListAuditLogsRequest>;
+            readonly requestType: typeof ListAuditLogsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_audit_logs_rpc").MessageFns<ListAuditLogsResponse>;
+            readonly responseType: typeof ListAuditLogsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListAuditLogComments returns comments for a specific audit log entry. */
         readonly listAuditLogComments: {
             readonly name: "ListAuditLogComments";
-            readonly requestType: import("./list_audit_log_comments_rpc").MessageFns<ListAuditLogCommentsRequest>;
+            readonly requestType: typeof ListAuditLogCommentsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_audit_log_comments_rpc").MessageFns<ListAuditLogCommentsResponse>;
+            readonly responseType: typeof ListAuditLogCommentsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** CreateAuditLogComment adds a comment to an audit log entry. */
         readonly createAuditLogComment: {
             readonly name: "CreateAuditLogComment";
-            readonly requestType: import("./create_audit_log_comment_rpc").MessageFns<CreateAuditLogCommentRequest>;
+            readonly requestType: typeof CreateAuditLogCommentRequest;
             readonly requestStream: false;
-            readonly responseType: import("./create_audit_log_comment_rpc").MessageFns<CreateAuditLogCommentResponse>;
+            readonly responseType: typeof CreateAuditLogCommentResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListBans returns a paginated list of bans. */
         readonly listBans: {
             readonly name: "ListBans";
-            readonly requestType: import("./list_bans_rpc").MessageFns<ListBansRequest>;
+            readonly requestType: typeof ListBansRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_bans_rpc").MessageFns<ListBansResponse>;
+            readonly responseType: typeof ListBansResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** IssueBan creates a new ban. Can target both users and devices. */
         readonly issueBan: {
             readonly name: "IssueBan";
-            readonly requestType: import("./issue_ban_rpc").MessageFns<IssueBanRequest>;
+            readonly requestType: typeof IssueBanRequest;
             readonly requestStream: false;
-            readonly responseType: import("./issue_ban_rpc").MessageFns<IssueBanResponse>;
+            readonly responseType: typeof IssueBanResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** GetBan retrieves details for a specific ban. */
         readonly getBan: {
             readonly name: "GetBan";
-            readonly requestType: import("./get_ban_rpc").MessageFns<GetBanRequest>;
+            readonly requestType: typeof GetBanRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_ban_rpc").MessageFns<GetBanResponse>;
+            readonly responseType: typeof GetBanResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** UpdateBan modifies an existing ban. */
         readonly updateBan: {
             readonly name: "UpdateBan";
-            readonly requestType: import("./update_ban_rpc").MessageFns<UpdateBanRequest>;
+            readonly requestType: typeof UpdateBanRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_ban_rpc").MessageFns<UpdateBanResponse>;
+            readonly responseType: typeof UpdateBanResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** PardonBan lifts a ban. */
         readonly pardonBan: {
             readonly name: "PardonBan";
-            readonly requestType: import("./pardon_ban_rpc").MessageFns<PardonBanRequest>;
+            readonly requestType: typeof PardonBanRequest;
             readonly requestStream: false;
-            readonly responseType: import("./pardon_ban_rpc").MessageFns<PardonBanResponse>;
+            readonly responseType: typeof PardonBanResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** ListBanComments returns comments for a specific ban. */
         readonly listBanComments: {
             readonly name: "ListBanComments";
-            readonly requestType: import("./list_ban_comments_rpc").MessageFns<ListBanCommentsRequest>;
+            readonly requestType: typeof ListBanCommentsRequest;
             readonly requestStream: false;
-            readonly responseType: import("./list_ban_comments_rpc").MessageFns<ListBanCommentsResponse>;
+            readonly responseType: typeof ListBanCommentsResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         /** CreateBanComment adds a comment to a ban entry. */
         readonly createBanComment: {
             readonly name: "CreateBanComment";
-            readonly requestType: import("./create_ban_comment_rpc").MessageFns<CreateBanCommentRequest>;
+            readonly requestType: typeof CreateBanCommentRequest;
             readonly requestStream: false;
-            readonly responseType: import("./create_ban_comment_rpc").MessageFns<CreateBanCommentResponse>;
+            readonly responseType: typeof CreateBanCommentResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -611,7 +612,7 @@ export interface AccountServiceClient<CallOptionsExt = {}> {
     createBanComment(request: DeepPartial<CreateBanCommentRequest>, options?: CallOptions & CallOptionsExt): Promise<CreateBanCommentResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

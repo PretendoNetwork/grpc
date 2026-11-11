@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { BasicUserInfo } from "./basic_user_info";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/validate_independent_service_token_rpc.proto";
 export interface ValidateIndependentServiceTokenRequest {
     clientIds: string[];
     token: string;
@@ -13,7 +14,7 @@ export interface ValidateIndependentServiceTokenResponse {
 export declare const ValidateIndependentServiceTokenRequest: MessageFns<ValidateIndependentServiceTokenRequest>;
 export declare const ValidateIndependentServiceTokenResponse: MessageFns<ValidateIndependentServiceTokenResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

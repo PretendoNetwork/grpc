@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FriendRequest } from "./friend_request";
 export declare const protobufPackage = "friends.v2";
+export declare const protobufFileName = "friends/v2/get_user_friend_requests_incoming_rpc.proto";
 export interface GetUserFriendRequestsIncomingRequest {
     pid: number;
 }
@@ -10,7 +11,7 @@ export interface GetUserFriendRequestsIncomingResponse {
 export declare const GetUserFriendRequestsIncomingRequest: MessageFns<GetUserFriendRequestsIncomingRequest>;
 export declare const GetUserFriendRequestsIncomingResponse: MessageFns<GetUserFriendRequestsIncomingResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

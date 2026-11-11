@@ -1,5 +1,6 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export declare const protobufPackage = "api.v2";
+export declare const protobufFileName = "api/v2/reset_password_rpc.proto";
 export interface ResetPasswordRequest {
     password: string;
     passwordConfirm: string;
@@ -10,7 +11,7 @@ export interface ResetPasswordResponse {
 export declare const ResetPasswordRequest: MessageFns<ResetPasswordRequest>;
 export declare const ResetPasswordResponse: MessageFns<ResetPasswordResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

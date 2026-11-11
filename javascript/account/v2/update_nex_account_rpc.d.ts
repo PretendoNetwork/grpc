@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { NEXAccount } from "./nex_account";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/update_nex_account_rpc.proto";
 export interface UpdateNEXAccountRequest {
     pid: number;
     serverAccessLevel?: string | undefined;
@@ -12,7 +13,7 @@ export interface UpdateNEXAccountResponse {
 export declare const UpdateNEXAccountRequest: MessageFns<UpdateNEXAccountRequest>;
 export declare const UpdateNEXAccountResponse: MessageFns<UpdateNEXAccountResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

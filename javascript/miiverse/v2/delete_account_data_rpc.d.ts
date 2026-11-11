@@ -1,5 +1,6 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export declare const protobufPackage = "miiverse.v2";
+export declare const protobufFileName = "miiverse/v2/delete_account_data_rpc.proto";
 export interface DeleteAccountDataRequest {
     pid: number;
 }
@@ -10,7 +11,7 @@ export interface DeleteAccountDataResponse {
 export declare const DeleteAccountDataRequest: MessageFns<DeleteAccountDataRequest>;
 export declare const DeleteAccountDataResponse: MessageFns<DeleteAccountDataResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {

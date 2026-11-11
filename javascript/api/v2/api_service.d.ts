@@ -1,4 +1,4 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { DeleteAccountRequest, DeleteAccountResponse } from "./delete_account_rpc";
 import { ForgotPasswordRequest, ForgotPasswordResponse } from "./forgot_password_rpc";
 import { GetUserDataRequest, GetUserDataResponse } from "./get_user_data_rpc";
@@ -12,6 +12,7 @@ import { UpdatePasswordRequest, UpdatePasswordResponse } from "./update_password
 import { UpdateUserDataRequest, UpdateUserDataResponse } from "./update_user_data_rpc";
 import { VerifyEmailRequest, VerifyEmailResponse } from "./verify_email_rpc";
 export declare const protobufPackage = "api.v2";
+export declare const protobufFileName = "api/v2/api_service.proto";
 export type ApiServiceDefinition = typeof ApiServiceDefinition;
 export declare const ApiServiceDefinition: {
     readonly name: "ApiService";
@@ -19,97 +20,97 @@ export declare const ApiServiceDefinition: {
     readonly methods: {
         readonly register: {
             readonly name: "Register";
-            readonly requestType: import("./register_rpc").MessageFns<RegisterRequest>;
+            readonly requestType: typeof RegisterRequest;
             readonly requestStream: false;
-            readonly responseType: import("./register_rpc").MessageFns<RegisterResponse>;
+            readonly responseType: typeof RegisterResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly login: {
             readonly name: "Login";
-            readonly requestType: import("./login_rpc").MessageFns<LoginRequest>;
+            readonly requestType: typeof LoginRequest;
             readonly requestStream: false;
-            readonly responseType: import("./login_rpc").MessageFns<LoginResponse>;
+            readonly responseType: typeof LoginResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly getUserData: {
             readonly name: "GetUserData";
-            readonly requestType: import("./get_user_data_rpc").MessageFns<GetUserDataRequest>;
+            readonly requestType: typeof GetUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./get_user_data_rpc").MessageFns<GetUserDataResponse>;
+            readonly responseType: typeof GetUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateUserData: {
             readonly name: "UpdateUserData";
-            readonly requestType: import("./update_user_data_rpc").MessageFns<UpdateUserDataRequest>;
+            readonly requestType: typeof UpdateUserDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_user_data_rpc").MessageFns<UpdateUserDataResponse>;
+            readonly responseType: typeof UpdateUserDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updateEmail: {
             readonly name: "UpdateEmail";
-            readonly requestType: import("./update_email_rpc").MessageFns<UpdateEmailRequest>;
+            readonly requestType: typeof UpdateEmailRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_email_rpc").MessageFns<UpdateEmailResponse>;
+            readonly responseType: typeof UpdateEmailResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly verifyEmail: {
             readonly name: "VerifyEmail";
-            readonly requestType: import("./verify_email_rpc").MessageFns<VerifyEmailRequest>;
+            readonly requestType: typeof VerifyEmailRequest;
             readonly requestStream: false;
-            readonly responseType: import("./verify_email_rpc").MessageFns<VerifyEmailResponse>;
+            readonly responseType: typeof VerifyEmailResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly forgotPassword: {
             readonly name: "ForgotPassword";
-            readonly requestType: import("./forgot_password_rpc").MessageFns<ForgotPasswordRequest>;
+            readonly requestType: typeof ForgotPasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("./forgot_password_rpc").MessageFns<ForgotPasswordResponse>;
+            readonly responseType: typeof ForgotPasswordResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly resetPassword: {
             readonly name: "ResetPassword";
-            readonly requestType: import("./reset_password_rpc").MessageFns<ResetPasswordRequest>;
+            readonly requestType: typeof ResetPasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("./reset_password_rpc").MessageFns<ResetPasswordResponse>;
+            readonly responseType: typeof ResetPasswordResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly updatePassword: {
             readonly name: "UpdatePassword";
-            readonly requestType: import("./update_password_rpc").MessageFns<UpdatePasswordRequest>;
+            readonly requestType: typeof UpdatePasswordRequest;
             readonly requestStream: false;
-            readonly responseType: import("./update_password_rpc").MessageFns<UpdatePasswordResponse>;
+            readonly responseType: typeof UpdatePasswordResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly setDiscordConnectionData: {
             readonly name: "SetDiscordConnectionData";
-            readonly requestType: import("./set_discord_connection_data_rpc").MessageFns<SetDiscordConnectionDataRequest>;
+            readonly requestType: typeof SetDiscordConnectionDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./set_discord_connection_data_rpc").MessageFns<SetDiscordConnectionDataResponse>;
+            readonly responseType: typeof SetDiscordConnectionDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly setStripeConnectionData: {
             readonly name: "SetStripeConnectionData";
-            readonly requestType: import("./set_stripe_connection_data_rpc").MessageFns<SetStripeConnectionDataRequest>;
+            readonly requestType: typeof SetStripeConnectionDataRequest;
             readonly requestStream: false;
-            readonly responseType: import("./set_stripe_connection_data_rpc").MessageFns<SetStripeConnectionDataResponse>;
+            readonly responseType: typeof SetStripeConnectionDataResponse;
             readonly responseStream: false;
             readonly options: {};
         };
         readonly deleteAccount: {
             readonly name: "DeleteAccount";
-            readonly requestType: import("./delete_account_rpc").MessageFns<DeleteAccountRequest>;
+            readonly requestType: typeof DeleteAccountRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_account_rpc").MessageFns<DeleteAccountResponse>;
+            readonly responseType: typeof DeleteAccountResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -144,7 +145,7 @@ export interface ApiServiceClient<CallOptionsExt = {}> {
     deleteAccount(request: DeepPartial<DeleteAccountRequest>, options?: CallOptions & CallOptionsExt): Promise<DeleteAccountResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

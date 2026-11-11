@@ -1,6 +1,7 @@
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import type { CallContext, CallOptions } from "nice-grpc-common";
 import { DeleteCourseRequest, DeleteCourseResponse } from "./delete_course_rpc";
 export declare const protobufPackage = "smm.v1";
+export declare const protobufFileName = "smm/v1/smm_service.proto";
 export type SMMServiceDefinition = typeof SMMServiceDefinition;
 export declare const SMMServiceDefinition: {
     readonly name: "SMMService";
@@ -8,9 +9,9 @@ export declare const SMMServiceDefinition: {
     readonly methods: {
         readonly deleteCourse: {
             readonly name: "DeleteCourse";
-            readonly requestType: import("./delete_course_rpc").MessageFns<DeleteCourseRequest>;
+            readonly requestType: typeof DeleteCourseRequest;
             readonly requestStream: false;
-            readonly responseType: import("./delete_course_rpc").MessageFns<DeleteCourseResponse>;
+            readonly responseType: typeof DeleteCourseResponse;
             readonly responseStream: false;
             readonly options: {};
         };
@@ -23,7 +24,7 @@ export interface SMMServiceClient<CallOptionsExt = {}> {
     deleteCourse(request: DeepPartial<DeleteCourseRequest>, options?: CallOptions & CallOptionsExt): Promise<DeleteCourseResponse>;
 }
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

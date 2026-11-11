@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { Ban } from "./ban_details";
 export declare const protobufPackage = "account.v2";
+export declare const protobufFileName = "account/v2/get_ban_rpc.proto";
 export interface GetBanRequest {
     id: string;
 }
@@ -10,7 +11,7 @@ export interface GetBanResponse {
 export declare const GetBanRequest: MessageFns<GetBanRequest>;
 export declare const GetBanResponse: MessageFns<GetBanResponse>;
 type Builtin = Date | Function | Uint8Array | string | number | boolean | bigint | undefined;
-export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+export type DeepPartial<T> = T extends bigint ? string | number | bigint : T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export interface MessageFns<T> {
