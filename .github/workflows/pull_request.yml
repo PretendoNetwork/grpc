@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.base.ref == 'master'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: del-systems/check-if-version-bumped@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -20,13 +20,13 @@ jobs:
       pull-requests: write
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v7
         with:
           go-version: "1.24"
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "22"
       - name: Install Protoc
@@ -42,3 +42,28 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           format: false
+  build:
+    name: Build Protobufs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: "stable"
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v3
+        with:
+          version: "23.x"
+      - name: Ensure Go Path
+        run: export PATH="$PATH:$(go env GOPATH)/bin"
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Install Go dependencies
+        run: npm run install:go
+      - name: Build Protobufs
+        run: npm run build
