@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package friends.v2;
+
+// TODO - Move this to its own file?
+message FriendPIDList {
+  repeated uint64 pids = 1;
+}
+
+message GetUserFriendPIDsMultiRequest {
+  repeated uint64 pids = 1;
+}
+
+message GetUserFriendPIDsMultiResponse {
+  map<uint64, FriendPIDList> data = 1;
+}
